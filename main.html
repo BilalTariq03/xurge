@@ -16,8 +16,18 @@
       <div class="logo-container">
         <img class="logo" src="images/SVG/Xurge Primary.svg">
       </div>
-      <div class="menu-items">
-        <ul>
+      <div >
+        <ul class="menu-items" id="nav-menu">
+
+          <li class="mobile-only">
+            <a href="main.html" class="item active">
+              <span class="text-wrap">
+                <span class="top text">Home</span>
+                <span class="bottom text">Home</span>
+              </span>
+            
+           </a></li>
+
           <li><a href="#" class="item">
             <span class="text-wrap">
               <span class="top text">Work</span>
@@ -49,13 +59,24 @@
             </span>
              
           </a></li>
+
+          <li>
+            <button class="talk-button mobile-button">
+              Lets Talk <i class="fa-solid fa-arrow-up button-logo"></i>
+            </button>
+          </li>
         </ul>
       </div>
     </div>
     
     <div class="right-items">
-      <button>Lets Talk <i class="fa-solid fa-arrow-up button-logo"></i></button>
+      <i class="fa-solid fa-bars menu-button"></i>
+      
+      <button class="talk-button">Lets Talk <i class="fa-solid fa-arrow-up button-logo"></i></button>
     </div>
   </nav>
+
+
+  <script src="scripts/header.js"></script>
 </body>
 </html>
