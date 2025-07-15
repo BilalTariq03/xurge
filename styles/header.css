@@ -1,19 +1,17 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body{
-  padding-inline: 76px;
-  font-family: 'Poppins', sans-serif;
-}
 
 .nav-bar{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 30px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 100px;
+  padding: 0 70px;
+  background-color: white;
+  transition: top 0.8s ease-in;
 }
 
 .left-items{
@@ -84,7 +82,30 @@ body{
   position: relative;
   z-index: 1;
   overflow: hidden;
-  transition: all 0.36s ease;
+  transition: 0.6s;
+}
+
+.talk-button-float{
+  padding: clamp(10px, 0.9vw, 16px) clamp(18px, 1.9vw, 40px);
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 25px;
+  font-size: clamp(16px, 1.2vw, 20px);
+  cursor: pointer;
+  position: fixed;
+  top: -75px;
+  right: 67px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 100;
+  transition: top 1s ease-in;
+}
+
+.talk-button-float.show{
+  top: 25px;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .button-logo{
@@ -93,7 +114,8 @@ body{
   font-weight:light;
 }
 
-.right-items .talk-button::before{
+.right-items .talk-button::before,
+.talk-button-float::before{
   content: '';
   position: absolute;
   bottom: 0;
@@ -105,11 +127,13 @@ body{
   transition: all 0.6s ease;
 }
 
-.right-items .talk-button:hover{
+.right-items .talk-button:hover,
+.talk-button-float:hover{
   color: black;
 }
 
-.right-items .talk-button:hover::before{
+.right-items .talk-button:hover::before,
+.talk-button-float:hover::before{
   height: 100%;
 }
 
@@ -120,18 +144,15 @@ body{
 }
 
 .menu-button{
-  background-color:rgb(244, 255, 221);
-  padding: 14px;
-  border-radius: 28px;
-  font-size: 20px;
-  display: none;
+  display: none !important;
+  
 }
 
 @media(max-width:990px){
   .menu-items{
     overflow: hidden;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     top: 100px;
     left: 0%;
     width: 100%;
@@ -139,6 +160,7 @@ body{
     background-color: rgb(2, 2, 2);
     gap: 0px;
     transition: 0.6s ease;
+    z-index: 9999;;
   }
 
   .mobile-only{
@@ -146,7 +168,8 @@ body{
   }
 
   .menu-items.show{
-    max-height: 100%;
+    max-height: 100vh;
+    padding-bottom: 200px;
   }
 
   .menu-items li{
@@ -182,7 +205,11 @@ body{
   }
 
   .menu-button{
-    display: block;
+    display: block !important;
+    background-color:rgb(244, 255, 221);
+    padding: 14px;
+    border-radius: 28px;
+    font-size: 20px;
     cursor: pointer;
   }
 
@@ -229,5 +256,9 @@ body{
 
   .menu-items li{
     padding-inline: 20px;
+  }
+
+  .talk-button-float{
+    right: 20px;
   }
 }

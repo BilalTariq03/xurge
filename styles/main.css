@@ -1,0 +1,139 @@
+.hero-text-container{
+  padding-top: 260px;
+  padding-bottom: 70px;
+
+}
+
+.hero-text{
+  font-size: 5.2vw;
+  font-family: 'Roboto';
+  font-weight: 500;
+}
+
+.stone-color{
+  color: rgb(140, 140, 140);
+}
+
+.video-container{
+  position: relative;
+  width: 100%;
+  height: 105vh;
+  overflow: hidden;
+  transition: transform 0.3s ease-out;
+}
+
+
+.video-container video{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-height: 100%;
+  min-width: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 1;
+
+}
+
+/*Full video modal  */
+.video-modal{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.full-video{
+  width: 90%;
+  max-width: 1000px;
+  height: 600px;
+  object-fit: cover;
+}
+
+
+.close-modal{
+  position: absolute;
+  top: 70px;
+  right: 265px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 26px;
+  z-index: 10;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.close-modal:hover{
+  transform: scale(1.2);
+}
+
+
+/* Brand logos */
+.padding-div{
+  padding: 100px;
+}
+
+.logo-strip-container{
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  padding-inline: 3rem;
+  border-top: 1px solid rgb(225, 225, 225);
+  border-bottom: 1px solid rgb(225, 225, 225);
+}
+.logo-strip{
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.logo-column{
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  overflow: hidden;
+  transform: translateY(11.9rem);
+  animation: scroll-up 4s ease infinite;
+}
+
+.logo{
+  font-size: 25px;
+}
+
+@keyframes scroll-up {
+  0%   { transform: translateY(11.9rem); }
+  16.66% { transform: translateY(7.4rem); }
+  33.33% { transform: translateY(7.4rem); }
+  49.99% { transform: translateY(2.5rem); }
+  66.66% { transform: translateY(2.5rem); }
+  83.33% { transform: translateY(-3rem); }
+  100%  { transform: translateY(-3rem); }
+}
+
+.delay-1{
+  animation-delay: 0s;
+}
+
+.delay-2{
+  animation-delay: 0.1s;
+}
+
+.delay-3{
+  animation-delay: 0.2s;
+}
+
+.delay-4{
+  animation-delay: 0.3s;
+}
+
+.delay-5{
+  animation-delay: 0.4s;
+}

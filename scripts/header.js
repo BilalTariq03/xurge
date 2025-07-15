@@ -35,3 +35,22 @@ document.addEventListener('click', (e)=>{
     
   }
 })
+
+let lastScrollTop = 0;
+const navbar = document.querySelector('.nav-bar');
+const floatingButton = document.querySelector('.talk-button-float');
+
+window.addEventListener('scroll', ()=>{
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+  if(scrollTop > lastScrollTop){
+    navbar.style.top = "-100px";
+    floatingButton.classList.add('show')
+  }
+  else{
+    navbar.style.top="0"
+    floatingButton.classList.remove('show');
+  }
+
+  lastScrollTop = scrollTop<0? 0:scrollTop;
+});
