@@ -16,11 +16,19 @@
   <link rel="icon" type="image/x-icon" src="./images/icon/favicon.ico">
 
   <script src="https://kit.fontawesome.com/0a2264748d.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.25/bundled/lenis.min.js"></script>
+
+
+
+
 
 </head>
 
 <div class="cursor-dot">
-  <i class="fa-solid fa-play"></i>
+  <i class="fa-solid fa-play video-icon"></i>
+  <i class="fa-solid fa-arrow-up arrow-icon"></i>
 </div>
 
 <body>
@@ -85,93 +93,279 @@
     <div class="right-items">
       <i class="fa-solid fa-bars menu-button"></i>
       
-      <button class="talk-button">Lets Talk <i class="fa-solid fa-arrow-up button-logo"></i></button>
+      <button class="talk-button">Lets Talk 
+        <span class="button-logo-span">
+          <i class="fa-solid fa-arrow-up button-logo button-logo-1"></i>
+          <i class="fa-solid fa-arrow-up button-logo button-logo-2"></i>
+        </span>
     </div>
   </nav>
 
-  <button class="talk-button-float">Lets Talk <i class="fa-solid fa-arrow-up button-logo"></i></button>
+  <button class="talk-button-float">Lets Talk
+     <span class="button-logo-span">
+        <i class="fa-solid fa-arrow-up button-logo button-logo-1"></i>
+        <i class="fa-solid fa-arrow-up button-logo button-logo-2"></i>
+      </span>
+    </button>
 
 
-    <div class="hero-text-container">
-      <h1 class="hero-text">
-        <div class="line">
-          <span class="stone-color">
-          Websites
-          </span>
-          and
-          <span class="stone-color">
-            brand
-          </span>
-        </div>
+    <section class="hero-container">
+      <div class="hero-text-container">
+        <h1 class="hero-text">
+          <div class="line">
+            <span class="stone-color">
+            Websites
+            </span>
+            and
+            <span class="stone-color">
+              brand
+            </span>
+          </div>
 
-        <div class="line">
-          identities that enhance 
-        </div>
-        
-        <div class="line">
-          business
-          <span class="stone-color">
-          growth
-          </span>
-        </div>
-      </h1>
-    </div>
+          <div class="line">
+            identities that enhance 
+          </div>
+          
+          <div class="line">
+            business
+            <span class="stone-color">
+            growth
+            </span>
+          </div>
+        </h1>
+      </div>
+    </section>
+    
 
-    <div class="video-container">
-      <video id = "bg-video" autoplay muted loop playsinline>
-        <source src="./images/video-essam.mp4" type="video/mp4" />
-        Your browser does not support the video tag
-      </video>
-    </div>
+    <section class="video-section">
+      <div class="video-container">
+        <video id = "bg-video" autoplay muted loop playsinline>
+          <source src="./images/video-essam.mp4" type="video/mp4" />
+          Your browser does not support the video tag
+        </video>
+      </div>
 
-    <!-- Full Video modal -->
-    <div id="video-modal" class="video-modal">
-      <button class="close-modal">&times; </button>
-      <video class="full-video">
-        <source src="./images/video-essam.mp4"/>
-      </video>
-    </div>
+      <!-- Full Video modal -->
+      <div id="video-modal" class="video-modal">
+        <button class="close-modal">&times; </button>
+        <video class="full-video">
+          <source src="./images/video-essam.mp4"/>
+        </video>
+      </div>
+    </section>
+    
 
     <!-- brands logo -->
-    <div class="padding-div"></div>
+     <section class="brands-container">
+      <div class="padding-div"></div>
       
-    <div class="logo-strip-container">
-      <div class="logo-strip">
-        <div class="logo-column delay-1">
-          <div class="logo">Logo 1</div>
-          <div class="logo">Logo 2</div>
-          <div class="logo">Logo 3</div>
-        </div>
+      <div class="logo-strip-container">
+        <div class="logo-strip">
+          <div class="logo-column delay-1">
+            <div class="logo">Logo 1</div>
+            <div class="logo">Logo 2</div>
+            <div class="logo">Logo 3</div>
+          </div>
 
-        <div class="logo-column delay-2">
-          <div class="logo">Logo 4</div>
-          <div class="logo">Logo 5</div>
-          <div class="logo">Logo 6</div>
-        </div>
+          <div class="logo-column delay-2">
+            <div class="logo">Logo 4</div>
+            <div class="logo">Logo 5</div>
+            <div class="logo">Logo 6</div>
+          </div>
 
-        <div class="logo-column delay-3">
-          <div class="logo">Logo 7</div>
-          <div class="logo">Logo 8</div>
-          <div class="logo">Logo 9</div>
-        </div>
+          <div class="logo-column delay-3">
+            <div class="logo">Logo 7</div>
+            <div class="logo">Logo 8</div>
+            <div class="logo">Logo 9</div>
+          </div>
 
-        <div class="logo-column delay-4">
-          <div class="logo">Logo 10</div>
-          <div class="logo">Logo 11</div>
-          <div class="logo">Logo 12</div>
-        </div>
+          <div class="logo-column delay-4">
+            <div class="logo">Logo 10</div>
+            <div class="logo">Logo 11</div>
+            <div class="logo">Logo 12</div>
+          </div>
 
-        <div class="logo-column delay-5">
-          <div class="logo">Logo 13</div>
-          <div class="logo">Logo 14</div>
-          <div class="logo">Logo 15</div>
+          <div class="logo-column delay-5">
+            <div class="logo">Logo 13</div>
+            <div class="logo">Logo 14</div>
+            <div class="logo">Logo 15</div>
+          </div>
         </div>
       </div>
-    </div>
-     
+     </section>
+    
+<!-- About section -->
+     <section class="About-section">
+      <div class="padding-200">
+        <div class="about-component-container">
+          <div class="about-component">
+            <h2 class="about">
+              We are award-winning strategic design studio focusing on building bespoke websites and brand identities that instill trust, make an impact, and drive growth.
+            </h2>
+          </div>
+          <div class="spacing-48"></div>
+          <div class="collaborate-link-container">
+            <a href="#" class="collaborate-link">
+              Let's Collaborate
+              <span class="link-logo-span">
+                <i class="fa-solid fa-arrow-up link-logo"></i>
+                <i class="fa-solid fa-arrow-up link-logo link-logo-2"></i>
+              </span>        
+            </a>
+          </div>
+        </div>
+      </div>
+     </section>
+    
+<!-- Stats section -->
+     <section class="stats-section">
+      <div class="padding-bottom-80">
+      <div class="stats-container">
+        <div class="stats-item">
+          <h1 class="stats-heading" data-target="15">0+</h1>
+          <div class="stats-content">
+            <p>Years of experience in designing digital products</p>
+          </div>
+        </div>
 
+        <div class="stats-item">
+          <h1 class="stats-heading" data-target="300">0+</h1>
+          <div class="stats-content">
+            <p>Projects completed for global clients</p>
+          </div>
+        </div>
+
+        <div class="stats-item">
+          <h1 class="stats-heading" data-target="90">0%</h1>
+            <div class="stats-content">
+              <p>Of our clients return for another project</p>
+            </div>
+          </div>
+
+          <div class="stats-item">
+            <h1 class="stats-heading" data-target="40">0+</h1>
+            <div class="stats-content">
+              <p>Awards from the most prestigious insititutions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+     </section>
+    
+
+     <!-- Works section -->
+    <section class="works-section">
+      <div class="scroll-wrapper">
+        <!-- Panel 1: Hero Text -->
+        <div class="works-container">
+          <h1 class="works-hero-text">
+            <div class="works-hero-line">
+              Empowering
+            </div>
+            <div class="works-hero-line">
+              <span class="stone-color">B2B companies</span> with
+            </div>
+            <div class="works-hero-line">
+              world-class <span class="stone-color">designs</span>
+            </div>    
+          </h1>
+        </div>
+        
+        <!-- Panel 2: Work Items -->
+        <div class="work-item-list">
+          <div class="work-item">
+            <a href="#" class="work-item-link">
+              <div class="work-item-img-container">
+                <img class="work-item-img" src="./images/work1.avif">
+              </div>
+              <div class="work-item-content">
+                <h3 class="title">Item heading</h3>
+              </div>
+              <div class="work-item-category">
+                <div>Branding</div>
+                <div class="dot"></div>
+                <div>Website Design</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="panel work-item">
+            <a href="#" class="work-item-link">
+              <div class="work-item-img-container">
+                <img class="work-item-img" src="./images/work1.avif">
+              </div>
+              <div class="work-item-content">
+                <h3 class="title">Item 2 heading</h3>
+              </div>
+              <div class="work-item-category">
+                <div>Branding</div>
+                <div class="dot"></div>
+                <div>Website Design</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="panel work-item">
+            <a href="#" class="work-item-link">
+              <div class="work-item-img-container">
+                <img class="work-item-img" src="./images/work1.avif">
+              </div>
+              <div class="work-item-content">
+                <h3 class="title">Item 3 heading</h3>
+              </div>
+              <div class="work-item-category">
+                <div>Branding</div>
+                <div class="dot"></div>
+                <div>Website Design</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="panel work-item">
+            <a href="#" class="work-item-link">
+              <div class="work-item-img-container">
+                <img class="work-item-img" src="./images/work1.avif">
+              </div>
+              <div class="work-item-content">
+                <h3 class="title">Item 4 heading</h3>
+              </div>
+              <div class="work-item-category">
+                <div>Branding</div>
+                <div class="dot"></div>
+                <div>Website Design</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="panel work-item">
+            <a href="#" class="work-item-link">
+              <div class="work-item-img-container">
+                <img class="work-item-img" src="./images/work1.avif">
+              </div>
+              <div class="work-item-content">
+                <h3 class="title">Item 5 heading</h3>
+              </div>
+              <div class="work-item-category">
+                <div>Branding</div>
+                <div class="dot"></div>
+                <div>Website Design</div>
+              </div>
+            </a>
+          </div>
+          
+          <a class="work-book">
+            <div class="work-book-content">
+              <h2 class="heading">Still curious?</h2>
+              <p>See more projects.</p>
+            </div>
+          </a>
+        </div>
+      </div>  
+    </section>
+    
+    
 
   <script src="scripts/header.js"></script>
-  <script src="scripts/main.js"></script>
+  <script src="scripts/main.js" defer></script>
 </body>
 </html>

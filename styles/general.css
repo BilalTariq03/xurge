@@ -5,10 +5,13 @@
 }
 
 body{
-  padding-inline: 76px;
+  padding-inline: 5vw;
   font-family:  'Roboto', Arial;
   height: 20000px;
+  overflow-x: hidden;
 }
+
+
 
 .cursor-dot{
   position: fixed;
@@ -25,7 +28,8 @@ body{
   justify-content: center;
   font-size: 16px;
   color: black;
-  transition: transform 0.1s ease-out, width 0.5s ease-out, height 0.5s ease-out;
+  transition: transform 0.3s ease-out, width 0.5s ease-out, height 0.5s ease-out;
+  will-change: transform, opacity;
 }
 
 .cursor-dot i{
@@ -34,11 +38,17 @@ body{
 }
 
 
-.cursor-dot.video-hover{
+.cursor-dot.video-hover,
+.cursor-dot.work-hover{
   width: 100px;
   height: 100px;
 }
 
-.cursor-dot.video-hover i{
+.cursor-dot.video-hover .video-icon{
   display: block;
+}
+
+.cursor-dot.work-hover .arrow-icon{
+  display: block;
+  transform: rotate(45deg)
 }

@@ -72,7 +72,7 @@
 }
 
 .talk-button{
-  padding: 14px 25px;
+  padding: 12px 20px;
   background-color: black;
   color: white;
   border: none;
@@ -85,8 +85,9 @@
   transition: 0.6s;
 }
 
+
 .talk-button-float{
-  padding: clamp(10px, 0.9vw, 16px) clamp(18px, 1.9vw, 40px);
+  padding: clamp(10px, 0.75vw, 16px) clamp(18px, 1.5vw, 40px);
   background-color: white;
   color: black;
   border: 1px solid black;
@@ -108,11 +109,38 @@
   pointer-events: auto;
 }
 
+.button-logo-span{
+  display: inline-flex;
+  position: relative;
+  height: 20px;
+  width: 20px;
+  overflow: hidden;
+  transition: transform 0.2s ease-out;
+}
+
 .button-logo{
   transform: rotate(45deg);
   font-size: small;
   font-weight:light;
+  transition: transform 0.3s ease-out;
 }
+
+.button-logo-2{
+  position: absolute;
+  transform: rotate(45deg) translate(100%, 300%);
+  transition: transform 0.3s ease-out;
+}
+
+.talk-button:hover .button-logo-2,
+.talk-button-float:hover .button-logo-2{
+  transform: rotate(45deg) translate(0%, 0%);
+}
+
+.talk-button:hover .button-logo-1,
+.talk-button-float:hover .button-logo-1{
+  transform: rotate(45deg) translate(-100%, -300%);
+}
+
 
 .right-items .talk-button::before,
 .talk-button-float::before{

@@ -5,7 +5,7 @@
 }
 
 .hero-text{
-  font-size: 5.2vw;
+  font-size: 80px;
   font-family: 'Roboto';
   font-weight: 500;
 }
@@ -17,9 +17,11 @@
 .video-container{
   position: relative;
   width: 100%;
-  height: 105vh;
+  height: 710px;
   overflow: hidden;
+  border-radius: 8px;
   transition: transform 0.3s ease-out;
+  will-change: transform;
 }
 
 
@@ -136,4 +138,260 @@
 
 .delay-5{
   animation-delay: 0.4s;
+}
+
+
+/* About container */
+.padding-200{
+  padding: 12.5rem 0;
+}
+
+.about-component-container{
+  padding-left: 36%;
+}
+
+.about-component{
+  font-size: 2rem;
+  
+}
+
+.about-char{
+  opacity: 0.1;
+  font-weight: 500;
+  transition: opacity 0.s ease;
+}
+
+.spacing-48{
+  padding-top: 3rem;
+}
+
+
+.collaborate-link{
+  color: black;
+  text-decoration: none;
+  font-size: 26px;
+  position: relative;
+  display: inline-block;
+  font-weight: 500;
+  overflow: hidden;
+}
+
+.collaborate-link::before,
+.collaborate-link::after{
+  content: '';
+  position: absolute;
+  height: 2.5px;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background-color: black;
+  transform: translateX(0%);
+  transition: transform 0.3s ease;
+}
+
+.collaborate-link::after{
+  transform: translateX(-200%);
+  background-color: black;
+  z-index: 2;
+}
+
+.collaborate-link:hover::before{
+  transform: translateX(200%);
+}
+
+.collaborate-link:hover::after{
+  transform: translateX(0%);
+}
+
+.link-logo-span{
+  display: inline-flex;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.link-logo{
+  transform: rotate(45deg);
+  font-size: 20px;
+  font-weight:light;
+}
+
+.link-logo-2{
+  position: absolute;
+  transform: rotate(45deg) translate(100%, 300%);
+}
+
+.collaborate-link:hover .link-logo-span{
+  transform: translate(160%, -265%);
+}
+
+
+/* Stats - container */
+
+.padding-bottom-80{
+  padding-bottom: 80px;
+}
+
+.stats-container{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+}
+
+.stats-item{
+  display: flex;
+  flex-direction: column;
+  gap: 170px;
+  padding: 32px;
+  background-color: rgba(243,244,238,255);
+
+}
+
+.stats-heading{
+  font-size: 81.3px;
+  font-weight: 400;
+}
+
+.stats-content{
+  padding-top: 32px;
+  border-top: 1px solid rgb(226, 226, 226);
+}
+
+.stats-container p{
+  font-size: 18px;
+}
+
+
+/* Works done */
+
+.works-section{
+  height: 150vh;
+  width: 100vw;
+  margin-right: -5vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-wrapper{
+  display: flex;
+  width: max-content;
+  height: 100vh;
+  gap: 7.5vw;
+  padding: 20px 0;
+  padding-right: 150px;
+}
+
+.works-container{
+  height: 100vh;
+  width: 60vw;
+  display: flex;
+  align-items: center;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.works-hero-text{
+  font-size: 5.1rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translatey(80px);
+}
+
+.work-item-list{
+  display: flex;
+  height: 100vh;
+  gap: 50px;
+}
+
+.work-item{
+  height: 100vh;
+}
+
+.work-item-link{
+  height: 100%;
+  text-decoration: none;
+  color: black;
+}
+
+.work-item-img-container{
+  height: 85%;
+}
+
+.work-item-img{
+  height: 100%;
+  border-radius: 10px;
+}
+
+.work-item-content .title{
+  font-size: 25px;
+  padding-top: 10px;
+  font-weight: 400;
+}
+
+.work-item-category{
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  padding-top: 5px;
+  gap: 10px;
+}
+
+.work-item-category .dot{
+  height: 3px;
+  width: 3px;
+  background: black;
+  border-radius: 5px;
+}
+
+.work-book{
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(243,244,238,255);
+  height: 85.5vh;
+  width: 70vh;
+  border-radius: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  /* CSS vars to hold the hover point */
+  --mx: 50%;  
+  --my: 50%;
+}
+
+.work-book-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.work-book-content .heading{
+  font-size: 50px;
+}
+
+.work-book-content p{
+  font-size: 20px;
+}
+
+.work-book::before{
+  content: '';
+  position: absolute;
+  top:    var(--my);
+  left:   var(--mx);
+  background-color: rgba(226,250,111,1);
+  border-radius: 50%;
+  transform:  translate(-50%, -50%) scale(0);
+  width: 0;
+  height: 0;
+  transition: all 1s ease-out;
+  z-index: 0;
+}
+
+.work-book:hover::before{
+  height: 300%;
+  width: 300%;
+  transform: translate(-50%, -50%) scale(1);
 }
