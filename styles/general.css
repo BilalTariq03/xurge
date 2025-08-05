@@ -5,13 +5,15 @@
 }
 
 body{
-  padding-inline: 5vw;
+  /* padding-inline: 5vw; */
   font-family:  'Roboto', Arial;
   height: 20000px;
   overflow-x: hidden;
 }
 
-
+.padding-inline{
+  padding-inline: 5vw;
+}
 
 .cursor-dot{
   position: fixed;

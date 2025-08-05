@@ -1,3 +1,5 @@
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+
 const lenis = new Lenis({
   lerp: 0.1,          
   wheelMultiplier: 1,  
@@ -17,8 +19,8 @@ const cursorDot = document.querySelector('.cursor-dot')
 document.addEventListener('mousemove', (e)=>{
   if(!mouseTick){
     window.requestAnimationFrame(()=>{
-      mouseX = e.clientX - 17;
-      mouseY = e.clientY - 10;
+      const mouseX = e.clientX - 17;
+      const mouseY = e.clientY - 10;
 
       cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`
       mouseTick=false;
@@ -27,6 +29,21 @@ document.addEventListener('mousemove', (e)=>{
   mouseTick=true;
 })
 
+
+function AddSpans(className,spanName){
+  const currentText = document.querySelector(`.${className}`);
+  const text = currentText.textContent;
+
+  currentText.innerHTML = '';
+
+  [...text].forEach((char) =>{
+    const span = document.createElement('span');
+    span.textContent = char;
+    span.classList.add(spanName);
+    currentText.appendChild(span);
+  })
+
+}
 
 const videoContainer = document.querySelector('.video-container');
 const video = document.getElementById('bg-video');
@@ -99,19 +116,8 @@ columns.forEach((column, index)=>{
 
 
 //about-info
-const aboutText = document.querySelector('.about');
-const text = aboutText.textContent;
+AddSpans('about','about-char')
 
-aboutText.innerHTML = '';
-
-[...text].forEach((char) =>{
-  const span = document.createElement('span');
-  span.textContent = char;
-  span.classList.add('about-char');
-  aboutText.appendChild(span);
-})
-
-// works - container
 const workItemList = document.querySelector('.work-item-list');
 
 workItemList.addEventListener('mouseenter', ()=>{
@@ -135,30 +141,37 @@ document.querySelectorAll('.work-book').forEach(el => {
 });
 
 
+// booking-container
+AddSpans('booking-heading','heading-char')
+
+
+
 
 ////////   GSAP //////////
 
 
 
-
 gsap.registerPlugin(ScrollTrigger);
 
+function charReveal(className, triggerName, markers= false){
+  gsap.to(`.${className}`, {
+    opacity: 1,
+    stagger:{
+      each: 0.3,
+      from: 'start',
+      ease: 'power1.inout'
+    },
+    scrollTrigger:{
+      trigger: `.${triggerName}`,
+      start: 'top 80%',
+      end: 'bottom 65%',
+      scrub: true,
+      markers,
+    }
+  });
+}
 //about-info
-gsap.to('.about-char', {
-  opacity: 1,
-  stagger:{
-    each: 0.3,
-    from: 'start',
-    ease: 'power1.inout'
-  },
-  scrollTrigger:{
-    trigger: '.about',
-    start: 'top 80%',
-    end: 'bottom 65%',
-    scrub: true,
-    markers: false,
-  }
-});
+charReveal('about-char', 'about');
 
 //video scale
 gsap.to('.video-container', {
@@ -222,8 +235,6 @@ const itemCount = document.querySelectorAll('.work-item').length;
 
 const totalScroll = wrapper.scrollWidth - window.innerWidth;
 
-console.log(totalScroll)
-
 gsap.timeline({
   scrollTrigger:{
     trigger: '.works-section',
@@ -242,3 +253,314 @@ gsap.timeline({
   x: () => `-${totalScroll}px`,
   ease: 'none'
 },0)
+
+
+
+// Services section elements
+const servicesSection = document.querySelector('.services-section');
+const canvasWrapper = document.getElementById('canvasWrapper');
+const canvas = document.getElementById('bgCanvas');
+
+// Three.js variables
+let renderer, scene, camera, rings = [];
+let isServicesActive = false;
+let rafId = null;
+let initialized = false;
+
+// Initialize Three.js only once
+function initThreeJS() {
+  if (renderer) return;
+  
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x000000);
+  
+  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 10;
+
+  renderer = new THREE.WebGLRenderer({ 
+      canvas, 
+      alpha: false,
+      antialias: true,
+      powerPreference: 'high-performance'
+  });
+  
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+  renderer.setClearColor(0x000000, 1);
+    
+    // Create rings with optimized geometry
+  for(let i = 0; i < 4; i++) {
+    const geometry = new THREE.TorusGeometry(6 - i * 0.75, 0.25, 32, 64);
+    const mat = new THREE.MeshPhysicalMaterial({
+        color: 0xffffff,
+        transmission: 1,
+        thickness: 0.5,
+        roughness: 0,
+        metalness: 0,
+        ior: 1.5,
+        transparent: true,
+        opacity: 0.5,
+        specularIntensity: 1
+    });
+    
+    const torus = new THREE.Mesh(geometry, mat);
+    torus.rotation.x = Math.PI / 2;
+    scene.add(torus);
+    rings.push(torus);
+  }
+
+  // Optimized lighting
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0);
+  scene.add(ambientLight);
+  
+  const dl = new THREE.DirectionalLight(0xffffff, 1000);
+  dl.position.set(-9, 7, 0);
+  scene.add(dl);
+
+  const dl2 = new THREE.DirectionalLight(0xffffff, 100);
+  dl2.position.set(9, -4, 0);
+  scene.add(dl2);
+
+  const dl3 = new THREE.DirectionalLight(0xffffff, 100);
+  dl3.position.set(8, 5, 0);
+  scene.add(dl3);
+
+  const dl4 = new THREE.DirectionalLight(0xffffff, 100);
+  dl4.position.set(-9, -4, 0);
+  scene.add(dl4);
+}
+
+// Optimized ring animations
+function setupRingAnimations() {
+  rings.forEach((ring, index) => {
+    const direction = index % 2 === 0 ? 1 : -1;
+    const rotations = [1, 2, 2, 1][index];
+    
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".services-section",
+        start: "top center",
+        end: "bottom top",
+        scrub: 0,
+        // markers: true
+      }
+    });
+        
+    const standingPosition = Math.PI;
+    
+    tl.to(ring.rotation, {
+        x: standingPosition,
+        y: direction * rotations * Math.PI,
+        duration: 5
+    }, 5);
+
+    tl.to(ring.rotation, {
+        x: -standingPosition,
+        y: direction * rotations * Math.PI * 0,
+        duration: 5
+    }, 15);
+    
+    // tl.to(ring.rotation, {
+    //     x: standingPosition,
+    //     y: direction * rotations * Math.PI,
+    //     duration: 20
+    // }, 65);
+  });
+}
+
+// Canvas expansion animation
+gsap.fromTo(
+  canvasWrapper,
+  { height: "0vh" },
+  {
+    height: "100vh",
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".services-section",
+      start: "top center",
+      end: "top top",
+      scrub: true,
+      markers: false,
+      onEnter: () => {
+        if (!initialized) {
+          initThreeJS();
+          setupRingAnimations();
+          initialized = true;
+        }
+      }
+    }
+  }
+);
+
+// FIX: Separate ScrollTrigger to control rendering state
+// This ensures rings keep spinning throughout entire services section
+ScrollTrigger.create({
+  trigger: ".services-section",
+  start: "top center",
+  end: "bottom top",
+  onEnter: () => { 
+    isServicesActive = true; 
+    startRendering(); 
+  },
+  onEnterBack: () => { 
+    isServicesActive = true; 
+    startRendering(); 
+  },
+  onLeave: () => { 
+    isServicesActive = false; 
+    stopRendering(); 
+  },
+  onLeaveBack: () => { 
+    isServicesActive = false; 
+    stopRendering(); 
+  }
+});
+
+// Text animations
+const revealLt = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".services-section",
+    start: "top center",
+    end: "bottom top",
+    scrub: 1,
+    markers: false
+  }
+});
+
+revealLt.to("#fuel", { x: "0%", opacity: 1, duration: 0.1 }, 0.1)
+  .to("#your", { x: "0%", opacity: 1, duration: 0.1 }, 0.1)
+  .to("#services", { x: "0%", opacity: 1, duration: 0.1 }, 0.2)
+  .to("#to", { x: "0%", opacity: 1, duration: 0.1 }, 0.2)
+  .to("#growth", { x: "0%", opacity: 1, duration: 0.1 }, 0.3)
+  .to("#growth", { x: "500px", opacity: 0, duration: 0.1 }, 0.7)
+  .to("#to", { x: "500px", opacity: 0, duration: 0.1 }, 0.75)
+  .to("#services", { x: "-500px", opacity: 0, duration: 0.1 }, 0.75)
+  .to("#fuel", { x: "-500px", opacity: 0, duration: 0.1 }, 0.8)
+  .to("#your", { x: "500px", opacity: 0, duration: 0.1 }, 0.8);
+
+// Service items animation
+const serviceTL = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".services-section",
+    start: "top top",
+    end: "top+=1000 top",
+    pin: true,
+    pinSpacing: false,
+    scrub: 1,
+    markers: false
+  }
+});
+
+serviceTL.to(".service-item", {
+  y: 0,
+  opacity: 1,
+  stagger: 0.2,
+  duration: 1,
+  ease: "power2.out"
+}, 1);
+
+// Rendering control
+function startRendering() {
+  if (!rafId) {
+    renderLoop();
+  }
+}
+
+function stopRendering() {
+  if (rafId) {
+    cancelAnimationFrame(rafId);
+    rafId = null;
+  }
+}
+
+function renderLoop() {
+  if (isServicesActive) {
+    renderer.render(scene, camera);
+    rafId = requestAnimationFrame(renderLoop);
+  }
+}
+
+// Handle window resize
+window.addEventListener('resize', () => {
+  if (renderer) {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  }
+});
+
+// Clean up when leaving page
+window.addEventListener('beforeunload', () => {
+  if (renderer) {
+    renderer.dispose();
+    renderer = null;
+  }
+  
+  rings.forEach(ring => {
+    if (ring.geometry) ring.geometry.dispose();
+    if (ring.material) ring.material.dispose();
+  });
+  
+  rings = [];
+});
+
+
+
+
+//============= Booking ============
+charReveal('heading-char', 'booking-heading', );
+
+gsap.fromTo(".book-image",
+  {y:800},
+  {
+    y:0,
+    stagger:0.2,
+    ease:'none',
+    scrollTrigger:{
+      trigger:".booking-section",
+      start:"top top+=120",
+      end: "top top+=10",
+      scrub: 1,
+      markers: false
+    }
+  }
+);
+
+
+
+// Audit
+const img = document.querySelector('.circles-image');
+const auditLink = document.querySelector('.audit-link')
+
+auditLink.addEventListener("mousemove", (e)=>{
+  gsap.to(img,{
+    x: e.clientX-750,
+    y: e.clientY-300,
+    duration: 0.2,
+    ease: "power2.out"
+  })
+})
+
+auditLink.addEventListener("mouseleave", (e)=>{
+  gsap.to(img,{
+    x: 0,
+    y: 0,
+    duration: 0.2,
+    ease: "power2.out"
+  })
+})
+
+
+auditLink.addEventListener('mouseenter', ()=>{
+  cursorDot.classList.add('work-hover')
+})
+
+auditLink.addEventListener('mouseleave', ()=>{
+  cursorDot.classList.remove('work-hover')
+})
+
+
+// Review section
+AddSpans('review-heading','review-char');
+
+charReveal('review-char','review-heading')

@@ -155,7 +155,7 @@
   
 }
 
-.about-char{
+.about-char, .heading-char, .review-char{
   opacity: 0.1;
   font-weight: 500;
   transition: opacity 0.s ease;
@@ -203,21 +203,28 @@
   transform: translateX(0%);
 }
 
-.link-logo-span{
+.link-logo-span, .booking-link-span{
   display: inline-flex;
   position: relative;
+  transition: transform 0.2s ease;
+}
+
+.link-logo-span{
   width: 20px;
   height: 20px;
   transition: transform 0.3s ease;
 }
 
-.link-logo{
+.link-logo, .booking-link-icon{
   transform: rotate(45deg);
-  font-size: 20px;
   font-weight:light;
 }
 
-.link-logo-2{
+.link-logo{
+  font-size: 20px;
+}
+
+.link-logo-2, .booking-link-icon2{
   position: absolute;
   transform: rotate(45deg) translate(100%, 300%);
 }
@@ -266,7 +273,7 @@
 /* Works done */
 
 .works-section{
-  height: 150vh;
+  height: 100vh;
   width: 100vw;
   margin-right: -5vw;
   position: relative;
@@ -395,3 +402,348 @@
   width: 300%;
   transform: translate(-50%, -50%) scale(1);
 }
+
+
+/* services */
+.services-section{
+  margin-top: 20vw;
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.services-wrapper {
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+}
+
+.canvas-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 0vh;
+  overflow: hidden; 
+  transform-origin: center;
+}
+
+.bg-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+
+.text-container{
+  position: absolute;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-line {
+  position: relative;
+  /*opacity: 0;*/
+}
+
+.text-line span {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 5.2rem;
+  font-weight: bold;
+  letter-spacing: 02px;
+}
+
+.behind {
+  color: rgba(255, 255, 255, 0.8);
+  z-index: 1; /* Behind rings */
+}
+
+.front {
+  color: rgba(255, 255, 255, 0.9);
+  z-index: 20; /* In front of rings */
+}
+
+.from-left{
+  transform: translateX(-500px);
+  opacity: 0;
+}
+
+.from-right{
+  transform: translateX(500px);
+  opacity: 0;
+}
+
+.service-container{
+  position: absolute;
+  width: 90%;
+  margin-left: 5%;
+  top: 1%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.service-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: clamp(12px, 2.2vw, 32px) clamp(12px, 2.2vw, 35px);
+  border-radius: 10px;
+  transform: translateY(1000px);
+  opacity: 1;
+  background-color: rgba(255 , 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  will-change: transform, opacity;
+}
+
+.item-number{
+  font-size: clamp(16px, 1.2vw, 20px);
+  color: rgb(159, 159, 159);
+  margin-right: clamp(30px,6vw, 6.5vw);
+}
+
+.service-name{
+  font-size: clamp(18px, 1.2vw, 32px);
+  margin-right: clamp(10px, 40vw, 45vw);
+}
+
+.service-about{
+  font-size: clamp(16px, 1.2vw, 20px);
+}
+
+
+/* booking */
+
+.booking-section{
+  margin-top: 150vh;
+}
+
+.booking-inner{
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.images-container{
+  display: flex;
+  gap: 2rem;
+}
+
+.images-container .book-image{
+  border-radius: 0.5rem;
+  width: 15rem;
+  height: 20rem;
+  transform: translateY(800px);
+}
+
+.heading-container{
+  width: 47rem;
+}
+
+.booking-heading{
+  font-size: 3rem;
+  font-weight: 480;
+}
+
+.booking-content{
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.book-call-heading{
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.booking-link-container{
+  margin-top: 20px;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-top: 1px solid rgb(222, 222, 222);
+  border-bottom: 1px solid rgb(222, 222, 222);
+}
+
+.booking-link{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: black;
+  align-items:center;
+}
+
+.booking-link .user{
+  display: flex;
+  gap: 1rem;
+}
+
+.user-image{
+  border-radius: 50%;
+}
+
+.about-user{
+  padding-top: 8px;
+  font-size: 1rem;
+}
+
+.booking-link-container .booking-button{
+  border: 1px solid rgb(222, 222, 222);
+  padding: 1rem 1.2rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
+
+.booking-link:hover .booking-link-span{
+  transform: translate(210%, -260%);
+}
+
+.booking-button::before{
+  content: '';
+  background-color: rgba(226,250,111,1);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  transition: all 0.3s ease-out;
+}
+
+.booking-link:hover .booking-button::before{
+  height: 100%;
+}
+
+
+
+/* Audit Section */
+
+
+.audit-section{
+  margin-top: 35vh;
+}
+
+.audit-link{
+  background-color: rgb(23,23,23);
+  text-decoration: none;
+  color: white;
+  overflow: hidden;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 10px;
+  max-width: 100%;
+}
+
+.audit-content-container{
+  position: absolute;
+  top: 25%;
+  left: 0%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5vh;
+  z-index: 2;
+}
+
+.audit-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5vh;
+}
+
+.audit-heading{
+  font-size: clamp(30px, 4.3vw, 80px);
+  width: 60vw;
+  font-weight: 480;
+  text-align: center;
+}
+
+.audit-free{
+  padding-bottom: 2px;
+  border-bottom: 0.3rem solid white;
+}
+
+.audit-context{
+  font-size: 1.2rem;
+  width: 30vw;
+  text-align: center;
+  line-height: 30px;
+}
+
+.audit-button{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: black;
+  padding: 20px;
+  border-radius: 30px;
+}
+
+.pulse-effect{
+  width: 7px;
+  height: 7px;
+  background-color: rgba(226,250,111,1);
+  border-radius: 50%;
+  position: relative;
+}
+
+.pulse-effect span{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: inherit;
+  animation: pulse 1s ease-out infinite;
+
+}
+
+@keyframes pulse {
+  0%{
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100%{
+    transform: scale(3.5);
+    opacity: 0;
+  }
+}
+
+.spots-capacity{
+  font-size: 18px
+}
+
+
+
+/* Reviews section */
+.reviews-section{
+  margin-top: 26vh;
+}
+
+.review-content-container{
+  padding-top: 10vh;
+  border-top: 1px solid rgb(222, 222, 222);
+}
+
+.review-heading{
+  font-size: 3rem;
+  font-weight: 400;
+  width: 95vh;
+}
+
