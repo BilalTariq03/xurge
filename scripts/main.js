@@ -19,8 +19,11 @@ const cursorDot = document.querySelector('.cursor-dot')
 document.addEventListener('mousemove', (e)=>{
   if(!mouseTick){
     window.requestAnimationFrame(()=>{
-      const mouseX = e.clientX-775;
-      const mouseY = e.clientY-380;
+      const cursorWidth = cursorDot.offsetWidth;
+      const cursorHeight = cursorDot.offsetHeight
+
+      const mouseX = e.clientX-17;
+      const mouseY = e.clientY-10;
 
       cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`
       mouseTick=false;
