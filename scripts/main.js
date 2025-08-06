@@ -19,8 +19,8 @@ const cursorDot = document.querySelector('.cursor-dot')
 document.addEventListener('mousemove', (e)=>{
   if(!mouseTick){
     window.requestAnimationFrame(()=>{
-      const mouseX = e.clientX - 17;
-      const mouseY = e.clientY - 10;
+      const mouseX = e.clientX-775;
+      const mouseY = e.clientY-380;
 
       cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`
       mouseTick=false;
@@ -564,3 +564,173 @@ auditLink.addEventListener('mouseleave', ()=>{
 AddSpans('review-heading','review-char');
 
 charReveal('review-char','review-heading')
+
+const reviewStrip = document.querySelector('.review-strip');
+const prevButton = document.querySelector('.prev-button');
+const nextButton = document.querySelector('.next-button');
+
+let reviewItems = Array.from(reviewStrip.children);
+const itemWidth = reviewItems[0].offsetWidth + 8;
+
+reviewItems.forEach((item) =>{
+  reviewStrip.appendChild(item.cloneNode(true));
+});
+for(let i=reviewItems.length - 1; i>=0; i--){
+  reviewStrip.insertBefore(reviewItems[i].cloneNode(true), reviewStrip.firstChild);
+}
+
+reviewItems = Array.from(document.querySelectorAll('.review-item'))
+let currentIndex = reviewItems.length/3;
+let draggable;
+
+const containerWidth = reviewStrip.parentElement.offsetWidth;
+const offset = (containerWidth - itemWidth) / 2;
+const startPosition = currentIndex * itemWidth - offset;
+let startX=0;
+
+gsap.set(reviewStrip, {x: -startPosition})
+
+
+function updateActiveCard(centerIndex){
+  const old = reviewStrip.querySelector('.review-item.active');
+  const current = reviewItems[centerIndex];
+
+  if (old && old !== current) old.classList.remove('active');
+  current.classList.add('active');
+}
+
+function initDraggable(){
+  draggable = Draggable.create(reviewStrip, {
+    type: "x",
+    edgeResistance: 0.8,
+    inertia: true,
+    onPress(){
+      startX = gsap.getProperty(reviewStrip, 'x');
+    },
+    onDragEnd: snapWithThreshold,
+    onThrowComplete: snapWithThreshold
+  })[0];
+}
+
+
+function snapWithThreshold(){
+  const endX = gsap.getProperty(reviewStrip, 'x');
+  const delta = endX - startX;
+  const threshold = containerWidth/4
+  let newIndex = currentIndex;
+
+  if(delta < -threshold){
+    newIndex = currentIndex+1;
+  }
+  else if(delta > threshold){
+    newIndex = currentIndex-1;
+  }
+
+  goToReview(newIndex);
+}
+  
+function goToReview(index) {
+  const itemsPerSet = reviewItems.length / 3;
+    if (index < 1) {
+    currentIndex = 2 * itemsPerSet - 1;
+    const targetPosition = currentIndex * itemWidth - offset;
+    gsap.set(reviewStrip, { x: -targetPosition });
+    
+    index = currentIndex - 1;
+  } 
+  else if (index >= reviewItems.length-1) {
+    currentIndex = itemsPerSet;
+    const targetPosition = currentIndex * itemWidth - offset;
+    gsap.set(reviewStrip, { x: -targetPosition });
+    
+    index = currentIndex + 1;
+  }
+  
+  currentIndex = index;
+  
+  const targetPosition = currentIndex * itemWidth - offset;
+  
+  gsap.to(reviewStrip, {
+    x: -targetPosition,
+    duration: 0.7,
+    ease: "power2.out",
+    onUpdate: updateActiveCard(currentIndex),
+    onComplete: () => {
+      if (currentIndex < itemsPerSet) {
+        currentIndex += itemsPerSet;
+        const newPosition = currentIndex * itemWidth - offset;
+        gsap.set(reviewStrip, { x: -newPosition });
+      } 
+      else if (currentIndex >= 2 * itemsPerSet) {
+        currentIndex -= itemsPerSet;
+        const newPosition = currentIndex * itemWidth - offset;
+        gsap.set(reviewStrip, { x: -newPosition });
+      }
+      updateActiveCard(currentIndex);
+    }
+  });
+}
+  
+  // Event listeners for buttons
+  prevButton.addEventListener('click', () => goToReview(currentIndex - 1));
+  nextButton.addEventListener('click', () => goToReview(currentIndex + 1));
+  
+  // Initialize draggable after slight delay to ensure dimensions are correct
+  setTimeout(() => {
+    initDraggable();
+    updateActiveCard(currentIndex); // Set initial opacity
+  }, 100);
+  
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    // Update draggable bounds
+    const containerWidth = reviewStrip.parentElement.offsetWidth;
+    const offset = (containerWidth - itemWidth) / 2;
+    const startPosition = currentIndex * itemWidth - offset;
+    gsap.set(reviewStrip, {x: -startPosition})
+    // Update opacity
+    updateActiveCard(currentIndex);
+  });
+
+
+reviewStrip.addEventListener('mouseenter', ()=>{
+  cursorDot.classList.add('drag-hover')
+})
+
+reviewStrip.addEventListener('mouseleave', ()=>{
+  cursorDot.classList.remove('drag-hover')
+})
+
+
+// Footer
+
+const track = document.querySelector('.scroll-track');
+const inqLink =  document.querySelector('.footer-title-wrapper');
+
+inqLink.addEventListener('mouseenter', ()=>{
+  cursorDot.classList.add('work-hover');
+})
+
+inqLink.addEventListener('mouseleave', ()=>{
+  cursorDot.classList.remove('work-hover');
+})
+  
+const animation = track.animate(
+  [
+    { transform: 'translateX(0%)' },
+    { transform: 'translateX(-50.3%)' }
+  ],
+  {
+    duration: 15000,
+    iterations: Infinity,
+    easing: 'linear'
+  }
+);
+
+// Track scroll direction
+let lastScrollY = window.scrollY;
+window.addEventListener('scroll', () => {
+  const currentScrollY = window.scrollY;
+  animation.playbackRate = (currentScrollY > lastScrollY) ? 1 : -1;
+  lastScrollY = currentScrollY;
+});

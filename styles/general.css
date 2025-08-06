@@ -1,3 +1,18 @@
+@font-face {
+  font-family: 'suissentil';
+  src: url('../fonts/fonnts.com-Suisse_Intl_Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'suissentil';
+  src: url('../fonts/fonnts.com-Suisse_Intl_Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
 *{
   margin: 0;
   padding: 0;
@@ -6,8 +21,7 @@
 
 body{
   /* padding-inline: 5vw; */
-  font-family:  'Roboto', Arial;
-  height: 20000px;
+  font-family: 'suissentil';
   overflow-x: hidden;
 }
 
@@ -17,8 +31,8 @@ body{
 
 .cursor-dot{
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -34,19 +48,25 @@ body{
   will-change: transform, opacity;
 }
 
-.cursor-dot i{
+.cursor-dot i, 
+.cursor-dot p{
   display: none;
   font-size: 16px;
 }
 
 
 .cursor-dot.video-hover,
-.cursor-dot.work-hover{
+.cursor-dot.work-hover,
+.cursor-dot.drag-hover{
   width: 100px;
   height: 100px;
 }
 
 .cursor-dot.video-hover .video-icon{
+  display: block;
+}
+
+.cursor-dot.drag-hover p{
   display: block;
 }
 
