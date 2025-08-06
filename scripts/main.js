@@ -238,6 +238,8 @@ const itemCount = document.querySelectorAll('.work-item').length;
 
 const totalScroll = wrapper.scrollWidth - window.innerWidth;
 
+console.log(totalScroll);
+
 gsap.timeline({
   scrollTrigger:{
     trigger: '.works-section',
@@ -737,3 +739,4 @@ window.addEventListener('scroll', () => {
   animation.playbackRate = (currentScrollY > lastScrollY) ? 1 : -1;
   lastScrollY = currentScrollY;
 });
+
