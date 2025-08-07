@@ -178,7 +178,7 @@ charReveal('about-char', 'about');
 
 //video scale
 gsap.to('.video-container', {
-  scale: 1.1125,
+  scale: 1.12,
   ease: "power2.out",
   scrollTrigger:{
     trigger: ".video-container",
@@ -356,14 +356,14 @@ function setupRingAnimations() {
     tl.to(ring.rotation, {
         x: standingPosition,
         y: direction * rotations * Math.PI,
-        duration: 5
-    }, 5);
+        duration: 10
+    }, 1);
 
     tl.to(ring.rotation, {
         x: -standingPosition,
         y: direction * rotations * Math.PI * 0,
         duration: 5
-    }, 15);
+    }, 13);
     
     // tl.to(ring.rotation, {
     //     x: standingPosition,
@@ -437,18 +437,18 @@ revealLt.to("#fuel", { x: "0%", opacity: 1, duration: 0.1 }, 0.1)
   .to("#services", { x: "0%", opacity: 1, duration: 0.1 }, 0.2)
   .to("#to", { x: "0%", opacity: 1, duration: 0.1 }, 0.2)
   .to("#growth", { x: "0%", opacity: 1, duration: 0.1 }, 0.3)
-  .to("#growth", { x: "500px", opacity: 0, duration: 0.1 }, 0.7)
-  .to("#to", { x: "500px", opacity: 0, duration: 0.1 }, 0.75)
-  .to("#services", { x: "-500px", opacity: 0, duration: 0.1 }, 0.75)
-  .to("#fuel", { x: "-500px", opacity: 0, duration: 0.1 }, 0.8)
-  .to("#your", { x: "500px", opacity: 0, duration: 0.1 }, 0.8);
+  .to("#growth", { x: "500px", opacity: 0, duration: 0.1 }, 0.6)
+  .to("#to", { x: "500px", opacity: 0, duration: 0.1 }, 0.65)
+  .to("#services", { x: "-500px", opacity: 0, duration: 0.1 }, 0.65)
+  .to("#fuel", { x: "-500px", opacity: 0, duration: 0.1 }, 0.7)
+  .to("#your", { x: "500px", opacity: 0, duration: 0.1 }, 0.7);
 
 // Service items animation
 const serviceTL = gsap.timeline({
   scrollTrigger: {
     trigger: ".services-section",
     start: "top top",
-    end: "top+=1000 top",
+    end: "+=5000",
     pin: true,
     pinSpacing: false,
     scrub: 1,

@@ -5,7 +5,7 @@
 }
 
 .hero-text{
-  font-size: 5.23vw;
+  font-size: clamp(3.5rem,5.23vw,10rem);
   font-family: 'Roboto';
   font-weight: 500;
 }
@@ -409,7 +409,7 @@
 .services-section{
   margin-top: 20vw;
   position: relative;
-  min-height: 100vh;
+  min-height: 630vh;
   overflow: hidden;
 }
 
@@ -1085,3 +1085,6 @@ footer{
     --neutrals--ash-gray: #606060;
     --brand--ivory: #f3f4ee;
     --neutrals--metalic: #303030; */
+
+
+
