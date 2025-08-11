@@ -152,9 +152,9 @@ AddSpans('booking-heading','heading-char')
 
 ////////   GSAP //////////
 
-
-
 gsap.registerPlugin(ScrollTrigger);
+const mm = gsap.matchMedia();
+window.addEventListener("load", () => ScrollTrigger.refresh());
 
 function charReveal(className, triggerName, markers= false){
   gsap.to(`.${className}`, {
@@ -218,6 +218,8 @@ counters.forEach((counter)=>{
 
 
 // works-container
+
+ 
 gsap.to(".works-hero-text", {
   opacity: 1,
   y: 0,
@@ -230,34 +232,42 @@ gsap.to(".works-hero-text", {
   }
 });
 
+mm.add("(min-width: 990px)", ()=>{
+  const hero = document.querySelector('.works-container');
+  const wrapper = document.querySelector('.scroll-wrapper');
+  const workList = document.querySelector('.work-item-list');
+  const itemCount = document.querySelectorAll('.work-item').length;
 
-const hero = document.querySelector('.works-container');
-const wrapper = document.querySelector('.scroll-wrapper');
-const workList = document.querySelector('.work-item-list');
-const itemCount = document.querySelectorAll('.work-item').length;
+  const totalScroll = wrapper.scrollWidth - window.innerWidth;
 
-const totalScroll = wrapper.scrollWidth - window.innerWidth;
 
-console.log(totalScroll);
+  const tl = gsap.timeline({
+    scrollTrigger:{
+      trigger: '.works-section',
+      start: 'top top',
+      end: () => `+=${totalScroll}`,
+      scrub: true,
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true
+    }
+  })
+  .to(hero,{
+    filter: 'blur(8px)',
+    duration: 0.2
+  }, 0.05)
+  .to(workList, {
+    x: () => `-${totalScroll}px`,
+    ease: 'none'
+  },0)
 
-gsap.timeline({
-  scrollTrigger:{
-    trigger: '.works-section',
-    start: 'top top',
-    end: () => `+=${totalScroll}`,
-    scrub: true,
-    pin: true,
-    anticipatePin: 1
-  }
-})
-.to(hero,{
-  filter: 'blur(8px)',
-  duration: 0.2
-}, 0.05)
-.to(workList, {
-  x: () => `-${totalScroll}px`,
-  ease: 'none'
-},0)
+  return () =>{
+    tl.scrollTrigger && tl.scrollTrigger.kill();
+    tl.kill();
+  };
+});
+ 
+
 
 
 
@@ -265,6 +275,7 @@ gsap.timeline({
 const servicesSection = document.querySelector('.services-section');
 const canvasWrapper = document.getElementById('canvasWrapper');
 const canvas = document.getElementById('bgCanvas');
+let renderControlTrigger = null;
 
 // Three.js variables
 let renderer, scene, camera, rings = [];
@@ -350,7 +361,6 @@ function setupRingAnimations() {
         // markers: true
       }
     });
-        
     const standingPosition = Math.PI;
     
     tl.to(ring.rotation, {
@@ -386,6 +396,7 @@ gsap.fromTo(
       end: "top top",
       scrub: true,
       markers: false,
+      invalidateOnRefresh: true,
       onEnter: () => {
         if (!initialized) {
           initThreeJS();
@@ -399,7 +410,7 @@ gsap.fromTo(
 
 // FIX: Separate ScrollTrigger to control rendering state
 // This ensures rings keep spinning throughout entire services section
-ScrollTrigger.create({
+renderControlTrigger =  ScrollTrigger.create({
   trigger: ".services-section",
   start: "top center",
   end: "bottom top",
@@ -421,48 +432,86 @@ ScrollTrigger.create({
   }
 });
 
-// Text animations
-const revealLt = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".services-section",
-    start: "top center",
-    end: "bottom top",
-    scrub: 1,
-    markers: false
-  }
-});
+mm.add("(min-width: 990px)", ()=>{
+  
+ const revealLt = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".services-section",
+      start: "top center",
+      end: "bottom top",
+      scrub: 1,
+      markers: false,
+      invalidateOnRefresh: true
+    }
+  });
 
-revealLt.to("#fuel", { x: "0%", opacity: 1, duration: 0.1 }, 0.1)
-  .to("#your", { x: "0%", opacity: 1, duration: 0.1 }, 0.1)
-  .to("#services", { x: "0%", opacity: 1, duration: 0.1 }, 0.2)
-  .to("#to", { x: "0%", opacity: 1, duration: 0.1 }, 0.2)
-  .to("#growth", { x: "0%", opacity: 1, duration: 0.1 }, 0.3)
-  .to("#growth", { x: "500px", opacity: 0, duration: 0.1 }, 0.6)
-  .to("#to", { x: "500px", opacity: 0, duration: 0.1 }, 0.65)
-  .to("#services", { x: "-500px", opacity: 0, duration: 0.1 }, 0.65)
-  .to("#fuel", { x: "-500px", opacity: 0, duration: 0.1 }, 0.7)
-  .to("#your", { x: "500px", opacity: 0, duration: 0.1 }, 0.7);
+  revealLt.to("#fuel", { x: "0%", opacity: 1, duration: 0.1 }, 0.1)
+    .to("#your", { x: "0%", opacity: 1, duration: 0.1 }, 0.1)
+    .to("#services", { x: "0%", opacity: 1, duration: 0.1 }, 0.2)
+    .to("#to", { x: "0%", opacity: 1, duration: 0.1 }, 0.2)
+    .to("#growth", { x: "0%", opacity: 1, duration: 0.1 }, 0.3)
+    .to("#growth", { x: "500px", opacity: 0, duration: 0.1 }, 0.6)
+    .to("#to", { x: "500px", opacity: 0, duration: 0.1 }, 0.65)
+    .to("#services", { x: "-500px", opacity: 0, duration: 0.1 }, 0.65)
+    .to("#fuel", { x: "-500px", opacity: 0, duration: 0.1 }, 0.7)
+    .to("#your", { x: "500px", opacity: 0, duration: 0.1 }, 0.7);
 
-// Service items animation
-const serviceTL = gsap.timeline({
-  scrollTrigger: {
+  
+    // Service items animation
+    const serviceTL = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".services-section",
+        start: "top top",
+        end: "+=5000",
+        pin: true,
+        pinSpacing: false,
+        scrub: 1,
+        markers: false,
+        invalidateOnRefresh: true
+      }
+    });
+
+    serviceTL.to(".service-item", {
+      y: 0,
+      opacity: 1,
+      stagger: 0.2,
+      duration: 1,
+      ease: "power2.out"
+    }, 1);
+
+
+    return ()=>{
+      
+      if(revealLt){
+        revealLt.scrollTrigger && revealLt.scrollTrigger.kill();
+        revealLt.kill()
+      }
+      if(serviceTL){
+        serviceTL.scrollTrigger && serviceTL.scrollTrigger.kill();
+        serviceTL.kill();
+      }
+    }
+})
+  // Text animations
+mm.add("(max-width: 990px)", ()=>{
+  const mobilePin = ScrollTrigger.create({
     trigger: ".services-section",
     start: "top top",
     end: "+=5000",
     pin: true,
     pinSpacing: false,
-    scrub: 1,
-    markers: false
+    // markers: true
+  });
+
+  gsap.set(".service-item", { clearProps: "transform, opacity" });
+
+  return () => {
+    mobilePin && mobilePin.kill();
   }
 });
+    // For mobile: pin service container after canvas expansion
+    
 
-serviceTL.to(".service-item", {
-  y: 0,
-  opacity: 1,
-  stagger: 0.2,
-  duration: 1,
-  ease: "power2.out"
-}, 1);
 
 // Rendering control
 function startRendering() {
@@ -492,6 +541,13 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   }
+
+  ScrollTrigger.refresh();
+
+  if (renderControlTrigger && renderControlTrigger.isActive) {
+    isServicesActive = true;
+    startRendering();
+  }
 });
 
 // Clean up when leaving page
@@ -515,21 +571,62 @@ window.addEventListener('beforeunload', () => {
 //============= Booking ============
 charReveal('heading-char', 'booking-heading', );
 
-gsap.fromTo(".book-image",
-  {y:800},
-  {
-    y:0,
-    stagger:0.2,
-    ease:'none',
-    scrollTrigger:{
-      trigger:".booking-section",
-      start:"top top+=120",
-      end: "top top+=10",
-      scrub: 1,
-      markers: false
+mm.add("(min-width: 990px)", ()=>{
+  gsap.fromTo(".book-image",
+    {y:800},
+    {
+      y:0,
+      stagger:0.2,
+      ease:'none',
+      scrollTrigger:{
+        trigger:".booking-section",
+        start:"top top+=120",
+        end: "top top+=10",
+        scrub: 1,
+        markers: false
+      }
     }
-  }
-);
+  );
+})
+
+mm.add("(max-width: 990px)", () => {
+  const bookingSection = document.querySelector(".booking-section");
+  const bookingContent = document.querySelector(".booking-content");
+  const images = gsap.utils.toArray(".book-image");
+
+  const gap = Math.round(window.innerHeight * 0.55);
+  const animLen = Math.round(window.innerHeight * 1);
+
+  const totalDuration = (images.length - 3) * gap + animLen + window.innerHeight;
+  ScrollTrigger.create({
+    trigger: bookingSection,
+    start: "top top",
+    end: () => `+=${totalDuration}`,
+    pin: bookingContent,
+    pinSpacing: false,
+    invalidateOnRefresh: true,
+    // markers: true
+  });
+
+  images.forEach(img => gsap.set(img, { y: window.innerHeight+500, opacity: 1 }));
+
+  images.forEach((img, i) => {
+    gsap.to(img, {
+      y: 0,
+      ease: "none",
+      scrollTrigger: {
+        start: () => bookingSection.offsetTop + i * gap,
+        end: () => bookingSection.offsetTop + i * gap + animLen,
+        scrub: 0.5,
+        invalidateOnRefresh: true,
+        // markers: true
+      }
+    });
+  });
+});
+
+
+
 
 
 

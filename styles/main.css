@@ -7,7 +7,6 @@
 .hero-text{
   font-size: clamp(3.5rem,5.23vw,10rem);
   font-family: 'Roboto';
-  font-weight: 500;
 }
 
 .stone-color{
@@ -78,11 +77,9 @@
 
 
 /* Brand logos */
-.padding-div{
-  padding: 6.25rem;
-}
 
 .logo-strip-container{
+  margin-top: 12.5rem;
   padding-top: 5rem;
   padding-bottom: 5rem;
   padding-inline: 3rem;
@@ -93,8 +90,15 @@
   display: flex;
   height: 6.25rem;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 15rem;
   overflow: hidden;
+}
+
+.logo-row{
+  height: 5rem;
+  overflow: hidden;
+  padding-top: 2rem;
 }
 
 .logo-column{
@@ -102,7 +106,7 @@
   flex-direction: column;
   gap: 3rem;
   overflow: hidden;
-  transform: translateY(11.9rem);
+  /* transform: translateY(11.9rem); */
   animation: scroll-up 4s ease infinite;
 }
 
@@ -111,13 +115,13 @@
 }
 
 @keyframes scroll-up {
-  0%   { transform: translateY(11.9rem); }
-  16.66% { transform: translateY(7.4rem); }
-  33.33% { transform: translateY(7.4rem); }
-  49.99% { transform: translateY(2.5rem); }
-  66.66% { transform: translateY(2.5rem); }
-  83.33% { transform: translateY(-3rem); }
-  100%  { transform: translateY(-3rem); }
+  0%   { transform: translateY(0rem); }
+  16.66% { transform: translateY(-5rem); }
+  33.33% { transform: translateY(-5rem); }
+   49.99% { transform: translateY(-10rem); }
+  66.66% { transform: translateY(-10rem); }
+  83.33% { transform: translateY(-14.5rem); }
+  100%  { transform: translateY(-14.5rem); }
 }
 
 .delay-1{
@@ -151,14 +155,13 @@
 }
 
 .about-component{
-  font-size: clamp(2rem, 2.1vw, 19rem);
+  font-size: clamp(1.5rem, 2.1vw, 19rem);
   width: 100%;
-  max-width: 48ch;
+  max-width: 40ch;
 }
 
 .about-char, .heading-char, .review-char{
   opacity: 0.1;
-  font-weight: normal;
   transition: opacity 0.3s ease;
 }
 
@@ -170,7 +173,6 @@
   font-size: clamp(1.3rem, 1vw, 5rem);
   position: relative;
   display: inline-block;
-  font-weight: 500;
   overflow: hidden;
 }
 
@@ -215,7 +217,6 @@
 
 .link-logo, .booking-link-icon{
   transform: rotate(45deg);
-  font-weight:light;
 }
 
 .link-logo{
@@ -256,7 +257,6 @@
 
 .stats-heading{
   font-size: clamp(5rem, 5.23vw, 20rem);
-  font-weight: 400;
 }
 
 .stats-content{
@@ -274,8 +274,6 @@
 /* Works done */
 
 .works-section{
-  height: 100vh;
-  width: 100vw;
   margin-right: -5vw;
   position: relative;
   overflow: hidden;
@@ -284,7 +282,6 @@
 .scroll-wrapper{
   display: flex;
   width: max-content;
-  height: 100vh;
   gap: 7.5vw;
   padding: 20px 0;
   padding-right: 150px;
@@ -292,7 +289,7 @@
 
 .works-container{
   height: 100vh;
-  width: 60vw;
+  width: 70ch;
   display: flex;
   align-items: center;
   padding-top: 5rem;
@@ -300,10 +297,9 @@
 }
 
 .works-hero-text{
-  font-size: clamp(5.1rem, 5.34vw, 15rem);
-  font-weight: 500;
+  font-size: clamp(4.5rem, 5.2vw, 15rem);
   opacity: 0;
-  transform: translatey(80px);
+  transform: translateY(80px);
 }
 
 .work-item-list{
@@ -332,15 +328,15 @@
 }
 
 .work-item-content .title{
-  font-size: clamp(1.5625rem, 1.63vw, 4rem);
+  font-size: clamp(1.3rem, 1.6vw, 4rem);
   padding-top: 10px;
-  font-weight: 400;
 }
 
 .work-item-category{
   display: flex;
   align-items: center;
-  font-size: clamp(1.25rem, 1.3vw, 3rem);
+  font-size: clamp(1.1rem, 1.3vw, 3rem);
+  font-weight: normal;
   padding-top: 5px;
   gap: 10px;
 }
@@ -404,12 +400,50 @@
   transform: translate(-50%, -50%) scale(1);
 }
 
+.mobile-only{
+  display: none;
+}
+
+.secondary-button{
+    width: 100%;
+    border-radius: 25px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    font-size: 1rem;
+    border: 1px solid rgb(101, 101, 101);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .secondary-button::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    z-index: -1;
+    background-color: rgba(226,250,111,1);
+    transition: 0.6s ease;
+  }
+
+  .secondary-button:hover::before{
+    height: 100%;
+  }
+
 
 /* services */
 .services-section{
   margin-top: 20vw;
   position: relative;
-  min-height: 630vh;
+  height: 290rem;
   overflow: hidden;
 }
 
@@ -455,7 +489,6 @@
   display: inline-block;
   margin: 0 10px;
   font-size: clamp(5.2rem,5.44vw, 20rem);
-  font-weight: bold;
   letter-spacing: 02px;
 }
 
@@ -486,7 +519,7 @@
   top: 1%;
   display: flex;
   flex-direction: column;
-  gap: clamp(1.5rem,1.3vw, 4rem);
+  gap: clamp(1.5rem, 1.3vw, 4rem);
   overflow: hidden;
 }
 
@@ -513,19 +546,20 @@
 }
 
 .service-name{
-  font-size: clamp(1.125rem, 1.2vw, 3rem);
-  margin-right: clamp(10px, 40vw, 45vw);
+  font-size: clamp(1.2rem, 1.2vw, 3rem);
+  width: 150rem;
 }
 
 .service-about{
   font-size: clamp(1rem, 1.2vw, 4rem);
+  color: #e3e3e3;
 }
 
 
 /* booking */
 
 .booking-section{
-  margin-top: 150vh;
+  margin-top: 72rem;
 }
 
 .booking-inner{
@@ -534,15 +568,22 @@
   gap: 5rem;
 }
 
-.images-container{
+.images-grid{
   display: flex;
   gap: 2rem;
+  
 }
 
-.images-container .book-image{
-  border-radius: 0.5rem;
+.image-container{
   width: clamp(15rem, 15.7vw, 500rem);
   height: clamp(20rem,20.9vw, 80rem);
+  z-index: 10;
+}
+
+.image-container .book-image{
+  border-radius: 0.5rem;
+  width: 100%;height: 100%;
+  object-fit: cover;
   transform: translateY(100rem);
 }
 
@@ -552,7 +593,6 @@
 
 .booking-heading{
   font-size: clamp(3rem,3.14vw, 10rem);
-  font-weight: 480;
 }
 
 .booking-content{
@@ -563,7 +603,6 @@
 
 .book-call-heading{
   font-size: clamp(1rem, 1.05vw, 3rem);
-  font-weight: 500;
 }
 
 .booking-link-container{
@@ -677,7 +716,6 @@
 .audit-heading{
   font-size: clamp(2rem, 4.3vw, 10rem);
   width: 60vw;
-  font-weight: 480;
   text-align: center;
 }
 
@@ -694,12 +732,15 @@
 }
 
 .audit-button{
-  display: flex;
-  align-items: center;
-  gap: 10px;
   background-color: black;
   padding: 20px;
   border-radius: 30px;
+}
+
+.audit-button .left-items{
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .pulse-effect{
@@ -755,7 +796,6 @@
 
 .review-heading{
   font-size: clamp(2rem,3vw,5rem);
-  font-weight: 400;
   width: clamp(22rem,45vw,100rem);
 }
 
@@ -845,7 +885,7 @@
 }
 
 .review{
-  font-size: clamp(1.2rem, 1.2vw, 4rem);
+  font-size: clamp(1.1rem, 1.2vw, 4rem);
 }
 
 .brand-logo{
@@ -972,7 +1012,6 @@ footer{
 .footer-call-heading .title{
   color: rgba(226,250,111,1);
   font-size: clamp(1.35rem, 1.35vw, 3rem);
-  font-weight: 400;
 }
 
 .button-wrap{
@@ -1088,3 +1127,109 @@ footer{
 
 
 
+@media (max-width: 990px) {
+
+  .video-container{
+    height:75vh
+  }
+
+    
+  .logo-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      grid-auto-rows: auto;
+      height: auto;
+  }
+
+  .stats-container{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .works-section{
+    margin-right: 0;
+  }
+
+  .scroll-wrapper{
+    width: 100%;
+    flex-direction: column;
+    gap: 0rem;
+    padding: 0;
+  }
+
+  .works-container{
+    padding-bottom: 0;
+  }
+
+  .work-item-list{
+    flex-direction: column;
+    height: max-content;
+    width: 100%;
+  }
+
+  .work-item-img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .desktop-only{
+    display: none;
+  }
+
+  .mobile-only{
+    display: block;
+  }
+
+  .services-wrapper{
+    overflow: visible;
+  }
+
+  .service-item{
+    transform: none;
+  }
+
+ .booking-section{
+    /* margin-top: 13rem; */
+    margin-bottom: 150rem;
+  }
+
+  .images-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    height: 0;
+  }
+
+  .booking-content{
+    margin-top: 10rem;
+  }
+
+  .image-container{
+    height: 52vh;
+    width: 38vw; 
+  }
+
+  .booking-button{
+    background-color: rgba(226,250,111,1);
+  }
+
+  .audit-button{
+    display: flex;
+    width: 90%;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .arrow-button{
+    background-color: rgba(226,250,111,1);
+    color: black;
+    padding: 12px 17px;
+    border-radius: 50%;
+  }
+
+  .footer-grid{
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}

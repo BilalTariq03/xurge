@@ -1,14 +1,28 @@
 @font-face {
   font-family: 'suissentil';
   src: url('../fonts/fonnts.com-Suisse_Intl_Medium.ttf') format('truetype');
-  font-weight: normal;
+  font-weight: '500';
   font-style: normal;
 }
 
 @font-face {
   font-family: 'suissentil';
   src: url('../fonts/fonnts.com-Suisse_Intl_Bold.ttf') format('truetype');
+  font-weight: bolder;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'suissentil';
+  src: url('../fonts/fonnts.com-Suisse_Intl_Book.ttf') format('truetype');
   font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'suissentil';
+  src: url('../fonts/fonnts.com-Suisse_Intl_Regular.ttf') format('truetype');
+  font-weight: normal;
   font-style: normal;
 }
 
@@ -17,13 +31,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'suissentil', sans-serif;
 }
 
 body{
   /* padding-inline: 5vw; */
-  font-family: sans-serif;
+  
   overflow-x: hidden;
 }
+
+
 
 .padding-inline{
   padding-inline: 5vw;
@@ -73,4 +90,10 @@ body{
 .cursor-dot.work-hover .arrow-icon{
   display: block;
   transform: rotate(45deg)
+}
+
+@media(max-width:990px){
+  .cursor-dot{
+    display: none;
+  }
 }

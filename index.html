@@ -164,40 +164,33 @@
 
     <!-- brands logo -->
      <section class="brands-container">
-      <div class="padding-inline">
-        <div class="padding-div"></div>
-        
+      <div class="padding-inline">        
         <div class="logo-strip-container">
           <div class="logo-strip">
-            <div class="logo-column delay-1">
-              <div class="logo">Logo 1</div>
-              <div class="logo">Logo 2</div>
-              <div class="logo">Logo 3</div>
+            <div class="logo-row">
+              <div class="logo-column delay-1">
+                <div class="logo">Logo 1</div>
+                <div class="logo">Logo 2</div>
+                <div class="logo">Logo 3</div>
+              </div>
             </div>
-
-            <div class="logo-column delay-2">
-              <div class="logo">Logo 4</div>
-              <div class="logo">Logo 5</div>
-              <div class="logo">Logo 6</div>
+            
+            <div class="logo-row">
+              <div class="logo-column delay-2">
+                <div class="logo">Logo 4</div>
+                <div class="logo">Logo 5</div>
+                <div class="logo">Logo 6</div>
+              </div>
             </div>
-
-            <div class="logo-column delay-3">
-              <div class="logo">Logo 7</div>
-              <div class="logo">Logo 8</div>
-              <div class="logo">Logo 9</div>
+            
+            <div class="logo-row">
+              <div class="logo-column delay-3">
+                <div class="logo">Logo 7</div>
+                <div class="logo">Logo 8</div>
+                <div class="logo">Logo 9</div>
+              </div>
             </div>
-
-            <div class="logo-column delay-4">
-              <div class="logo">Logo 10</div>
-              <div class="logo">Logo 11</div>
-              <div class="logo">Logo 12</div>
-            </div>
-
-            <div class="logo-column delay-5">
-              <div class="logo">Logo 13</div>
-              <div class="logo">Logo 14</div>
-              <div class="logo">Logo 15</div>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -280,7 +273,7 @@
                 <span class="stone-color">B2B companies</span> with
               </div>
               <div class="works-hero-line">
-                world-class <span class="stone-color">designs</span>
+                world-class <span class="stone-color">designs.</span>
               </div>    
             </h1>
           </div>
@@ -367,12 +360,19 @@
               </a>
             </div>
             
-            <a class="work-book">
+            <a class="work-book desktop-only">
               <div class="work-book-content">
                 <h2 class="heading">Still curious?</h2>
                 <p>See more projects.</p>
               </div>
             </a>
+
+            <div class="mobile-only">
+              <a class="secondary-button" href="#">
+                <p>View All Work</p>
+                <i class="fa-solid fa-arrow-up button-logo"></i>
+              </a>
+            </div>
           </div>
         </div>  
       </div>
@@ -458,12 +458,22 @@
     <section class="booking-section">
       <div class="padding-inline">
         <div class="booking-inner">
-          <div class="images-container">
-            <img class="book-image" src="images/tony.jpg">
-            <img class="book-image" src="images/tony.jpg">
-            <img class="book-image" src="images/tony.jpg">
-            <img class="book-image" src="images/tony.jpg">
-            <img class="book-image" src="images/tony.jpg">
+          <div class="images-grid">
+            <div class="image-container">
+              <img class="book-image" src="images/tony.jpg">
+            </div>
+            <div class="image-container">
+              <img class="book-image" src="images/tony.jpg">
+            </div>
+            <div class="image-container">
+              <img class="book-image" src="images/tony.jpg">
+            </div>
+            <div class="image-container">
+              <img class="book-image" src="images/tony.jpg">
+            </div>
+            <div class="image-container">
+              <img class="book-image" src="images/tony.jpg">
+            </div>            
           </div>
 
           <div class="booking-content">
@@ -520,12 +530,18 @@
               </div>
             </div>
 
-          <div class="audit-button">
-            <div class="pulse-effect">
-              <span></span>
-            </div>
-              <div class="spots-capacity">
-                2 Spots available
+            <div class="audit-button">
+              <div class="left-items">
+                <div class="pulse-effect">
+                  <span></span>
+                </div>
+                <div class="spots-capacity">
+                  2 Spots available
+                </div>
+              </div>
+
+              <div class="arrow-button mobile-only">
+                <i class="fa-solid fa-arrow-up button-logo button-logo-1"></i>
               </div>
             </div>
           </div>
@@ -546,8 +562,8 @@
                 Trusted by visionary founders and fast-growing global brands
               </h2>
             </div>
-            <div class="slider-buttons">
-              <button class="prev-button">
+            <div class="slider-buttons desktop-only">
+              <button class="prev-button ">
                 <i class="fa-solid fa-arrow-left"></i>
               </button>
               <button class="next-button">
