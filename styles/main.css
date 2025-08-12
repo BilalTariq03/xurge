@@ -139,7 +139,7 @@
 .about-component{
   font-size: clamp(1.5rem, 2.1vw, 19rem);
   width: 100%;
-  max-width: 40ch;
+  max-width: 42ch;
 }
 
 .about-char, .heading-char, .review-char{

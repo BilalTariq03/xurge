@@ -650,8 +650,8 @@ mm.add("(min-width: 990px)", ()=>{
       ease:'none',
       scrollTrigger:{
         trigger:".booking-section",
-        start:"top top+=120",
-        end: "top top+=10",
+        start:"top center",
+        end: "top top+=100",
         scrub: 1,
         markers: false
       }
