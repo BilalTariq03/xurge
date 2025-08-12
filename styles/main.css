@@ -6,15 +6,29 @@
 
 .hero-text{
   font-size: clamp(3.5rem,5.23vw,10rem);
-  font-family: 'Roboto';
+}
+
+.hero-span{
+  display: inline-block;
+  transform: translateY(80px);
+}
+
+
+.hero-text .line{
+  overflow: hidden;
 }
 
 .stone-color{
-  color: rgb(140, 140, 140);
+  color: var(--neutral-stone);
 }
 
-.video-container{
+.animation-container{
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--neutral-charcol);
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -23,58 +37,26 @@
   will-change: transform;
 }
 
+.animation-container-wrapper{
+  position: relative;
+  height: 100vh;
+}
 
-.video-container video{
+.image-container{
+  position: relative;
+}
+
+.xurge-power{
   position: absolute;
-  top: 50%;
-  left: 50%;
-  min-height: 100%;
-  min-width: 100%;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
-  z-index: 1;
-
+  top: 6.25rem;
+  left: auto;
+  width: 40vw
 }
 
-/*Full video modal  */
-.video-modal{
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.full-video{
-  width: 90%;
-  max-width: 66vw;
-  height: 82vh;
-  object-fit: cover;
-}
-
-
-.close-modal{
+.xurge-animation{
   position: absolute;
-  top: 4.375rem;
-  right: 16.5625rem;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.625rem;
-  z-index: 10;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+  width: 20vw;
 }
-
-.close-modal:hover{
-  transform: scale(1.2);
-}
-
 
 /* Brand logos */
 
@@ -168,7 +150,7 @@
 
 .collaborate-link{
   padding-top: 3rem;
-  color: black;
+  color: var(--neutral-black);
   text-decoration: none;
   font-size: clamp(1.3rem, 1vw, 5rem);
   position: relative;
@@ -184,14 +166,14 @@
   width: 100%;
   left: 0;
   bottom: 0;
-  background-color: black;
+  background-color: var(--neutral-black);
   transform: translateX(0%);
   transition: transform 0.3s ease;
 }
 
 .collaborate-link::after{
   transform: translateX(-200%);
-  background-color: black;
+  background-color: var(--neutral-black);
   z-index: 2;
 }
 
@@ -250,7 +232,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 2rem;
-  background-color: rgba(243,244,238,255);
+  background-color: var(--neutral-ivory);
   border-radius: 0.5rem;
   aspect-ratio: 2/2.5;
 }
@@ -289,7 +271,7 @@
 
 .works-container{
   height: 100vh;
-  width: 70ch;
+  min-width: 90ch;
   display: flex;
   align-items: center;
   padding-top: 5rem;
@@ -315,16 +297,22 @@
 .work-item-link{
   height: 100%;
   text-decoration: none;
-  color: black;
+  color: var(--neutral-black);
 }
 
 .work-item-img-container{
   height: 85%;
+  overflow: hidden;
 }
 
 .work-item-img{
   height: 100%;
   border-radius: 10px;
+  transition: 0.6s ease;
+}
+
+.work-item:hover .work-item-img{
+  scale: 1.1;
 }
 
 .work-item-content .title{
@@ -351,7 +339,7 @@
 .work-book{
   position: relative;
   overflow: hidden;
-  background-color: rgba(243,244,238,255);
+  background-color: var(--neutral-ivory);
   height: 85.5vh;
   width: 70vh;
   border-radius: 5%;
@@ -385,12 +373,12 @@
   position: absolute;
   top:    var(--my);
   left:   var(--mx);
-  background-color: rgba(226,250,111,1);
+  background-color: var(--brand-shade);
   border-radius: 50%;
   transform:  translate(-50%, -50%) scale(0);
   width: 0;
   height: 0;
-  transition: all 1s ease-out;
+  transition: all 0.5s ease-out;
   z-index: 0;
 }
 
@@ -407,8 +395,8 @@
 .secondary-button{
     width: 100%;
     border-radius: 25px;
-    background-color: white;
-    color: black;
+    background-color: var(--neutral-white);
+    color: var(--neutral-black);
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -416,7 +404,7 @@
     gap: 0.5rem;
     padding: 1rem;
     font-size: 1rem;
-    border: 1px solid rgb(101, 101, 101);
+    border: 1px solid var(--neutral-silver);
     position: relative;
     overflow: hidden;
     z-index: 1;
@@ -430,7 +418,7 @@
     width: 100%;
     height: 0%;
     z-index: -1;
-    background-color: rgba(226,250,111,1);
+    background-color: var(--brand-shade);
     transition: 0.6s ease;
   }
 
@@ -503,12 +491,12 @@
 }
 
 .from-left{
-  transform: translateX(-500px);
+  transform: translateX(-100px);
   opacity: 0;
 }
 
 .from-right{
-  transform: translateX(500px);
+  transform: translateX(100px);
   opacity: 0;
 }
 
@@ -529,7 +517,7 @@
   align-items: center;
   padding-left: 20px;
   padding-right: 20px;
-  color: white;
+  color: var(--neutral-white);
   padding: clamp(0.75rem, 2.2vw, 10rem) clamp(0.75rem, 2.2vw, 1rem);
   border-radius: 0.625rem;
   transform: translateY(150rem);
@@ -541,7 +529,7 @@
 
 .item-number{
   font-size: clamp(1rem, 1.2vw, 3rem);
-  color: rgb(159, 159, 159);
+  color: var(--neutral-stone);
   margin-right: clamp(30px,6vw, 6.5vw);
 }
 
@@ -552,14 +540,14 @@
 
 .service-about{
   font-size: clamp(1rem, 1.2vw, 4rem);
-  color: #e3e3e3;
+  color: var(--neutral-silver);
 }
 
 
 /* booking */
 
 .booking-section{
-  margin-top: 72rem;
+  margin-top: 20rem;
 }
 
 .booking-inner{
@@ -605,6 +593,7 @@
   font-size: clamp(1rem, 1.05vw, 3rem);
 }
 
+
 .booking-link-container{
   margin-top: 1.25rem;
   padding-top: 2rem;
@@ -618,7 +607,7 @@
   align-items: center;
   justify-content: space-between;
   text-decoration: none;
-  color: black;
+  color: var(--neutral-black);
   align-items:center;
 }
 
@@ -655,7 +644,7 @@
 
 .booking-button::before{
   content: '';
-  background-color: rgba(226,250,111,1);
+  background-color: var(--brand-shade);
   position: absolute;
   bottom: 0;
   left: 0;
@@ -668,6 +657,10 @@
   height: 100%;
 }
 
+.booking-link:hover .booking-button{
+  border-color: var(--brand-shade);
+}
+
 
 
 /* Audit Section */
@@ -678,9 +671,9 @@
 }
 
 .audit-link{
-  background-color: rgb(23,23,23);
+  background-color: var(--neutral-charcol);
   text-decoration: none;
-  color: white;
+  color: var(--neutral-white);
   overflow: hidden;
   height: 77vh;
   display: flex;
@@ -732,7 +725,7 @@
 }
 
 .audit-button{
-  background-color: black;
+  background-color: var(--neutral-black);
   padding: 20px;
   border-radius: 30px;
 }
@@ -746,7 +739,7 @@
 .pulse-effect{
   width: 0.5rem;
   height: 0.5rem;
-  background-color: rgba(226,250,111,1);
+  background-color: var(--brand-shade);
   border-radius: 50%;
   position: relative;
 }
@@ -785,7 +778,7 @@
 
 .review-content-container{
   padding-top: 10vh;
-  border-top: 1px solid rgb(222, 222, 222);
+  border-top: 1px solid var(--neutral-silver);
 }
 
 .review-top{
@@ -806,10 +799,10 @@
 
 .prev-button,
 .next-button{
-  background-color:white;
+  background-color: var(--neutral-white);
   padding: clamp(0.875rem, 0.91vw, 2rem) clamp(1rem, 1vw, 2.5rem);
   border-radius: 50%;
-  border: 1px solid rgb(222, 222, 222);
+  border: 1px solid var(--neutral-silver);
   position: relative;
   cursor: pointer;
   overflow: hidden;
@@ -822,7 +815,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: rgba(226,250,111,1);
+  background-color: var(--brand-shade);
   width: 100%;
   height: 0%;
   z-index: -1;
@@ -832,6 +825,11 @@
 .prev-button:hover::before,
 .next-button:hover::before{
   height: 100%;
+}
+
+.prev-button:hover,
+.next-button:hover{
+  border-color: var(--brand-shade);
 }
 
 .review-strip{
@@ -851,7 +849,7 @@
 }
 
 .review-item{
-  background-color: #f3f4ee;
+  background-color: var(--neutral-ivory);
   width: clamp(50rem, 52.35vw, 150rem);
   height: clamp(26.25rem, 27.48vw, 80rem);
   display: flex;
@@ -898,9 +896,9 @@ footer{
   margin-top: 30vh;
   display: flex;
   flex-direction: column;
-  background-color: #171717;
+  background-color: var(--neutral-charcol);
   gap: 10vw;
-  color: white;
+  color: var(--neutral-black);
   padding-bottom: 1.5rem;
 }
 
@@ -909,7 +907,7 @@ footer{
 .footer-title-wrapper{
   display: block;
   text-decoration: none;
-  color:  white;
+  color:  var(--neutral-white);
   font-size: clamp(10rem, 10vw, 25rem);
   white-space: nowrap;
   overflow: hidden;
@@ -966,7 +964,7 @@ footer{
 
 .footer-link{
   text-decoration: none;
-  color: white;
+  color: var(--neutral-white);
   width: fit-content;
   position: relative;
   overflow: hidden;
@@ -984,7 +982,7 @@ footer{
   width: 100%;
   left: 0;
   bottom: 0;
-  background-color: white;
+  background-color: var(--neutral-white);
   transform: translateX(-110%);
   transition: transform 0.4s ease;
   
@@ -1008,14 +1006,22 @@ footer{
   gap: 0.6rem;
 }
 
+.footer-call-heading p{
+  color: var(--neutral-white);
+
+}
+
+.book-call-button{
+  text-decoration: none;
+}
 
 .footer-call-heading .title{
-  color: rgba(226,250,111,1);
+  color: var(--brand-shade);
   font-size: clamp(1.35rem, 1.35vw, 3rem);
 }
 
 .button-wrap{
-  background-color: #0c0c0c;
+  background-color: var(--neutral-black);
   padding: 1rem;
   border-radius: 10rem;
   display: flex;
@@ -1035,7 +1041,7 @@ footer{
 
 .user-info{
   text-decoration: none;
-  color: white;
+  color: var(--neutral-white);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -1054,13 +1060,12 @@ footer{
   height: 1rem;
   overflow: hidden;
   font-size: 0.9rem;
-  color: #959595;
-
+  color: var(--neutral-stone);
 }
 
 .button-wrap .booking-button{
-  border: 1px solid rgb(222, 222, 222);
-  color: white;
+  border: 1px solid var(--neutral-silver);
+  color: var(--neutral-white);
   padding: 1rem 1.2rem;
   border-radius: 50%;
   margin-right: 0.5rem;
@@ -1075,7 +1080,7 @@ footer{
 
 .booking-button::before{
   content: '';
-  background-color: rgba(226,250,111,1);
+  background-color: var(--brand-shade);
   position: absolute;
   bottom: 0;
   left: 0;
@@ -1089,7 +1094,8 @@ footer{
 }
 
 .button-wrap:hover .booking-button{
-  color: black;
+  color: var(--neutral-black);
+  border-color: var(--brand-shade);
 }
 
 .copyright-container{
@@ -1111,19 +1117,8 @@ footer{
 
 .right-section a{
   text-decoration: none;
-  color: white;
+  color: var(--neutral-black);
 }
-
-/* --brand--luster: #e2fa6f;
-    --neutrals--white: white;
-    --neutrals--stone: #959595;
-    --neutrals--charcoal: #171717;
-    --neutrals--silver: #e3e3e3;
-    --neutrals--black: #0c0c0c;
-    --brand--haze: #ecefdc;
-    --neutrals--ash-gray: #606060;
-    --brand--ivory: #f3f4ee;
-    --neutrals--metalic: #303030; */
 
 
 
@@ -1211,7 +1206,7 @@ footer{
   }
 
   .booking-button{
-    background-color: rgba(226,250,111,1);
+    background-color: var(--brand-shade);
   }
 
   .audit-button{
@@ -1222,8 +1217,8 @@ footer{
   }
 
   .arrow-button{
-    background-color: rgba(226,250,111,1);
-    color: black;
+    background-color: var(--brand-shade);
+    color: var(--neutral-black);
     padding: 12px 17px;
     border-radius: 50%;
   }

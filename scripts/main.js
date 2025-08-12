@@ -21,12 +21,16 @@ document.addEventListener('mousemove', (e)=>{
     window.requestAnimationFrame(()=>{
       const cursorWidth = cursorDot.offsetWidth;
       const cursorHeight = cursorDot.offsetHeight
-
-      const mouseX = e.clientX-17;
-      const mouseY = e.clientY-10;
-
-      cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`
-      mouseTick=false;
+      let mouseX = e.clientX-17;
+      let mouseY = e.clientY-10;
+      if(cursorDot.classList.contains('work-hover'))
+      {
+        mouseX = e.clientX-50;
+        mouseY = e.clientY -50;
+        
+      }
+        cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`
+        mouseTick=false;
     });
   }
   mouseTick=true;
@@ -48,65 +52,12 @@ function AddSpans(className,spanName){
 
 }
 
-const videoContainer = document.querySelector('.video-container');
-const video = document.getElementById('bg-video');
-const modal = document.querySelector('.video-modal');
-const fullVideo = document.querySelector('.full-video');
-
-const startTime = 4;
-const endTime = 36;
-
-video.addEventListener('loadedmetadata', ()=>{
-  video.currentTime = startTime;
-});
-
-video.addEventListener('timeupdate', ()=>{
-  if(video.currentTime >= endTime){
-    video.currentTime=startTime;
-  }
-});
-
-video.addEventListener('click', ()=>{
-  modal.style.display = 'flex';
-  video.pause();
-  fullVideo.play();
-
-});
-
-modal.addEventListener('click', (e)=>{
-  if(e.target === modal){
-    pauseVideo();
-  }
-});
-
-function pauseVideo(){
-  fullVideo.pause();
-  fullVideo.currentTime = 0;
-  modal.style.display = 'none';
-  video.play();
-}
-
-
-videoContainer.addEventListener('mouseenter', ()=>{
-  cursorDot.classList.add('video-hover');
-});
-
-videoContainer.addEventListener('mouseleave', ()=>{
-  cursorDot.classList.remove('video-hover')
-});
-
-
-const closeButton = document.querySelector('.close-modal');
-
-closeButton.addEventListener('click', ()=>{
-  pauseVideo();
-})
+const animationContainer = document.querySelector('.animation-container');
 
 
 // brand logos
 
 const columns = document.querySelectorAll('.logo-column');
-
 
 columns.forEach((column, index)=>{
   const logos = column.querySelectorAll('.logo');
@@ -152,41 +103,160 @@ AddSpans('booking-heading','heading-char')
 
 ////////   GSAP //////////
 
+const lines = document.querySelectorAll('.hero-text .line');
+
+lines.forEach(line => {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = line.innerHTML;
+
+  const newContent = Array.from(tempDiv.childNodes).map(node => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      // IMPORTANT: return real spaces ' ' (not &nbsp;)
+      return node.textContent.split('').map(char =>
+        char === ' ' ? ' ' : `<span class="hero-span">${char}</span>`
+      ).join('');
+    }
+    if (node.nodeType === Node.ELEMENT_NODE) {
+      const element = node.cloneNode(true);
+      element.innerHTML = element.textContent.split('').map(char =>
+        char === ' ' ? ' ' : `<span class="hero-span">${char}</span>`
+      ).join('');
+      return element.outerHTML;
+    }
+    return '';
+  }).join('');
+
+  line.innerHTML = newContent;
+});
+
+
+// Split text into spans without whitespace issues
+function prepareHeroText() {
+  const lines = document.querySelectorAll('.hero-text .line');
+  
+  lines.forEach(line => {
+    // Process each text node separately
+    const walker = document.createTreeWalker(line, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    
+    textNodes.forEach(node => {
+      const chars = node.textContent.split('');
+      const fragment = document.createDocumentFragment();
+      
+      chars.forEach(char => {
+        if (char.trim() !== '') {
+          const span = document.createElement('span');
+          span.className = 'hero-span';
+          span.textContent = char;
+          fragment.appendChild(span);
+        } else {
+          // Preserve spaces as text nodes
+          fragment.appendChild(document.createTextNode(' '));
+        }
+      });
+      
+      node.replaceWith(fragment);
+    });
+    
+    // Process existing stone-color spans
+    line.querySelectorAll('.stone-color').forEach(span => {
+      const chars = span.textContent.split('');
+      span.innerHTML = '';
+      
+      chars.forEach(char => {
+        if (char.trim() !== '') {
+          const charSpan = document.createElement('span');
+          charSpan.className = 'hero-span';
+          charSpan.textContent = char;
+          span.appendChild(charSpan);
+        } else {
+          span.appendChild(document.createTextNode(' '));
+        }
+      });
+    });
+  });
+}
+
+
+
+// Initialize when ready
+  prepareHeroText();
+
+
+
 gsap.registerPlugin(ScrollTrigger);
 const mm = gsap.matchMedia();
 window.addEventListener("load", () => ScrollTrigger.refresh());
 
-function charReveal(className, triggerName, markers= false){
+function charReveal(className, triggerName, markers = false, pinOffset = 0) {
   gsap.to(`.${className}`, {
     opacity: 1,
-    stagger:{
+    stagger: {
       each: 0.3,
       from: 'start',
       ease: 'power1.inout'
     },
-    scrollTrigger:{
+    scrollTrigger: {
       trigger: `.${triggerName}`,
-      start: 'top 80%',
-      end: 'bottom 65%',
+      start: `top+=${pinOffset} 80%`,
+      end: `bottom+=${pinOffset} 65%`,
       scrub: true,
-      markers,
+      markers
     }
   });
 }
 //about-info
-charReveal('about-char', 'about');
+charReveal('about-char', 'about', false, 2000);
 
 //video scale
-gsap.to('.video-container', {
+gsap.to('.animation-container', {
   scale: 1.12,
   ease: "power2.out",
   scrollTrigger:{
-    trigger: ".video-container",
+    trigger: ".animation-container",
     start: "top center",
     end: "top top",
-    scrub: true
+    scrub: true,
+    // markers: true
   }
 });
+
+
+gsap.fromTo('.xurge-power', 
+  {x: '-100vw' },
+  {
+    x: '100vw',
+    ease: "power1.out",
+    scrollTrigger: {
+      trigger: '.animation-container-wrapper',
+      start: "top top",
+      end: "+=2000",
+      scrub: true,
+      // markers: true
+    }
+  }
+)
+
+gsap.fromTo('.xurge-animation', 
+  {y: '100vh',
+    scale: '1'
+  },
+  {
+    y: '-100vh',
+    scale: '3',
+    ease: "power1.out",
+    scrollTrigger: {
+      trigger: '.animation-container-wrapper',
+      start: "top top",
+      end: "+=2000",
+      pin: true,
+      anticipatePin: true,
+      scrub: true,
+      // markers: true
+    }
+  }
+)
 
 
 // stats - container
@@ -210,7 +280,7 @@ counters.forEach((counter)=>{
       snap: { innerText: 1},
       onUpdate: function (){
         const value = Math.round(counter.innerText);
-        counter.textContent = value + (counter.textContent.includes("%")?"%":"+")
+        counter.textContent = value + (counter.id=='percent'?"%":"+")
       }
     }
   )
@@ -445,16 +515,16 @@ mm.add("(min-width: 990px)", ()=>{
     }
   });
 
-  revealLt.to("#fuel", { x: "0%", opacity: 1, duration: 0.1 }, 0.1)
-    .to("#your", { x: "0%", opacity: 1, duration: 0.1 }, 0.1)
-    .to("#services", { x: "0%", opacity: 1, duration: 0.1 }, 0.2)
-    .to("#to", { x: "0%", opacity: 1, duration: 0.1 }, 0.2)
-    .to("#growth", { x: "0%", opacity: 1, duration: 0.1 }, 0.3)
-    .to("#growth", { x: "500px", opacity: 0, duration: 0.1 }, 0.6)
-    .to("#to", { x: "500px", opacity: 0, duration: 0.1 }, 0.65)
-    .to("#services", { x: "-500px", opacity: 0, duration: 0.1 }, 0.65)
-    .to("#fuel", { x: "-500px", opacity: 0, duration: 0.1 }, 0.7)
-    .to("#your", { x: "500px", opacity: 0, duration: 0.1 }, 0.7);
+  revealLt.to("#fuel", { x: "0%", opacity: 1, duration: 0.05 }, 0.1)
+    .to("#your", { x: "0%", opacity: 1, duration: 0.05 }, 0.1)
+    .to("#services", { x: "0%", opacity: 1, duration: 0.05 }, 0.15)
+    .to("#to", { x: "0%", opacity: 1, duration: 0.05 }, 0.15)
+    .to("#growth", { x: "0%", opacity: 1, duration: 0.05 }, 0.2)
+    .to("#growth", { x: "100px", opacity: 0, duration: 0.1 }, 0.3)
+    .to("#to", { x: "100px", opacity: 0, duration: 0.1 }, 0.3)
+    .to("#services", { x: "-100px", opacity: 0, duration: 0.1 }, 0.3)
+    .to("#fuel", { x: "-100px", opacity: 0, duration: 0.1 }, 0.3)
+    .to("#your", { x: "100px", opacity: 0, duration: 0.1 }, 0.3);
 
   
     // Service items animation
@@ -462,7 +532,7 @@ mm.add("(min-width: 990px)", ()=>{
       scrollTrigger: {
         trigger: ".services-section",
         start: "top top",
-        end: "+=5000",
+        end: "+=4000",
         pin: true,
         pinSpacing: false,
         scrub: 1,

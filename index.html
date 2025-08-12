@@ -34,10 +34,14 @@
     <p class="drag-hover">DRAG</p>
   </div>
 
+  <div id="logo-overlay" class="logo-overlay" aria-hidden="true">
+    <img id="overlay-logo" class="overlay-logo" src="./images/SVG/XurgeLogo.png">
+  </div>
   <nav class="nav-bar">
+    
     <div class="left-items">
       <div class="logo-container">
-        <img class="logo" src="images/SVG/Xurge Primary.svg">
+        <img class="logo" src="images/SVG/XurgeLogo.png">
       </div>
       <div >
         <ul class="menu-items" id="nav-menu">
@@ -95,7 +99,10 @@
     <div class="right-items">
       <i class="fa-solid fa-bars menu-button"></i>
       
-      <button class="talk-button">Lets Talk 
+      <button class="talk-button">
+        <div class="button-text">
+          Lets Talk
+        </div>
         <span class="button-logo-span">
           <i class="fa-solid fa-arrow-up button-logo button-logo-1"></i>
           <i class="fa-solid fa-arrow-up button-logo button-logo-2"></i>
@@ -103,7 +110,10 @@
     </div>
   </nav>
 
-  <button class="talk-button-float">Lets Talk
+  <button class="talk-button-float">
+    <div class="button-text">
+      Lets Talk
+    </div>
      <span class="button-logo-span">
         <i class="fa-solid fa-arrow-up button-logo button-logo-1"></i>
         <i class="fa-solid fa-arrow-up button-logo button-logo-2"></i>
@@ -141,23 +151,17 @@
       
     </section>
     
-
-    <section class="video-section">
+<!-- Landing animation -->
+    <section class="animation-section">
       <div class="padding-inline">
-        <div class="video-container">
-          <video id = "bg-video" autoplay muted loop playsinline>
-            <source src="./images/video-essam.mp4" type="video/mp4" />
-            Your browser does not support the video tag
-          </video>
-      </div>
-
-      <!-- Full Video modal -->
-      <div id="video-modal" class="video-modal">
-        <button class="close-modal">&times; </button>
-        <video class="full-video">
-          <source src="./images/video-essam.mp4"/>
-        </video>
-      </div>
+        <div class="animation-container-wrapper">
+          <div class="animation-container">
+            <div class="image-container">
+              <img class="xurge-power" src="./images/XurgePower.png">
+              <img class="xurge-animation" src="./images/XurgeAnimation.png">
+            </div>       
+          </div>
+        </div>     
       </div> 
     </section>
     
@@ -227,28 +231,28 @@
         <div class="padding-bottom-80">
           <div class="stats-container">
             <div class="stats-item">
-              <h1 class="stats-heading" data-target="15">0+</h1>
+              <h1 class="stats-heading" id="add" data-target="15">0+</h1>
               <div class="stats-content">
                 <p>Years of experience in designing digital products</p>
               </div>
             </div>
 
             <div class="stats-item">
-              <h1 class="stats-heading" data-target="300">0+</h1>
+              <h1 class="stats-heading" id="add" data-target="300">0+</h1>
               <div class="stats-content">
                 <p>Projects completed for global clients</p>
               </div>
             </div>
 
             <div class="stats-item">
-              <h1 class="stats-heading" data-target="90">0%</h1>
+              <h1 class="stats-heading" id="percent" data-target="90">0%</h1>
                 <div class="stats-content">
                   <p>Of our clients return for another project</p>
                 </div>
             </div>
 
               <div class="stats-item">
-                <h1 class="stats-heading" data-target="40">0+</h1>
+                <h1 class="stats-heading" id="add" data-target="40">0+</h1>
                 <div class="stats-content">
                   <p>Awards from the most prestigious insititutions</p>
                 </div>
