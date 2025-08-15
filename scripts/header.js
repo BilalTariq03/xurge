@@ -2,9 +2,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const overlay = document.getElementById('logo-overlay');
   const overlayLogo = document.getElementById('overlay-logo');
   const navLogo = document.querySelector('.nav-bar .logo');
-
   const hasPlayedIntro = sessionStorage.getItem('introPlayed');
-  console.log(hasPlayedIntro)
+
   // Animate the text
   function animateHeroText() {
     gsap.to('.hero-span', {
@@ -52,9 +51,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
     gsap.set('.right-items .talk-button', { opacity: 1, y: 0 });
   }
 
-
-  document.body.classList.add('intro-running')
-  document.documentElement.style.overflow = 'hidden';
 
   function startIntro(){
     const targetRect = navLogo.getBoundingClientRect();

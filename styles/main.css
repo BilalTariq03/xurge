@@ -4,6 +4,11 @@
 
 }
 
+.hero-word{
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .hero-text{
   font-size: clamp(3.5rem,5.23vw,10rem);
 }
@@ -44,13 +49,6 @@
 
 .image-container{
   position: relative;
-}
-
-.xurge-power{
-  position: absolute;
-  top: 6.25rem;
-  left: auto;
-  width: 40vw
 }
 
 .xurge-animation{
@@ -477,7 +475,7 @@
   display: inline-block;
   margin: 0 10px;
   font-size: clamp(5.2rem,5.44vw, 20rem);
-  letter-spacing: 02px;
+  letter-spacing: 2px;
 }
 
 .behind {
@@ -580,7 +578,8 @@
 }
 
 .booking-heading{
-  font-size: clamp(3rem,3.14vw, 10rem);
+  font-size: clamp(2rem,3.14vw, 10rem);
+  max-width: 25ch;
 }
 
 .booking-content{
@@ -707,8 +706,8 @@
 }
 
 .audit-heading{
-  font-size: clamp(2rem, 4.3vw, 10rem);
-  width: 60vw;
+  font-size: clamp(2.5rem, 4.3vw, 10rem);
+  max-width: 20ch;
   text-align: center;
 }
 
@@ -719,7 +718,7 @@
 
 .audit-context{
   font-size: clamp(1.2rem,1.256vw,3rem);
-  width: 30vw;
+  max-width: 35ch;
   text-align: center;
   line-height: clamp(1.875rem, 1.96vw, 4rem);
 }
@@ -789,7 +788,8 @@
 
 .review-heading{
   font-size: clamp(2rem,3vw,5rem);
-  width: clamp(22rem,45vw,100rem);
+  max-width: 22ch;
+
 }
 
 .slider-buttons{
@@ -908,7 +908,7 @@ footer{
   display: block;
   text-decoration: none;
   color:  var(--neutral-white);
-  font-size: clamp(10rem, 10vw, 25rem);
+  font-size: clamp(3rem, 10vw, 25rem);
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
@@ -960,6 +960,7 @@ footer{
 
 .footer-menu-heading{
   font-size: clamp(1rem, 1vw, 3rem);
+  color: var(--neutral-white);
 }
 
 .footer-link{
@@ -1103,6 +1104,7 @@ footer{
   display: flex;
   justify-content: space-between;
   font-size: clamp(0.875rem, 0.8vw, 2rem);
+  color: var(--neutral-white);
 }
 
 .copyright-container .left-section{
@@ -1120,21 +1122,37 @@ footer{
   color: var(--neutral-black);
 }
 
+.footer-button{
+  display: flex;
+  margin: 0 2rem;
+  background-color: var(--brand-shade);
+  padding: 0.75rem;
+  border-radius: 25px;
+  text-decoration: none;
+  justify-content: center;
+  color: var(--neutral-black);
+}
+
+.footer-button .button-content{
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
 
 @media (max-width: 990px) {
+  .animation-container.image-container{
+    position: relative;
+  }
 
-  .video-container{
-    height:75vh
+  .xurge-animation{
+    position: absolute;
+    left: 25%;
   }
 
     
   .logo-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      grid-auto-rows: auto;
-      height: auto;
+      gap: 7rem;
   }
 
   .stats-container{
@@ -1153,7 +1171,12 @@ footer{
   }
 
   .works-container{
+    margin-bottom: -5rem;
     padding-bottom: 0;
+  }
+
+  .work-item{
+    height: 80vh;
   }
 
   .work-item-list{
@@ -1176,13 +1199,7 @@ footer{
     display: block;
   }
 
-  .services-wrapper{
-    overflow: visible;
-  }
 
-  .service-item{
-    transform: none;
-  }
 
  .booking-section{
     /* margin-top: 13rem; */
@@ -1216,6 +1233,10 @@ footer{
     justify-content: space-between;
   }
 
+  .audit-context{
+    font-size: 16px;
+  }
+
   .arrow-button{
     background-color: var(--brand-shade);
     color: var(--neutral-black);
@@ -1226,5 +1247,244 @@ footer{
   .footer-grid{
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
+  }
+
+  .button-wrap .booking-button{
+    color: var(--neutral-black);
+  }
+}
+
+
+@media (max-width: 750px){
+  .hero-text{
+    font-size: clamp(3rem, 7vw, 10rem);
+  }
+
+  .about-component-container{
+    padding: 8rem 0;
+  }
+
+  .logo-strip-container{
+    margin-top: 8rem;
+  }
+
+  .work-item{
+    height: 70vh;
+  }
+
+  .stats-container{
+    padding: 0;
+    margin-bottom: -15rem;
+  }
+
+  .works-container{
+    padding: 0;
+    margin-bottom: -13rem;
+  }
+
+  .works-hero-text{
+    font-size: 3.5rem;
+    max-width: 12ch;
+  }
+
+  .text-line span{
+    font-size: 4rem;
+  }
+
+  .service-name{
+    font-size: 14px;
+    width: 75rem;
+  }
+
+  .service-about{
+    font-size: 14px;
+  }
+
+  /* .image-container{
+    height: 40vh;
+    width: 28vw; 
+  } */
+
+  .review-item{
+    width: clamp(35rem, 41.88vw, 40rem);
+    height: 26rem;
+  }
+
+  .brand-logo{
+    height: 3.5rem;
+  }
+
+  .review{
+    font-size: 1rem;
+  }
+
+  .user-image{
+    height: 2.7rem;
+    width: 2.7rem
+  }
+
+  .about-user{
+    font-size: 1rem;
+    padding-top: 0;
+  }
+
+  .footer-grid{
+    grid-column-gap: 1rem;
+    grid-row-gap: 2.5rem
+  }
+
+  .footer-left{
+    grid-column: 1/-1;
+  }
+
+  .footer-links.call{
+    grid-column: 1/-1;;
+  }
+
+}
+
+@media(max-width: 600px){
+  .logo-strip-container{
+  }
+
+  .logo-strip{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 1rem;
+    grid-column-gap: 1rem;
+    height: auto !important;
+  }
+
+  .logo-row{
+    justify-self: center;
+  }
+
+  .logo-row:nth-child(3){
+    grid-column: 1/-1;
+    justify-self: center;
+  }  
+
+  .logo{
+    font-size: 20px;
+  }
+
+  .stats-container{
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+
+  .stats-item{
+    height: 20rem;
+    width: 100%;
+  }
+
+  .stats-heading{
+    font-size: 3.5rem;
+  }
+
+  .works-hero-text{
+    font-size: 2.5rem;
+  }
+
+  .text-line span{
+    font-size: clamp(2.5rem, 3.2vw, 3.5rem);
+  }
+
+  .booking-heading{
+    font-size: 1.75rem;
+  }
+
+  .audit-content{
+    padding: 0 1rem;
+    font-size: 13px;
+  }
+
+  .review-item{
+    width: 25rem;
+    height: 28rem;
+  }
+
+  .logo-link .logo{
+    width: 8rem;
+  }
+}
+
+@media(max-width: 500px){
+  .work-item{
+    height: 40vh;
+  }
+
+  .work-item-img{
+    border-radius: 5px;
+  }
+
+  .about-component{
+    font-size: 1.25rem;
+  }
+
+  .service-item{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 2rem;
+  }
+
+  .service-name{
+    font-size: 18px;
+  }
+
+  .service-about{
+    font-size: 16px;
+  }
+
+  .image-container{
+    height: 40vh;
+    width: 38vw; 
+  }
+
+  .booking-heading{
+    font-size: 1.25rem;
+  }
+
+  .review-item{
+    width: clamp(20rem,24vw,25rem);
+    height: 28rem;
+  }
+}
+
+@media(max-width: 400px){
+  .works-container{
+    margin-bottom: -10rem;
+  }
+
+  .works-hero-text{
+    max-width: 10ch;
+  }
+
+  .work-item{
+    height: 23vh;
+  }
+
+  .text-line span{
+    font-size: 1.5rem;
+    margin: 0 2px;
+  }
+
+  .booking-heading{
+    width: 80vw;
+  }
+
+  .image-container{
+    height: 18vh;
+  }
+
+  .review-item{
+    width: 18rem;
+  }
+
+  .audit-content-container{
+    position: absolute;
+    top: 2rem;
   }
 }

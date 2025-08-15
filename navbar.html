@@ -1,27 +1,85 @@
-.logo-overlay {
+<div class="left-items">
+      <div class="logo-container">
+        <img class="logo" src="images/SVG/XurgeLogo.svg">
+      </div>
+      <div >
+        <ul class="menu-items" id="nav-menu">
+
+          <li class="mobile-only">
+            <a href="index.html" class="item active">
+              <span class="text-wrap">
+                <span class="top text">Home</span>
+                <span class="bottom text">Home</span>
+              </span>
+            
+           </a></li>
+
+          <li><a href="work.html" class="item">
+            <span class="text-wrap">
+              <span class="top text">Work</span>
+              <span class="bottom text">Work</span>
+            </span>
+            
+           </a></li>
+
+          <li><a href="#" class="item">
+            <span class="text-wrap">
+              <span class="top text">Services</span>
+              <span class="bottom text">Services</span>
+            </span>
+            
+          </a></li>
+
+          <li><a href="#" class="item"> 
+            <span class="text-wrap">
+              <span class="top text">Studio</span>
+              <span class="bottom text">Studio</span>  
+            </span>
+            
+          </a></li>
+
+          <li><a href="#" class="item"> 
+            <span class="text-wrap">
+              <span class="top text">Insights</span>
+              <span class="bottom text">Insights</span> 
+            </span>
+             
+          </a></li>
+
+          <li>
+            <button class="talk-button mobile-button">
+              Lets Talk <i class="fa-solid fa-arrow-up button-logo"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="right-items">
+      <i class="fa-solid fa-bars menu-button"></i>
+      
+      <button class="talk-button">
+        <div class="button-text">
+          Lets Talk
+        </div>
+        <span class="button-logo-span">
+          <i class="fa-solid fa-arrow-up button-logo button-logo-1"></i>
+          <i class="fa-solid fa-arrow-up button-logo button-logo-2"></i>
+        </span>
+    </div>
+
+
+    <style>
+      .logo-overlay{
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--neutral-white);
+  inset: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  background-color: white;
   z-index: 9999;
-  opacity: 0; /* Start hidden */
-  visibility: hidden; /* Completely hide it */
-  transition: none; /* No transition by default */
-}
-
-/* Only show overlay when intro is running */
-body.intro-running .logo-overlay {
-  opacity: 1;
-  visibility: visible;
-}
-
-.nav-bar .logo {
-  visibility: visible; /* Default to visible */
+  pointer-events: none;
+  overflow: hidden;
 }
 
 .overlay-logo{
@@ -306,7 +364,6 @@ body.intro-running .nav-bar{
     margin-top: 70px;
     padding: 17px;
     border-radius: 30px;
-    opacity: 1;
   }
 
   .active .text{
@@ -346,20 +403,4 @@ body.intro-running .nav-bar{
     right: 20px;
   }
 }
-
-@media(max-width: 450px){
-  .nav-bar{
-    padding: 0 1rem
-  }
-  .left-items{
-    gap: 0;
-  }
-
-  .left-items .logo{
-    height: 16px;
-  }
-
-  .menu-button{
-    font-size: 12px;
-  }
-}
+    </style>

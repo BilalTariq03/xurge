@@ -1,5 +1,6 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 
+
 const lenis = new Lenis({
   lerp: 0.1,          
   wheelMultiplier: 1,  
@@ -103,80 +104,107 @@ AddSpans('booking-heading','heading-char')
 
 ////////   GSAP //////////
 
-const lines = document.querySelectorAll('.hero-text .line');
+// const lines = document.querySelectorAll('.hero-text .line');
 
-lines.forEach(line => {
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = line.innerHTML;
+// lines.forEach(line => {
+//   const tempDiv = document.createElement('div');
+//   tempDiv.innerHTML = line.innerHTML;
 
-  const newContent = Array.from(tempDiv.childNodes).map(node => {
-    if (node.nodeType === Node.TEXT_NODE) {
-      // IMPORTANT: return real spaces ' ' (not &nbsp;)
-      return node.textContent.split('').map(char =>
-        char === ' ' ? ' ' : `<span class="hero-span">${char}</span>`
-      ).join('');
-    }
-    if (node.nodeType === Node.ELEMENT_NODE) {
-      const element = node.cloneNode(true);
-      element.innerHTML = element.textContent.split('').map(char =>
-        char === ' ' ? ' ' : `<span class="hero-span">${char}</span>`
-      ).join('');
-      return element.outerHTML;
-    }
-    return '';
-  }).join('');
+//   const newContent = Array.from(tempDiv.childNodes).map(node => {
+//     if (node.nodeType === Node.TEXT_NODE) {
+//       // IMPORTANT: return real spaces ' ' (not &nbsp;)
+//       return node.textContent.split('').map(char =>
+//         char === ' ' ? ' ' : `<span class="hero-span">${char}</span>`
+//       ).join('');
+//     }
+//     if (node.nodeType === Node.ELEMENT_NODE) {
+//       const element = node.cloneNode(true);
+//       element.innerHTML = element.textContent.split('').map(char =>
+//         char === ' ' ? ' ' : `<span class="hero-span">${char}</span>`
+//       ).join('');
+//       return element.outerHTML;
+//     }
+//     return '';
+//   }).join('');
 
-  line.innerHTML = newContent;
-});
+//   line.innerHTML = newContent;
+// });
 
 
 // Split text into spans without whitespace issues
 function prepareHeroText() {
   const lines = document.querySelectorAll('.hero-text .line');
-  
+
   lines.forEach(line => {
-    // Process each text node separately
+    // avoid re-processing
+    if (line.dataset.processed) return;
+
+    // collect text nodes only (keeps markup like <span class="stone-color">)
     const walker = document.createTreeWalker(line, NodeFilter.SHOW_TEXT);
     const textNodes = [];
     while (walker.nextNode()) textNodes.push(walker.currentNode);
-    
+
     textNodes.forEach(node => {
-      const chars = node.textContent.split('');
+      const text = node.textContent;
       const fragment = document.createDocumentFragment();
-      
-      chars.forEach(char => {
-        if (char.trim() !== '') {
-          const span = document.createElement('span');
-          span.className = 'hero-span';
-          span.textContent = char;
-          fragment.appendChild(span);
+
+      // split into words and spaces (preserves punctuation attached to word)
+      const parts = text.match(/\S+|\s+/g) || [];
+
+      parts.forEach(part => {
+        if (/\s+/.test(part)) {
+          // keep whitespace as text node
+          fragment.appendChild(document.createTextNode(part));
         } else {
-          // Preserve spaces as text nodes
-          fragment.appendChild(document.createTextNode(' '));
+          // word -> create a wrapper so the whole word stays together
+          const wordEl = document.createElement('span');
+          wordEl.className = 'hero-word';
+
+          // split word into letter spans
+          [...part].forEach(char => {
+            const span = document.createElement('span');
+            span.className = 'hero-span';
+            span.textContent = char;
+            wordEl.appendChild(span);
+          });
+
+          fragment.appendChild(wordEl);
         }
       });
-      
+
       node.replaceWith(fragment);
     });
-    
-    // Process existing stone-color spans
-    line.querySelectorAll('.stone-color').forEach(span => {
-      const chars = span.textContent.split('');
-      span.innerHTML = '';
-      
-      chars.forEach(char => {
-        if (char.trim() !== '') {
-          const charSpan = document.createElement('span');
-          charSpan.className = 'hero-span';
-          charSpan.textContent = char;
-          span.appendChild(charSpan);
+
+    // Also process any existing inline elements like .stone-color
+    line.querySelectorAll('.stone-color').forEach(el => {
+      if (el.dataset.processed) return;
+      const txt = el.textContent;
+      el.innerHTML = '';
+
+      const parts = txt.match(/\S+|\s+/g) || [];
+      parts.forEach(part => {
+        if (/\s+/.test(part)) {
+          el.appendChild(document.createTextNode(part));
         } else {
-          span.appendChild(document.createTextNode(' '));
+          const wordEl = document.createElement('span');
+          wordEl.className = 'hero-word';
+          [...part].forEach(char => {
+            const span = document.createElement('span');
+            span.className = 'hero-span';
+            span.textContent = char;
+            wordEl.appendChild(span);
+          });
+          el.appendChild(wordEl);
         }
       });
+
+      el.dataset.processed = '1';
     });
+
+    line.dataset.processed = '1';
   });
 }
+
 
 
 
@@ -186,724 +214,781 @@ function prepareHeroText() {
 
 
 gsap.registerPlugin(ScrollTrigger);
-const mm = gsap.matchMedia();
+let mm = null;
 window.addEventListener("load", () => ScrollTrigger.refresh());
 
-function charReveal(className, triggerName, markers = false, pinOffset = 0) {
-  gsap.to(`.${className}`, {
-    opacity: 1,
-    stagger: {
-      each: 0.3,
-      from: 'start',
-      ease: 'power1.inout'
-    },
-    scrollTrigger: {
-      trigger: `.${triggerName}`,
-      start: `top+=${pinOffset} 80%`,
-      end: `bottom+=${pinOffset} 65%`,
+
+
+function initAnimations(){
+  ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+
+  if(mm){
+    mm.revert();
+  }
+
+  mm = gsap.matchMedia();
+
+  function charReveal(className, triggerName, markers = false, pinOffset = 0) {
+    gsap.to(`.${className}`, {
+      opacity: 1,
+      stagger: {
+        each: 0.3,
+        from: 'start',
+        ease: 'power1.inout'
+      },
+      scrollTrigger: {
+        trigger: `.${triggerName}`,
+        start: `top+=${pinOffset} 80%`,
+        end: `bottom+=${pinOffset} 65%`,
+        scrub: true,
+        markers
+      }
+    });
+  }
+
+    //about-info
+  if(window.innerWidth > 990)
+  {
+    charReveal('about-char', 'about', false, 2000);
+  }
+  else{
+    charReveal('about-char', 'about', false, 1000)
+  }
+
+  //video scale
+
+  gsap.to('.animation-container', {
+    scale: 1.12,
+    ease: "power2.out",
+    scrollTrigger:{
+      trigger: ".animation-container",
+      start: "top center",
+      end: "top top",
       scrub: true,
-      markers
+      // markers: true
     }
   });
-}
-//about-info
-charReveal('about-char', 'about', false, 2000);
-
-//video scale
-gsap.to('.animation-container', {
-  scale: 1.12,
-  ease: "power2.out",
-  scrollTrigger:{
-    trigger: ".animation-container",
-    start: "top center",
-    end: "top top",
-    scrub: true,
-    // markers: true
-  }
-});
-
-
-gsap.fromTo('.xurge-power', 
-  {x: '-100vw' },
-  {
-    x: '100vw',
-    ease: "power1.out",
-    scrollTrigger: {
-      trigger: '.animation-container-wrapper',
-      start: "top top",
-      end: "+=2000",
-      scrub: true,
-      // markers: true
-    }
-  }
-)
-
-gsap.fromTo('.xurge-animation', 
-  {y: '100vh',
-    scale: '1'
-  },
-  {
-    y: '-100vh',
-    scale: '3',
-    ease: "power1.out",
-    scrollTrigger: {
-      trigger: '.animation-container-wrapper',
-      start: "top top",
-      end: "+=2000",
-      pin: true,
-      anticipatePin: true,
-      scrub: true,
-      // markers: true
-    }
-  }
-)
-
-
-// stats - container
-
-const counters = document.querySelectorAll('.stats-heading');
-
-counters.forEach((counter)=>{
-  const target = +counter.dataset.target;
-
-  gsap.fromTo(counter,
-    { innerText: 0},
-    {
-      innerText: target,
-      duration: 3,
-      ease: "power1.out",
-      scrollTrigger: {
-        trigger: counter,
-        start: "top 90%",
-        toggleActions: "play none none none"
+  mm.add("(min-width: 990px)", () =>{
+    gsap.fromTo('.xurge-animation', 
+      {y: '100vh',
+        scale: '1'
       },
-      snap: { innerText: 1},
-      onUpdate: function (){
-        const value = Math.round(counter.innerText);
-        counter.textContent = value + (counter.id=='percent'?"%":"+")
-      }
+      {
+        y: '0vh',
+        scale: '4',
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: '.animation-container-wrapper',
+          start: "top top",
+          end: "+=2000",
+          pin: true,
+          anticipatePin: true,
+          scrub: true,
+          // markers: true
+          }
+        }
+      ) 
     }
   )
-})
 
-
-// works-container
-
- 
-gsap.to(".works-hero-text", {
-  opacity: 1,
-  y: 0,
-  duration: 1.5,
-  ease: "power2.out",
-  scrollTrigger: {
-    trigger: ".works-hero-text",
-    start: "top 70%",
-    toggleActions: "play none none none"
-  }
-});
-
-mm.add("(min-width: 990px)", ()=>{
-  const hero = document.querySelector('.works-container');
-  const wrapper = document.querySelector('.scroll-wrapper');
-  const workList = document.querySelector('.work-item-list');
-  const itemCount = document.querySelectorAll('.work-item').length;
-
-  const totalScroll = wrapper.scrollWidth - window.innerWidth;
-
-
-  const tl = gsap.timeline({
-    scrollTrigger:{
-      trigger: '.works-section',
-      start: 'top top',
-      end: () => `+=${totalScroll}`,
-      scrub: true,
-      pin: true,
-      anticipatePin: 1,
-      invalidateOnRefresh: true
+  mm.add("(max-width: 990px)", ()=>{
+    gsap.fromTo('.xurge-animation', 
+      {y: '70vh',
+        scale: '1'
+      },
+      {
+        y: '15vh',
+        scale: '4',
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: '.animation-container-wrapper',
+          start: "top top",
+          end: "+=1000",
+          pin: true,
+          anticipatePin: true,
+          scrub: true,
+          // markers: true
+          }
+        }
+      )  
     }
+  )
+
+
+
+  // stats - container
+
+  const counters = document.querySelectorAll('.stats-heading');
+
+  counters.forEach((counter)=>{
+    const target = +counter.dataset.target;
+
+    gsap.fromTo(counter,
+      { innerText: 0},
+      {
+        innerText: target,
+        duration: 3,
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: counter,
+          start: "top 90%",
+          toggleActions: "play none none none"
+        },
+        snap: { innerText: 1},
+        onUpdate: function (){
+          const value = Math.round(counter.innerText);
+          counter.textContent = value + (counter.id=='percent'?"%":"+")
+        }
+      }
+    )
   })
-  .to(hero,{
-    filter: 'blur(8px)',
-    duration: 0.2
-  }, 0.05)
-  .to(workList, {
-    x: () => `-${totalScroll}px`,
-    ease: 'none'
-  },0)
-
-  return () =>{
-    tl.scrollTrigger && tl.scrollTrigger.kill();
-    tl.kill();
-  };
-});
- 
 
 
+  // works-container
 
-
-// Services section elements
-const servicesSection = document.querySelector('.services-section');
-const canvasWrapper = document.getElementById('canvasWrapper');
-const canvas = document.getElementById('bgCanvas');
-let renderControlTrigger = null;
-
-// Three.js variables
-let renderer, scene, camera, rings = [];
-let isServicesActive = false;
-let rafId = null;
-let initialized = false;
-
-// Initialize Three.js only once
-function initThreeJS() {
-  if (renderer) return;
   
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x000000);
-  
-  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.z = 10;
+  gsap.to(".works-hero-text", {
+    opacity: 1,
+    y: 0,
+    duration: 1.5,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".works-hero-text",
+      start: "top 70%",
+      toggleActions: "play none none none"
+    }
+  });
 
-  renderer = new THREE.WebGLRenderer({ 
-      canvas, 
-      alpha: false,
-      antialias: true,
-      powerPreference: 'high-performance'
+  mm.add("(min-width: 990px)", ()=>{
+    const hero = document.querySelector('.works-container');
+    const wrapper = document.querySelector('.scroll-wrapper');
+    const workList = document.querySelector('.work-item-list');
+    const itemCount = document.querySelectorAll('.work-item').length;
+
+    const totalScroll = wrapper.scrollWidth - window.innerWidth;
+
+
+    const tl = gsap.timeline({
+      scrollTrigger:{
+        trigger: '.works-section',
+        start: 'top top',
+        end: () => `+=${totalScroll}`,
+        scrub: true,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      }
+    })
+    .to(hero,{
+      filter: 'blur(8px)',
+      duration: 0.2
+    }, 0.05)
+    .to(workList, {
+      x: () => `-${totalScroll}px`,
+      ease: 'none'
+    },0)
+
+    return () =>{
+      tl.scrollTrigger && tl.scrollTrigger.kill();
+      tl.kill();
+    };
   });
   
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-  renderer.setClearColor(0x000000, 1);
+
+
+
+
+  // Services section elements
+  const servicesSection = document.querySelector('.services-section');
+  const canvasWrapper = document.getElementById('canvasWrapper');
+  const canvas = document.getElementById('bgCanvas');
+  let renderControlTrigger = null;
+
+  // Three.js variables
+  let renderer, scene, camera, rings = [];
+  let isServicesActive = false;
+  let rafId = null;
+  let initialized = false;
+
+  // Initialize Three.js only once
+  function initThreeJS() {
+    if (renderer) return;
     
-    // Create rings with optimized geometry
-  for(let i = 0; i < 4; i++) {
-    const geometry = new THREE.TorusGeometry(6 - i * 0.75, 0.25, 32, 64);
-    const mat = new THREE.MeshPhysicalMaterial({
-        color: 0xffffff,
-        transmission: 1,
-        thickness: 0.5,
-        roughness: 0,
-        metalness: 0,
-        ior: 1.5,
-        transparent: true,
-        opacity: 0.5,
-        specularIntensity: 1
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x000000);
+    
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    updateCameraPosition();
+
+    renderer = new THREE.WebGLRenderer({ 
+        canvas, 
+        alpha: false,
+        antialias: true,
+        powerPreference: 'high-performance'
     });
     
-    const torus = new THREE.Mesh(geometry, mat);
-    torus.rotation.x = Math.PI / 2;
-    scene.add(torus);
-    rings.push(torus);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.setClearColor(0x000000, 1);
+      
+      // Create rings with optimized geometry
+    for(let i = 0; i < 4; i++) {
+      const geometry = new THREE.TorusGeometry(6 - i * 0.75, 0.25, 32, 64);
+      const mat = new THREE.MeshPhysicalMaterial({
+          color: 0xffffff,
+          transmission: 1,
+          thickness: 0.5,
+          roughness: 0,
+          metalness: 0,
+          ior: 1.5,
+          transparent: true,
+          opacity: 0.5,
+          specularIntensity: 1
+      });
+      
+      const torus = new THREE.Mesh(geometry, mat);
+      torus.rotation.x = Math.PI / 2;
+      scene.add(torus);
+      rings.push(torus);
+    }
+
+    // Optimized lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0);
+    scene.add(ambientLight);
+    
+    const dl = new THREE.DirectionalLight(0xffffff, 1000);
+    dl.position.set(-9, 7, 0);
+    scene.add(dl);
+
+    const dl2 = new THREE.DirectionalLight(0xffffff, 100);
+    dl2.position.set(9, -4, 0);
+    scene.add(dl2);
+
+    const dl3 = new THREE.DirectionalLight(0xffffff, 100);
+    dl3.position.set(8, 5, 0);
+    scene.add(dl3);
+
+    const dl4 = new THREE.DirectionalLight(0xffffff, 100);
+    dl4.position.set(-9, -4, 0);
+    scene.add(dl4);
   }
 
-  // Optimized lighting
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0);
-  scene.add(ambientLight);
-  
-  const dl = new THREE.DirectionalLight(0xffffff, 1000);
-  dl.position.set(-9, 7, 0);
-  scene.add(dl);
+  function updateCameraPosition(){
+    if(!camera) return;
 
-  const dl2 = new THREE.DirectionalLight(0xffffff, 100);
-  dl2.position.set(9, -4, 0);
-  scene.add(dl2);
+    if(window.innerWidth <= 600){
+      camera.position.z = 15;
+    }
+    else{
+      camera.position.z = 10;
+    }
+  }
 
-  const dl3 = new THREE.DirectionalLight(0xffffff, 100);
-  dl3.position.set(8, 5, 0);
-  scene.add(dl3);
+  function handleThreeJSResize(){
+    if(renderer && camera){
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.aspect = window.innerWidth / window.innerHeight;
+      updateCameraPosition();
+      camera.updateProjectionMatrix();
+    }
+  }
 
-  const dl4 = new THREE.DirectionalLight(0xffffff, 100);
-  dl4.position.set(-9, -4, 0);
-  scene.add(dl4);
-}
+  // Optimized ring animations
+  function setupRingAnimations() {
+    rings.forEach((ring, index) => {
+      const direction = index % 2 === 0 ? 1 : -1;
+      const rotations = [1, 2, 2, 1][index];
+      
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".services-section",
+          start: "top center",
+          end: "bottom top",
+          scrub: 0,
+          // markers: true
+        }
+      });
+      const standingPosition = Math.PI;
+      
+      tl.to(ring.rotation, {
+          x: standingPosition,
+          y: direction * rotations * Math.PI,
+          duration: 10
+      }, 1);
 
-// Optimized ring animations
-function setupRingAnimations() {
-  rings.forEach((ring, index) => {
-    const direction = index % 2 === 0 ? 1 : -1;
-    const rotations = [1, 2, 2, 1][index];
+      tl.to(ring.rotation, {
+          x: -standingPosition,
+          y: direction * rotations * Math.PI * 0,
+          duration: 5
+      }, 13);
+      
+      // tl.to(ring.rotation, {
+      //     x: standingPosition,
+      //     y: direction * rotations * Math.PI,
+      //     duration: 20
+      // }, 65);
+    });
+  }
+
+  // Canvas expansion animation
+  gsap.fromTo(
+    canvasWrapper,
+    { height: "0vh" },
+    {
+      height: "100vh",
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".services-section",
+        start: "top center",
+        end: "top top",
+        scrub: true,
+        // markers: true,
+        invalidateOnRefresh: true,
+        onEnter: () => {
+          if (!initialized) {
+            initThreeJS();
+            setupRingAnimations();
+            initialized = true;
+          }
+        }
+      }
+    }
+  );
+
+  // FIX: Separate ScrollTrigger to control rendering state
+  // This ensures rings keep spinning throughout entire services section
+  renderControlTrigger =  ScrollTrigger.create({
+    trigger: ".services-section",
+    start: "top center",
+    end: "bottom top",
+    onEnter: () => { 
+      isServicesActive = true; 
+      startRendering(); 
+    },
+    onEnterBack: () => { 
+      isServicesActive = true; 
+      startRendering(); 
+    },
+    onLeave: () => { 
+      isServicesActive = false; 
+      stopRendering(); 
+    },
+    onLeaveBack: () => { 
+      isServicesActive = false; 
+      stopRendering(); 
+    }
+  });
     
-    const tl = gsap.timeline({
+  const revealLt = gsap.timeline({
       scrollTrigger: {
         trigger: ".services-section",
         start: "top center",
         end: "bottom top",
-        scrub: 0,
-        // markers: true
-      }
-    });
-    const standingPosition = Math.PI;
-    
-    tl.to(ring.rotation, {
-        x: standingPosition,
-        y: direction * rotations * Math.PI,
-        duration: 10
-    }, 1);
-
-    tl.to(ring.rotation, {
-        x: -standingPosition,
-        y: direction * rotations * Math.PI * 0,
-        duration: 5
-    }, 13);
-    
-    // tl.to(ring.rotation, {
-    //     x: standingPosition,
-    //     y: direction * rotations * Math.PI,
-    //     duration: 20
-    // }, 65);
-  });
-}
-
-// Canvas expansion animation
-gsap.fromTo(
-  canvasWrapper,
-  { height: "0vh" },
-  {
-    height: "100vh",
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".services-section",
-      start: "top center",
-      end: "top top",
-      scrub: true,
-      markers: false,
-      invalidateOnRefresh: true,
-      onEnter: () => {
-        if (!initialized) {
-          initThreeJS();
-          setupRingAnimations();
-          initialized = true;
-        }
-      }
-    }
-  }
-);
-
-// FIX: Separate ScrollTrigger to control rendering state
-// This ensures rings keep spinning throughout entire services section
-renderControlTrigger =  ScrollTrigger.create({
-  trigger: ".services-section",
-  start: "top center",
-  end: "bottom top",
-  onEnter: () => { 
-    isServicesActive = true; 
-    startRendering(); 
-  },
-  onEnterBack: () => { 
-    isServicesActive = true; 
-    startRendering(); 
-  },
-  onLeave: () => { 
-    isServicesActive = false; 
-    stopRendering(); 
-  },
-  onLeaveBack: () => { 
-    isServicesActive = false; 
-    stopRendering(); 
-  }
-});
-
-mm.add("(min-width: 990px)", ()=>{
-  
- const revealLt = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".services-section",
-      start: "top center",
-      end: "bottom top",
-      scrub: 1,
-      markers: false,
-      invalidateOnRefresh: true
-    }
-  });
-
-  revealLt.to("#fuel", { x: "0%", opacity: 1, duration: 0.05 }, 0.1)
-    .to("#your", { x: "0%", opacity: 1, duration: 0.05 }, 0.1)
-    .to("#services", { x: "0%", opacity: 1, duration: 0.05 }, 0.15)
-    .to("#to", { x: "0%", opacity: 1, duration: 0.05 }, 0.15)
-    .to("#growth", { x: "0%", opacity: 1, duration: 0.05 }, 0.2)
-    .to("#growth", { x: "100px", opacity: 0, duration: 0.1 }, 0.3)
-    .to("#to", { x: "100px", opacity: 0, duration: 0.1 }, 0.3)
-    .to("#services", { x: "-100px", opacity: 0, duration: 0.1 }, 0.3)
-    .to("#fuel", { x: "-100px", opacity: 0, duration: 0.1 }, 0.3)
-    .to("#your", { x: "100px", opacity: 0, duration: 0.1 }, 0.3);
-
-  
-    // Service items animation
-    const serviceTL = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".services-section",
-        start: "top top",
-        end: "+=4000",
-        pin: true,
-        pinSpacing: false,
         scrub: 1,
         markers: false,
         invalidateOnRefresh: true
       }
     });
 
-    serviceTL.to(".service-item", {
-      y: 0,
-      opacity: 1,
-      stagger: 0.2,
-      duration: 1,
-      ease: "power2.out"
-    }, 1);
+    revealLt.to("#fuel", { x: "0%", opacity: 1, duration: 0.05 }, 0.1)
+      .to("#your", { x: "0%", opacity: 1, duration: 0.05 }, 0.1)
+      .to("#services", { x: "0%", opacity: 1, duration: 0.05 }, 0.15)
+      .to("#to", { x: "0%", opacity: 1, duration: 0.05 }, 0.15)
+      .to("#growth", { x: "0%", opacity: 1, duration: 0.05 }, 0.2)
+      .to("#growth", { x: "100px", opacity: 0, duration: 0.1 }, 0.3)
+      .to("#to", { x: "100px", opacity: 0, duration: 0.1 }, 0.3)
+      .to("#services", { x: "-100px", opacity: 0, duration: 0.1 }, 0.3)
+      .to("#fuel", { x: "-100px", opacity: 0, duration: 0.1 }, 0.3)
+      .to("#your", { x: "100px", opacity: 0, duration: 0.1 }, 0.3);
 
-
-    return ()=>{
-      
-      if(revealLt){
-        revealLt.scrollTrigger && revealLt.scrollTrigger.kill();
-        revealLt.kill()
-      }
-      if(serviceTL){
-        serviceTL.scrollTrigger && serviceTL.scrollTrigger.kill();
-        serviceTL.kill();
-      }
-    }
-})
-  // Text animations
-mm.add("(max-width: 990px)", ()=>{
-  const mobilePin = ScrollTrigger.create({
-    trigger: ".services-section",
-    start: "top top",
-    end: "+=5000",
-    pin: true,
-    pinSpacing: false,
-    // markers: true
-  });
-
-  gsap.set(".service-item", { clearProps: "transform, opacity" });
-
-  return () => {
-    mobilePin && mobilePin.kill();
-  }
-});
-    // For mobile: pin service container after canvas expansion
     
+      // Service items animation
+      mm.add("(min-width: 600px)", ()=>{
+        const serviceTL = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".services-section",
+            start: "top top",
+            end: "+=4000",
+            pin: true,
+            pinSpacing: false,
+            anticipatePin: true,
+            scrub: 1,
+            markers: false,
+            invalidateOnRefresh: true
+          }
+        });
 
+        serviceTL.to(".service-item", {
+          y: 0,
+          opacity: 1,
+          stagger: 0.2,
+          duration: 1,
+          ease: "power2.out"
+        }, 1);
 
-// Rendering control
-function startRendering() {
-  if (!rafId) {
-    renderLoop();
-  }
-}
+        return () => {
+          serviceTL.scrollTrigger && serviceTL.scrollTrigger.kill();
+          serviceTL.kill();
+        };
+      });
 
-function stopRendering() {
-  if (rafId) {
-    cancelAnimationFrame(rafId);
-    rafId = null;
-  }
-}
+      mm.add("(max-width: 600px)", ()=>{
+        const serviceTL = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".services-section",
+            start: "top top",
+            end: "+=4000",
+            pin: true,
+            pinSpacing: false,
+            anticipatePin: true,
+            scrub: 1,
+            markers: false,
+            invalidateOnRefresh: true
+          }
+        });
 
-function renderLoop() {
-  if (isServicesActive) {
-    renderer.render(scene, camera);
-    rafId = requestAnimationFrame(renderLoop);
-  }
-}
+        // serviceTL.to(camera.position)
+        const moveUp = -window.innerHeight
 
-// Handle window resize
-window.addEventListener('resize', () => {
-  if (renderer) {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  }
+        serviceTL.to(".service-item", {
+          y: moveUp,
+          opacity: 1,
+          stagger: 0.2,
+          duration: 1,
+          ease: "power2.out"
+        }, 1);
 
-  ScrollTrigger.refresh();
+        return () => {
+          serviceTL.scrollTrigger && serviceTL.scrollTrigger.kill();
+          serviceTL.kill();
+        }
+      })
 
-  if (renderControlTrigger && renderControlTrigger.isActive) {
-    isServicesActive = true;
-    startRendering();
-  }
-});
-
-// Clean up when leaving page
-window.addEventListener('beforeunload', () => {
-  if (renderer) {
-    renderer.dispose();
-    renderer = null;
-  }
-  
-  rings.forEach(ring => {
-    if (ring.geometry) ring.geometry.dispose();
-    if (ring.material) ring.material.dispose();
-  });
-  
-  rings = [];
-});
-
-
-
-
-//============= Booking ============
-charReveal('heading-char', 'booking-heading', );
-
-mm.add("(min-width: 990px)", ()=>{
-  gsap.fromTo(".book-image",
-    {y:800},
-    {
-      y:0,
-      stagger:0.2,
-      ease:'none',
-      scrollTrigger:{
-        trigger:".booking-section",
-        start:"top center",
-        end: "top top+=100",
-        scrub: 1,
-        markers: false
-      }
+  // Rendering control
+  function startRendering() {
+    if (!rafId) {
+      renderLoop();
     }
-  );
-})
+  }
 
-mm.add("(max-width: 990px)", () => {
-  const bookingSection = document.querySelector(".booking-section");
-  const bookingContent = document.querySelector(".booking-content");
-  const images = gsap.utils.toArray(".book-image");
+  function stopRendering() {
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+  }
 
-  const gap = Math.round(window.innerHeight * 0.55);
-  const animLen = Math.round(window.innerHeight * 1);
+  function renderLoop() {
+    if (isServicesActive) {
+      renderer.render(scene, camera);
+      rafId = requestAnimationFrame(renderLoop);
+    }
+  }
 
-  const totalDuration = (images.length - 3) * gap + animLen + window.innerHeight;
-  ScrollTrigger.create({
-    trigger: bookingSection,
-    start: "top top",
-    end: () => `+=${totalDuration}`,
-    pin: bookingContent,
-    pinSpacing: false,
-    invalidateOnRefresh: true,
-    // markers: true
+  // Handle window resize
+  
+
+  // Clean up when leaving page
+  window.addEventListener('beforeunload', () => {
+    if (renderer) {
+      renderer.dispose();
+      renderer = null;
+    }
+    
+    rings.forEach(ring => {
+      if (ring.geometry) ring.geometry.dispose();
+      if (ring.material) ring.material.dispose();
+    });
+    
+    rings = [];
   });
 
-  images.forEach(img => gsap.set(img, { y: window.innerHeight+500, opacity: 1 }));
 
-  images.forEach((img, i) => {
-    gsap.to(img, {
-      y: 0,
-      ease: "none",
-      scrollTrigger: {
-        start: () => bookingSection.offsetTop + i * gap,
-        end: () => bookingSection.offsetTop + i * gap + animLen,
-        scrub: 0.5,
-        invalidateOnRefresh: true,
-        // markers: true
+
+
+  //============= Booking ============
+  charReveal('heading-char', 'booking-heading', );
+
+  mm.add("(min-width: 990px)", ()=>{
+    gsap.fromTo(".book-image",
+      {y:800},
+      {
+        y:0,
+        stagger:0.2,
+        ease:'none',
+        scrollTrigger:{
+          trigger:".booking-section",
+          start:"top center",
+          end: "top top+=100",
+          scrub: 1,
+          markers: false
+        }
       }
+    );
+  })
+
+  mm.add("(max-width: 990px)", () => {
+    const bookingSection = document.querySelector(".booking-section");
+    const bookingContent = document.querySelector(".booking-content");
+    const images = gsap.utils.toArray(".book-image");
+
+    const gap = Math.round(window.innerHeight * 0.55);
+    const animLen = Math.round(window.innerHeight * 1);
+
+    const totalDuration = (images.length - 3) * gap + animLen + window.innerHeight;
+    ScrollTrigger.create({
+      trigger: bookingSection,
+      start: "top top",
+      end: () => `+=${totalDuration}`,
+      pin: bookingContent,
+      pinSpacing: false,
+      invalidateOnRefresh: true,
+      // markers: true
+    });
+
+    images.forEach(img => gsap.set(img, { y: window.innerHeight+500, opacity: 1 }));
+
+    images.forEach((img, i) => {
+      gsap.to(img, {
+        y: 0,
+        ease: "none",
+        scrollTrigger: {
+          start: () => bookingSection.offsetTop + i * gap,
+          end: () => bookingSection.offsetTop + i * gap + animLen,
+          scrub: 0.5,
+          invalidateOnRefresh: true,
+          // markers: true
+        }
+      });
     });
   });
-});
 
 
 
 
 
 
-// Audit
-const img = document.querySelector('.circles-image');
-const auditLink = document.querySelector('.audit-link')
+  // Audit
+  const img = document.querySelector('.circles-image');
+  const auditLink = document.querySelector('.audit-link')
 
-auditLink.addEventListener("mousemove", (e)=>{
-  gsap.to(img,{
-    x: e.clientX-750,
-    y: e.clientY-300,
-    duration: 0.2,
-    ease: "power2.out"
-  })
-})
-
-auditLink.addEventListener("mouseleave", (e)=>{
-  gsap.to(img,{
-    x: 0,
-    y: 0,
-    duration: 0.2,
-    ease: "power2.out"
-  })
-})
-
-
-auditLink.addEventListener('mouseenter', ()=>{
-  cursorDot.classList.add('work-hover')
-})
-
-auditLink.addEventListener('mouseleave', ()=>{
-  cursorDot.classList.remove('work-hover')
-})
-
-
-// Review section
-AddSpans('review-heading','review-char');
-
-charReveal('review-char','review-heading')
-
-const reviewStrip = document.querySelector('.review-strip');
-const prevButton = document.querySelector('.prev-button');
-const nextButton = document.querySelector('.next-button');
-
-let reviewItems = Array.from(reviewStrip.children);
-const itemWidth = reviewItems[0].offsetWidth + 8;
-
-reviewItems.forEach((item) =>{
-  reviewStrip.appendChild(item.cloneNode(true));
-});
-for(let i=reviewItems.length - 1; i>=0; i--){
-  reviewStrip.insertBefore(reviewItems[i].cloneNode(true), reviewStrip.firstChild);
-}
-
-reviewItems = Array.from(document.querySelectorAll('.review-item'))
-let currentIndex = reviewItems.length/3;
-let draggable;
-
-const containerWidth = reviewStrip.parentElement.offsetWidth;
-const offset = (containerWidth - itemWidth) / 2;
-const startPosition = currentIndex * itemWidth - offset;
-let startX=0;
-
-gsap.set(reviewStrip, {x: -startPosition})
-
-
-function updateActiveCard(centerIndex){
-  const old = reviewStrip.querySelector('.review-item.active');
-  const current = reviewItems[centerIndex];
-
-  if (old && old !== current) old.classList.remove('active');
-  current.classList.add('active');
-}
-
-function initDraggable(){
-  draggable = Draggable.create(reviewStrip, {
-    type: "x",
-    edgeResistance: 0.8,
-    inertia: true,
-    onPress(){
-      startX = gsap.getProperty(reviewStrip, 'x');
-    },
-    onDragEnd: snapWithThreshold,
-    onThrowComplete: snapWithThreshold
-  })[0];
-}
-
-
-function snapWithThreshold(){
-  const endX = gsap.getProperty(reviewStrip, 'x');
-  const delta = endX - startX;
-  const threshold = containerWidth/4
-  let newIndex = currentIndex;
-
-  if(delta < -threshold){
-    newIndex = currentIndex+1;
-  }
-  else if(delta > threshold){
-    newIndex = currentIndex-1;
-  }
-
-  goToReview(newIndex);
-}
-  
-function goToReview(index) {
-  const itemsPerSet = reviewItems.length / 3;
-    if (index < 1) {
-    currentIndex = 2 * itemsPerSet - 1;
-    const targetPosition = currentIndex * itemWidth - offset;
-    gsap.set(reviewStrip, { x: -targetPosition });
+  auditLink.addEventListener("mousemove", (e)=>{
+    const rect = auditLink.getBoundingClientRect();
     
-    index = currentIndex - 1;
-  } 
-  else if (index >= reviewItems.length-1) {
-    currentIndex = itemsPerSet;
-    const targetPosition = currentIndex * itemWidth - offset;
-    gsap.set(reviewStrip, { x: -targetPosition });
+    // Calculate mouse position relative to container center (-1 to 1)
+    const relativeX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    const relativeY = ((e.clientY - rect.top) / rect.height) * 2 - 1;
     
-    index = currentIndex + 1;
-  }
-  
-  currentIndex = index;
-  
-  const targetPosition = currentIndex * itemWidth - offset;
-  
-  gsap.to(reviewStrip, {
-    x: -targetPosition,
-    duration: 0.7,
-    ease: "power2.out",
-    onUpdate: updateActiveCard(currentIndex),
-    onComplete: () => {
-      if (currentIndex < itemsPerSet) {
-        currentIndex += itemsPerSet;
-        const newPosition = currentIndex * itemWidth - offset;
-        gsap.set(reviewStrip, { x: -newPosition });
-      } 
-      else if (currentIndex >= 2 * itemsPerSet) {
-        currentIndex -= itemsPerSet;
-        const newPosition = currentIndex * itemWidth - offset;
-        gsap.set(reviewStrip, { x: -newPosition });
-      }
-      updateActiveCard(currentIndex);
+    // Calculate movement based on container size (responsive)
+    const maxMoveX = rect.width *0.5; // 5% of container width
+    const maxMoveY = rect.height *0.3; // 5% of container height
+    
+    const moveX = relativeX * maxMoveX;
+    const moveY = relativeY * maxMoveY;
+
+    gsap.to(img,{
+      x: moveX,
+      y: moveY,
+      duration: 0.2,
+      ease: "power2.out"
+    })
+  })
+
+  auditLink.addEventListener("mouseleave", (e)=>{
+    gsap.to(img,{
+      x: 0,
+      y: 0,
+      duration: 0.2,
+      ease: "power2.out"
+    })
+  })
+
+
+  auditLink.addEventListener('mouseenter', ()=>{
+    cursorDot.classList.add('work-hover')
+  })
+
+  auditLink.addEventListener('mouseleave', ()=>{
+    cursorDot.classList.remove('work-hover')
+  })
+
+
+  // Review section
+  AddSpans('review-heading','review-char');
+
+  charReveal('review-char','review-heading')
+
+  const reviewStrip = document.querySelector('.review-strip');
+  const prevButton = document.querySelector('.prev-button');
+  const nextButton = document.querySelector('.next-button');
+
+  if(!reviewStrip.dataset.cloned){
+    const reviewItems = Array.from(reviewStrip.children);
+
+    reviewItems.forEach((item) =>{
+      reviewStrip.appendChild(item.cloneNode(true));
+    });
+    for(let i=reviewItems.length - 1; i>=0; i--){
+      reviewStrip.insertBefore(reviewItems[i].cloneNode(true), reviewStrip.firstChild);
     }
-  });
-}
-  
-  // Event listeners for buttons
-  prevButton.addEventListener('click', () => goToReview(currentIndex - 1));
-  nextButton.addEventListener('click', () => goToReview(currentIndex + 1));
-  
-  // Initialize draggable after slight delay to ensure dimensions are correct
-  setTimeout(() => {
-    initDraggable();
-    updateActiveCard(currentIndex); // Set initial opacity
-  }, 100);
-  
-  // Handle window resize
-  window.addEventListener('resize', () => {
-    // Update draggable bounds
-    const containerWidth = reviewStrip.parentElement.offsetWidth;
-    const offset = (containerWidth - itemWidth) / 2;
-    const startPosition = currentIndex * itemWidth - offset;
-    gsap.set(reviewStrip, {x: -startPosition})
-    // Update opacity
-    updateActiveCard(currentIndex);
-  });
-
-
-reviewStrip.addEventListener('mouseenter', ()=>{
-  cursorDot.classList.add('drag-hover')
-})
-
-reviewStrip.addEventListener('mouseleave', ()=>{
-  cursorDot.classList.remove('drag-hover')
-})
-
-
-// Footer
-
-const track = document.querySelector('.scroll-track');
-const inqLink =  document.querySelector('.footer-title-wrapper');
-
-inqLink.addEventListener('mouseenter', ()=>{
-  cursorDot.classList.add('work-hover');
-})
-
-inqLink.addEventListener('mouseleave', ()=>{
-  cursorDot.classList.remove('work-hover');
-})
-  
-const animation = track.animate(
-  [
-    { transform: 'translateX(0%)' },
-    { transform: 'translateX(-50.3%)' }
-  ],
-  {
-    duration: 15000,
-    iterations: Infinity,
-    easing: 'linear'
+    reviewStrip.dataset.cloned = '1';
   }
-);
+  
 
-// Track scroll direction
-let lastScrollY = window.scrollY;
-window.addEventListener('scroll', () => {
-  const currentScrollY = window.scrollY;
-  animation.playbackRate = (currentScrollY > lastScrollY) ? 1 : -1;
-  lastScrollY = currentScrollY;
-});
+  let reviewItems = Array.from(document.querySelectorAll('.review-item'))
+  const itemWidth = reviewItems[0].offsetWidth + 8;
+  let currentIndex = reviewItems.length/3;
+  let draggable;
 
+  const containerWidth = reviewStrip.parentElement.offsetWidth;
+  const offset = (containerWidth - itemWidth) / 2;
+  const startPosition = currentIndex * itemWidth - offset;
+  let startX=0;
+
+  gsap.set(reviewStrip, {x: -startPosition})
+
+
+  function updateActiveCard(centerIndex){
+    const old = reviewStrip.querySelector('.review-item.active');
+    const current = reviewItems[centerIndex];
+
+    if (old && old !== current) old.classList.remove('active');
+    current.classList.add('active');
+  }
+
+  function initDraggable(){
+    draggable = Draggable.create(reviewStrip, {
+      type: "x",
+      edgeResistance: 0.8,
+      inertia: true,
+      onPress(){
+        startX = gsap.getProperty(reviewStrip, 'x');
+      },
+      onDragEnd: snapWithThreshold,
+      onThrowComplete: snapWithThreshold
+    })[0];
+  }
+
+
+  function snapWithThreshold(){
+    const endX = gsap.getProperty(reviewStrip, 'x');
+    const delta = endX - startX;
+    const threshold = containerWidth/4
+    let newIndex = currentIndex;
+
+    if(delta < -threshold){
+      newIndex = currentIndex+1;
+    }
+    else if(delta > threshold){
+      newIndex = currentIndex-1;
+    }
+
+    goToReview(newIndex);
+  }
+    
+  function goToReview(index) {
+    const itemsPerSet = reviewItems.length / 3;
+      if (index < 1) {
+      currentIndex = 2 * itemsPerSet - 1;
+      const targetPosition = currentIndex * itemWidth - offset;
+      gsap.set(reviewStrip, { x: -targetPosition });
+      
+      index = currentIndex - 1;
+    } 
+    else if (index >= reviewItems.length-1) {
+      currentIndex = itemsPerSet;
+      const targetPosition = currentIndex * itemWidth - offset;
+      gsap.set(reviewStrip, { x: -targetPosition });
+      
+      index = currentIndex + 1;
+    }
+    
+    currentIndex = index;
+    
+    const targetPosition = currentIndex * itemWidth - offset;
+    
+    gsap.to(reviewStrip, {
+      x: -targetPosition,
+      duration: 0.7,
+      ease: "power2.out",
+      onUpdate: updateActiveCard(currentIndex),
+      onComplete: () => {
+        if (currentIndex < itemsPerSet) {
+          currentIndex += itemsPerSet;
+          const newPosition = currentIndex * itemWidth - offset;
+          gsap.set(reviewStrip, { x: -newPosition });
+        } 
+        else if (currentIndex >= 2 * itemsPerSet) {
+          currentIndex -= itemsPerSet;
+          const newPosition = currentIndex * itemWidth - offset;
+          gsap.set(reviewStrip, { x: -newPosition });
+        }
+        updateActiveCard(currentIndex);
+      }
+    });
+  }
+    
+    // Event listeners for buttons
+    prevButton.addEventListener('click', () => goToReview(currentIndex - 1));
+    nextButton.addEventListener('click', () => goToReview(currentIndex + 1));
+    
+    // Initialize draggable after slight delay to ensure dimensions are correct
+    setTimeout(() => {
+      initDraggable();
+      updateActiveCard(currentIndex); // Set initial opacity
+    }, 100);
+    
+    // Handle window resize
+
+
+  reviewStrip.addEventListener('mouseenter', ()=>{
+    cursorDot.classList.add('drag-hover')
+  })
+
+  reviewStrip.addEventListener('mouseleave', ()=>{
+    cursorDot.classList.remove('drag-hover')
+  })
+
+
+  // Footer
+
+  const track = document.querySelector('.scroll-track');
+  const inqLink =  document.querySelector('.footer-title-wrapper');
+
+  inqLink.addEventListener('mouseenter', ()=>{
+    cursorDot.classList.add('work-hover');
+  })
+
+  inqLink.addEventListener('mouseleave', ()=>{
+    cursorDot.classList.remove('work-hover');
+  })
+    
+  const animation = track.animate(
+    [
+      { transform: 'translateX(0%)' },
+      { transform: 'translateX(-50.3%)' }
+    ],
+    {
+      duration: 15000,
+      iterations: Infinity,
+      easing: 'linear'
+    }
+  );
+
+  // Track scroll direction
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    animation.playbackRate = (currentScrollY > lastScrollY) ? 1 : -1;
+    lastScrollY = currentScrollY;
+  });
+
+
+}
+
+window.addEventListener('load', initAnimations)
+
+window.addEventListener('resize', () => {
+    initAnimations();
+    ScrollTrigger.refresh();
+  });
