@@ -727,41 +727,94 @@ function initAnimations(){
     );
   })
 
-  mm.add("(max-width: 990px)", () => {
-    const bookingSection = document.querySelector(".booking-section");
-    const bookingContent = document.querySelector(".booking-content");
-    const images = gsap.utils.toArray(".book-image");
+  mm.add("(max-width: 990px) and (min-width: 601px)", () => {
+  const bookingSection = document.querySelector(".booking-section");
+  const bookingContent  = document.querySelector(".booking-content");
+  const images = gsap.utils.toArray(".book-image");
 
-    const gap = Math.round(window.innerHeight * 0.55);
-    const animLen = Math.round(window.innerHeight * 1);
+  // use functions so values recalc on refresh/resize
+  const gap = () => Math.round(window.innerHeight * 0.55);
+  const animLen = () => Math.round(window.innerHeight * 1);
+  const totalDuration = () => (images.length - 3) * gap() + animLen() + window.innerHeight;
 
-    const totalDuration = (images.length - 3) * gap + animLen + window.innerHeight;
-    ScrollTrigger.create({
-      trigger: bookingSection,
-      start: "top top",
-      end: () => `+=${totalDuration}`,
-      pin: bookingContent,
-      pinSpacing: false,
-      invalidateOnRefresh: true,
-      // markers: true
-    });
-
-    images.forEach(img => gsap.set(img, { y: window.innerHeight+500, opacity: 1 }));
-
-    images.forEach((img, i) => {
-      gsap.to(img, {
-        y: 0,
-        ease: "none",
-        scrollTrigger: {
-          start: () => bookingSection.offsetTop + i * gap,
-          end: () => bookingSection.offsetTop + i * gap + animLen,
-          scrub: 0.5,
-          invalidateOnRefresh: true,
-          // markers: true
-        }
-      });
-    });
+  // pin the content for the calculated total duration
+  const pinTrigger = ScrollTrigger.create({
+    trigger: bookingSection,
+    start: "top top",
+    end: () => `+=${totalDuration()}`,
+    pin: bookingContent,
+    pinSpacing: false,
+    invalidateOnRefresh: true
   });
+
+  // initial positions (use function values so they update on refresh)
+  images.forEach(img => gsap.set(img, { y: () => window.innerHeight + 500, opacity: 1 }));
+
+  // create per-image ScrollTriggers
+  const imageTriggers = images.map((img, i) => {
+    const st = gsap.to(img, {
+      y: 0,
+      ease: "none",
+      scrollTrigger: {
+        start: () => bookingSection.offsetTop + i * gap(),
+        end: () => bookingSection.offsetTop + i * gap() + animLen(),
+        scrub: 0.5,
+        invalidateOnRefresh: true
+      }
+    });
+    return st;
+  });
+
+  // cleanup when leaving this media query
+  return () => {
+    pinTrigger.kill();
+    imageTriggers.forEach(t => t.kill && t.kill());
+    // optionally reset images
+    images.forEach(img => gsap.set(img, { clearProps: "y,opacity" }));
+  };
+});
+
+// small screens: 0 - 600px (exclusive of the above)
+mm.add("(max-width: 600px)", () => {
+  const bookingSection = document.querySelector(".booking-section");
+  const bookingContent  = document.querySelector(".booking-content");
+  const images = gsap.utils.toArray(".book-image");
+
+  const gap = () => Math.round(window.innerHeight * 0.55);
+  const animLen = () => Math.round(window.innerHeight * 1);
+  const totalDuration = () => (images.length - 3.755) * gap() + animLen() + window.innerHeight;
+
+  const pinTrigger = ScrollTrigger.create({
+    trigger: bookingSection,
+    start: "top top",
+    end: () => `+=${totalDuration()}`,
+    pin: bookingContent,
+    pinSpacing: false,
+    invalidateOnRefresh: true
+  });
+
+  images.forEach(img => gsap.set(img, { y: () => window.innerHeight + 500, opacity: 1 }));
+
+  const imageTriggers = images.map((img, i) => {
+    const st = gsap.to(img, {
+      y: 0,
+      ease: "none",
+      scrollTrigger: {
+        start: () => bookingSection.offsetTop + i * gap(),
+        end: () => bookingSection.offsetTop + i * gap() + animLen(),
+        scrub: 0.5,
+        invalidateOnRefresh: true
+      }
+    });
+    return st;
+  });
+
+  return () => {
+    pinTrigger.kill();
+    imageTriggers.forEach(t => t.kill && t.kill());
+    images.forEach(img => gsap.set(img, { clearProps: "y,opacity" }));
+  };
+});
 
 
 
