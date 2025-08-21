@@ -105,7 +105,8 @@ counters.forEach((counter)=>{
       ease: "power1.out",
       scrollTrigger: {
         trigger: counter,
-        start: "top 90%",
+        start: "top bottom-=2100",
+        markers: true,
         toggleActions: "play none none none"
       },
       snap: { innerText: 1},
