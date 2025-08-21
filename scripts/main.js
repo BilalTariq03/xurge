@@ -106,7 +106,7 @@ counters.forEach((counter)=>{
       scrollTrigger: {
         trigger: counter,
         start: "top bottom-=2100",
-        markers: true,
+        // markers: true,
         toggleActions: "play none none none"
       },
       snap: { innerText: 1},
