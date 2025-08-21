@@ -1,3 +1,13 @@
+.main-content{
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cls-1{
+  opacity: 0;
+  transform: translateY(100px);
+}
+
 .logo-overlay {
   position: fixed;
   top: 0;
@@ -12,6 +22,33 @@
   opacity: 0; /* Start hidden */
   visibility: hidden; /* Completely hide it */
   transition: none; /* No transition by default */
+}
+
+.loading-screen{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.loading-spinner{
+  width: 50px;
+  height: 50px;
+  border: 3px solid #d0d0d0;
+  border-top: 3px solid #3660ec;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin{
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
 }
 
 /* Only show overlay when intro is running */

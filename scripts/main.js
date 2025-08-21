@@ -1,6 +1,5 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 
-
 const lenis = new Lenis({
   lerp: 0.1,          
   wheelMultiplier: 1,  
@@ -37,7 +36,6 @@ document.addEventListener('mousemove', (e)=>{
   mouseTick=true;
 })
 
-
 function AddSpans(className,spanName){
   const currentText = document.querySelector(`.${className}`);
   const text = currentText.textContent;
@@ -50,14 +48,11 @@ function AddSpans(className,spanName){
     span.classList.add(spanName);
     currentText.appendChild(span);
   })
-
 }
 
 const animationContainer = document.querySelector('.animation-container');
 
-
 // brand logos
-
 const columns = document.querySelectorAll('.logo-column');
 
 columns.forEach((column, index)=>{
@@ -68,7 +63,6 @@ columns.forEach((column, index)=>{
     column.append(clone);
   });
 });
-
 
 //about-info
 AddSpans('about','about-char')
@@ -83,7 +77,6 @@ workItemList.addEventListener('mouseleave', ()=>{
   cursorDot.classList.remove('work-hover')
 })
 
-
 document.querySelectorAll('.work-book').forEach(el => {
   el.addEventListener('mousemove', e => {
     const rect = el.getBoundingClientRect();
@@ -95,41 +88,34 @@ document.querySelectorAll('.work-book').forEach(el => {
   });
 });
 
-
 // booking-container
 AddSpans('booking-heading','heading-char')
 
+// stats - container
+const counters = document.querySelectorAll('.stats-heading');
 
+counters.forEach((counter)=>{
+  const target = +counter.dataset.target;
 
-
-////////   GSAP //////////
-
-// const lines = document.querySelectorAll('.hero-text .line');
-
-// lines.forEach(line => {
-//   const tempDiv = document.createElement('div');
-//   tempDiv.innerHTML = line.innerHTML;
-
-//   const newContent = Array.from(tempDiv.childNodes).map(node => {
-//     if (node.nodeType === Node.TEXT_NODE) {
-//       // IMPORTANT: return real spaces ' ' (not &nbsp;)
-//       return node.textContent.split('').map(char =>
-//         char === ' ' ? ' ' : `<span class="hero-span">${char}</span>`
-//       ).join('');
-//     }
-//     if (node.nodeType === Node.ELEMENT_NODE) {
-//       const element = node.cloneNode(true);
-//       element.innerHTML = element.textContent.split('').map(char =>
-//         char === ' ' ? ' ' : `<span class="hero-span">${char}</span>`
-//       ).join('');
-//       return element.outerHTML;
-//     }
-//     return '';
-//   }).join('');
-
-//   line.innerHTML = newContent;
-// });
-
+  gsap.fromTo(counter,
+    { innerText: 0},
+    {
+      innerText: target,
+      duration: 3,
+      ease: "power1.out",
+      scrollTrigger: {
+        trigger: counter,
+        start: "top 90%",
+        toggleActions: "play none none none"
+      },
+      snap: { innerText: 1},
+      onUpdate: function (){
+        const value = Math.round(counter.innerText);
+        counter.textContent = value + (counter.id=='percent'?"%":"+")
+      }
+    }
+  )
+})
 
 // Split text into spans without whitespace issues
 function prepareHeroText() {
@@ -205,22 +191,52 @@ function prepareHeroText() {
   });
 }
 
-
-
-
 // Initialize when ready
-  prepareHeroText();
-
-
+prepareHeroText();
 
 gsap.registerPlugin(ScrollTrigger);
 let mm = null;
-window.addEventListener("load", () => ScrollTrigger.refresh());
 
+// Store current scroll position before any major operations
+let savedScrollPosition = 0;
 
+function saveScrollPosition() {
+  savedScrollPosition = window.pageYOffset;
+}
+
+function restoreScrollPosition() {
+  // Use requestAnimationFrame to ensure DOM is ready
+  requestAnimationFrame(() => {
+    window.scrollTo(0, savedScrollPosition);
+  });
+}
+
+// Debounce function to prevent excessive resize calls
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
 
 function initAnimations(){
-  ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  // Save current scroll position before making changes
+  saveScrollPosition();
+  
+  // More selective cleanup - only kill triggers that need updating
+  const triggers = ScrollTrigger.getAll();
+  triggers.forEach(trigger => {
+    // Only kill triggers that are resolution-dependent
+    if (trigger.vars.invalidateOnRefresh || 
+        (trigger.vars.pin && trigger.vars.anticipatePin)) {
+      trigger.kill();
+    }
+  });
 
   if(mm){
     mm.revert();
@@ -241,22 +257,20 @@ function initAnimations(){
         start: `top+=${pinOffset} 80%`,
         end: `bottom+=${pinOffset} 65%`,
         scrub: true,
-        markers
+        markers,
+        invalidateOnRefresh: true // Mark for cleanup on resize
       }
     });
   }
 
-    //about-info
-  if(window.innerWidth > 990)
-  {
+  //about-info
+  if(window.innerWidth > 990) {
     charReveal('about-char', 'about', false, 2000);
-  }
-  else{
+  } else {
     charReveal('about-char', 'about', false, 1000)
   }
 
   //video scale
-
   gsap.to('.animation-container', {
     scale: 1.12,
     ease: "power2.out",
@@ -265,14 +279,13 @@ function initAnimations(){
       start: "top center",
       end: "top top",
       scrub: true,
-      // markers: true
+      invalidateOnRefresh: true
     }
   });
+  
   mm.add("(min-width: 990px)", () =>{
     gsap.fromTo('.xurge-animation', 
-      {y: '100vh',
-        scale: '1'
-      },
+      {y: '100vh', scale: '1'},
       {
         y: '0vh',
         scale: '4',
@@ -284,18 +297,15 @@ function initAnimations(){
           pin: true,
           anticipatePin: true,
           scrub: true,
-          // markers: true
-          }
+          invalidateOnRefresh: true
         }
-      ) 
-    }
-  )
+      }
+    ) 
+  })
 
   mm.add("(max-width: 990px)", ()=>{
     gsap.fromTo('.xurge-animation', 
-      {y: '70vh',
-        scale: '1'
-      },
+      {y: '70vh', scale: '1'},
       {
         y: '15vh',
         scale: '4',
@@ -307,46 +317,13 @@ function initAnimations(){
           pin: true,
           anticipatePin: true,
           scrub: true,
-          // markers: true
-          }
-        }
-      )  
-    }
-  )
-
-
-
-  // stats - container
-
-  const counters = document.querySelectorAll('.stats-heading');
-
-  counters.forEach((counter)=>{
-    const target = +counter.dataset.target;
-
-    gsap.fromTo(counter,
-      { innerText: 0},
-      {
-        innerText: target,
-        duration: 3,
-        ease: "power1.out",
-        scrollTrigger: {
-          trigger: counter,
-          start: "top 90%",
-          toggleActions: "play none none none"
-        },
-        snap: { innerText: 1},
-        onUpdate: function (){
-          const value = Math.round(counter.innerText);
-          counter.textContent = value + (counter.id=='percent'?"%":"+")
+          invalidateOnRefresh: true
         }
       }
-    )
+    )  
   })
 
-
   // works-container
-
-  
   gsap.to(".works-hero-text", {
     opacity: 1,
     y: 0,
@@ -366,7 +343,6 @@ function initAnimations(){
     const itemCount = document.querySelectorAll('.work-item').length;
 
     const totalScroll = wrapper.scrollWidth - window.innerWidth;
-
 
     const tl = gsap.timeline({
       scrollTrigger:{
@@ -393,321 +369,306 @@ function initAnimations(){
       tl.kill();
     };
   });
-  
-
-
-
 
   // Services section elements
-  const servicesSection = document.querySelector('.services-section');
-  const canvasWrapper = document.getElementById('canvasWrapper');
-  const canvas = document.getElementById('bgCanvas');
-  let renderControlTrigger = null;
+// Services section elements
+const servicesSection = document.querySelector('.services-section');
+const canvasWrapper = document.getElementById('canvasWrapper');
+const canvas = document.getElementById('bgCanvas');
+let renderControlTrigger = null;
 
-  // Three.js variables
-  let renderer, scene, camera, rings = [];
-  let isServicesActive = false;
-  let rafId = null;
-  let initialized = false;
+// Three.js variables
+let renderer, scene, camera, rings = [];
+let isServicesActive = false;
+let rafId = null;
+let initialized = false;
 
-  // Initialize Three.js only once
-  function initThreeJS() {
-    if (renderer) return;
-    
-    scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x000000);
-    
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    updateCameraPosition();
+// Initialize Three.js only once
+function initThreeJS() {
+  if (renderer) return;
+  
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x000000);
+  
+  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  updateCameraPosition();
 
-    renderer = new THREE.WebGLRenderer({ 
-        canvas, 
-        alpha: false,
-        antialias: true,
-        powerPreference: 'high-performance'
-    });
-    
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-    renderer.setClearColor(0x000000, 1);
-      
-      // Create rings with optimized geometry
-    for(let i = 0; i < 4; i++) {
-      const geometry = new THREE.TorusGeometry(6 - i * 0.75, 0.25, 32, 64);
-      const mat = new THREE.MeshPhysicalMaterial({
-          color: 0xffffff,
-          transmission: 1,
-          thickness: 0.5,
-          roughness: 0,
-          metalness: 0,
-          ior: 1.5,
-          transparent: true,
-          opacity: 0.5,
-          specularIntensity: 1
-      });
-      
-      const torus = new THREE.Mesh(geometry, mat);
-      torus.rotation.x = Math.PI / 2;
-      scene.add(torus);
-      rings.push(torus);
-    }
-
-    // Optimized lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0);
-    scene.add(ambientLight);
-    
-    const dl = new THREE.DirectionalLight(0xffffff, 1000);
-    dl.position.set(-9, 7, 0);
-    scene.add(dl);
-
-    const dl2 = new THREE.DirectionalLight(0xffffff, 100);
-    dl2.position.set(9, -4, 0);
-    scene.add(dl2);
-
-    const dl3 = new THREE.DirectionalLight(0xffffff, 100);
-    dl3.position.set(8, 5, 0);
-    scene.add(dl3);
-
-    const dl4 = new THREE.DirectionalLight(0xffffff, 100);
-    dl4.position.set(-9, -4, 0);
-    scene.add(dl4);
-  }
-
-  function updateCameraPosition(){
-    if(!camera) return;
-
-    if(window.innerWidth <= 600){
-      camera.position.z = 15;
-    }
-    else{
-      camera.position.z = 10;
-    }
-  }
-
-  function handleThreeJSResize(){
-    if(renderer && camera){
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      camera.aspect = window.innerWidth / window.innerHeight;
-      updateCameraPosition();
-      camera.updateProjectionMatrix();
-    }
-  }
-
-  // Optimized ring animations
-  function setupRingAnimations() {
-    rings.forEach((ring, index) => {
-      const direction = index % 2 === 0 ? 1 : -1;
-      const rotations = [1, 2, 2, 1][index];
-      
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".services-section",
-          start: "top center",
-          end: "bottom top",
-          scrub: 0,
-          // markers: true
-        }
-      });
-      const standingPosition = Math.PI;
-      
-      tl.to(ring.rotation, {
-          x: standingPosition,
-          y: direction * rotations * Math.PI,
-          duration: 10
-      }, 1);
-
-      tl.to(ring.rotation, {
-          x: -standingPosition,
-          y: direction * rotations * Math.PI * 0,
-          duration: 5
-      }, 13);
-      
-      // tl.to(ring.rotation, {
-      //     x: standingPosition,
-      //     y: direction * rotations * Math.PI,
-      //     duration: 20
-      // }, 65);
-    });
-  }
-
-  // Canvas expansion animation
-  gsap.fromTo(
-    canvasWrapper,
-    { height: "0vh" },
-    {
-      height: "100vh",
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".services-section",
-        start: "top center",
-        end: "top top",
-        scrub: true,
-        // markers: true,
-        invalidateOnRefresh: true,
-        onEnter: () => {
-          if (!initialized) {
-            initThreeJS();
-            setupRingAnimations();
-            initialized = true;
-          }
-        }
-      }
-    }
-  );
-
-  // FIX: Separate ScrollTrigger to control rendering state
-  // This ensures rings keep spinning throughout entire services section
-  renderControlTrigger =  ScrollTrigger.create({
-    trigger: ".services-section",
-    start: "top center",
-    end: "bottom top",
-    onEnter: () => { 
-      isServicesActive = true; 
-      startRendering(); 
-    },
-    onEnterBack: () => { 
-      isServicesActive = true; 
-      startRendering(); 
-    },
-    onLeave: () => { 
-      isServicesActive = false; 
-      stopRendering(); 
-    },
-    onLeaveBack: () => { 
-      isServicesActive = false; 
-      stopRendering(); 
-    }
+  renderer = new THREE.WebGLRenderer({ 
+      canvas, 
+      alpha: false,
+      antialias: true,
+      powerPreference: 'high-performance'
   });
+  
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+  renderer.setClearColor(0x000000, 1);
     
-  const revealLt = gsap.timeline({
+  // Create rings with optimized geometry
+  for(let i = 0; i < 4; i++) {
+    const geometry = new THREE.TorusGeometry(6 - i * 0.75, 0.25, 32, 64);
+    const mat = new THREE.MeshPhysicalMaterial({
+        color: 0xffffff,
+        transmission: 1,
+        thickness: 0.5,
+        roughness: 0,
+        metalness: 0,
+        ior: 1.5,
+        transparent: true,
+        opacity: 0.5,
+        specularIntensity: 1
+    });
+    
+    const torus = new THREE.Mesh(geometry, mat);
+    torus.rotation.x = Math.PI / 2;
+    scene.add(torus);
+    rings.push(torus);
+  }
+
+  // Optimized lighting
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0);
+  scene.add(ambientLight);
+  
+  const dl = new THREE.DirectionalLight(0xffffff, 1000);
+  dl.position.set(-9, 7, 0);
+  scene.add(dl);
+
+  const dl2 = new THREE.DirectionalLight(0xffffff, 100);
+  dl2.position.set(9, -4, 0);
+  scene.add(dl2);
+
+  const dl3 = new THREE.DirectionalLight(0xffffff, 100);
+  dl3.position.set(8, 5, 0);
+  scene.add(dl3);
+
+  const dl4 = new THREE.DirectionalLight(0xffffff, 100);
+  dl4.position.set(-9, -4, 0);
+  scene.add(dl4);
+}
+
+function updateCameraPosition(){
+  if(!camera) return;
+
+  if(window.innerWidth <= 600){
+    camera.position.z = 15;
+  } else {
+    camera.position.z = 10;
+  }
+}
+
+function handleThreeJSResize(){
+  if(renderer && camera){
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    updateCameraPosition();
+    camera.updateProjectionMatrix();
+  }
+}
+
+// Fixed ring animations with proper timing
+function setupRingAnimations() {
+  rings.forEach((ring, index) => {
+    const direction = index % 2 === 0 ? 1 : -1;
+    const rotations = [1, 2, 2, 1][index];
+    
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".services-section",
         start: "top center",
-        end: "bottom top",
-        scrub: 1,
-        markers: false,
+        end: "bottom+=6500", // Extended end point to give rings space to complete animations
+        scrub: 0,
         invalidateOnRefresh: true
       }
     });
-
-    revealLt.to("#fuel", { x: "0%", opacity: 1, duration: 0.05 }, 0.1)
-      .to("#your", { x: "0%", opacity: 1, duration: 0.05 }, 0.1)
-      .to("#services", { x: "0%", opacity: 1, duration: 0.05 }, 0.15)
-      .to("#to", { x: "0%", opacity: 1, duration: 0.05 }, 0.15)
-      .to("#growth", { x: "0%", opacity: 1, duration: 0.05 }, 0.2)
-      .to("#growth", { x: "100px", opacity: 0, duration: 0.1 }, 0.3)
-      .to("#to", { x: "100px", opacity: 0, duration: 0.1 }, 0.3)
-      .to("#services", { x: "-100px", opacity: 0, duration: 0.1 }, 0.3)
-      .to("#fuel", { x: "-100px", opacity: 0, duration: 0.1 }, 0.3)
-      .to("#your", { x: "100px", opacity: 0, duration: 0.1 }, 0.3);
-
     
-      // Service items animation
-      mm.add("(min-width: 600px)", ()=>{
-        const serviceTL = gsap.timeline({
-          scrollTrigger: {
-            trigger: ".services-section",
-            start: "top top",
-            end: "+=4000",
-            pin: true,
-            pinSpacing: false,
-            anticipatePin: true,
-            scrub: 1,
-            markers: false,
-            invalidateOnRefresh: true
-          }
-        });
+    const standingPosition = Math.PI;
+    
+    // Phase 1: Rotate to standing position (longer duration for smoother animation)
+    tl.to(ring.rotation, {
+        x: standingPosition,
+        y: direction * rotations * Math.PI,
+        duration: 7, // Increased duration for smoother rotation
+        ease: "none"
+    }, 1);
 
-        serviceTL.to(".service-item", {
-          y: 0,
-          opacity: 1,
-          stagger: 0.2,
-          duration: 1,
-          ease: "power2.out"
-        }, 1);
+    // Phase 2: Complete the rotation cycle
+    tl.to(ring.rotation, {
+        x: -standingPosition,
+        y: direction * rotations * Math.PI * 2, // Complete full rotations
+        duration: 7, // Balanced duration for completion
+        ease: "none"
+    }, 9);
+  });
+}
 
-        return () => {
-          serviceTL.scrollTrigger && serviceTL.scrollTrigger.kill();
-          serviceTL.kill();
-        };
-      });
-
-      mm.add("(max-width: 600px)", ()=>{
-        const serviceTL = gsap.timeline({
-          scrollTrigger: {
-            trigger: ".services-section",
-            start: "top top",
-            end: "+=4000",
-            pin: true,
-            pinSpacing: false,
-            anticipatePin: true,
-            scrub: 1,
-            markers: false,
-            invalidateOnRefresh: true
-          }
-        });
-
-        // serviceTL.to(camera.position)
-        const moveUp = -window.innerHeight
-
-        serviceTL.to(".service-item", {
-          y: moveUp,
-          opacity: 1,
-          stagger: 0.2,
-          duration: 1,
-          ease: "power2.out"
-        }, 1);
-
-        return () => {
-          serviceTL.scrollTrigger && serviceTL.scrollTrigger.kill();
-          serviceTL.kill();
+// Canvas expansion animation
+gsap.fromTo(
+  canvasWrapper,
+  { height: "0vh" },
+  {
+    height: "100vh",
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".services-section",
+      start: "top center",
+      end: "top top",
+      scrub: true,
+      invalidateOnRefresh: true,
+      onEnter: () => {
+        if (!initialized) {
+          initThreeJS();
+          setupRingAnimations();
+          initialized = true;
         }
-      })
-
-  // Rendering control
-  function startRendering() {
-    if (!rafId) {
-      renderLoop();
+      }
     }
   }
+);
 
-  function stopRendering() {
-    if (rafId) {
-      cancelAnimationFrame(rafId);
-      rafId = null;
-    }
+// Extended ScrollTrigger for rendering control
+renderControlTrigger = ScrollTrigger.create({
+  trigger: ".services-section",
+  start: "top center",
+  end: "bottom+=6000", // Match the extended end point
+  onEnter: () => { 
+    isServicesActive = true; 
+    startRendering(); 
+  },
+  onEnterBack: () => { 
+    isServicesActive = true; 
+    startRendering(); 
+  },
+  onLeave: () => { 
+    isServicesActive = false; 
+    stopRendering(); 
+  },
+  onLeaveBack: () => { 
+    isServicesActive = false; 
+    stopRendering(); 
   }
-
-  function renderLoop() {
-    if (isServicesActive) {
-      renderer.render(scene, camera);
-      rafId = requestAnimationFrame(renderLoop);
-    }
-  }
-
-  // Handle window resize
+});
   
+const revealLt = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".services-section",
+    start: "top center",
+    end: "bottom+=4000", // Extended to match ring animations
+    scrub: 1,
+    markers: false,
+    invalidateOnRefresh: true
+  }
+});
 
-  // Clean up when leaving page
-  window.addEventListener('beforeunload', () => {
-    if (renderer) {
-      renderer.dispose();
-      renderer = null;
+revealLt.to("#services", { x: "0%", opacity: 1, duration: 0.05 }, 0.1)
+  .to("#to", { x: "0%", opacity: 1, duration: 0.05 }, 0.1)
+  .to("#fuel", { x: "0%", opacity: 1, duration: 0.05 }, 0.15)
+  .to("#your", { x: "0%", opacity: 1, duration: 0.05 }, 0.15)
+  .to("#growth", { x: "0%", opacity: 1, duration: 0.05 }, 0.2)
+  .to("#growth", { x: "100px", opacity: 0, duration: 0.1 }, 0.3)
+  .to("#to", { x: "100px", opacity: 0, duration: 0.1 }, 0.3)
+  .to("#services", { x: "-100px", opacity: 0, duration: 0.1 }, 0.3)
+  .to("#fuel", { x: "-100px", opacity: 0, duration: 0.1 }, 0.3)
+  .to("#your", { x: "100px", opacity: 0, duration: 0.1 }, 0.3);
+
+// Service items animation with extended scroll distance
+mm.add("(min-width: 600px)", ()=>{
+  const serviceTL = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".services-section",
+      start: "top top",
+      end: "+=6000", // Increased for slower, smoother service item animations
+      pin: true,
+      pinSpacing: true,
+      anticipatePin: true,
+      scrub: 1,
+      markers: false,
+      invalidateOnRefresh: true
     }
-    
-    rings.forEach(ring => {
-      if (ring.geometry) ring.geometry.dispose();
-      if (ring.material) ring.material.dispose();
-    });
-    
-    rings = [];
   });
 
+  serviceTL.to(".service-item", {
+    y: 0,
+    opacity: 1,
+    stagger: 0.2,
+    duration: 1,
+    ease: "power2.out"
+  }, 1);
 
+  return () => {
+    serviceTL.scrollTrigger && serviceTL.scrollTrigger.kill();
+    serviceTL.kill();
+  };
+});
 
+mm.add("(max-width: 600px)", ()=>{
+  const serviceTL = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".services-section",
+      start: "top top",
+      end: "+=6000", // Increased for consistency
+      pin: true,
+      pinSpacing: true,
+      anticipatePin: true,
+      scrub: 1,
+      markers: false,
+      invalidateOnRefresh: true
+    }
+  });
+
+  const moveUp = -window.innerHeight;
+
+  serviceTL.to(".service-item", {
+    y: moveUp,
+    opacity: 1,
+    stagger: 0.2,
+    duration: 1,
+    ease: "power2.out"
+  }, 1);
+
+  return () => {
+    serviceTL.scrollTrigger && serviceTL.scrollTrigger.kill();
+    serviceTL.kill();
+  }
+});
+
+// Rendering control functions
+function startRendering() {
+  if (!rafId) {
+    renderLoop();
+  }
+}
+
+function stopRendering() {
+  if (rafId) {
+    cancelAnimationFrame(rafId);
+    rafId = null;
+  }
+}
+
+function renderLoop() {
+  if (isServicesActive) {
+    renderer.render(scene, camera);
+    rafId = requestAnimationFrame(renderLoop);
+  }
+}
+
+// Clean up when leaving page
+window.addEventListener('beforeunload', () => {
+  if (renderer) {
+    renderer.dispose();
+    renderer = null;
+  }
+  
+  rings.forEach(ring => {
+    if (ring.geometry) ring.geometry.dispose();
+    if (ring.material) ring.material.dispose();
+  });
+  
+  rings = [];
+});
 
   //============= Booking ============
-  charReveal('heading-char', 'booking-heading', );
+  charReveal('heading-char', 'booking-heading');
 
   mm.add("(min-width: 990px)", ()=>{
     gsap.fromTo(".book-image",
@@ -721,120 +682,107 @@ function initAnimations(){
           start:"top center",
           end: "top top+=100",
           scrub: 1,
-          markers: false
+          markers: false,
+          invalidateOnRefresh: true
         }
       }
     );
   })
 
   mm.add("(max-width: 990px) and (min-width: 601px)", () => {
-  const bookingSection = document.querySelector(".booking-section");
-  const bookingContent  = document.querySelector(".booking-content");
-  const images = gsap.utils.toArray(".book-image");
+    const bookingSection = document.querySelector(".booking-section");
+    const bookingContent = document.querySelector(".booking-content");
+    const images = gsap.utils.toArray(".book-image");
 
-  // use functions so values recalc on refresh/resize
-  const gap = () => Math.round(window.innerHeight * 0.55);
-  const animLen = () => Math.round(window.innerHeight * 1);
-  const totalDuration = () => (images.length - 3) * gap() + animLen() + window.innerHeight;
+    const gap = () => Math.round(window.innerHeight * 0.55);
+    const animLen = () => Math.round(window.innerHeight * 1);
+    const totalDuration = () => (images.length - 3) * gap() + animLen() + window.innerHeight;
 
-  // pin the content for the calculated total duration
-  const pinTrigger = ScrollTrigger.create({
-    trigger: bookingSection,
-    start: "top top",
-    end: () => `+=${totalDuration()}`,
-    pin: bookingContent,
-    pinSpacing: false,
-    invalidateOnRefresh: true
-  });
-
-  // initial positions (use function values so they update on refresh)
-  images.forEach(img => gsap.set(img, { y: () => window.innerHeight + 500, opacity: 1 }));
-
-  // create per-image ScrollTriggers
-  const imageTriggers = images.map((img, i) => {
-    const st = gsap.to(img, {
-      y: 0,
-      ease: "none",
-      scrollTrigger: {
-        start: () => bookingSection.offsetTop + i * gap(),
-        end: () => bookingSection.offsetTop + i * gap() + animLen(),
-        scrub: 0.5,
-        invalidateOnRefresh: true
-      }
+    const pinTrigger = ScrollTrigger.create({
+      trigger: bookingSection,
+      start: "top top",
+      end: () => `+=${totalDuration()}`,
+      pin: bookingContent,
+      pinSpacing: false,
+      invalidateOnRefresh: true
     });
-    return st;
-  });
 
-  // cleanup when leaving this media query
-  return () => {
-    pinTrigger.kill();
-    imageTriggers.forEach(t => t.kill && t.kill());
-    // optionally reset images
-    images.forEach(img => gsap.set(img, { clearProps: "y,opacity" }));
-  };
-});
+    images.forEach(img => gsap.set(img, { y: () => window.innerHeight + 500, opacity: 1 }));
 
-// small screens: 0 - 600px (exclusive of the above)
-mm.add("(max-width: 600px)", () => {
-  const bookingSection = document.querySelector(".booking-section");
-  const bookingContent  = document.querySelector(".booking-content");
-  const images = gsap.utils.toArray(".book-image");
-
-  const gap = () => Math.round(window.innerHeight * 0.55);
-  const animLen = () => Math.round(window.innerHeight * 1);
-  const totalDuration = () => (images.length - 3.755) * gap() + animLen() + window.innerHeight;
-
-  const pinTrigger = ScrollTrigger.create({
-    trigger: bookingSection,
-    start: "top top",
-    end: () => `+=${totalDuration()}`,
-    pin: bookingContent,
-    pinSpacing: false,
-    invalidateOnRefresh: true
-  });
-
-  images.forEach(img => gsap.set(img, { y: () => window.innerHeight + 500, opacity: 1 }));
-
-  const imageTriggers = images.map((img, i) => {
-    const st = gsap.to(img, {
-      y: 0,
-      ease: "none",
-      scrollTrigger: {
-        start: () => bookingSection.offsetTop + i * gap(),
-        end: () => bookingSection.offsetTop + i * gap() + animLen(),
-        scrub: 0.5,
-        invalidateOnRefresh: true
-      }
+    const imageTriggers = images.map((img, i) => {
+      const st = gsap.to(img, {
+        y: 0,
+        ease: "none",
+        scrollTrigger: {
+          start: () => bookingSection.offsetTop + i * gap(),
+          end: () => bookingSection.offsetTop + i * gap() + animLen(),
+          scrub: 0.5,
+          invalidateOnRefresh: true
+        }
+      });
+      return st;
     });
-    return st;
+
+    return () => {
+      pinTrigger.kill();
+      imageTriggers.forEach(t => t.kill && t.kill());
+      images.forEach(img => gsap.set(img, { clearProps: "y,opacity" }));
+    };
   });
 
-  return () => {
-    pinTrigger.kill();
-    imageTriggers.forEach(t => t.kill && t.kill());
-    images.forEach(img => gsap.set(img, { clearProps: "y,opacity" }));
-  };
-});
+  mm.add("(max-width: 600px)", () => {
+    const bookingSection = document.querySelector(".booking-section");
+    const bookingContent = document.querySelector(".booking-content");
+    const images = gsap.utils.toArray(".book-image");
 
+    const gap = () => Math.round(window.innerHeight * 0.55);
+    const animLen = () => Math.round(window.innerHeight * 1);
+    const totalDuration = () => (images.length - 3.755) * gap() + animLen() + window.innerHeight;
 
+    const pinTrigger = ScrollTrigger.create({
+      trigger: bookingSection,
+      start: "top top",
+      end: () => `+=${totalDuration()}`,
+      pin: bookingContent,
+      pinSpacing: false,
+      invalidateOnRefresh: true
+    });
 
+    images.forEach(img => gsap.set(img, { y: () => window.innerHeight + 500, opacity: 1 }));
 
+    const imageTriggers = images.map((img, i) => {
+      const st = gsap.to(img, {
+        y: 0,
+        ease: "none",
+        scrollTrigger: {
+          start: () => bookingSection.offsetTop + i * gap(),
+          end: () => bookingSection.offsetTop + i * gap() + animLen(),
+          scrub: 0.5,
+          invalidateOnRefresh: true
+        }
+      });
+      return st;
+    });
 
+    return () => {
+      pinTrigger.kill();
+      imageTriggers.forEach(t => t.kill && t.kill());
+      images.forEach(img => gsap.set(img, { clearProps: "y,opacity" }));
+    };
+  });
 
-  // Audit
+  // Audit section
   const img = document.querySelector('.circles-image');
   const auditLink = document.querySelector('.audit-link')
 
   auditLink.addEventListener("mousemove", (e)=>{
     const rect = auditLink.getBoundingClientRect();
     
-    // Calculate mouse position relative to container center (-1 to 1)
     const relativeX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
     const relativeY = ((e.clientY - rect.top) / rect.height) * 2 - 1;
     
-    // Calculate movement based on container size (responsive)
-    const maxMoveX = rect.width *0.5; // 5% of container width
-    const maxMoveY = rect.height *0.3; // 5% of container height
+    const maxMoveX = rect.width * 0.5;
+    const maxMoveY = rect.height * 0.3;
     
     const moveX = relativeX * maxMoveX;
     const moveY = relativeY * maxMoveY;
@@ -856,7 +804,6 @@ mm.add("(max-width: 600px)", () => {
     })
   })
 
-
   auditLink.addEventListener('mouseenter', ()=>{
     cursorDot.classList.add('work-hover')
   })
@@ -865,10 +812,8 @@ mm.add("(max-width: 600px)", () => {
     cursorDot.classList.remove('work-hover')
   })
 
-
   // Review section
   AddSpans('review-heading','review-char');
-
   charReveal('review-char','review-heading')
 
   const reviewStrip = document.querySelector('.review-strip');
@@ -886,7 +831,6 @@ mm.add("(max-width: 600px)", () => {
     }
     reviewStrip.dataset.cloned = '1';
   }
-  
 
   let reviewItems = Array.from(document.querySelectorAll('.review-item'))
   const itemWidth = reviewItems[0].offsetWidth + 8;
@@ -899,7 +843,6 @@ mm.add("(max-width: 600px)", () => {
   let startX=0;
 
   gsap.set(reviewStrip, {x: -startPosition})
-
 
   function updateActiveCard(centerIndex){
     const old = reviewStrip.querySelector('.review-item.active');
@@ -922,7 +865,6 @@ mm.add("(max-width: 600px)", () => {
     })[0];
   }
 
-
   function snapWithThreshold(){
     const endX = gsap.getProperty(reviewStrip, 'x');
     const delta = endX - startX;
@@ -941,7 +883,7 @@ mm.add("(max-width: 600px)", () => {
     
   function goToReview(index) {
     const itemsPerSet = reviewItems.length / 3;
-      if (index < 1) {
+    if (index < 1) {
       currentIndex = 2 * itemsPerSet - 1;
       const targetPosition = currentIndex * itemWidth - offset;
       gsap.set(reviewStrip, { x: -targetPosition });
@@ -981,18 +923,15 @@ mm.add("(max-width: 600px)", () => {
     });
   }
     
-    // Event listeners for buttons
-    prevButton.addEventListener('click', () => goToReview(currentIndex - 1));
-    nextButton.addEventListener('click', () => goToReview(currentIndex + 1));
-    
-    // Initialize draggable after slight delay to ensure dimensions are correct
-    setTimeout(() => {
-      initDraggable();
-      updateActiveCard(currentIndex); // Set initial opacity
-    }, 100);
-    
-    // Handle window resize
-
+  // Event listeners for buttons
+  prevButton.addEventListener('click', () => goToReview(currentIndex - 1));
+  nextButton.addEventListener('click', () => goToReview(currentIndex + 1));
+  
+  // Initialize draggable after slight delay to ensure dimensions are correct
+  setTimeout(() => {
+    initDraggable();
+    updateActiveCard(currentIndex); // Set initial opacity
+  }, 100);
 
   reviewStrip.addEventListener('mouseenter', ()=>{
     cursorDot.classList.add('drag-hover')
@@ -1002,11 +941,9 @@ mm.add("(max-width: 600px)", () => {
     cursorDot.classList.remove('drag-hover')
   })
 
-
   // Footer
-
   const track = document.querySelector('.scroll-track');
-  const inqLink =  document.querySelector('.footer-title-wrapper');
+  const inqLink = document.querySelector('.footer-title-wrapper');
 
   inqLink.addEventListener('mouseenter', ()=>{
     cursorDot.classList.add('work-hover');
@@ -1036,12 +973,58 @@ mm.add("(max-width: 600px)", () => {
     lastScrollY = currentScrollY;
   });
 
-
+  // Restore scroll position after animations are set up
+  setTimeout(() => {
+    restoreScrollPosition();
+  }, 100);
 }
 
-window.addEventListener('load', initAnimations)
-
-window.addEventListener('resize', () => {
+// Improved resize handler with debouncing
+const debouncedResize = debounce(() => {
+  // Handle Three.js resize separately to avoid full reinitialization
+  if (typeof handleThreeJSResize === 'function') {
+    handleThreeJSResize();
+  }
+  
+  // Only reinitialize animations if screen size category changes
+  const currentBreakpoint = window.innerWidth <= 600 ? 'mobile' : 
+                           window.innerWidth <= 990 ? 'tablet' : 'desktop';
+  
+  if (!window.lastBreakpoint) {
+    window.lastBreakpoint = currentBreakpoint;
+  }
+  
+  // Only reinitialize if breakpoint actually changed
+  if (window.lastBreakpoint !== currentBreakpoint) {
+    window.lastBreakpoint = currentBreakpoint;
     initAnimations();
-    ScrollTrigger.refresh();
-  });
+  }
+  
+  // Gentle refresh for responsive elements
+  ScrollTrigger.refresh();
+}, 250);
+
+// Initialize animations on load
+window.addEventListener('load', () => {
+  initAnimations();
+  ScrollTrigger.refresh();
+});
+
+// Use debounced resize handler
+window.addEventListener('resize', debouncedResize);
+
+// Prevent scroll restoration on page reload
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+// Handle visibility change to pause/resume animations when tab is hidden
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    // Pause expensive operations when tab is hidden
+    gsap.globalTimeline.pause();
+  } else {
+    // Resume when tab becomes visible
+    gsap.globalTimeline.resume();
+  }
+});

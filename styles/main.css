@@ -15,7 +15,7 @@
 
 .hero-span{
   display: inline-block;
-  transform: translateY(80px);
+  transform: translateY(90px);
 }
 
 
@@ -429,7 +429,7 @@
 .services-section{
   margin-top: 20vw;
   position: relative;
-  height: 290rem;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -446,6 +446,7 @@
   height: 0vh;
   overflow: hidden; 
   transform-origin: center;
+  pointer-events: none;
 }
 
 .bg-canvas {
