@@ -3,9 +3,14 @@
   visibility: hidden;
 }
 
-.cls-1{
+.X-label .cls-1{
   opacity: 0;
   transform: translateY(100px);
+}
+
+.other-labels .cls-1{
+  opacity: 0;
+  transform: translateX(-100px);
 }
 
 .logo-overlay {

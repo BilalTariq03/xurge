@@ -93,6 +93,15 @@ AddSpans('booking-heading','heading-char')
 
 // stats - container
 const counters = document.querySelectorAll('.stats-heading');
+const statsSection = document.querySelector('.stats-section');
+let offset;
+
+if(window.innerWidth > 990){
+  offset = 2200
+}
+else{
+  offset = 1200
+}
 
 counters.forEach((counter)=>{
   const target = +counter.dataset.target;
@@ -104,9 +113,9 @@ counters.forEach((counter)=>{
       duration: 3,
       ease: "power1.out",
       scrollTrigger: {
-        trigger: counter,
-        start: "top 90%",
-        // markers: true,
+        trigger: statsSection,
+        start: `top+=${offset} 90%`,
+        markers: true,
         toggleActions: "play none none none"
       },
       snap: { innerText: 1},
