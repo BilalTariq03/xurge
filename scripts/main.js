@@ -115,7 +115,7 @@ counters.forEach((counter)=>{
       scrollTrigger: {
         trigger: statsSection,
         start: `top+=${offset} 90%`,
-        markers: true,
+        // markers: true,
         toggleActions: "play none none none"
       },
       snap: { innerText: 1},

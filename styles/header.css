@@ -153,45 +153,64 @@ body.intro-running .nav-bar{
 }
 
 .talk-button{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
-  padding: 12px 20px;
-  background-color: var(--neutral-black);
-  color: var(--neutral-white);
-  border: none;
-  border-radius: 25px;
-  font-size: 20px;
-  cursor: pointer;
+  display: block;
   position: relative;
-  z-index: 1;
+  height: 3.1rem;
   overflow: hidden;
-  opacity: 0;
-  /* transform: translateY(100px); */
-  transition: 0.6s;
+  position: relative;
+  
+  color: var(--neutral-white);
+  text-decoration: none;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: linear-gradient(to bottom,
+    var(--brand-shade) 50%,
+    var(--neutral-black) 50%
+  );
+  background-size: 100% 200%;
+  background-position: 0 -100%;
+  transition: background-position 0.6s ease, color 0.6s ease;
 }
 
-
 .talk-button-float{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
-  padding: clamp(10px, 0.75vw, 16px) clamp(18px, 1.5vw, 40px);
-  background-color: var(--neutral-white);
+  background: linear-gradient(to bottom,
+    var(--brand-shade) 50%,
+    var(--neutral-white) 50%
+  );
+  background-size: 100% 200%;
+  background-position: 0 -100%;
   color: var(--neutral-black);
   border: 1px solid var(--neutral-black);
-  border-radius: 25px;
-  font-size: clamp(16px, 1.2vw, 20px);
-  cursor: pointer;
   position: fixed;
   top: -75px;
   right: 67px;
   overflow: hidden;
   pointer-events: none;
   z-index: 100;
-  transition: top 1s ease-in;
+  transition: top 1s ease-in, background-position 0.6s ease, color 0.6s ease, border 0.6s ease;
+}
+
+.button-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 12px 20px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  /* opacity: 0; */
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  /* transform: translateY(100px);*/ 
+  transition: 0.6s;
 }
 
 .talk-button-float.show{
@@ -233,33 +252,14 @@ body.intro-running .nav-bar{
   transform: rotate(45deg) translate(-100%, -300%);
 }
 
-
-.right-items .talk-button::before,
-.talk-button-float::before{
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background-color: var(--brand-shade);
-  width: 200%;
-  height: 0;
-  z-index: -1;
-  transition: all 0.6s ease;
-}
-
 .right-items .talk-button:hover,
 .talk-button-float:hover{
   color: var(--neutral-black);
+  background-position: 0 0;
 }
 
-.right-items .talk-button:hover::before,
-.talk-button-float:hover::before{
-  height: 100%;
-}
-
-.talk-button:hover,
 .talk-button-float:hover{
-  border-color: var(--brand-shade);
+  border-color: var(--brand-shade)
 }
 
 .mobile-button{
