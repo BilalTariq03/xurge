@@ -1,3 +1,6 @@
+import { prepareHeroText } from "./utils/text-utils.js";
+import { animateHeroText } from "./animations/heroText.js";
+
 let assetsToLoad = [];
 let loadedAssets = 0;
 let isReady = false;
@@ -6,9 +9,10 @@ let loadingScreen, overlay, overlayLogo, navLogo, mainContent, heroText;
 let hasPlayedIntro;
 
 function initializeElements() {
-    console.log('Initializing elements...');
+    // console.log('Initializing elements...');
     
     // Get all DOM element references
+    prepareHeroText();
     loadingScreen = document.getElementById('loading-screen');
     overlay = document.getElementById('logo-overlay');
     overlayLogo = document.getElementById('overlay-logo');
@@ -92,6 +96,7 @@ function proceedAfterLoading() {
 }
 
 function skipIntroAndShowContent() {
+  // console.log('skipping')
   if (navLogo) {
     navLogo.style.visibility = 'visible';
   }
@@ -104,17 +109,21 @@ function skipIntroAndShowContent() {
   document.documentElement.style.overflow = '';
   
   if (mainContent) {
+    // console.log('here')
     gsap.to(mainContent, {
       opacity: 1,
       visibility: 'visible',
       duration: 0.1,
       onComplete: function() {
         // Call your existing functions
-        // animateHeroText();
+        animateHeroText();
         document.querySelector('.right-items .talk-button').style.opacity = "1";
+        // console.log(document.querySelector('.hero-span'))
         document.querySelectorAll('.hero-span').forEach(span=>
           span.style.transform ="translateY(0)"
         );
+        
+
         // startPageAnimation();
       }
     });
@@ -123,6 +132,7 @@ function skipIntroAndShowContent() {
 
 function startIntroAnimation() {    
   // Prevent scrolling during intro
+  // console.log('running animation')
   document.body.classList.add('intro-running');
   document.documentElement.style.overflow = 'hidden';
   
@@ -147,6 +157,8 @@ function startIntroAnimation() {
 function runIntroAnimation() {    
   // Safety check for required elements
   if (!navLogo || !overlayLogo) {
+      console.log(navLogo)
+      console.log(overlayLogo)
       skipIntroAndShowContent();
       return;
   }
@@ -233,17 +245,8 @@ function runIntroAnimation() {
   });
 }
 
-function animateHeroText() {
-    gsap.to('.hero-span', {
-      opacity: 1,
-      y: 0,
-      duration: 0.5,
-      ease: "power3.out",
-      stagger: 0.005
-    });
-}
-
-function startPageAnimation() {    
+function startPageAnimation() {
+  // console.log('running')    
   gsap.from('.left-items .item', {
     y: '100%',
     opacity: 0,
@@ -273,15 +276,13 @@ function initializeLoadingSystem() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeLoadingSystem);
+} else {
+  document.addEventListener("DOMContentLoaded", () => {
     initializeLoadingSystem();
 });
-
-if (document.readyState === 'loading') {
-  console.log('DOM still loading, waiting for DOMContentLoaded...');
-} else {
-  console.log('DOM already loaded, starting loading system immediately...');
-  initializeLoadingSystem();
 }
+
 
 

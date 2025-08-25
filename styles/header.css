@@ -99,6 +99,9 @@ body.intro-running .nav-bar{
   gap: 80px;
 
 }
+.left-items .logo-container{
+  display: inline-block;
+}
 
 .left-items .logo{
   height: 40px;

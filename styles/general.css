@@ -60,7 +60,7 @@ body{
   padding-inline: 5vw;
 }
 
-.cursor-dot{
+.cursor-ball{
   position: fixed;
   top: 0;
   left: 0;
@@ -79,35 +79,35 @@ body{
   will-change: transform, opacity;
 }
 
-.cursor-dot i, 
-.cursor-dot p{
+.cursor-ball i, 
+.cursor-ball p{
   display: none;
   font-size: 16px;
 }
 
 
-.cursor-dot.video-hover,
-.cursor-dot.work-hover,
-.cursor-dot.drag-hover{
+.cursor-ball.video-hover,
+.cursor-ball.work-hover,
+.cursor-ball.drag-hover{
   width: 100px;
   height: 100px;
 }
 
-.cursor-dot.video-hover .video-icon{
+.cursor-ball.video-hover .video-icon{
   display: block;
 }
 
-.cursor-dot.drag-hover p{
+.cursor-ball.drag-hover p{
   display: block;
 }
 
-.cursor-dot.work-hover .arrow-icon{
+.cursor-ball.work-hover .arrow-icon{
   display: block;
   transform: rotate(45deg)
 }
 
 @media(max-width:990px){
-  .cursor-dot{
+  .cursor-ball{
     display: none;
   }
 }
