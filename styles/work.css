@@ -8,13 +8,15 @@
 }
 
 .item-container{
-  height: 500px;
-  width: 660px;
+  width: 100%;
+  aspect-ratio: 4/3;
 }
 
 .work-link{
+  display: block;
   text-decoration: none;
   color: var(--neutral-black);
+  height: 100%;
 }
 
 .image-container{
@@ -22,11 +24,19 @@
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
 }
 
 .image-container img{
   height: 100%;
+  width: 100%;
+  object-fit: cover;
   transition: 0.6s ease;
+  display: block;
+}
+
+.work-link:hover .image-container img {
+  transform: scale(1.05);
 }
 
 .item-heading{
@@ -52,7 +62,7 @@
 }
 
 .title{
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 700;
   max-width: 500px;
   line-height: 1.1;
@@ -77,4 +87,59 @@
   align-items: center;
   justify-content: center;
   font-size: 1.8rem;
+}
+
+.title-char{
+  opacity: 0.1;
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 990px){
+  .heading-container{
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 760px){
+  .works-grid{
+    grid-template-columns: 1fr;
+    grid-column-gap: 0;
+  }
+
+  .item-container{
+    width: 100%;
+    aspect-ratio: 1/1;
+  }
+
+  .item-container img{
+    object-fit: cover;
+  }
+
+  .item-heading {
+    font-size: 20px;
+  }
+  
+  .work-item-category p {
+    font-size: 16px;
+  }
+
+  .title{
+    font-size: 2rem;
+    max-width: 10ch;
+  }
+
+  .description{
+    font-size: 1rem;
+    max-width: 90%;
+  }
+  
+  .clients-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 600px){
+  .client-logo{
+    font-size: 1.2rem
+  }
 }

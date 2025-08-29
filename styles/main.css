@@ -1127,7 +1127,6 @@ footer{
   display: flex;
   margin: 0 2rem;
   background-color: var(--brand-shade);
-  padding: 0.75rem;
   border-radius: 25px;
   text-decoration: none;
   justify-content: center;
@@ -1138,6 +1137,8 @@ footer{
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 1rem;
+
 }
 
 
@@ -1252,6 +1253,10 @@ footer{
 
   .button-wrap .booking-button{
     color: var(--neutral-black);
+  }
+
+  .logo-link .logo{
+    width: 8rem;
   }
 }
 

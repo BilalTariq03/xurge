@@ -4,22 +4,25 @@ export class WorksAnimation extends AnimationBase{
   init(){
     this.setupWorksHeroText();
     this.setupHorizontalScroll();
+    this.smoothItemScroll();
   }
 
   setupWorksHeroText(){
-    const trigger = gsap.to(".works-hero-text", {
-      opacity: 1,
-      y: 0,
-      duration: 1.5,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".works-hero-text",
-        start: "top 70%",
-        toggleActions: "play none none none"
-      }
-    });
+    if(document.querySelector(".works-hero-text")){
+      const trigger = gsap.to(".works-hero-text", {
+        opacity: 1,
+        y: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".works-hero-text",
+          start: "top 70%",
+          toggleActions: "play none none none"
+        }
+      });
 
-    this.registerTrigger(trigger.scrollTrigger)
+      this.registerTrigger(trigger.scrollTrigger)
+    }    
   }
   
   setupHorizontalScroll(){
@@ -68,7 +71,33 @@ export class WorksAnimation extends AnimationBase{
         tl.kill();
       };
     });
-  }  
+  }
+
+  smoothItemScroll(){
+    const workItems = document.querySelectorAll('.item-container');
+
+    if(workItems.length>0){
+      workItems.forEach((item, index)=>{
+        const animation = gsap.fromTo(item,{
+          opacity: 0,
+          y: 50
+        },
+          {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: item,
+            start: "top bottom-=100",
+            toggleActions: "play none none none",
+            // markers: true
+          }
+        });
+        this.registerTrigger(animation.scrollTrigger);
+      })
+    }
+  }
 }
 
   
