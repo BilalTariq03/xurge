@@ -53,6 +53,13 @@ class AnimationManager{
       footerAnim.init();
       this.animations.set('footer', footerAnim);
     }
+
+    if(document.querySelector('.list-item')){
+      const {awardsAnimation} = await import ('./animations/awardsAnimation.js')
+      const awardsAnim = new awardsAnimation();
+      awardsAnim.init();
+      this.animations.set('awards', awardsAnim)
+    }
   }
 
 

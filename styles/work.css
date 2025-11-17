@@ -94,6 +94,85 @@
   transition: opacity 0.3s ease;
 }
 
+.awards-container{
+  margin-top: 12rem;
+  padding-top: 5rem;
+  border-top: 1px solid var(--neutral-silver);
+}
+
+.top-layer{
+  display: grid;
+  grid-template-columns: 1.8fr 3fr 0.5fr;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--neutral-silver);
+}
+
+.top-layer .heading{
+  font-size: 17px;
+}
+
+.list-item{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--neutral-silver);
+  display: grid;
+  grid-template-columns: 1.8fr 3fr 0.5fr;
+  transition: 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: visible;
+}
+
+.link-arrow{
+  transform: rotate(45deg);
+  font-size: 19px;
+  opacity: 0;
+  transition: all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.inst-item{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateX(-20px)
+}
+
+.award-image{
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+}
+
+.award-image img{
+  height: 23rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  transition: transform 0.4s ease;
+}
+
+.list-item:hover{
+  background-color: var(--neutral-ivory);
+}
+
+.list-item:hover .inst-item{
+  transform: translateX(10px);
+}
+
+.list-item:hover .link-arrow{
+  opacity: 1;
+}
+
+.list-item:hover .award-image{
+  opacity: 1;
+}
+
+
 @media (max-width: 990px){
   .heading-container{
     flex-direction: column;

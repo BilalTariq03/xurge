@@ -297,6 +297,7 @@ class ComponentLoader{
 
   initializeNavbarEvents() {
     const hamburger = document.querySelector('.menu-button')
+    const transitionEl = document.getElementById("page-transition");
 
     hamburger.addEventListener('click',()=>{
       const navMenu = document.getElementById('nav-menu')
@@ -307,13 +308,20 @@ class ComponentLoader{
     })
 
 
-    document.querySelectorAll('.menu-items .item').forEach((item) => {
-      item.addEventListener('click', function(){
-        document.querySelectorAll('.menu-items .item').forEach(
-          (it)=> it.classList.remove('active')
-        );
+    document.querySelectorAll('.nav-bar a').forEach((item) => {
+      item.addEventListener('click', function(e){
+        const target = this.getAttribute('href');
 
-        this.classList.add('active')
+        // If it's a normal link
+        if(target && target !== "#"){
+          e.preventDefault();
+
+          transitionEl.classList.add("active");
+
+          setTimeout(() => {
+            window.location.href = target;
+          }, 600); // match CSS transition duration
+        }
       });
     });
 
