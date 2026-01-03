@@ -59,7 +59,7 @@ class ComponentLoader{
             </a></li>
 
             <li>
-              <button class="talk-button mobile-button">
+              <button class="mobile-only mobile-button">
                 Lets Talk <i class="fa-solid fa-arrow-up button-logo"></i>
               </button>
             </li>
@@ -68,7 +68,7 @@ class ComponentLoader{
       </div>
       
       <div class="right-items">
-        <i class="fa-solid fa-bars menu-button"></i>
+        <i class="fa-solid fa-bars menu-button mobile-only"></i>
         <div class="button-holder">
           <a class="talk-button btn-main">
             <div class="button-content">

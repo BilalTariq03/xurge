@@ -113,6 +113,10 @@ body.intro-running .nav-bar{
   display: none;
 }
 
+.menu-button{
+  display: none !important;
+}
+
 .menu-items{
   list-style: none;
   display: flex;
@@ -261,9 +265,11 @@ body.intro-running .nav-bar{
   background-position: 0 0;
 }
 
+.talk-button:hover,
 .talk-button-float:hover{
-  border-color: var(--brand-shade)
+  border-color: var(--brand-shade);
 }
+
 
 .mobile-button{
   background-color: var(--brand-shade);
@@ -271,10 +277,7 @@ body.intro-running .nav-bar{
   display: none;
 }
 
-.menu-button{
-  display: none !important;
-  
-}
+
 
 @media(max-width:990px){
   .menu-items{
