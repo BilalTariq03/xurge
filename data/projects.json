@@ -1,0 +1,235 @@
+{
+  "works": [
+    {
+      "slug": "controlled-credit-corporation",
+      "title": "Controlled Credit Corporation",
+      "shortDescription": "A financial corporation providing grounded collection services to healthcare industry professionals for over 50 years.",
+
+      "content": [
+        {
+          "type": "image-full",
+          "src": "project1/hero.avif"
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "text": "CCC strive to produce the best collection results while protecting the integrity of their clients and the privacy and dignity of their customers.",
+          "style": ["large-text"],
+          "align": "left"
+        },
+        {
+          "type": "overview",
+          "data": {
+            "industry": "Healthcare",
+            "location": "Lorem Ipsum",
+            "companySize": "Lorem Ipsum",
+            "services": ["Debt Collection", "Revenue Recovery", "Healthcare Billing"]
+          }
+        },
+        {
+          "type": "vid-full",
+          "src": "project1/vid1.mp4"
+        },
+        {
+          "type": "text",
+          "heading": "Challenge",
+          "text": "Controlled Credit Corporation required a digital presence that would establish trust and reliability in the financial sector. The challenge was to design a user-friendly interface that communicated complex financial services in a clear, accessible manner while maintaining a professional and authoritative brand image.",
+          "align": "right",
+          "style": ["top-margin"]
+        },
+        {
+          "type": "text",
+          "heading": "Solution",
+          "text": "We crafted a comprehensive design solution that included both a website and branding for Controlled Credit Corporation...",
+          "align": "right",
+          "style": ["bottom-margin"]
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project1/img2.avif", "project1/img2.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img3.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project1/img4.avif", "project1/img5.avif"]
+        },
+        {
+          "type": "typography",
+          "font": {
+            "image": "project1/font.svg",
+            "foundry": "Piotr Lapa",
+            "style": "Sans Serif",
+            "weights": ["Regular", "Medium", "Bold"]
+          },
+          "colors": {
+            "primary":[
+              {
+                "name": "Emerald",
+                "hex": "#0F766E",
+                "rgb": "15 /,118 /,110",
+                "cmyk": "87% /0% 7% /54%"
+              },
+              {
+                "name": "Charcoal",
+                "hex": "#1F2933",
+                "rgb": "31 / 41 /51",
+                "cmyk": "39% 20% 0% 80%"
+              }
+            ],
+            "secondary":[
+              {
+                "name": "Teal",
+                "hex": "#00E6A0",
+                "rgb": "0 / 230 / 160",
+                "cmyk": "100% / 0% / 30% / 10%"
+              },
+              {
+                "name": "Cyan",
+                "hex": "#D6FFF3",
+                "rgb": "214 / 255 / 243",
+                "cmyk": "16% / 0% / 5% / 0%"
+              },
+              {
+                "name": "White",
+                "hex": "#FFFFFF",
+                "rgb": "255 / 255 / 255",
+                "cmyk": "0% / 0% / 0% / 0%"
+              },
+              {
+                "name": "Silver",
+                "hex": "#DEDEDE",
+                "rgb": "222 / 222 / 222",
+                "cmyk": "0% / 0% / 0% / 13%"
+              }
+            ]
+          }
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "text": "For the corporate website, we aimed to preserve our minimalist design approach while integrating a custom-made 3D animation of a DNA helix...",
+          "style": ["top-margin", "bottom-margin", "large-text"],
+          "align": "left"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img6.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img7.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img8.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img9.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img10.avif"
+        },
+        {
+          "type": "text",
+          "heading": "Brand Identity",
+          "text": "We focused on designing a visual identity that combines modern typography, a refined color palette, and a distinctive symbol for CCC's company logo. Our overall aim was to convey reliability and authority among their clients and providers. Another key objective was maintaining consistency across all touchpoints, ensuring a strong and cohesive presence both online and offline that instills confidence and reflects the company's extensive knowledge as a market leader for the past 50 years.",
+          "class": "brand-identity",
+          "style":["top-margin", "bottom-margin"]
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img11.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img12.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project1/img13.avif", "project1/img14.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img15.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img15.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img16.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project1/img17.avif", "project1/img18.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img19.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img20.avif"
+        },
+        {
+          "type": "recognitions",
+          "items": [
+            "Featured on Behance",
+            "Best Website Designs on DesignRush",
+            "Featured on Abduzeedo"
+          ]
+        }
+      ]
+    },
+
+    {
+      "slug": "industrial-investment",
+      "title": "Industrial Investment",
+      "shortDescription": "Lorem ipsum dolor sit amet.",
+
+      "content": [
+        {
+          "type": "image-full",
+          "src": "industrial/hero.avif"
+        },
+        {
+          "type": "text",
+          "heading": "What They Do",
+          "text": "Lorem ipsum dolor sit amet."
+        },
+        {
+          "type": "overview",
+          "data": {
+            "industry": "Industrial Investment",
+            "location": "Lorem Ipsum",
+            "companySize": "Lorem Ipsum",
+            "services": ["Investment Strategy", "Asset Management"]
+          }
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["industrial/1.avif", "industrial/2.avif"]
+        },
+        {
+          "type": "typography",
+          "font": {
+            "name": "APK Protocol",
+            "foundry": "Unknown",
+            "style": "Sans Serif",
+            "weights": ["Regular", "Bold"]
+          },
+          "colors": [
+            { "name": "Lima", "hex": "#A4C639" },
+            { "name": "Bark", "hex": "#4A2C2A" }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  {
+    Work1 Title - Text (Controlled Credit Corporation)
+    Short description - text ( A financial corporation providing grounded collection services to healthcare industry professionals for over 50 years.)
+    image - full grid
+    what they do - text (CCC strive to produce the best collection results while protecting the integrity of their clients and the privacy and dignity of their customers.)
+    overview table {
+      industry : healthcare - text
+      location: lorem ipsum - text
+      company size: random - text
+      services: list - text
+    }
+    image/gif - full grid
+    challenge: (Controlled Credit Corporation required a digital presence that would establish trust and reliability in the financial sector. The challenge was to design a user-friendly interface that communicated complex financial services in a clear, accessible manner while maintaining a professional and authoritative brand image.) - text
+    Solution: (We crafted a comprehensive design solution that included both a website and branding for Controlled Credit Corporation. The website balances professionalism with user-centric features, utilizing a clean layout and intuitive navigation to simplify complex financial information. The branding reinforces the corporation’s credibility with a cohesive and authoritative visual identity, ensuring a consistent and trustworthy image across all platforms.) - text
+    image - half grid
+    image half grid
+    image - full grid
+    image - half grid
+    image half grid
+    Typeface table{
+      name: Gilmer - text
+      Foundry
+      Style
+      Weights
+      Color Pallete: Emerald Charcoal, Teal, Cyan, White, Silver (HEX, RGB,CMYK mentioned of each color)- list
+    }
+    aim: (For the corporate website, we aimed to preserve our minimalist design approach while integrating a custom-made 3D animation of a DNA helix. This dynamic visual symbolizes the convergence of healthcare, technology, and finance sectors). - text
+    image - full grid
+    image - full grid
+    image - full grid
+    image - full grid
+    image - full grid
+    Brand Identity: (We focused on designing a visual identity that combines modern typography, a refined color palette, and a distinctive symbol for CCC's company logo. Our overall aim was to convey reliability and authority among their clients and providers. Another key objective was maintaining consistency across all touchpoints, ensuring a strong and cohesive presence both online and offline that instills confidence and reflects the company's extensive knowledge as a market leader for the past 50 years.) - text
+    image - full grid
+    image - full grid
+    image - half grid
+    image - half grid
+    image - full grid
+    image - full grid
+    image - full grid
+    image - half grid
+    image - half grid
+    image - full grid
+    image - full grid
+    Recognitions: (Featured on Behance, Best Website Designs on DesignRush, Featured on Abduzeedo) - list
+    More works - list
+  }
+
+
+  {
+    Work2 Title - Text (lorem)
+    Short description - text ( lorem ipsum.)
+    image - full grid
+    what they do - text (lorem ipsum.)
+    overview table {
+      industry : industrial investment - text
+      location: lorem ipsum - text
+      company size: random - text
+      services: list - text
+    }
+    image/gif - full grid
+    challenge: (lorem ipsum.) - text
+    Solution: (lorem ipsum. ) - text
+    image - full grid
+    image - half grid
+    image half grid
+
+    Typeface table{
+      name: APK Protocol - text
+      Foundry
+      Style
+      Weights
+      Color Pallete: Lima, Bark, Ivory, Cotton Candy (HEX, RGB,CMYK mentioned of each color)- list
+    }
+    aim: (Lorem ipsum). - text
+    image - full grid
+    image - full grid
+    image - full grid
+    image - half grid
+    image - half grid
+    image - full grid
+    image - full grid
+    image - half grid
+    image - half grid
+    Brand Identity: (Lorem Ipsum.) - text
+    image - full grid
+    image - full grid
+    image - full grid
+    image - half grid
+    image - half grid
+    image - full grid
+    image - full grid
+    image - full grid
+    image - full grid
+    image - full grid
+    More works - list
+  }
+}
