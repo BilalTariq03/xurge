@@ -80,6 +80,37 @@
 }
 
 /* ================================
+   VIDEO BLOCK
+================================ */
+
+.video-block {
+  margin: 4rem 0;
+  overflow: hidden;
+}
+
+.video-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  
+  /* Animation initial state - scale from left */
+  transform-origin: left center;
+  transform: scaleX(0);
+  opacity: 0;
+}
+
+/* Optional: Add a subtle shadow when video is playing */
+.project-video.playing {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ================================
    TEXT BLOCK
 ================================ */
 
@@ -128,6 +159,12 @@
 .brand-identity h3{
   font-size: 3rem;
   max-width: 10ch;
+}
+
+
+.work-char{
+  opacity: 0.1;
+  transition: opacity 0.3s ease;
 }
 /* ================================
    OVERVIEW TABLE
@@ -232,6 +269,11 @@
   flex-direction: column;
   justify-content: space-between;
   border-top-left-radius: 8px;
+  
+  /* Animation initial state - scale from left */
+  transform-origin: left center;
+  opacity: 0;
+  transform: scaleX(0);
 }
 
 .color-primary:last-child{
@@ -259,6 +301,11 @@
   padding: 1.5rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  
+  /* Animation initial state - scale from top */
+  transform-origin: center top;
+  opacity: 0;
+  transform: scaleY(0);
 }
 
 .color-group-secondary ul{
@@ -272,7 +319,6 @@
   gap: 1rem;
   font-size: 14px;
 }
-
 
 
 /* ================================

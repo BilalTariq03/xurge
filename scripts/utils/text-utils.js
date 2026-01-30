@@ -1,15 +1,33 @@
-export function AddSpans(className,spanName){
-  const currentText = document.querySelector(`.${className}`);
-  const text = currentText.textContent;
+export function AddSpans(selector, spanName) {
+  return new Promise((resolve) => {
+    const element = typeof selector === 'string' 
+      ? document.querySelector(selector) 
+      : selector;
+    
+    if (!element) {
+      console.warn(`Element not found: ${selector}`);
+      resolve();
+      return;
+    }
 
-  currentText.innerHTML = '';
+    const text = element.textContent;
+    element.innerHTML = '';
 
-  [...text].forEach((char) =>{
-    const span = document.createElement('span');
-    span.textContent = char;
-    span.classList.add(spanName);
-    currentText.appendChild(span);
-  })
+    [...text].forEach((char) => {
+      const span = document.createElement('span');
+      span.textContent = char;
+      span.classList.add(spanName);
+      span.style.opacity = '0.1'; // Set initial state
+      element.appendChild(span);
+    });
+
+    // Ensure DOM is updated and layout is calculated
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        resolve();
+      });
+    });
+  });
 }
 
 
@@ -88,21 +106,35 @@ export function prepareHeroText() {
 }
 
 
-export function charReveal(className, triggerName, markers = false, pinOffset = 0) {
-  gsap.to(`.${className}`, {
+export function charReveal(className, triggerSelector, markers = false, pinOffset = 0) {
+  const triggerElement = document.querySelector(`.${triggerSelector}`);
+  
+  if (!triggerElement) {
+    console.warn(`Trigger element not found: .${triggerSelector}`);
+    return null;
+  }
+
+  const chars = triggerElement.querySelectorAll(`.${className}`);
+  
+  if (chars.length === 0) {
+    console.warn(`No characters found: .${className} in .${triggerSelector}`);
+    return null;
+  }
+
+  return gsap.to(chars, {
     opacity: 1,
     stagger: {
-      each: 0.3,
+      each: 0.03,
       from: 'start',
-      ease: 'power1.inout'
+      ease: 'power1.inOut'
     },
     scrollTrigger: {
-      trigger: `.${triggerName}`,
+      trigger: triggerElement,
       start: `top+=${pinOffset} 80%`,
       end: `bottom+=${pinOffset} 65%`,
       scrub: true,
       markers,
-      invalidateOnRefresh: true // Mark for cleanup on resize
+      invalidateOnRefresh: true
     }
   });
 }

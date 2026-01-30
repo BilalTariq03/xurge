@@ -40,9 +40,9 @@ class AnimationManager {
 
   async initializeAnimations() {
      // Add text spans to various elements
-    AddSpans('about', 'about-char');
-    AddSpans('booking-heading', 'heading-char');
-    AddSpans('review-heading', 'review-char');
+    AddSpans('.about', 'about-char');
+    AddSpans('.booking-heading', 'heading-char');
+    AddSpans('.review-heading', 'review-char');
 
     if(window.innerWidth > 990) {
       charReveal('about-char', 'about', false, 2000);

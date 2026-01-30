@@ -2,6 +2,8 @@
 import { initSmoothScrolling } from './core/scroll.js';
 import { initCustomCursor } from './core/cursor.js';
 import { AddSpans, charReveal, prepareHeroText } from './utils/text-utils.js';
+import { animateHeroText } from "./animations/heroText.js";
+
 
 //Data helpers
 async function loadProjectsData() {
@@ -23,8 +25,12 @@ function renderWorkHero(work) {
   if (!hero) return;
 
   hero.innerHTML = `
-    <h1 class="work-title">${work.title}</h1>
-    <p class="work-description">${work.shortDescription}</p>
+    <h1 class="work-title hero-text">
+      <span class="line">${work.title}</span>
+    </h1>
+    <p class="work-description hero-text">
+      <span class="line">${work.shortDescription}</span>
+    </p>
   `;
 }
 
@@ -37,7 +43,8 @@ function buildTextBlockClasses(block) {
   const styleMap = {
     'large-text': 'large-text',
     'top-margin': 'top-margin',
-    'bottom-margin': 'bottom-margin'
+    'bottom-margin': 'bottom-margin',
+    'reveal-up': 'reveal-up'
   };
 
   if (Array.isArray(block.style)) {
@@ -60,19 +67,28 @@ function renderBlocks(blocks) {
   blocks.forEach(block => {
     switch (block.type) {
 
-      case 'vid-full':
+      case 'video':
         container.innerHTML += `
-          <section class="block vid-full">
-            <video autoplay loop class="vid">
-              <source src="../images/${block.src}" type="video/mp4">
-            </video>
+          <section class="block video-block">
+            <div class="video-container">
+              <video 
+                class="project-video" 
+                muted 
+                loop 
+                playsinline
+                ${block.poster ? `poster="../images/${block.poster}"` : ''}
+              >
+                <source src="../images/${block.src}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </section>`;
         break;
 
       case 'image-full':
         container.innerHTML += `
           <section class="block image-full">
-            <img src="../images/${block.src}" alt="project image">
+            <img src="../images/${block.src}" alt="project image" class="img-anim">
           </section>`;
         break;
 
@@ -80,14 +96,14 @@ function renderBlocks(blocks) {
         container.innerHTML += `
           <section class="block image-grid-2">
             ${block.images.map(img =>
-              `<img src="./images/${img}" alt="project image">`
+              `<img src="./images/${img}" alt="project image" class="img-anim">`
             ).join('')}
           </section>`;
         break;
 
       case 'text':
         container.innerHTML += `
-          <section class="${buildTextBlockClasses(block)}  ${block.class || ''}">
+          <section class="${buildTextBlockClasses(block)} ${block.class || ''}">
             <h3 class="text-heading">
             ${block.heading}
             </h3>
@@ -168,8 +184,8 @@ function renderBlocks(blocks) {
                   return `
                     <div class="color-group color-group-${groupName}">
                       <div class="color-palette">
-                        ${colors.map(c => `
-                          <div class="color color-${groupName}" style="background:${c.hex}">
+                        ${colors.map((c, index) => `
+                          <div class="color color-${groupName} color-anim" data-delay="${index * 0.2}" style="background:${c.hex}">
                             <h3>${c.name}</h3>
                             <ul>
                               <li>
@@ -200,7 +216,7 @@ function renderBlocks(blocks) {
 
       case 'recognitions':
         container.innerHTML += `
-          <section class="block recognitions">
+          <section class="block recognitions reveal-up">
             <h3>Recognitions</h3>
             <ul>
               ${block.items.map(i => `<li>${i}</li>`).join('')}
@@ -261,10 +277,61 @@ class AnimationManager {
   }
 
   async initializeAnimations() {
-    
+    prepareHeroText();
+    gsap.set('.hero-span', { opacity: 0, y: 20 });
 
-   
-  }
+    if(document.querySelector('.hero-span')) {
+      animateHeroText();
+    }
+
+    // Wait for spans to be added and DOM to update
+    await AddSpans('.work .text-body', 'work-char');
+    await AddSpans('.aim .text-body', 'aim-char');
+    await AddSpans('.brand-identity .text-heading', 'bi-char');
+    
+    // Small additional delay to ensure ScrollTrigger calculations are accurate
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    // Now animate
+    charReveal('work-char', 'work', false, 0);
+    charReveal('aim-char','aim');
+    charReveal('bi-char','brand-identity');
+
+    if(document.querySelector('.img-anim')){
+      const {ImageAnimation} = await import('./animations/ImageAnimation.js');
+      const ImageAnim = new ImageAnimation();
+      ImageAnim.init();
+      this.animations.set('works', ImageAnim);
+    }
+
+    // Add video animation
+    if(document.querySelector('.project-video')){
+      const {VideoAnimation} = await import('./animations/VideoAnimation.js');
+      const VideoAnim = new VideoAnimation();
+      VideoAnim.init();
+      this.animations.set('videos', VideoAnim);
+    }
+
+    // Color palette animation
+    if (document.querySelector('.color-palette-wrapper')) {
+      const { ColorPaletteAnimation } = await import('./animations/ColorPaletteAnimation.js');
+      const colorAnim = new ColorPaletteAnimation();
+      colorAnim.init();
+      this.animations.set('color-palette', colorAnim);
+    }
+
+    const { GlobalReveals } = await import('./animations/globalReveals.js');
+    const globalReveals = new GlobalReveals();
+    globalReveals.init();
+    this.animations.set('global-reveals', globalReveals);
+
+    if (document.querySelector('.scroll-track')) {
+      const { FooterAnimation } = await import('./animations/footer.js');
+      const footerAnim = new FooterAnimation(this.cursor);
+      footerAnim.init();
+      this.animations.set('footer', footerAnim);
+    }
+}
 
 
   handleBreakpointChange(oldBreakpoint, newBreakpoint) {

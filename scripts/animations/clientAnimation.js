@@ -1,9 +1,10 @@
 import { AnimationBase } from "../core/base.js";
 import { charReveal, AddSpans } from "../utils/text-utils.js";
+import { revealUpOnScroll } from "../utils/reveal-text.js";
 
 export class clientAnimation extends AnimationBase{
   init(){
-    AddSpans('clients-container .title', 'title-char');
+    AddSpans('.clients-container .title', 'title-char');
     charReveal('title-char', 'clients-container .title');
 
     this.textFloatAnimation();
@@ -11,21 +12,11 @@ export class clientAnimation extends AnimationBase{
   }
 
   textFloatAnimation(){
-    const trigger = gsap.fromTo('.clients-container .description', {
-      y: 50,
-      opacity: 0
-    },{
-      y:0,
-      opacity: 1,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger:{
-        trigger: '.clients-container .description',
-        start: "top 80%",
-      }
-    });
+    const el = document.querySelector('.clients-container .description');
+    if (!el) return;
 
-    this.registerTrigger(trigger.scrollTrigger);
+    const anim = revealUpOnScroll(el);
+    this.registerTrigger(anim.scrollTrigger);
   }
 
   logoFloatAnimation(){
