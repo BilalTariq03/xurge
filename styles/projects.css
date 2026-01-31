@@ -13,7 +13,7 @@
 ================================ */
 
 #work-hero {
-  margin-bottom: 4rem;
+  margin-bottom: 10rem;
 }
 
 .work-title {
@@ -94,7 +94,8 @@
   overflow: hidden;
 }
 
-.project-video {
+.project-video
+ {
   width: 100%;
   height: auto;
   display: block;
@@ -109,6 +110,8 @@
 .project-video.playing {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
+
+
 
 /* ================================
    TEXT BLOCK

@@ -193,47 +193,1272 @@
     },
 
     {
-      "slug": "industrial-investment",
-      "title": "Industrial Investment",
-      "shortDescription": "Lorem ipsum dolor sit amet.",
+      "slug": "Hogrene",
+      "title": "Hogrēne",
+      "shortDescription": "Website and full brand identity design for green tech industrial investment company based in Sweden.",
 
       "content": [
         {
           "type": "image-full",
-          "src": "industrial/hero.avif"
+          "src": "project2/hero.avif"
         },
         {
           "type": "text",
-          "heading": "What They Do",
-          "text": "Lorem ipsum dolor sit amet."
+          "heading": "",
+          "text": "Hogrēne invest in various areas, including solar & wind parks, vertical farming, hydropower, renewable energy, and vehicle batteries.",
+          "style": ["large-text"],
+          "align": "left",
+          "class":"work"
         },
         {
           "type": "overview",
           "data": {
             "industry": "Industrial Investment",
-            "location": "Lorem Ipsum",
-            "companySize": "Lorem Ipsum",
-            "services": ["Investment Strategy", "Asset Management"]
+            "location": "Sweden",
+            "companySize": "1-10 Employees",
+            "services": ["Strategy, Logo Design, Digital Brand Assets, Stationary & Print Design, Website Deign"]
           }
         },
         {
+          "type": "video",
+          "src": "project2/vid1.mp4"
+        },
+        {
+          "type": "text",
+          "heading": "Challenge",
+          "text": "Hogrēne needed a brand identity and website that would clearly convey its commitment to sustainability while standing out in a competitive market. The challenge was to create a design that was not only visually appealing but also aligned with the brand's eco-friendly values and resonated with environmentally-conscious consumers.",
+          "align": "right",
+          "style": ["top-margin"],
+          "class": "reveal-up"
+        },
+        {
+          "type": "text",
+          "heading": "Solution",
+          "text": "We developed a cohesive branding and website design that integrated natural elements, clean typography, and a minimalist aesthetic. The result was a strong, modern identity that effectively communicates Hogrēne's sustainability mission, making it both memorable and engaging for the target audience.",
+          "align": "right",
+          "style": ["bottom-margin"],
+          "class": "reveal-up"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img1.avif"
+        },
+        {
           "type": "image-grid-2",
-          "images": ["industrial/1.avif", "industrial/2.avif"]
+          "images": ["project2/img2.avif", "project2/img3.avif"]
         },
         {
           "type": "typography",
           "font": {
-            "name": "APK Protocol",
-            "foundry": "Unknown",
-            "style": "Sans Serif",
-            "weights": ["Regular", "Bold"]
+            "image": "project2/font.svg",
+            "foundry": "Autograph",
+            "style": "Grotesk",
+            "weights": ["Regular", "Semi-Bold", "Bold"]
           },
-          "colors": [
-            { "name": "Lima", "hex": "#A4C639" },
-            { "name": "Bark", "hex": "#4A2C2A" }
+          "colors": {
+            "primary":[
+              {
+                "name": "Lima",
+                "hex": "#D1FA94",
+                "rgb": "209 / 250 / 148",
+                "cmyk": "16% / 0% / 41% / 2%"
+              },
+              {
+                "name": "Bark",
+                "hex": "#2F2A26",
+                "rgb": "47 / 32 / 38",
+                "cmyk": "0% / 11% / 19% / 82%"
+              }
+            ],
+            "secondary":[
+              {
+                "name": "Ivory",
+                "hex": "#F6F2EC",
+                "rgb": "246 / 242 / 236",
+                "cmyk": "0% / 2% / 4% / 4%"
+              },
+              {
+                "name": "Cotton Candy",
+                "hex": "#FBC7F9",
+                "rgb": "209 / 250 / 148",
+                "cmyk": "0% / 21% / 1% / 2%"
+              }
+            ]
+          }
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "text": "The Hogrēne website design highlights the brand's commitment to sustainability with a clean, minimalist layout and eco-conscious color palette. The intuitive navigation and strategic content placement ensure a seamless and engaging user experience.",
+          "style": ["top-margin", "bottom-margin", "large-text"],
+          "class":"aim",
+          "align": "left"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img4.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img5.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project2/img6.avif", "project2/img7.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img8.avif"
+        },
+        {
+          "type": "video-content",
+          "src":"project2/vid2.mp4"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project2/img9.avif", "project2/img10.avif"]
+        },
+
+        {
+          "type": "text",
+          "heading": " Hogrēne Brand Identity",
+          "text": "The Hogrēne branding emphasizes a modern, eco-friendly identity through a cohesive use of natural colors, clean typography, and organic shapes. Each element reflects the brand's core values of sustainability and environmental responsibility, creating a strong and memorable visual identity",
+          "class": "brand-identity",
+          "style":["top-margin", "bottom-margin", "reveal-up"]
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img11.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img12.webp"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img13.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project2/img14.avif", "project2/img15.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img16.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img17.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img18.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img19.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img20.avif"
+        }
+      ]
+    },
+
+    {
+      "slug": "big-energy-group",
+      "title": "Big Energy Group",
+      "shortDescription": "A financial corporation providing grounded collection services to healthcare industry professionals for over 50 years.",
+
+      "content": [
+        {
+          "type": "image-full",
+          "src": "project1/hero.avif"
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "text": "CCC strive to produce the best collection results while protecting the integrity of their clients and the privacy and dignity of their customers.",
+          "style": ["large-text"],
+          "align": "left",
+          "class":"work"
+        },
+        {
+          "type": "overview",
+          "data": {
+            "industry": "Healthcare",
+            "location": "Lorem Ipsum",
+            "companySize": "Lorem Ipsum",
+            "services": ["Debt Collection", "Revenue Recovery", "Healthcare Billing"]
+          }
+        },
+        {
+          "type": "video",
+          "src": "project1/vid1.mp4"
+        },
+        {
+          "type": "text",
+          "heading": "Challenge",
+          "text": "Controlled Credit Corporation required a digital presence that would establish trust and reliability in the financial sector. The challenge was to design a user-friendly interface that communicated complex financial services in a clear, accessible manner while maintaining a professional and authoritative brand image.",
+          "align": "right",
+          "style": ["top-margin"],
+          "class": "reveal-up"
+        },
+        {
+          "type": "text",
+          "heading": "Solution",
+          "text": "We crafted a comprehensive design solution that included both a website and branding for Controlled Credit Corporation...",
+          "align": "right",
+          "style": ["bottom-margin"],
+          "class": "reveal-up"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project1/img2.avif", "project1/img2.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img3.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project1/img4.avif", "project1/img5.avif"]
+        },
+        {
+          "type": "typography",
+          "font": {
+            "image": "project1/font.svg",
+            "foundry": "Piotr Lapa",
+            "style": "Sans Serif",
+            "weights": ["Regular", "Medium", "Bold"]
+          },
+          "colors": {
+            "primary":[
+              {
+                "name": "Emerald",
+                "hex": "#0F766E",
+                "rgb": "15 /,118 /,110",
+                "cmyk": "87% /0% 7% /54%"
+              },
+              {
+                "name": "Charcoal",
+                "hex": "#1F2933",
+                "rgb": "31 / 41 /51",
+                "cmyk": "39% 20% 0% 80%"
+              }
+            ],
+            "secondary":[
+              {
+                "name": "Teal",
+                "hex": "#00E6A0",
+                "rgb": "0 / 230 / 160",
+                "cmyk": "100% / 0% / 30% / 10%"
+              },
+              {
+                "name": "Cyan",
+                "hex": "#D6FFF3",
+                "rgb": "214 / 255 / 243",
+                "cmyk": "16% / 0% / 5% / 0%"
+              },
+              {
+                "name": "White",
+                "hex": "#FFFFFF",
+                "rgb": "255 / 255 / 255",
+                "cmyk": "0% / 0% / 0% / 0%"
+              },
+              {
+                "name": "Silver",
+                "hex": "#DEDEDE",
+                "rgb": "222 / 222 / 222",
+                "cmyk": "0% / 0% / 0% / 13%"
+              }
+            ]
+          }
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "text": "For the corporate website, we aimed to preserve our minimalist design approach while integrating a custom-made 3D animation of a DNA helix...",
+          "style": ["top-margin", "bottom-margin", "large-text"],
+          "class":"aim",
+          "align": "left"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img6.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img7.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img8.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img9.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img10.avif"
+        },
+        {
+          "type": "text",
+          "heading": "Brand Identity",
+          "text": "We focused on designing a visual identity that combines modern typography, a refined color palette, and a distinctive symbol for CCC's company logo. Our overall aim was to convey reliability and authority among their clients and providers. Another key objective was maintaining consistency across all touchpoints, ensuring a strong and cohesive presence both online and offline that instills confidence and reflects the company's extensive knowledge as a market leader for the past 50 years.",
+          "class": "brand-identity",
+          "style":["top-margin", "bottom-margin", "reveal-up"]
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img11.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img12.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project1/img13.avif", "project1/img14.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img15.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img15.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img16.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project1/img17.avif", "project1/img18.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img19.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img20.avif"
+        },
+        {
+          "type": "recognitions",
+          "items": [
+            "Featured on Behance",
+            "Best Website Designs on DesignRush",
+            "Featured on Abduzeedo"
           ]
         }
       ]
+    },
+
+    {
+      "slug": "spike",
+      "title": "Spike",
+      "shortDescription": "Website and full brand identity design for green tech industrial investment company based in Sweden.",
+
+      "content": [
+        {
+          "type": "image-full",
+          "src": "project2/hero.avif"
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "text": "Hogrēne invest in various areas, including solar & wind parks, vertical farming, hydropower, renewable energy, and vehicle batteries.",
+          "style": ["large-text"],
+          "align": "left",
+          "class":"work"
+        },
+        {
+          "type": "overview",
+          "data": {
+            "industry": "Industrial Investment",
+            "location": "Sweden",
+            "companySize": "1-10 Employees",
+            "services": ["Strategy, Logo Design, Digital Brand Assets, Stationary & Print Design, Website Deign"]
+          }
+        },
+        {
+          "type": "video",
+          "src": "project2/vid1.mp4"
+        },
+        {
+          "type": "text",
+          "heading": "Challenge",
+          "text": "Hogrēne needed a brand identity and website that would clearly convey its commitment to sustainability while standing out in a competitive market. The challenge was to create a design that was not only visually appealing but also aligned with the brand's eco-friendly values and resonated with environmentally-conscious consumers.",
+          "align": "right",
+          "style": ["top-margin"],
+          "class": "reveal-up"
+        },
+        {
+          "type": "text",
+          "heading": "Solution",
+          "text": "We developed a cohesive branding and website design that integrated natural elements, clean typography, and a minimalist aesthetic. The result was a strong, modern identity that effectively communicates Hogrēne's sustainability mission, making it both memorable and engaging for the target audience.",
+          "align": "right",
+          "style": ["bottom-margin"],
+          "class": "reveal-up"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img1.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project2/img2.avif", "project2/img3.avif"]
+        },
+        {
+          "type": "typography",
+          "font": {
+            "image": "project2/font.svg",
+            "foundry": "Autograph",
+            "style": "Grotesk",
+            "weights": ["Regular", "Semi-Bold", "Bold"]
+          },
+          "colors": {
+            "primary":[
+              {
+                "name": "Lima",
+                "hex": "#D1FA94",
+                "rgb": "209 / 250 / 148",
+                "cmyk": "16% / 0% / 41% / 2%"
+              },
+              {
+                "name": "Bark",
+                "hex": "#2F2A26",
+                "rgb": "47 / 32 / 38",
+                "cmyk": "0% / 11% / 19% / 82%"
+              }
+            ],
+            "secondary":[
+              {
+                "name": "Ivory",
+                "hex": "#F6F2EC",
+                "rgb": "246 / 242 / 236",
+                "cmyk": "0% / 2% / 4% / 4%"
+              },
+              {
+                "name": "Cotton Candy",
+                "hex": "#FBC7F9",
+                "rgb": "209 / 250 / 148",
+                "cmyk": "0% / 21% / 1% / 2%"
+              }
+            ]
+          }
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "text": "The Hogrēne website design highlights the brand's commitment to sustainability with a clean, minimalist layout and eco-conscious color palette. The intuitive navigation and strategic content placement ensure a seamless and engaging user experience.",
+          "style": ["top-margin", "bottom-margin", "large-text"],
+          "class":"aim",
+          "align": "left"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img4.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img5.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project2/img6.avif", "project2/img7.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img8.avif"
+        },
+        {
+          "type": "video-content",
+          "src":"project2/vid2.mp4"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project2/img9.avif", "project2/img10.avif"]
+        },
+
+        {
+          "type": "text",
+          "heading": " Hogrēne Brand Identity",
+          "text": "The Hogrēne branding emphasizes a modern, eco-friendly identity through a cohesive use of natural colors, clean typography, and organic shapes. Each element reflects the brand's core values of sustainability and environmental responsibility, creating a strong and memorable visual identity",
+          "class": "brand-identity",
+          "style":["top-margin", "bottom-margin", "reveal-up"]
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img11.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img12.webp"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img13.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project2/img14.avif", "project2/img15.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img16.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img17.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img18.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img19.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img20.avif"
+        }
+      ]
+    },
+
+   {
+      "slug": "wandergates",
+      "title": "wandergates",
+      "shortDescription": "A financial corporation providing grounded collection services to healthcare industry professionals for over 50 years.",
+
+      "content": [
+        {
+          "type": "image-full",
+          "src": "project1/hero.avif"
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "text": "CCC strive to produce the best collection results while protecting the integrity of their clients and the privacy and dignity of their customers.",
+          "style": ["large-text"],
+          "align": "left",
+          "class":"work"
+        },
+        {
+          "type": "overview",
+          "data": {
+            "industry": "Healthcare",
+            "location": "Lorem Ipsum",
+            "companySize": "Lorem Ipsum",
+            "services": ["Debt Collection", "Revenue Recovery", "Healthcare Billing"]
+          }
+        },
+        {
+          "type": "video",
+          "src": "project1/vid1.mp4"
+        },
+        {
+          "type": "text",
+          "heading": "Challenge",
+          "text": "Controlled Credit Corporation required a digital presence that would establish trust and reliability in the financial sector. The challenge was to design a user-friendly interface that communicated complex financial services in a clear, accessible manner while maintaining a professional and authoritative brand image.",
+          "align": "right",
+          "style": ["top-margin"],
+          "class": "reveal-up"
+        },
+        {
+          "type": "text",
+          "heading": "Solution",
+          "text": "We crafted a comprehensive design solution that included both a website and branding for Controlled Credit Corporation...",
+          "align": "right",
+          "style": ["bottom-margin"],
+          "class": "reveal-up"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project1/img2.avif", "project1/img2.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img3.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project1/img4.avif", "project1/img5.avif"]
+        },
+        {
+          "type": "typography",
+          "font": {
+            "image": "project1/font.svg",
+            "foundry": "Piotr Lapa",
+            "style": "Sans Serif",
+            "weights": ["Regular", "Medium", "Bold"]
+          },
+          "colors": {
+            "primary":[
+              {
+                "name": "Emerald",
+                "hex": "#0F766E",
+                "rgb": "15 /,118 /,110",
+                "cmyk": "87% /0% 7% /54%"
+              },
+              {
+                "name": "Charcoal",
+                "hex": "#1F2933",
+                "rgb": "31 / 41 /51",
+                "cmyk": "39% 20% 0% 80%"
+              }
+            ],
+            "secondary":[
+              {
+                "name": "Teal",
+                "hex": "#00E6A0",
+                "rgb": "0 / 230 / 160",
+                "cmyk": "100% / 0% / 30% / 10%"
+              },
+              {
+                "name": "Cyan",
+                "hex": "#D6FFF3",
+                "rgb": "214 / 255 / 243",
+                "cmyk": "16% / 0% / 5% / 0%"
+              },
+              {
+                "name": "White",
+                "hex": "#FFFFFF",
+                "rgb": "255 / 255 / 255",
+                "cmyk": "0% / 0% / 0% / 0%"
+              },
+              {
+                "name": "Silver",
+                "hex": "#DEDEDE",
+                "rgb": "222 / 222 / 222",
+                "cmyk": "0% / 0% / 0% / 13%"
+              }
+            ]
+          }
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "text": "For the corporate website, we aimed to preserve our minimalist design approach while integrating a custom-made 3D animation of a DNA helix...",
+          "style": ["top-margin", "bottom-margin", "large-text"],
+          "class":"aim",
+          "align": "left"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img6.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img7.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img8.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img9.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img10.avif"
+        },
+        {
+          "type": "text",
+          "heading": "Brand Identity",
+          "text": "We focused on designing a visual identity that combines modern typography, a refined color palette, and a distinctive symbol for CCC's company logo. Our overall aim was to convey reliability and authority among their clients and providers. Another key objective was maintaining consistency across all touchpoints, ensuring a strong and cohesive presence both online and offline that instills confidence and reflects the company's extensive knowledge as a market leader for the past 50 years.",
+          "class": "brand-identity",
+          "style":["top-margin", "bottom-margin", "reveal-up"]
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img11.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img12.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project1/img13.avif", "project1/img14.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img15.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img15.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img16.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project1/img17.avif", "project1/img18.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img19.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img20.avif"
+        },
+        {
+          "type": "recognitions",
+          "items": [
+            "Featured on Behance",
+            "Best Website Designs on DesignRush",
+            "Featured on Abduzeedo"
+          ]
+        }
+      ]
+    },
+
+    {
+      "slug": "acs",
+      "title": "ACS- construction Services",
+      "shortDescription": "Website and full brand identity design for green tech industrial investment company based in Sweden.",
+
+      "content": [
+        {
+          "type": "image-full",
+          "src": "project2/hero.avif"
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "text": "Hogrēne invest in various areas, including solar & wind parks, vertical farming, hydropower, renewable energy, and vehicle batteries.",
+          "style": ["large-text"],
+          "align": "left",
+          "class":"work"
+        },
+        {
+          "type": "overview",
+          "data": {
+            "industry": "Industrial Investment",
+            "location": "Sweden",
+            "companySize": "1-10 Employees",
+            "services": ["Strategy, Logo Design, Digital Brand Assets, Stationary & Print Design, Website Deign"]
+          }
+        },
+        {
+          "type": "video",
+          "src": "project2/vid1.mp4"
+        },
+        {
+          "type": "text",
+          "heading": "Challenge",
+          "text": "Hogrēne needed a brand identity and website that would clearly convey its commitment to sustainability while standing out in a competitive market. The challenge was to create a design that was not only visually appealing but also aligned with the brand's eco-friendly values and resonated with environmentally-conscious consumers.",
+          "align": "right",
+          "style": ["top-margin"],
+          "class": "reveal-up"
+        },
+        {
+          "type": "text",
+          "heading": "Solution",
+          "text": "We developed a cohesive branding and website design that integrated natural elements, clean typography, and a minimalist aesthetic. The result was a strong, modern identity that effectively communicates Hogrēne's sustainability mission, making it both memorable and engaging for the target audience.",
+          "align": "right",
+          "style": ["bottom-margin"],
+          "class": "reveal-up"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img1.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project2/img2.avif", "project2/img3.avif"]
+        },
+        {
+          "type": "typography",
+          "font": {
+            "image": "project2/font.svg",
+            "foundry": "Autograph",
+            "style": "Grotesk",
+            "weights": ["Regular", "Semi-Bold", "Bold"]
+          },
+          "colors": {
+            "primary":[
+              {
+                "name": "Lima",
+                "hex": "#D1FA94",
+                "rgb": "209 / 250 / 148",
+                "cmyk": "16% / 0% / 41% / 2%"
+              },
+              {
+                "name": "Bark",
+                "hex": "#2F2A26",
+                "rgb": "47 / 32 / 38",
+                "cmyk": "0% / 11% / 19% / 82%"
+              }
+            ],
+            "secondary":[
+              {
+                "name": "Ivory",
+                "hex": "#F6F2EC",
+                "rgb": "246 / 242 / 236",
+                "cmyk": "0% / 2% / 4% / 4%"
+              },
+              {
+                "name": "Cotton Candy",
+                "hex": "#FBC7F9",
+                "rgb": "209 / 250 / 148",
+                "cmyk": "0% / 21% / 1% / 2%"
+              }
+            ]
+          }
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "text": "The Hogrēne website design highlights the brand's commitment to sustainability with a clean, minimalist layout and eco-conscious color palette. The intuitive navigation and strategic content placement ensure a seamless and engaging user experience.",
+          "style": ["top-margin", "bottom-margin", "large-text"],
+          "class":"aim",
+          "align": "left"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img4.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img5.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project2/img6.avif", "project2/img7.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img8.avif"
+        },
+        {
+          "type": "video-content",
+          "src":"project2/vid2.mp4"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project2/img9.avif", "project2/img10.avif"]
+        },
+
+        {
+          "type": "text",
+          "heading": " Hogrēne Brand Identity",
+          "text": "The Hogrēne branding emphasizes a modern, eco-friendly identity through a cohesive use of natural colors, clean typography, and organic shapes. Each element reflects the brand's core values of sustainability and environmental responsibility, creating a strong and memorable visual identity",
+          "class": "brand-identity",
+          "style":["top-margin", "bottom-margin", "reveal-up"]
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img11.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img12.webp"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img13.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project2/img14.avif", "project2/img15.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img16.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img17.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img18.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img19.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img20.avif"
+        }
+      ]
+    },
+
+    {
+      "slug": "nc-education",
+      "title": "NC - Education",
+      "shortDescription": "A financial corporation providing grounded collection services to healthcare industry professionals for over 50 years.",
+
+      "content": [
+        {
+          "type": "image-full",
+          "src": "project1/hero.avif"
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "text": "CCC strive to produce the best collection results while protecting the integrity of their clients and the privacy and dignity of their customers.",
+          "style": ["large-text"],
+          "align": "left",
+          "class":"work"
+        },
+        {
+          "type": "overview",
+          "data": {
+            "industry": "Healthcare",
+            "location": "Lorem Ipsum",
+            "companySize": "Lorem Ipsum",
+            "services": ["Debt Collection", "Revenue Recovery", "Healthcare Billing"]
+          }
+        },
+        {
+          "type": "video",
+          "src": "project1/vid1.mp4"
+        },
+        {
+          "type": "text",
+          "heading": "Challenge",
+          "text": "Controlled Credit Corporation required a digital presence that would establish trust and reliability in the financial sector. The challenge was to design a user-friendly interface that communicated complex financial services in a clear, accessible manner while maintaining a professional and authoritative brand image.",
+          "align": "right",
+          "style": ["top-margin"],
+          "class": "reveal-up"
+        },
+        {
+          "type": "text",
+          "heading": "Solution",
+          "text": "We crafted a comprehensive design solution that included both a website and branding for Controlled Credit Corporation...",
+          "align": "right",
+          "style": ["bottom-margin"],
+          "class": "reveal-up"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project1/img2.avif", "project1/img2.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img3.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project1/img4.avif", "project1/img5.avif"]
+        },
+        {
+          "type": "typography",
+          "font": {
+            "image": "project1/font.svg",
+            "foundry": "Piotr Lapa",
+            "style": "Sans Serif",
+            "weights": ["Regular", "Medium", "Bold"]
+          },
+          "colors": {
+            "primary":[
+              {
+                "name": "Emerald",
+                "hex": "#0F766E",
+                "rgb": "15 /,118 /,110",
+                "cmyk": "87% /0% 7% /54%"
+              },
+              {
+                "name": "Charcoal",
+                "hex": "#1F2933",
+                "rgb": "31 / 41 /51",
+                "cmyk": "39% 20% 0% 80%"
+              }
+            ],
+            "secondary":[
+              {
+                "name": "Teal",
+                "hex": "#00E6A0",
+                "rgb": "0 / 230 / 160",
+                "cmyk": "100% / 0% / 30% / 10%"
+              },
+              {
+                "name": "Cyan",
+                "hex": "#D6FFF3",
+                "rgb": "214 / 255 / 243",
+                "cmyk": "16% / 0% / 5% / 0%"
+              },
+              {
+                "name": "White",
+                "hex": "#FFFFFF",
+                "rgb": "255 / 255 / 255",
+                "cmyk": "0% / 0% / 0% / 0%"
+              },
+              {
+                "name": "Silver",
+                "hex": "#DEDEDE",
+                "rgb": "222 / 222 / 222",
+                "cmyk": "0% / 0% / 0% / 13%"
+              }
+            ]
+          }
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "text": "For the corporate website, we aimed to preserve our minimalist design approach while integrating a custom-made 3D animation of a DNA helix...",
+          "style": ["top-margin", "bottom-margin", "large-text"],
+          "class":"aim",
+          "align": "left"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img6.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img7.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img8.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img9.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img10.avif"
+        },
+        {
+          "type": "text",
+          "heading": "Brand Identity",
+          "text": "We focused on designing a visual identity that combines modern typography, a refined color palette, and a distinctive symbol for CCC's company logo. Our overall aim was to convey reliability and authority among their clients and providers. Another key objective was maintaining consistency across all touchpoints, ensuring a strong and cohesive presence both online and offline that instills confidence and reflects the company's extensive knowledge as a market leader for the past 50 years.",
+          "class": "brand-identity",
+          "style":["top-margin", "bottom-margin", "reveal-up"]
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img11.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img12.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project1/img13.avif", "project1/img14.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img15.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img15.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img16.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project1/img17.avif", "project1/img18.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img19.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project1/img20.avif"
+        },
+        {
+          "type": "recognitions",
+          "items": [
+            "Featured on Behance",
+            "Best Website Designs on DesignRush",
+            "Featured on Abduzeedo"
+          ]
+        }
+      ]
+    },
+
+    {
+      "slug": "zahlmann",
+      "title": "Zahlmann",
+      "shortDescription": "Website and full brand identity design for green tech industrial investment company based in Sweden.",
+
+      "content": [
+        {
+          "type": "image-full",
+          "src": "project2/hero.avif"
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "text": "Hogrēne invest in various areas, including solar & wind parks, vertical farming, hydropower, renewable energy, and vehicle batteries.",
+          "style": ["large-text"],
+          "align": "left",
+          "class":"work"
+        },
+        {
+          "type": "overview",
+          "data": {
+            "industry": "Industrial Investment",
+            "location": "Sweden",
+            "companySize": "1-10 Employees",
+            "services": ["Strategy, Logo Design, Digital Brand Assets, Stationary & Print Design, Website Deign"]
+          }
+        },
+        {
+          "type": "video",
+          "src": "project2/vid1.mp4"
+        },
+        {
+          "type": "text",
+          "heading": "Challenge",
+          "text": "Hogrēne needed a brand identity and website that would clearly convey its commitment to sustainability while standing out in a competitive market. The challenge was to create a design that was not only visually appealing but also aligned with the brand's eco-friendly values and resonated with environmentally-conscious consumers.",
+          "align": "right",
+          "style": ["top-margin"],
+          "class": "reveal-up"
+        },
+        {
+          "type": "text",
+          "heading": "Solution",
+          "text": "We developed a cohesive branding and website design that integrated natural elements, clean typography, and a minimalist aesthetic. The result was a strong, modern identity that effectively communicates Hogrēne's sustainability mission, making it both memorable and engaging for the target audience.",
+          "align": "right",
+          "style": ["bottom-margin"],
+          "class": "reveal-up"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img1.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project2/img2.avif", "project2/img3.avif"]
+        },
+        {
+          "type": "typography",
+          "font": {
+            "image": "project2/font.svg",
+            "foundry": "Autograph",
+            "style": "Grotesk",
+            "weights": ["Regular", "Semi-Bold", "Bold"]
+          },
+          "colors": {
+            "primary":[
+              {
+                "name": "Lima",
+                "hex": "#D1FA94",
+                "rgb": "209 / 250 / 148",
+                "cmyk": "16% / 0% / 41% / 2%"
+              },
+              {
+                "name": "Bark",
+                "hex": "#2F2A26",
+                "rgb": "47 / 32 / 38",
+                "cmyk": "0% / 11% / 19% / 82%"
+              }
+            ],
+            "secondary":[
+              {
+                "name": "Ivory",
+                "hex": "#F6F2EC",
+                "rgb": "246 / 242 / 236",
+                "cmyk": "0% / 2% / 4% / 4%"
+              },
+              {
+                "name": "Cotton Candy",
+                "hex": "#FBC7F9",
+                "rgb": "209 / 250 / 148",
+                "cmyk": "0% / 21% / 1% / 2%"
+              }
+            ]
+          }
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "text": "The Hogrēne website design highlights the brand's commitment to sustainability with a clean, minimalist layout and eco-conscious color palette. The intuitive navigation and strategic content placement ensure a seamless and engaging user experience.",
+          "style": ["top-margin", "bottom-margin", "large-text"],
+          "class":"aim",
+          "align": "left"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img4.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img5.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project2/img6.avif", "project2/img7.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img8.avif"
+        },
+        {
+          "type": "video-content",
+          "src":"project2/vid2.mp4"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project2/img9.avif", "project2/img10.avif"]
+        },
+
+        {
+          "type": "text",
+          "heading": " Hogrēne Brand Identity",
+          "text": "The Hogrēne branding emphasizes a modern, eco-friendly identity through a cohesive use of natural colors, clean typography, and organic shapes. Each element reflects the brand's core values of sustainability and environmental responsibility, creating a strong and memorable visual identity",
+          "class": "brand-identity",
+          "style":["top-margin", "bottom-margin", "reveal-up"]
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img11.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img12.webp"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img13.avif"
+        },
+        {
+          "type": "image-grid-2",
+          "images": ["project2/img14.avif", "project2/img15.avif"]
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img16.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img17.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img18.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img19.avif"
+        },
+        {
+          "type": "image-full",
+          "src": "project2/img20.avif"
+        }
+      ]
     }
+    
   ]
 }

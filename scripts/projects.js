@@ -85,6 +85,24 @@ function renderBlocks(blocks) {
           </section>`;
         break;
 
+        case 'video-content':
+        container.innerHTML += `
+          <section class="block video-section">
+            <div class="video-container">
+              <video 
+                class="project-video" 
+                muted 
+                loop 
+                playsinline
+                ${block.poster ? `poster="../images/${block.poster}"` : ''}
+              >
+                <source src="../images/${block.src}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </section>`;
+        break;
+
       case 'image-full':
         container.innerHTML += `
           <section class="block image-full">
@@ -224,6 +242,35 @@ function renderBlocks(blocks) {
           </section>`;
         break;
     }
+  });
+}
+
+function waitForImages() {
+  return new Promise((resolve) => {
+    const images = document.querySelectorAll('img');
+    let loadedCount = 0;
+    const totalImages = images.length;
+    
+    if (totalImages === 0) {
+      resolve();
+      return;
+    }
+    
+    images.forEach((img) => {
+      if (img.complete) {
+        loadedCount++;
+        if (loadedCount === totalImages) resolve();
+      } else {
+        img.addEventListener('load', () => {
+          loadedCount++;
+          if (loadedCount === totalImages) resolve();
+        });
+        img.addEventListener('error', () => {
+          loadedCount++;
+          if (loadedCount === totalImages) resolve();
+        });
+      }
+    });
   });
 }
 
@@ -403,7 +450,8 @@ animationManager.saveScrollPosition();
 
 window.addEventListener('load', async () => {
   await initWorkPage();        // 1️⃣ build DOM from JSON
-  animationManager.init();     // 2️⃣ init animations
+  await waitForImages();
+  await animationManager.init();     // 2️⃣ init animations
   ScrollTrigger.refresh();     // 3️⃣ fix scroll positions
 });
 
