@@ -2,6 +2,7 @@ import { initSmoothScrolling } from "./core/scroll.js";
 import { initCustomCursor } from "./core/cursor.js";
 import { AddSpans, charReveal, prepareHeroText } from "./utils/text-utils.js";
 import { animateHeroText } from "./animations/heroText.js";
+import { initPageTransitions } from "./core/pageTransition.js";
 
 
 class AnimationManager{
@@ -19,6 +20,8 @@ class AnimationManager{
 
     await this.initializeAnimations();
 
+    initPageTransitions();
+
     this.setupHoverEffects();
 
     setTimeout(() => {
@@ -28,10 +31,13 @@ class AnimationManager{
 
   async initializeAnimations(){
     prepareHeroText();
-    if(document.querySelector('.hero-span'))
-    {
-      animateHeroText();
-    }
+
+    await new Promise(resolve => requestAnimationFrame(resolve));
+
+    // if(document.querySelector('.hero-span'))
+    // {
+    //   animateHeroText();
+    // }
 
     if(document.querySelector('.works-grid')){
       const {WorksAnimation} = await import('./animations/Works.js');
@@ -47,6 +53,13 @@ class AnimationManager{
       this.animations.set('clients', clientAnim);
     }
 
+    if(document.querySelector('.list-item')){
+      const {awardsAnimation} = await import ('./animations/awardsAnimation.js')
+      const awardsAnim = new awardsAnimation();
+      awardsAnim.init();
+      this.animations.set('awards', awardsAnim)
+    }
+
     if (document.querySelector('.scroll-track')) {
       const { FooterAnimation } = await import('./animations/footer.js');
       const footerAnim = new FooterAnimation(this.cursor);
@@ -54,12 +67,17 @@ class AnimationManager{
       this.animations.set('footer', footerAnim);
     }
 
-    if(document.querySelector('.list-item')){
-      const {awardsAnimation} = await import ('./animations/awardsAnimation.js')
-      const awardsAnim = new awardsAnimation();
-      awardsAnim.init();
-      this.animations.set('awards', awardsAnim)
-    }
+    this.showPage();
+  }
+
+  showPage() {
+    document.body.classList.add('loaded');
+    
+    setTimeout(() => {
+      if(document.querySelector('.hero-span')) {
+        animateHeroText();
+      }
+    }, 500);
   }
 
 

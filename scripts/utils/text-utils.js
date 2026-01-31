@@ -103,6 +103,11 @@ export function prepareHeroText() {
 
     line.dataset.processed = '1';
   });
+
+  gsap.set('.hero-span', {
+    opacity: 0,
+    y: 20
+  });
 }
 
 

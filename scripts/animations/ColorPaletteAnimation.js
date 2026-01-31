@@ -27,7 +27,7 @@ export class ColorPaletteAnimation extends AnimationBase {
               trigger: '.color-group-primary',
               start: 'top 75%',
               toggleActions: 'play none none none',
-              markers: true,
+              markers: false,
               invalidateOnRefresh: true
             }
           }

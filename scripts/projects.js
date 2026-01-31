@@ -325,11 +325,11 @@ class AnimationManager {
 
   async initializeAnimations() {
     prepareHeroText();
-    gsap.set('.hero-span', { opacity: 0, y: 20 });
+    // gsap.set('.hero-span', { opacity: 0, y: 20 });
 
-    if(document.querySelector('.hero-span')) {
-      animateHeroText();
-    }
+    // if(document.querySelector('.hero-span')) {
+    //   animateHeroText();
+    // }
 
     // Wait for spans to be added and DOM to update
     await AddSpans('.work .text-body', 'work-char');
@@ -378,8 +378,19 @@ class AnimationManager {
       footerAnim.init();
       this.animations.set('footer', footerAnim);
     }
+
+    this.showPage();
 }
 
+  showPage() {
+    document.body.classList.add('loaded');
+    
+    setTimeout(() => {
+      if(document.querySelector('.hero-span')) {
+        animateHeroText();
+      }
+    }, 500);
+  }
 
   handleBreakpointChange(oldBreakpoint, newBreakpoint) {
     // Reinitialize responsive animations

@@ -1,9 +1,23 @@
 import { AnimationBase } from "../core/base.js";
+import { charReveal, AddSpans } from "../utils/text-utils.js";
+import { revealUpOnScroll } from "../utils/reveal-text.js";
 
 export class awardsAnimation extends AnimationBase{
 
   init(){
+    AddSpans('.awards-container .title', 'title-char');
+    charReveal('title-char', 'awards-container .title');
+
+    this.textFloatAnimation();
     this.setupAwardsAnimation();
+  }
+
+  textFloatAnimation(){
+    const el = document.querySelector('.awards-container .description');
+    if (!el) return;
+
+    const anim = revealUpOnScroll(el);
+    this.registerTrigger(anim.scrollTrigger);
   }
 
   setupAwardsAnimation(){

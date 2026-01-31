@@ -1,3 +1,42 @@
+body {
+  opacity: 0;
+  background: #ffffff;
+}
+
+body.loaded {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.hero-text-container{
+  padding-top: 260px;
+  padding-bottom: 70px;
+}
+
+.hero-word{
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.stone-color{
+  color: var(--neutral-stone);
+}
+
+.hero-text{
+  font-size: clamp(3.5rem,5.23vw,10rem);
+}
+
+.hero-span{
+  display: inline-block;
+  transform: translateY(90px);
+}
+
+
+.hero-text .line{
+  overflow: hidden;
+}
+
+
 .works-grid{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -43,8 +82,20 @@
   font-size: 22px;
 }
 
-.work-item-category p{
+.work-item-category{
+  display: flex;
+  align-items: center;
   font-size: 18px;
+  font-weight: normal;
+  padding-top: 5px;
+  gap: 10px;
+}
+
+.work-item-category .dot{
+  height: 3px;
+  width: 3px;
+  background: black;
+  border-radius: 5px;
 }
 
 .clients-container{

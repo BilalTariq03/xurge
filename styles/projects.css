@@ -1,3 +1,13 @@
+body {
+  opacity: 0;
+  background: #ffffff;
+}
+
+body.loaded {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
 /* ================================
    WORK PAGE BASE
 ================================ */
@@ -13,7 +23,7 @@
 ================================ */
 
 #work-hero {
-  margin-bottom: 10rem;
+  margin-bottom: 6rem;
 }
 
 .work-title {
@@ -29,6 +39,21 @@
   font-size: 1.1rem;
   line-height: 1.7;
 }
+
+.hero-span{
+  display: inline-block;
+  transform: translateY(90px);
+}
+
+.hero-word{
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.hero-text .line{
+  overflow: hidden;
+}
+
 
 /* ================================
    CONTENT BLOCKS
