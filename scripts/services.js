@@ -4,6 +4,8 @@ import { prepareHeroText } from "./utils/text-utils.js";
 import { animateHeroText } from "./animations/heroText.js";
 import { initPageTransitions } from "./core/pageTransition.js";
 import { initCarousel } from "./animations/carousel.js";
+import {processDescription, processCircle} from './animations/processAnimation.js';
+
 
 
 class AnimationManager{
@@ -23,7 +25,8 @@ class AnimationManager{
 
     initPageTransitions();
 
-    this.setupHoverEffects();
+    processDescription();
+    processCircle();
 
     setTimeout(() => {
       this.restoreScrollPosition();
@@ -94,18 +97,6 @@ class AnimationManager{
     }, 500);
   }
 
-
-  setupHoverEffects() {
-    if (!this.cursor) return;
-
-    // Add hover effects to work items
-    const workItems = document.querySelectorAll('.item-container');
-    if (workItems.length>0) {
-      workItems.forEach((item) =>{
-        this.cursor.addHoverEffect(item, 'work-hover');
-      })   
-    }
-  }
 
   saveScrollPosition() {
     this.savedScrollPosition = window.pageYOffset;
