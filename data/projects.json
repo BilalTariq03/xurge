@@ -8,7 +8,7 @@
       "content": [
         {
           "type": "image-full",
-          "src": "project1/hero.avif"
+          "src": "projects/project1/hero.avif"
         },
         {
           "type": "text",
@@ -29,7 +29,7 @@
         },
         {
           "type": "video",
-          "src": "project1/vid1.mp4"
+          "src": "projects/project1/vid1.mp4"
         },
         {
           "type": "text",
@@ -49,20 +49,20 @@
         },
         {
           "type": "image-grid-2",
-          "images": ["project1/img2.avif", "project1/img2.avif"]
+          "images": ["projects/project1/img2.avif", "projects/project1/img2.avif"]
         },
         {
           "type": "image-full",
-          "src": "project1/img3.avif"
+          "src": "projects/project1/img3.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project1/img4.avif", "project1/img5.avif"]
+          "images": ["projects/project1/img4.avif", "projects/project1/img5.avif"]
         },
         {
           "type": "typography",
           "font": {
-            "image": "project1/font.svg",
+            "image": "projects/project1/font.svg",
             "foundry": "Piotr Lapa",
             "style": "Sans Serif",
             "weights": ["Regular", "Medium", "Bold"]
@@ -120,23 +120,23 @@
         },
         {
           "type": "image-full",
-          "src": "project1/img6.avif"
+          "src": "projects/project1/img6.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img7.avif"
+          "src": "projects/project1/img7.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img8.avif"
+          "src": "projects/project1/img8.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img9.avif"
+          "src": "projects/project1/img9.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img10.avif"
+          "src": "projects/project1/img10.avif"
         },
         {
           "type": "text",
@@ -147,39 +147,39 @@
         },
         {
           "type": "image-full",
-          "src": "project1/img11.avif"
+          "src": "projects/project1/img11.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img12.avif"
+          "src": "projects/project1/img12.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project1/img13.avif", "project1/img14.avif"]
+          "images": ["projects/project1/img13.avif", "projects/project1/img14.avif"]
         },
         {
           "type": "image-full",
-          "src": "project1/img15.avif"
+          "src": "projects/project1/img15.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img15.avif"
+          "src": "projects/project1/img15.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img16.avif"
+          "src": "projects/project1/img16.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project1/img17.avif", "project1/img18.avif"]
+          "images": ["projects/project1/img17.avif", "projects/project1/img18.avif"]
         },
         {
           "type": "image-full",
-          "src": "project1/img19.avif"
+          "src": "projects/project1/img19.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img20.avif"
+          "src": "projects/project1/img20.avif"
         },
         {
           "type": "recognitions",
@@ -200,7 +200,7 @@
       "content": [
         {
           "type": "image-full",
-          "src": "project2/hero.avif"
+          "src": "projects/project2/hero.avif"
         },
         {
           "type": "text",
@@ -221,7 +221,7 @@
         },
         {
           "type": "video",
-          "src": "project2/vid1.mp4"
+          "src": "projects/project2/vid1.mp4"
         },
         {
           "type": "text",
@@ -241,16 +241,16 @@
         },
         {
           "type": "image-full",
-          "src": "project2/img1.avif"
+          "src": "projects/project2/img1.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project2/img2.avif", "project2/img3.avif"]
+          "images": ["projects/project2/img2.avif", "projects/project2/img3.avif"]
         },
         {
           "type": "typography",
           "font": {
-            "image": "project2/font.svg",
+            "image": "projects/project2/font.svg",
             "foundry": "Autograph",
             "style": "Grotesk",
             "weights": ["Regular", "Semi-Bold", "Bold"]
@@ -296,27 +296,27 @@
         },
         {
           "type": "image-full",
-          "src": "project2/img4.avif"
+          "src": "projects/project2/img4.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img5.avif"
+          "src": "projects/project2/img5.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project2/img6.avif", "project2/img7.avif"]
+          "images": ["projects/project2/img6.avif", "projects/project2/img7.avif"]
         },
         {
           "type": "image-full",
-          "src": "project2/img8.avif"
+          "src": "projects/project2/img8.avif"
         },
         {
           "type": "video-content",
-          "src":"project2/vid2.mp4"
+          "src":"projects/project2/vid2.mp4"
         },
         {
           "type": "image-grid-2",
-          "images": ["project2/img9.avif", "project2/img10.avif"]
+          "images": ["projects/project2/img9.avif", "projects/project2/img10.avif"]
         },
 
         {
@@ -328,39 +328,39 @@
         },
         {
           "type": "image-full",
-          "src": "project2/img11.avif"
+          "src": "projects/project2/img11.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img12.webp"
+          "src": "projects/project2/img12.webp"
         },
         {
           "type": "image-full",
-          "src": "project2/img13.avif"
+          "src": "projects/project2/img13.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project2/img14.avif", "project2/img15.avif"]
+          "images": ["projects/project2/img14.avif", "projects/project2/img15.avif"]
         },
         {
           "type": "image-full",
-          "src": "project2/img16.avif"
+          "src": "projects/project2/img16.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img17.avif"
+          "src": "projects/project2/img17.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img18.avif"
+          "src": "projects/project2/img18.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img19.avif"
+          "src": "projects/project2/img19.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img20.avif"
+          "src": "projects/project2/img20.avif"
         }
       ]
     },
@@ -373,7 +373,7 @@
       "content": [
         {
           "type": "image-full",
-          "src": "project1/hero.avif"
+          "src": "projects/project1/hero.avif"
         },
         {
           "type": "text",
@@ -394,7 +394,7 @@
         },
         {
           "type": "video",
-          "src": "project1/vid1.mp4"
+          "src": "projects/project1/vid1.mp4"
         },
         {
           "type": "text",
@@ -414,20 +414,20 @@
         },
         {
           "type": "image-grid-2",
-          "images": ["project1/img2.avif", "project1/img2.avif"]
+          "images": ["projects/project1/img2.avif", "projects/project1/img2.avif"]
         },
         {
           "type": "image-full",
-          "src": "project1/img3.avif"
+          "src": "projects/project1/img3.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project1/img4.avif", "project1/img5.avif"]
+          "images": ["projects/project1/img4.avif", "projects/project1/img5.avif"]
         },
         {
           "type": "typography",
           "font": {
-            "image": "project1/font.svg",
+            "image": "projects/project1/font.svg",
             "foundry": "Piotr Lapa",
             "style": "Sans Serif",
             "weights": ["Regular", "Medium", "Bold"]
@@ -485,23 +485,23 @@
         },
         {
           "type": "image-full",
-          "src": "project1/img6.avif"
+          "src": "projects/project1/img6.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img7.avif"
+          "src": "projects/project1/img7.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img8.avif"
+          "src": "projects/project1/img8.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img9.avif"
+          "src": "projects/project1/img9.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img10.avif"
+          "src": "projects/project1/img10.avif"
         },
         {
           "type": "text",
@@ -512,39 +512,39 @@
         },
         {
           "type": "image-full",
-          "src": "project1/img11.avif"
+          "src": "projects/project1/img11.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img12.avif"
+          "src": "projects/project1/img12.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project1/img13.avif", "project1/img14.avif"]
+          "images": ["projects/project1/img13.avif", "projects/project1/img14.avif"]
         },
         {
           "type": "image-full",
-          "src": "project1/img15.avif"
+          "src": "projects/project1/img15.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img15.avif"
+          "src": "projects/project1/img15.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img16.avif"
+          "src": "projects/project1/img16.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project1/img17.avif", "project1/img18.avif"]
+          "images": ["projects/project1/img17.avif", "projects/project1/img18.avif"]
         },
         {
           "type": "image-full",
-          "src": "project1/img19.avif"
+          "src": "projects/project1/img19.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img20.avif"
+          "src": "projects/project1/img20.avif"
         },
         {
           "type": "recognitions",
@@ -565,7 +565,7 @@
       "content": [
         {
           "type": "image-full",
-          "src": "project2/hero.avif"
+          "src": "projects/project2/hero.avif"
         },
         {
           "type": "text",
@@ -586,7 +586,7 @@
         },
         {
           "type": "video",
-          "src": "project2/vid1.mp4"
+          "src": "projects/project2/vid1.mp4"
         },
         {
           "type": "text",
@@ -606,16 +606,16 @@
         },
         {
           "type": "image-full",
-          "src": "project2/img1.avif"
+          "src": "projects/project2/img1.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project2/img2.avif", "project2/img3.avif"]
+          "images": ["projects/project2/img2.avif", "projects/project2/img3.avif"]
         },
         {
           "type": "typography",
           "font": {
-            "image": "project2/font.svg",
+            "image": "projects/project2/font.svg",
             "foundry": "Autograph",
             "style": "Grotesk",
             "weights": ["Regular", "Semi-Bold", "Bold"]
@@ -661,27 +661,27 @@
         },
         {
           "type": "image-full",
-          "src": "project2/img4.avif"
+          "src": "projects/project2/img4.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img5.avif"
+          "src": "projects/project2/img5.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project2/img6.avif", "project2/img7.avif"]
+          "images": ["projects/project2/img6.avif", "projects/project2/img7.avif"]
         },
         {
           "type": "image-full",
-          "src": "project2/img8.avif"
+          "src": "projects/project2/img8.avif"
         },
         {
           "type": "video-content",
-          "src":"project2/vid2.mp4"
+          "src":"projects/project2/vid2.mp4"
         },
         {
           "type": "image-grid-2",
-          "images": ["project2/img9.avif", "project2/img10.avif"]
+          "images": ["projects/project2/img9.avif", "projects/project2/img10.avif"]
         },
 
         {
@@ -693,39 +693,39 @@
         },
         {
           "type": "image-full",
-          "src": "project2/img11.avif"
+          "src": "projects/project2/img11.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img12.webp"
+          "src": "projects/project2/img12.webp"
         },
         {
           "type": "image-full",
-          "src": "project2/img13.avif"
+          "src": "projects/project2/img13.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project2/img14.avif", "project2/img15.avif"]
+          "images": ["projects/project2/img14.avif", "projects/project2/img15.avif"]
         },
         {
           "type": "image-full",
-          "src": "project2/img16.avif"
+          "src": "projects/project2/img16.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img17.avif"
+          "src": "projects/project2/img17.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img18.avif"
+          "src": "projects/project2/img18.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img19.avif"
+          "src": "projects/project2/img19.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img20.avif"
+          "src": "projects/project2/img20.avif"
         }
       ]
     },
@@ -738,7 +738,7 @@
       "content": [
         {
           "type": "image-full",
-          "src": "project1/hero.avif"
+          "src": "projects/project1/hero.avif"
         },
         {
           "type": "text",
@@ -759,7 +759,7 @@
         },
         {
           "type": "video",
-          "src": "project1/vid1.mp4"
+          "src": "projects/project1/vid1.mp4"
         },
         {
           "type": "text",
@@ -779,20 +779,20 @@
         },
         {
           "type": "image-grid-2",
-          "images": ["project1/img2.avif", "project1/img2.avif"]
+          "images": ["projects/project1/img2.avif", "projects/project1/img2.avif"]
         },
         {
           "type": "image-full",
-          "src": "project1/img3.avif"
+          "src": "projects/project1/img3.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project1/img4.avif", "project1/img5.avif"]
+          "images": ["projects/project1/img4.avif", "projects/project1/img5.avif"]
         },
         {
           "type": "typography",
           "font": {
-            "image": "project1/font.svg",
+            "image": "projects/project1/font.svg",
             "foundry": "Piotr Lapa",
             "style": "Sans Serif",
             "weights": ["Regular", "Medium", "Bold"]
@@ -850,23 +850,23 @@
         },
         {
           "type": "image-full",
-          "src": "project1/img6.avif"
+          "src": "projects/project1/img6.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img7.avif"
+          "src": "projects/project1/img7.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img8.avif"
+          "src": "projects/project1/img8.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img9.avif"
+          "src": "projects/project1/img9.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img10.avif"
+          "src": "projects/project1/img10.avif"
         },
         {
           "type": "text",
@@ -877,39 +877,39 @@
         },
         {
           "type": "image-full",
-          "src": "project1/img11.avif"
+          "src": "projects/project1/img11.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img12.avif"
+          "src": "projects/project1/img12.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project1/img13.avif", "project1/img14.avif"]
+          "images": ["projects/project1/img13.avif", "projects/project1/img14.avif"]
         },
         {
           "type": "image-full",
-          "src": "project1/img15.avif"
+          "src": "projects/project1/img15.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img15.avif"
+          "src": "projects/project1/img15.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img16.avif"
+          "src": "projects/project1/img16.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project1/img17.avif", "project1/img18.avif"]
+          "images": ["projects/project1/img17.avif", "projects/project1/img18.avif"]
         },
         {
           "type": "image-full",
-          "src": "project1/img19.avif"
+          "src": "projects/project1/img19.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img20.avif"
+          "src": "projects/project1/img20.avif"
         },
         {
           "type": "recognitions",
@@ -930,7 +930,7 @@
       "content": [
         {
           "type": "image-full",
-          "src": "project2/hero.avif"
+          "src": "projects/project2/hero.avif"
         },
         {
           "type": "text",
@@ -951,7 +951,7 @@
         },
         {
           "type": "video",
-          "src": "project2/vid1.mp4"
+          "src": "projects/project2/vid1.mp4"
         },
         {
           "type": "text",
@@ -971,16 +971,16 @@
         },
         {
           "type": "image-full",
-          "src": "project2/img1.avif"
+          "src": "projects/project2/img1.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project2/img2.avif", "project2/img3.avif"]
+          "images": ["projects/project2/img2.avif", "projects/project2/img3.avif"]
         },
         {
           "type": "typography",
           "font": {
-            "image": "project2/font.svg",
+            "image": "projects/project2/font.svg",
             "foundry": "Autograph",
             "style": "Grotesk",
             "weights": ["Regular", "Semi-Bold", "Bold"]
@@ -1026,27 +1026,27 @@
         },
         {
           "type": "image-full",
-          "src": "project2/img4.avif"
+          "src": "projects/project2/img4.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img5.avif"
+          "src": "projects/project2/img5.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project2/img6.avif", "project2/img7.avif"]
+          "images": ["projects/project2/img6.avif", "projects/project2/img7.avif"]
         },
         {
           "type": "image-full",
-          "src": "project2/img8.avif"
+          "src": "projects/project2/img8.avif"
         },
         {
           "type": "video-content",
-          "src":"project2/vid2.mp4"
+          "src":"projects/project2/vid2.mp4"
         },
         {
           "type": "image-grid-2",
-          "images": ["project2/img9.avif", "project2/img10.avif"]
+          "images": ["projects/project2/img9.avif", "projects/project2/img10.avif"]
         },
 
         {
@@ -1058,39 +1058,39 @@
         },
         {
           "type": "image-full",
-          "src": "project2/img11.avif"
+          "src": "projects/project2/img11.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img12.webp"
+          "src": "projects/project2/img12.webp"
         },
         {
           "type": "image-full",
-          "src": "project2/img13.avif"
+          "src": "projects/project2/img13.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project2/img14.avif", "project2/img15.avif"]
+          "images": ["projects/project2/img14.avif", "projects/project2/img15.avif"]
         },
         {
           "type": "image-full",
-          "src": "project2/img16.avif"
+          "src": "projects/project2/img16.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img17.avif"
+          "src": "projects/project2/img17.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img18.avif"
+          "src": "projects/project2/img18.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img19.avif"
+          "src": "projects/project2/img19.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img20.avif"
+          "src": "projects/project2/img20.avif"
         }
       ]
     },
@@ -1103,7 +1103,7 @@
       "content": [
         {
           "type": "image-full",
-          "src": "project1/hero.avif"
+          "src": "projects/project1/hero.avif"
         },
         {
           "type": "text",
@@ -1124,7 +1124,7 @@
         },
         {
           "type": "video",
-          "src": "project1/vid1.mp4"
+          "src": "projects/project1/vid1.mp4"
         },
         {
           "type": "text",
@@ -1144,20 +1144,20 @@
         },
         {
           "type": "image-grid-2",
-          "images": ["project1/img2.avif", "project1/img2.avif"]
+          "images": ["projects/project1/img2.avif", "projects/project1/img2.avif"]
         },
         {
           "type": "image-full",
-          "src": "project1/img3.avif"
+          "src": "projects/project1/img3.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project1/img4.avif", "project1/img5.avif"]
+          "images": ["projects/project1/img4.avif", "projects/project1/img5.avif"]
         },
         {
           "type": "typography",
           "font": {
-            "image": "project1/font.svg",
+            "image": "projects/project1/font.svg",
             "foundry": "Piotr Lapa",
             "style": "Sans Serif",
             "weights": ["Regular", "Medium", "Bold"]
@@ -1215,23 +1215,23 @@
         },
         {
           "type": "image-full",
-          "src": "project1/img6.avif"
+          "src": "projects/project1/img6.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img7.avif"
+          "src": "projects/project1/img7.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img8.avif"
+          "src": "projects/project1/img8.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img9.avif"
+          "src": "projects/project1/img9.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img10.avif"
+          "src": "projects/project1/img10.avif"
         },
         {
           "type": "text",
@@ -1242,39 +1242,39 @@
         },
         {
           "type": "image-full",
-          "src": "project1/img11.avif"
+          "src": "projects/project1/img11.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img12.avif"
+          "src": "projects/project1/img12.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project1/img13.avif", "project1/img14.avif"]
+          "images": ["projects/project1/img13.avif", "projects/project1/img14.avif"]
         },
         {
           "type": "image-full",
-          "src": "project1/img15.avif"
+          "src": "projects/project1/img15.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img15.avif"
+          "src": "projects/project1/img15.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img16.avif"
+          "src": "projects/project1/img16.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project1/img17.avif", "project1/img18.avif"]
+          "images": ["projects/project1/img17.avif", "projects/project1/img18.avif"]
         },
         {
           "type": "image-full",
-          "src": "project1/img19.avif"
+          "src": "projects/project1/img19.avif"
         },
         {
           "type": "image-full",
-          "src": "project1/img20.avif"
+          "src": "projects/project1/img20.avif"
         },
         {
           "type": "recognitions",
@@ -1295,7 +1295,7 @@
       "content": [
         {
           "type": "image-full",
-          "src": "project2/hero.avif"
+          "src": "projects/project2/hero.avif"
         },
         {
           "type": "text",
@@ -1316,7 +1316,7 @@
         },
         {
           "type": "video",
-          "src": "project2/vid1.mp4"
+          "src": "projects/project2/vid1.mp4"
         },
         {
           "type": "text",
@@ -1336,16 +1336,16 @@
         },
         {
           "type": "image-full",
-          "src": "project2/img1.avif"
+          "src": "projects/project2/img1.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project2/img2.avif", "project2/img3.avif"]
+          "images": ["projects/project2/img2.avif", "projects/project2/img3.avif"]
         },
         {
           "type": "typography",
           "font": {
-            "image": "project2/font.svg",
+            "image": "projects/project2/font.svg",
             "foundry": "Autograph",
             "style": "Grotesk",
             "weights": ["Regular", "Semi-Bold", "Bold"]
@@ -1391,27 +1391,27 @@
         },
         {
           "type": "image-full",
-          "src": "project2/img4.avif"
+          "src": "projects/project2/img4.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img5.avif"
+          "src": "projects/project2/img5.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project2/img6.avif", "project2/img7.avif"]
+          "images": ["projects/project2/img6.avif", "projects/project2/img7.avif"]
         },
         {
           "type": "image-full",
-          "src": "project2/img8.avif"
+          "src": "projects/project2/img8.avif"
         },
         {
           "type": "video-content",
-          "src":"project2/vid2.mp4"
+          "src":"projects/project2/vid2.mp4"
         },
         {
           "type": "image-grid-2",
-          "images": ["project2/img9.avif", "project2/img10.avif"]
+          "images": ["projects/project2/img9.avif", "projects/project2/img10.avif"]
         },
 
         {
@@ -1423,39 +1423,39 @@
         },
         {
           "type": "image-full",
-          "src": "project2/img11.avif"
+          "src": "projects/project2/img11.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img12.webp"
+          "src": "projects/project2/img12.webp"
         },
         {
           "type": "image-full",
-          "src": "project2/img13.avif"
+          "src": "projects/project2/img13.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["project2/img14.avif", "project2/img15.avif"]
+          "images": ["projects/project2/img14.avif", "projects/project2/img15.avif"]
         },
         {
           "type": "image-full",
-          "src": "project2/img16.avif"
+          "src": "projects/project2/img16.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img17.avif"
+          "src": "projects/project2/img17.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img18.avif"
+          "src": "projects/project2/img18.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img19.avif"
+          "src": "projects/project2/img19.avif"
         },
         {
           "type": "image-full",
-          "src": "project2/img20.avif"
+          "src": "projects/project2/img20.avif"
         }
       ]
     }

@@ -54,6 +54,8 @@ body{
   --neutral-stone: #8C8C8C;
   --neutral-ivory: #f3f4ee;
   --neutral-silver: #e3e3e3;
+  --neutral-ash-gray: #606060;
+  --neutral-metalic: #303030;
 }
 
 .padding-inline{

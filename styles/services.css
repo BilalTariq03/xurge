@@ -127,9 +127,244 @@
 
 /* For the column with 2 images, make them smaller */
 .double-images .image-wrapper {
-  aspect-ratio: 3/2;
+  aspect-ratio: 3/1.93;
 }
 
+
+/* ===== Services ===== */
+
+.services-wrapper {
+  position: relative;
+  background-color: #0a0a0a;
+}
+
+.service-section {
+  position: relative; /* Keep this relative, NOT absolute */
+  height: 100vh;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 45% 55%;
+  gap: 80px;
+  padding: 60px 80px;
+  color: var(--neutral-white);
+  
+  /* For smooth animations */
+  transform-origin: center center;
+  will-change: transform, filter, opacity;
+}
+
+/* Left Content Panel */
+.content-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.branding-header h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  letter-spacing: -1px;
+}
+
+.branding-description {
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 440px;
+}
+
+/* Services List */
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.service-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 0;
+  max-width: 30vw;
+  border-bottom: 1px solid var(--neutral-metalic);
+  position: relative;
+}
+
+.service-number {
+  font-size: 1rem;
+  color: var(--neutral-white);
+  font-weight: 500;
+  transition: color 0.3s ease;
+  min-width: 40px;
+}
+
+.service-name {
+  font-size: 1rem;
+  color: var(--neutral-white);
+}
+
+/* Collaborate Link */
+.collaborate-link {
+  padding-top: 3rem;
+  color: var(--brand-shade);
+  text-decoration: none;
+  font-size: clamp(1.3rem, 1vw, 5rem);
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.collaborate-link::before,
+.collaborate-link::after {
+  content: '';
+  position: absolute;
+  height: clamp(0.15rem, 0.15vw, 0.5rem);
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background-color: var(--brand-shade);
+  transform: translateX(0%);
+  transition: transform 0.3s ease;
+}
+
+.collaborate-link::after {
+  transform: translateX(-200%);
+  background-color: var(--brand-shade);
+  z-index: 2;
+}
+
+.collaborate-link:hover::before {
+  transform: translateX(200%);
+}
+
+.collaborate-link:hover::after {
+  transform: translateX(0%);
+}
+
+.link-logo-span, .booking-link-span {
+  display: inline-flex;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.link-logo-span {
+  width: clamp(1.25rem, 1.31vw, 3rem);
+  height: clamp(1.25rem, 1.31vw, 3rem);
+  transition: transform 0.3s ease;
+}
+
+.link-logo, .booking-link-icon {
+  transform: rotate(45deg);
+}
+
+.link-logo {
+  font-size: clamp(1.25rem, 1.31vw, 3rem);
+}
+
+.link-logo-2, .booking-link-icon2 {
+  position: absolute;
+  transform: rotate(45deg) translate(100%, 300%);
+}
+
+.collaborate-link:hover .link-logo-span {
+  transform: translate(160%, -265%);
+}
+
+/* Right Image Panel */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  height: 500px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.carousel-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-image-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsive */
+/* @media (max-width: 1024px) {
+  .service-section {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 40px;
+  }
+
+  .service-item {
+    max-width: 100%;
+  }
+
+  .carousel-container {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-section {
+    padding: 30px 20px;
+  }
+
+  .branding-header h3 {
+    font-size: 1.75rem;
+  }
+
+  .carousel-container {
+    height: 400px;
+  }
+} */
+
+/* ======= Clients ========== */
+
+/* Logo Display */
+.logo-display {
+  font-size: 64px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: #ffffff;
+  text-transform: uppercase;
+  z-index: 2;
+  font-family: 'Courier New', monospace;
+}
+
+.logo-display sup {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+/* Accent Dot */
+.accent-dot {
+  position: absolute;
+  bottom: 120px;
+  right: 180px;
+  width: 24px;
+  height: 24px;
+  background-color: #a8ff60;
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(168, 255, 96, 0.6);
+  z-index: 3;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
 
 
 
@@ -409,3 +644,63 @@
 .brand-logo{
   height: clamp(4rem, 4.1vw, 10rem);
 }
+
+
+
+/* Responsive Design */
+    /* @media (max-width: 1200px) {
+      .branding-section {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        padding: 40px;
+      }
+
+      .branding-header h1 {
+        font-size: 56px;
+      }
+
+      .image-panel {
+        height: 500px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .branding-section {
+        padding: 30px 20px;
+      }
+
+      .branding-header h1 {
+        font-size: 42px;
+      }
+
+      .branding-description {
+        font-size: 16px;
+      }
+
+      .service-name {
+        font-size: 18px;
+      }
+
+      .logo-display {
+        font-size: 48px;
+      }
+
+      .image-panel {
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .branding-header h1 {
+        font-size: 36px;
+      }
+
+      .service-item {
+        padding: 20px 0;
+      }
+
+      .logo-display {
+        font-size: 36px;
+      }
+    } */
+

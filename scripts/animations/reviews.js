@@ -4,7 +4,7 @@ import { AddSpans, charReveal } from '../utils/text-utils.js';
 export class ReviewsAnimation extends AnimationBase {
   init() {
     // Add spans to review heading
-    AddSpans('review-heading', 'review-char');
+    AddSpans('.review-heading', 'review-char');
     
     // Character reveal animation
     charReveal('review-char', 'review-heading');

@@ -3,6 +3,7 @@ import { initCustomCursor } from "./core/cursor.js";
 import { prepareHeroText } from "./utils/text-utils.js";
 import { animateHeroText } from "./animations/heroText.js";
 import { initPageTransitions } from "./core/pageTransition.js";
+import { initCarousel } from "./animations/carousel.js";
 
 
 class AnimationManager{
@@ -34,17 +35,51 @@ class AnimationManager{
 
     await new Promise(resolve => requestAnimationFrame(resolve));
 
-    // if(document.querySelector('.hero-span'))
-    // {
-    //   animateHeroText();
-    // }
+    if (document.querySelector('.carousel-image')) {
+      const carousel = initCarousel();
+      this.animations.set('carousel', carousel);
+    }
 
+    // Service stack animation
+    if (document.querySelector('.service-section')) {
+      const { ServiceStackAnimation } = await import('./animations/serviceStack.js');
+      const serviceStack = new ServiceStackAnimation();
+      serviceStack.init();
+      this.animations.set('serviceStack', serviceStack);
+    }
+
+    if(document.querySelector('.clients-container')){
+      const {clientAnimation} = await import('./animations/clientAnimation.js');
+      const clientAnim = new clientAnimation();
+      clientAnim.init();
+      this.animations.set('clients', clientAnim);
+    }
+
+    // Audit animation (if audit exists)
+    if (document.querySelector('.audit-link')) {
+      const { AuditAnimation } = await import('./animations/Audits.js');
+      const auditAnim = new AuditAnimation(this.cursor);
+      auditAnim.init();
+      this.animations.set('audit', auditAnim);
+    }
+
+    // Reviews animation (if reviews exist)
+    if (document.querySelector('.review-strip')) {
+      const { ReviewsAnimation } = await import('./animations/reviews.js');
+      const reviewsAnim = new ReviewsAnimation();
+      reviewsAnim.init();
+      this.animations.set('reviews', reviewsAnim);
+    }
+
+    
     if (document.querySelector('.scroll-track')) {
       const { FooterAnimation } = await import('./animations/footer.js');
       const footerAnim = new FooterAnimation(this.cursor);
       footerAnim.init();
       this.animations.set('footer', footerAnim);
     }
+
+   
 
     this.showPage();
   }
