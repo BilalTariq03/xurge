@@ -248,6 +248,31 @@ footer{
 }
 
 
+.link-logo-span, .booking-link-span {
+  display: inline-flex;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.link-logo-span {
+  width: clamp(1.25rem, 1.31vw, 3rem);
+  height: clamp(1.25rem, 1.31vw, 3rem);
+  transition: transform 0.3s ease;
+}
+
+.link-logo, .booking-link-icon {
+  transform: rotate(45deg);
+}
+
+.link-logo {
+  font-size: clamp(1.25rem, 1.31vw, 3rem);
+}
+
+.link-logo-2, .booking-link-icon2 {
+  position: absolute;
+  transform: rotate(45deg) translate(100%, 300%);
+}
+
 
 @media (max-width: 990px) {
   .footer-grid{
