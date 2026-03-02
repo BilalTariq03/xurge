@@ -459,7 +459,9 @@ body.loaded {
     margin-left: 0;
   }
 
-  
+  .font-image{
+    width: 50%;
+  }
 
   .color-group-primary .color-palette {
     grid-template-columns: 1fr; /* stack vertically */
@@ -550,6 +552,8 @@ body.loaded {
   .overview li > :last-child {
     white-space: nowrap;
   }
+
+  
 
   .color-group-secondary .color{
     grid-template-columns: 1fr;
