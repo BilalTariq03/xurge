@@ -37,7 +37,7 @@
           "text": "Controlled Credit Corporation required a digital presence that would establish trust and reliability in the financial sector. The challenge was to design a user-friendly interface that communicated complex financial services in a clear, accessible manner while maintaining a professional and authoritative brand image.",
           "align": "right",
           "style": ["top-margin"],
-          "class": "reveal-up"
+          "animate": "reveal-up"
         },
         {
           "type": "text",
@@ -45,7 +45,7 @@
           "text": "We crafted a comprehensive design solution that included both a website and branding for Controlled Credit Corporation...",
           "align": "right",
           "style": ["bottom-margin"],
-          "class": "reveal-up"
+          "animate": "reveal-up"
         },
         {
           "type": "image-grid-2",
@@ -143,7 +143,8 @@
           "heading": "Brand Identity",
           "text": "We focused on designing a visual identity that combines modern typography, a refined color palette, and a distinctive symbol for CCC's company logo. Our overall aim was to convey reliability and authority among their clients and providers. Another key objective was maintaining consistency across all touchpoints, ensuring a strong and cohesive presence both online and offline that instills confidence and reflects the company's extensive knowledge as a market leader for the past 50 years.",
           "class": "brand-identity",
-          "style":["top-margin", "bottom-margin", "reveal-up"]
+          "style":["top-margin", "bottom-margin"],
+          "animate":"reveal-up"
         },
         {
           "type": "image-full",

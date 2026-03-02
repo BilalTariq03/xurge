@@ -56,6 +56,15 @@ body{
   --neutral-silver: #e3e3e3;
   --neutral-ash-gray: #606060;
   --neutral-metalic: #303030;
+
+  --title-size:     clamp(2.5rem, 8vw, 5rem);
+  --subtitle-size: clamp(0.8rem, 1.8vw, 1.15rem);
+  --h2-size: clamp(2.2rem, 3.5vw, 3rem);
+  --body-size:      clamp(0.875rem, 1.5vw, 1rem);
+  --label-size:     clamp(0.7rem, 1.1vw, 0.8rem);
+
+  --padding-x:      clamp(1.25rem, 5vw, 5rem);
+  --padding-top:    clamp(6rem, 12vh, 10rem);
 }
 
 .padding-inline{

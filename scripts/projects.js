@@ -25,12 +25,23 @@ function renderWorkHero(work) {
   if (!hero) return;
 
   hero.innerHTML = `
-    <h1 class="work-title hero-text">
-      <span class="line">${work.title}</span>
-    </h1>
-    <p class="work-description hero-text">
-      <span class="line">${work.shortDescription}</span>
-    </p>
+    <div class="work-hero-body">
+      <div class="work-hero-title-wrap">
+
+        <h1 class="work-title hero-text">
+          <span class="line">${work.title}</span>
+        </h1>
+        <p class="work-description hero-text">
+          <span class="line">${work.shortDescription}</span>
+        </p>
+      </div>
+
+      <p class="work-hero-scroll">
+        SCROLL DOWN
+        <span class="work-hero-scroll-arrow" aria-hidden="true">↓</span>
+      </p>
+      
+    </div>
   `;
 }
 
@@ -38,25 +49,18 @@ function buildTextBlockClasses(block) {
   const classes = ['block', 'text-block'];
 
   if (block.align === 'right') classes.push('align-right');
-  else if(block.align === 'left') classes.push('align-left')
+  else if (block.align === 'left') classes.push('align-left');
 
-  const styleMap = {
-    'large-text': 'large-text',
-    'top-margin': 'top-margin',
-    'bottom-margin': 'bottom-margin',
-    'reveal-up': 'reveal-up'
-  };
-
+  const allowedStyles = new Set(['large-text', 'top-margin', 'bottom-margin']);
   if (Array.isArray(block.style)) {
-  block.style.forEach(style => {
-    if (styleMap[style]) classes.push(styleMap[style]);
-  });
-}
+    block.style.forEach(s => { if (allowedStyles.has(s)) classes.push(s); });
+  }
 
+  if (block.class)   classes.push(block.class);   // e.g. "brand-identity"
+  if (block.animate) classes.push(block.animate); // e.g. "reveal-up"
 
   return classes.join(' ');
 }
-
 
 function renderBlocks(blocks) {
   const container = document.getElementById('work-content');
@@ -114,14 +118,14 @@ function renderBlocks(blocks) {
         container.innerHTML += `
           <section class="block image-grid-2">
             ${block.images.map(img =>
-              `<img src="./images/${img}" alt="project image" class="img-anim">`
+              `<img src="../images/${img}" alt="project image" class="img-anim">`
             ).join('')}
           </section>`;
         break;
 
       case 'text':
         container.innerHTML += `
-          <section class="${buildTextBlockClasses(block)} ${block.class || ''}">
+          <section class="${buildTextBlockClasses(block)}">
             <h3 class="text-heading">
             ${block.heading}
             </h3>
@@ -348,7 +352,7 @@ class AnimationManager {
       const {ImageAnimation} = await import('./animations/ImageAnimation.js');
       const ImageAnim = new ImageAnimation();
       ImageAnim.init();
-      this.animations.set('works', ImageAnim);
+      this.animations.set('images', ImageAnim);
     }
 
     // Add video animation
@@ -385,11 +389,9 @@ class AnimationManager {
   showPage() {
     document.body.classList.add('loaded');
     
-    setTimeout(() => {
       if(document.querySelector('.hero-span')) {
         animateHeroText();
       }
-    }, 500);
   }
 
   handleBreakpointChange(oldBreakpoint, newBreakpoint) {
