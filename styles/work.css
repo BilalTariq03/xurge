@@ -224,9 +224,156 @@ body.loaded {
 }
 
 
-@media (max-width: 990px){
+
+/* Hide image popup and arrow on mobile */
+@media (max-width: 990px) {
   .heading-container{
     flex-direction: column;
+  }
+
+  /* Hide the column headers */
+  .top-layer {
+    display: none;
+  }
+
+  /* Single column layout */
+  .list-item {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    overflow: hidden;
+  }
+
+  /* Institution — larger, acts as the title */
+  .inst-item {
+    transform: translateX(-30px);
+  }
+
+  .inst-item h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  /* Group type + year together on one line */
+  .type-year-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  /* Type and year — smaller, muted, inline */
+  .type-item h3,
+  .year-item h3 {
+    display: inline;
+    font-size: 0.875rem;
+    color: var(--neutral-stone);
+    font-weight: 400;
+  }
+
+  .type-item {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .type-item::after {
+    content: '\00B7'; /* · middot */
+    margin: 0 6px;
+    color: var(--neutral-stone);
+  }
+
+  .year-item {
+    display: inline-flex;
+  }
+
+  
+
+  /* Disable all hover effects */
+  .list-item:hover {
+    background-color: transparent;
+  }
+
+  .list-item:hover .inst-item {
+    transform: translateX(-30px);
+  }
+
+  .list-item:hover .link-arrow {
+    opacity: 0;
+  }
+
+  .list-item:hover .award-image {
+    opacity: 0;
+  }
+
+  /* Toggle button */
+  .award-toggle {
+    position: absolute;
+    top: 1.25rem;
+    right: 0;
+    transform: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--neutral-silver);
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--neutral-black);
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  /* Expanded image panel */
+  .award-expanded {
+    grid-column: 1 / -1;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                padding 0.3s ease;
+  }
+
+  .award-expanded img {
+    width: 180px;        /* contained, not full width */
+    border-radius: 8px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .award-expanded .view-details {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    font-size: 0.95rem;
+    text-decoration: underline;
+    color: var(--neutral-black);
+  }
+
+  .list-item.open .award-expanded {
+    max-height: 360px;
+    padding: 16px 0;
+  }
+}
+
+/* Hide mobile-only elements on desktop */
+/* Desktop — explicit grid placement */
+@media (min-width: 991px) {
+  .award-toggle  { display: none; }
+  .award-expanded { display: none; }
+
+  .type-year-row { display: contents; }
+
+  .list-item {
+    grid-template-columns: 1.8fr 3fr 0.5fr;
+  }
+
+  /* Pin these absolutely-positioned/hidden elements so they don't affect grid flow */
+  .award-image {
+    grid-column: 3;  /* sits in year column space, but it's absolute anyway */
   }
 }
 

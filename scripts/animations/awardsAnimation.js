@@ -9,7 +9,11 @@ export class awardsAnimation extends AnimationBase{
     charReveal('title-char', 'awards-container .title');
 
     this.textFloatAnimation();
-    this.setupAwardsAnimation();
+    if (window.innerWidth > 990) {
+      this.setupAwardsAnimation(); // hover image + tilt — desktop only
+    } else {
+      this.setupMobileToggles();   // +/- expand panel — mobile only
+    }
   }
 
   textFloatAnimation(){
@@ -44,5 +48,36 @@ export class awardsAnimation extends AnimationBase{
         awardImage.style.transform = 'rotate(0deg) translateX(0px)';
       })
     })
+  }
+
+  setupMobileToggles() {
+    document.querySelectorAll('.award-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.list-item');
+        const isOpen = item.classList.contains('open');
+
+        // Close all open items
+        document.querySelectorAll('.list-item.open').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.award-toggle').textContent = '+';
+        });
+
+        // Open clicked item if it was closed
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.textContent = '−';
+        }
+      });
+    });
+  }
+
+  cleanup() {
+    super.cleanup?.();
+    // Close any open mobile panels on cleanup
+    document.querySelectorAll('.list-item.open').forEach(el => {
+      el.classList.remove('open');
+      const btn = el.querySelector('.award-toggle');
+      if (btn) btn.textContent = '+';
+    });
   }
 }
