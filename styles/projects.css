@@ -81,7 +81,6 @@ body.loaded {
 .work-hero-scroll-arrow {
   display: inline-block;
   font-size: 1em;
-  animation: bounceDown 1.8s ease-in-out infinite;
 }
 
 
