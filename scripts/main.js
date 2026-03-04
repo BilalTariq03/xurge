@@ -2,8 +2,9 @@
 import { initSmoothScrolling } from './core/scroll.js';
 import { initCustomCursor } from './core/cursor.js';
 import { AddSpans, charReveal, prepareHeroText } from './utils/text-utils.js';
+import { initPageTransitions } from './core/pageTransition.js';
 
-class AnimationManager {
+class AnimationManager { 
   constructor() {
     this.animations = new Map();
     this.cursor = null;
@@ -17,6 +18,8 @@ class AnimationManager {
     this.lenis = initSmoothScrolling();
     this.cursor = initCustomCursor();
 
+
+    initPageTransitions();
     // Register GSAP plugins
     gsap.registerPlugin(ScrollTrigger);
 

@@ -3,6 +3,7 @@ import { initSmoothScrolling } from './core/scroll.js';
 import { initCustomCursor } from './core/cursor.js';
 import { AddSpans, charReveal, prepareHeroText } from './utils/text-utils.js';
 import { animateHeroText } from "./animations/heroText.js";
+import { initPageTransitions } from './core/pageTransition.js';
 
 
 //Data helpers
@@ -311,6 +312,8 @@ class AnimationManager {
     // Initialize core functionality
     this.lenis = initSmoothScrolling();
     this.cursor = initCustomCursor();
+
+    initPageTransitions();
 
     // Register GSAP plugins
     gsap.registerPlugin(ScrollTrigger);
