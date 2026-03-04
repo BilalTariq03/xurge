@@ -46,4 +46,22 @@ export function initPageTransitions() {
       }, 600);
     });
   }
+
+
+    // Reset overlay if browser restores page from bfcache (back/forward button)
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) {
+      const overlay = document.getElementById('page-transition');
+      if (overlay) {
+        overlay.classList.remove('active');
+        // Force immediate reset, no animation
+        overlay.style.transition = 'none';
+        overlay.style.bottom = '-100%';
+        // Re-enable transition after reset
+        requestAnimationFrame(() => {
+          overlay.style.transition = '';
+        });
+      }
+    }
+  });
 }
