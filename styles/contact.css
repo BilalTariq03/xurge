@@ -356,7 +356,6 @@
       outline: none;
       transition: border-color 0.25s;
       width: 100%;
-      -webkit-appearance: none;
     }
 
     input::placeholder, textarea::placeholder {

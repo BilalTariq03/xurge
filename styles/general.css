@@ -69,7 +69,7 @@ body{
   --error-text: #7A2E1E;
   --radius: 3px;
 
-  
+
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'DM Sans', sans-serif;
 
@@ -81,6 +81,15 @@ body{
 
   --padding-x:      clamp(1.25rem, 5vw, 5rem);
   --padding-top:    clamp(6rem, 12vh, 10rem);
+}
+
+/* general.css */
+body:not(.loaded) main {
+  opacity: 0;
+}
+body.loaded main {
+  opacity: 1;
+  transition: opacity 0.4s ease;
 }
 
 .padding-inline{

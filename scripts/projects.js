@@ -465,7 +465,7 @@ animationManager.saveScrollPosition();
 
 window.addEventListener('load', async () => {
   await initWorkPage();        // 1️⃣ build DOM from JSON
-  await waitForImages();
+  // await waitForImages();
   await animationManager.init();     // 2️⃣ init animations
   ScrollTrigger.refresh();     // 3️⃣ fix scroll positions
 });
