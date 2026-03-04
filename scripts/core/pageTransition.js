@@ -4,11 +4,11 @@ export function initPageTransitions() {
 
   let isTransitioning = false;
 
+  // === NORMAL LINKS ===
   document.querySelectorAll('a[href]').forEach(link => {
     link.addEventListener('click', e => {
       const target = link.getAttribute('href');
 
-      // ignore bad / special links
       if (
         isTransitioning ||
         !target ||
@@ -28,7 +28,22 @@ export function initPageTransitions() {
 
       setTimeout(() => {
         window.location.href = target;
-      }, 600); // must match CSS
+      }, 600);
     });
   });
+
+  // === BACK BUTTON ===
+  const backBtn = document.getElementById('btn-back');
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      if (isTransitioning) return;
+
+      isTransitioning = true;
+      transitionEl.classList.add('active');
+
+      setTimeout(() => {
+        history.back();
+      }, 600);
+    });
+  }
 }

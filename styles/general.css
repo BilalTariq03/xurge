@@ -56,6 +56,22 @@ body{
   --neutral-silver: #e3e3e3;
   --neutral-ash-gray: #606060;
   --neutral-metalic: #303030;
+  --ink: #1A1814;
+  --ink-soft: #3D3A35;
+  --ink-muted: #8A857C;
+  --accent: #C4A882;
+  --accent-deep: #9E7E56;
+  --border: rgba(26,24,20,0.10);
+  --border-strong: rgba(26,24,20,0.20);
+  --success-bg: #EEF5EE;
+  --success-text: #2D5A2D;
+  --error-bg: #FAF0EE;
+  --error-text: #7A2E1E;
+  --radius: 3px;
+
+  
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
 
   --title-size:     clamp(3.5rem, 8vw, 5rem);
   --subtitle-size: clamp(0.8rem, 1.8vw, 1.15rem);

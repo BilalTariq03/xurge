@@ -290,6 +290,8 @@ async function initWorkPage() {
     return;
   }
 
+  document.title = `${work.title} | Xurge`;
+
   renderWorkHero(work);
   renderBlocks(work.content);
 }

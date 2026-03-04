@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Xurge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <link rel="icon" type="image/x-icon" href="./images/SVG/Xurge Mark.svg">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.25/bundled/lenis.min.js"></script>
+
+  <link rel="stylesheet" href="./styles/general.css">
+  <link rel="stylesheet" href="./styles/contact.css">
+  
+</head>
+<body>
+
+  <div class="page-transition" id="page-transition"></div>
+  <!-- NAV -->
+  <nav>
+    <button class="btn-back" id="btn-back" aria-label="Go back to previous page">
+      <span class="arrow-wrap">
+        <!-- Dark arrow (default) -->
+        <svg class="arrow-dark" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13 9H5M8.5 5.5 5 9l3.5 3.5"/>
+        </svg>
+        <!-- White arrow (appears on hover) -->
+        <svg class="arrow-white" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13 9H5M8.5 5.5 5 9l3.5 3.5"/>
+        </svg>
+      </span>
+      <span class="btn-back-text">Go Back</span>
+    </button>
+    <a href="index.html" class="nav-logo">
+      <img src="./images/SVG/XurgeLogo.svg" alt="Xurge" height="32" style="display:block;">
+    </a>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- LEFT -->
+    <section class="panel-left">
+
+      <span class="eyebrow">Get in touch</span>
+
+      <h1>Let's build<br/>something <em>remarkable</em><br/>together.</h1>
+
+      <p class="intro-text">
+        Share your goals, challenges, or ideas — we're here to help bring them to life. Whether it's a project brief or just an early spark, we'd love to hear from you.
+      </p>
+
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M1.5 4.5l6.5 4.5 6.5-4.5M1.5 3.5h13v9h-13z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="contact-label">Email us</p>
+            <a href="mailto:info@xurgestudio.co" class="contact-value">info@xurgestudio.co</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12.5 10.5c-.8.8-1.8 1.2-2.8.8-1-.4-2.6-1.4-4.2-3S2.1 5.3 1.7 4.3c-.4-1 0-2 .8-2.8l1-1 2.5 3-1 1.2c.5 1 1.5 2.2 2.5 3.2s2.2 2 3.2 2.5l1.2-1 3 2.5z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="contact-label">Call us</p>
+            <a href="tel:+923055150456" class="contact-value">+92 305 5150456</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="8" cy="7" r="2.5"/>
+              <path d="M8 1.5C5.2 1.5 3 3.7 3 6.5c0 3.5 5 8 5 8s5-4.5 5-8c0-2.8-2.2-5-5-5z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="contact-label">Studio</p>
+            <span class="contact-value">Islamabad, Pakistan</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="deco-lines">
+        <div class="deco-line"></div>
+        <div class="deco-line"></div>
+        <div class="deco-line"></div>
+      </div>
+
+    </section>
+
+    <!-- RIGHT -->
+    <section class="panel-right">
+
+      <div class="form-header">
+        <h2>Send us a message</h2>
+        <p>We respond within one business day.</p>
+      </div>
+
+      <!-- SUCCESS MESSAGE -->
+      <div class="form-message success" id="successMsg" role="alert">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="10" cy="10" r="8.5"/>
+          <path d="M6.5 10.5l2.5 2.5 4.5-5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <strong style="display:block; margin-bottom:3px; font-weight:500;">Message sent!</strong>
+          Thank you for reaching out. We'll be in touch within one business day.
+        </div>
+      </div>
+
+      <!-- ERROR MESSAGE -->
+      <div class="form-message error-msg" id="errorMsg" role="alert">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="10" cy="10" r="8.5"/>
+          <path d="M10 6v5M10 13.5v.5" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <strong style="display:block; margin-bottom:3px; font-weight:500;">Something went wrong</strong>
+          Please try again or email us directly at <a href="mailto:info@xurgestudio.co" style="color:inherit; text-decoration:underline;">info@xurgestudio.co</a>
+        </div>
+      </div>
+
+      <form id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" placeholder="Alex Morgan" autocomplete="name" />
+            <span class="field-error" id="nameError">Please enter your name.</span>
+          </div>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="alex@company.com" autocomplete="email" />
+            <span class="field-error" id="emailError">Please enter a valid email.</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="message">Your message</label>
+          <textarea id="message" name="message" placeholder="Tell us about your project, timeline, or any questions you have…"></textarea>
+          <span class="field-error" id="messageError">Please share a brief message.</span>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary" id="submitBtn">
+            <span class="btn-text">
+              <span>Send message</span>
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 7h10M7 2l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <svg class="spinner" viewBox="0 0 20 20">
+              <circle cx="10" cy="10" r="7"/>
+            </svg>
+          </button>
+
+          <a href="#" class="btn-secondary" id="bookCall">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="1" y="2.5" width="12" height="10" rx="1.5"/>
+              <path d="M4 1v3M10 1v3M1 6h12" stroke-linecap="round"/>
+            </svg>
+            Book a call
+          </a>
+        </div>
+      </form>
+
+    </section>
+  </main>
+
+  <!-- FOOTER STRIP -->
+  <footer class="footer-strip">
+    <p>© 2025 UNIKO. All rights reserved.</p>
+    <nav class="footer-social" aria-label="Social links">
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+    </nav>
+  </footer>
+
+
+  <script src="./scripts/contact.js" type="module" defer></script>
+</body>
+</html>
