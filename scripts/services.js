@@ -3,140 +3,108 @@ import { initCustomCursor } from "./core/cursor.js";
 import { prepareHeroText } from "./utils/text-utils.js";
 import { animateHeroText } from "./animations/heroText.js";
 import { initPageTransitions } from "./core/pageTransition.js";
-import { initCarousel } from "./animations/carousel.js";
-import {processDescription, processCircle} from './animations/processAnimation.js';
 
-
-
-class AnimationManager{
-  constructor(){
+class AnimationManager {
+  constructor() {
     this.animations = new Map();
     this.cursor = null;
     this.lenis = null;
   }
 
-  async init(){
+  async init() {
     this.lenis = initSmoothScrolling();
     this.cursor = initCustomCursor();
 
     gsap.registerPlugin(ScrollTrigger);
+    initPageTransitions();
 
     await this.initializeAnimations();
 
-    initPageTransitions();
-
-    processDescription();
-    processCircle();
-
-    setTimeout(() => {
-      this.restoreScrollPosition();
-    }, 100);
+    setTimeout(() => this.restoreScrollPosition(), 100);
   }
 
-  async initializeAnimations(){
+  async initializeAnimations() {
     prepareHeroText();
-
     await new Promise(resolve => requestAnimationFrame(resolve));
 
-    if (document.querySelector('.carousel-image')) {
-      const carousel = initCarousel();
-      this.animations.set('carousel', carousel);
-    }
+    // All below-fold modules load in parallel — no serial waterfall
+    await Promise.all([
 
-    // Service stack animation
-    if (document.querySelector('.service-section')) {
-      const { ServiceStackAnimation } = await import('./animations/serviceStack.js');
-      const serviceStack = new ServiceStackAnimation();
-      serviceStack.init();
-      this.animations.set('serviceStack', serviceStack);
-    }
+      // Carousel (above fold, load immediately)
+      document.querySelector('.carousel-image') && import('./animations/carousel.js').then(({ initCarousel }) => {
+        this.animations.set('carousel', initCarousel());
+      }),
 
-    if(document.querySelector('.clients-container')){
-      const {clientAnimation} = await import('./animations/clientAnimation.js');
-      const clientAnim = new clientAnimation();
-      clientAnim.init();
-      this.animations.set('clients', clientAnim);
-    }
+      // Service stack pinning animation
+      document.querySelector('.service-section') && import('./animations/serviceStack.js').then(({ ServiceStackAnimation }) => {
+        const a = new ServiceStackAnimation(); a.init();
+        this.animations.set('serviceStack', a);
+      }),
 
-    // Audit animation (if audit exists)
-    if (document.querySelector('.audit-link')) {
-      const { AuditAnimation } = await import('./animations/Audits.js');
-      const auditAnim = new AuditAnimation(this.cursor);
-      auditAnim.init();
-      this.animations.set('audit', auditAnim);
-    }
+      // Process section — lazy-import and defer init until section is near viewport
+      document.querySelector('.process-section') && import('./animations/processAnimation.js').then(({ processDescription, processCircle }) => {
+        const section = document.querySelector('.process-section');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            processDescription();
+            processCircle();
+            observer.unobserve(section);
+          });
+        }, { threshold: 0, rootMargin: '0px 0px -100px 0px' });
+        observer.observe(section);
+      }),
 
-    // Reviews animation (if reviews exist)
-    if (document.querySelector('.review-strip')) {
-      const { ReviewsAnimation } = await import('./animations/reviews.js');
-      const reviewsAnim = new ReviewsAnimation();
-      reviewsAnim.init();
-      this.animations.set('reviews', reviewsAnim);
-    }
+      // Clients
+      document.querySelector('.clients-container') && import('./animations/clientAnimation.js').then(({ clientAnimation }) => {
+        const a = new clientAnimation(); a.init();
+        this.animations.set('clients', a);
+      }),
 
-    
-    if (document.querySelector('.scroll-track')) {
-      const { FooterAnimation } = await import('./animations/footer.js');
-      const footerAnim = new FooterAnimation(this.cursor);
-      footerAnim.init();
-      this.animations.set('footer', footerAnim);
-    }
+      // Audit
+      document.querySelector('.audit-link') && import('./animations/Audits.js').then(({ AuditAnimation }) => {
+        const a = new AuditAnimation(this.cursor); a.init();
+        this.animations.set('audit', a);
+      }),
 
-   
+      // Reviews
+      document.querySelector('.review-strip') && import('./animations/reviews.js').then(({ ReviewsAnimation }) => {
+        const a = new ReviewsAnimation(); a.init();
+        this.animations.set('reviews', a);
+      }),
+
+      // Footer
+      document.querySelector('.scroll-track') && import('./animations/footer.js').then(({ FooterAnimation }) => {
+        const a = new FooterAnimation(this.cursor); a.init();
+        this.animations.set('footer', a);
+      }),
+
+    ]);
 
     this.showPage();
   }
 
   showPage() {
     document.body.classList.add('loaded');
-    
     setTimeout(() => {
-      if(document.querySelector('.hero-span')) {
-        animateHeroText();
-      }
+      if (document.querySelector('.hero-span')) animateHeroText();
     }, 500);
   }
 
-
-  saveScrollPosition() {
-    this.savedScrollPosition = window.pageYOffset;
-  }
-
+  saveScrollPosition()    { this.savedScrollPosition = window.pageYOffset; }
   restoreScrollPosition() {
     if (this.savedScrollPosition) {
-      requestAnimationFrame(() => {
-        window.scrollTo(0, this.savedScrollPosition);
-      });
+      requestAnimationFrame(() => window.scrollTo(0, this.savedScrollPosition));
     }
-  }
-
-  debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
   }
 
   destroy() {
-    this.animations.forEach(animation => animation.cleanup());
+    this.animations.forEach(a => a.cleanup?.());
     this.animations.clear();
-    
-    // Remove event listeners
-    if (this.debouncedResize) {
-      window.removeEventListener('resize', this.debouncedResize);
-    }
-    
-    document.removeEventListener('visibilitychange', this.visibilityHandler);
   }
 }
 
 const animationManager = new AnimationManager();
-
 animationManager.saveScrollPosition();
 
 window.addEventListener('load', () => {
@@ -144,10 +112,6 @@ window.addEventListener('load', () => {
   ScrollTrigger.refresh();
 });
 
-// Prevent scroll restoration
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
-// Export for global access if needed
 window.AnimationManager = animationManager;

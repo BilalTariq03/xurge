@@ -699,6 +699,12 @@
 
 
 /* Reviews section */
+.user-image{
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+}
+
 .reviews-section{
   margin-top: 26vh;
 }
@@ -983,6 +989,11 @@
   }
 
   /* reviews */
+  .user-image{
+    height: 2.7rem;
+    width: 2.7rem
+  }
+  
   .review-item{
     width: clamp(35rem, 41.88vw, 40rem);
     height: 26rem;

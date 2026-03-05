@@ -12,25 +12,20 @@
   <link rel="stylesheet" href="styles/services.css">
   <link rel="stylesheet" href="styles/footer.css">
 
-
   <script src="https://kit.fontawesome.com/0a2264748d.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.25/bundled/lenis.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
-
 </head>
 <body>
   <div class="page-transition" id="page-transition"></div>
   
-  <div class="cursor-ball" id="cursor-container">
-  </div>
+  <div class="cursor-ball" id="cursor-container"></div>
 
-  <nav class="nav-bar" id="navbar-container">
-  </nav>
+  <nav class="nav-bar" id="navbar-container"></nav>
 
-  <div class="button-holder" id="button-container">
-  </div>
+  <div class="button-holder" id="button-container"></div>
 
   <main class="services-page">
     <section class="hero-container black-display">
@@ -40,30 +35,23 @@
             <h1 class="hero-text">
               <div class="line">
                 Turning
-                <span class="stone-color">
-                bold
-                </span>
+                <span class="stone-color">bold</span>
               </div>
-
               <div class="line">
-                <span class="stone-color">
-                  ideas
-                </span>
+                <span class="stone-color">ideas</span>
                 into reality
               </div>
             </h1>
           </div>
-
           <p class="work-hero-scroll">
             <span class="work-hero-scroll-arrow" aria-hidden="true">↓</span>
             SCROLL TO DISCOVER
           </p>
         </div>
       </div>
-      
     </section>
 
-
+    <!-- People images: first is above-fold (no lazy), rest are lazy -->
     <section class="service-images-container black-display">
       <div class="grid">
         <div class="grid-column">
@@ -71,34 +59,29 @@
             <img src="./images/services/people/p1.jpg" alt="people working">
           </div>
         </div>
-
         <div class="grid-column">
           <div class="image-wrapper">
-            <img src="./images/services/people/p2.jpg" alt="people working">
+            <img src="./images/services/people/p2.jpg" alt="people working" loading="lazy" decoding="async">
           </div>
         </div>
-        
         <div class="grid-column double-images">
           <div class="image-wrapper">
-            <img src="./images/services/people/p3.jpg" alt="people working">
+            <img src="./images/services/people/p3.jpg" alt="people working" loading="lazy" decoding="async">
           </div>
           <div class="image-wrapper">
-            <img src="./images/services/people/p4.jpg" alt="people working">
+            <img src="./images/services/people/p4.jpg" alt="people working" loading="lazy" decoding="async">
           </div>
         </div>
-
         <div class="grid-column">
           <div class="image-wrapper">
-            <img src="./images/services/people/p5.jpg" alt="people working">
+            <img src="./images/services/people/p5.jpg" alt="people working" loading="lazy" decoding="async">
           </div>
         </div>
-
         <div class="grid-column">
           <div class="image-wrapper">
-            <img src="./images/services/people/p6.jpg" alt="people working">
+            <img src="./images/services/people/p6.jpg" alt="people working" loading="lazy" decoding="async">
           </div>
         </div>
-
       </div>
     </section>
 
@@ -107,25 +90,19 @@
         <div class="services-hero-text-container">
           <h1 class="hero-text">
             <div class="line">
-              <span class="stone-color">
-              Services
-              </span>
-              to
+              <span class="stone-color">Services</span> to
             </div>
-
             <div class="line">
-              fuel your
-              <span class="stone-color">
-                growth
-              </span>
+              fuel your <span class="stone-color">growth</span>
             </div>
           </h1>
         </div>
       </div>
 
       <div class="services-wrapper">
+
+        <!-- Branding -->
         <div class="service-section">
-          <!-- Left Content Panel -->
           <div class="content-panel">
             <div class="branding-header">
               <h3>Branding</h3>
@@ -133,117 +110,73 @@
                 Branding is the heartbeat of your business, painting a vivid portrait of your company. We create memorable identities that capture attention and help you excel in a fast-evolving marketplace.
               </p>
             </div>
-
             <div class="services-list">
-              <div class="service-item">
-                <span class="service-number">01</span>
-                <span class="service-name">Brand Strategy</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">02</span>
-                <span class="service-name">Logo Design</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">03</span>
-                <span class="service-name">Digital Brand Assets</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">04</span>
-                <span class="service-name">Brand Guidelines</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">05</span>
-                <span class="service-name">Stationery & Print Design</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">06</span>
-                <span class="service-name">Pitch Deck</span>
-              </div>
+              <div class="service-item"><span class="service-number">01</span><span class="service-name">Brand Strategy</span></div>
+              <div class="service-item"><span class="service-number">02</span><span class="service-name">Logo Design</span></div>
+              <div class="service-item"><span class="service-number">03</span><span class="service-name">Digital Brand Assets</span></div>
+              <div class="service-item"><span class="service-number">04</span><span class="service-name">Brand Guidelines</span></div>
+              <div class="service-item"><span class="service-number">05</span><span class="service-name">Stationery & Print Design</span></div>
+              <div class="service-item"><span class="service-number">06</span><span class="service-name">Pitch Deck</span></div>
             </div>
-
             <div class="collaborate-link-container">
               <a href="#" class="collaborate-link">
                 Let's Collaborate
                 <span class="link-logo-span">
                   <i class="fa-solid fa-arrow-up link-logo"></i>
                   <i class="fa-solid fa-arrow-up link-logo link-logo-2"></i>
-                </span>        
+                </span>
               </a>
             </div>
           </div>
-
-          <!-- Right Image Panel -->
           <div class="carousel-container">
-            <!-- Image Wrapper -->
             <div class="carousel-image-wrapper">
-              <video autoplay loop muted playsinline>
-                <source src="./images/services/work/slideshow2.mp4">
+              <!-- preload="none" stops browser fetching video data on load.
+                   JS (VideoAnimation / IntersectionObserver) will play it when visible. -->
+              <video loop muted playsinline preload="none" data-autoplay>
+                <source src="./images/services/work/slideshow2.mp4" type="video/mp4">
               </video>
             </div>
           </div>
         </div>
 
+        <!-- Web Design -->
         <div class="service-section">
-          <!-- Left Content Panel -->
           <div class="content-panel">
             <div class="branding-header">
               <h3>Web Design</h3>
               <p class="branding-description">
-                We focus on designing marketing websites that elevate your brand’s value. Your new website will captivate your target audiences, keep them engaged, and persuade them to take action.
+                We focus on designing marketing websites that elevate your brand's value. Your new website will captivate your target audiences, keep them engaged, and persuade them to take action.
               </p>
             </div>
-
             <div class="services-list">
-              <div class="service-item">
-                <span class="service-number">01</span>
-                <span class="service-name">Website Design</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">02</span>
-                <span class="service-name">Webflow Development</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">03</span>
-                <span class="service-name">Creative Development</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">04</span>
-                <span class="service-name">Interactive Design</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">05</span>
-                <span class="service-name">CMS Implementation</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">06</span>
-                <span class="service-name">Maintenance & Support</span>
-              </div>
+              <div class="service-item"><span class="service-number">01</span><span class="service-name">Website Design</span></div>
+              <div class="service-item"><span class="service-number">02</span><span class="service-name">Webflow Development</span></div>
+              <div class="service-item"><span class="service-number">03</span><span class="service-name">Creative Development</span></div>
+              <div class="service-item"><span class="service-number">04</span><span class="service-name">Interactive Design</span></div>
+              <div class="service-item"><span class="service-number">05</span><span class="service-name">CMS Implementation</span></div>
+              <div class="service-item"><span class="service-number">06</span><span class="service-name">Maintenance & Support</span></div>
             </div>
-
             <div class="collaborate-link-container">
               <a href="#" class="collaborate-link">
                 Let's Collaborate
                 <span class="link-logo-span">
                   <i class="fa-solid fa-arrow-up link-logo"></i>
                   <i class="fa-solid fa-arrow-up link-logo link-logo-2"></i>
-                </span>        
+                </span>
               </a>
             </div>
           </div>
-
-          <!-- Right Image Panel -->
           <div class="carousel-container">
-            <!-- Image Wrapper -->
             <div class="carousel-image-wrapper">
-              <video autoplay loop muted playsinline>
-                <source src="./images/services/work/slideshow2.mp4">
+              <video loop muted playsinline preload="none" data-autoplay>
+                <source src="./images/services/work/slideshow2.mp4" type="video/mp4">
               </video>
             </div>
           </div>
         </div>
 
+        <!-- Digital Products -->
         <div class="service-section">
-          <!-- Left Content Panel -->
           <div class="content-panel">
             <div class="branding-header">
               <h3>Digital Products</h3>
@@ -251,126 +184,79 @@
                 We combine user-centric research with cutting-edge design principles to create digital products and experiences that not only look exceptional but also seamlessly integrate into users' lives.
               </p>
             </div>
-
             <div class="services-list">
-              <div class="service-item">
-                <span class="service-number">01</span>
-                <span class="service-name">UX Audit</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">02</span>
-                <span class="service-name">Wireframing</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">03</span>
-                <span class="service-name">Prototyping</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">04</span>
-                <span class="service-name">UI/UX Design</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">05</span>
-                <span class="service-name">Design Systems</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">06</span>
-                <span class="service-name">Design Support</span>
-              </div>
+              <div class="service-item"><span class="service-number">01</span><span class="service-name">UX Audit</span></div>
+              <div class="service-item"><span class="service-number">02</span><span class="service-name">Wireframing</span></div>
+              <div class="service-item"><span class="service-number">03</span><span class="service-name">Prototyping</span></div>
+              <div class="service-item"><span class="service-number">04</span><span class="service-name">UI/UX Design</span></div>
+              <div class="service-item"><span class="service-number">05</span><span class="service-name">Design Systems</span></div>
+              <div class="service-item"><span class="service-number">06</span><span class="service-name">Design Support</span></div>
             </div>
-
             <div class="collaborate-link-container">
               <a href="#" class="collaborate-link">
                 Let's Collaborate
                 <span class="link-logo-span">
                   <i class="fa-solid fa-arrow-up link-logo"></i>
                   <i class="fa-solid fa-arrow-up link-logo link-logo-2"></i>
-                </span>        
+                </span>
               </a>
             </div>
           </div>
-
-          <!-- Right Image Panel -->
           <div class="carousel-container">
-            <!-- Image Wrapper -->
             <div class="carousel-image-wrapper">
-              <video autoplay loop muted playsinline>
-                <source src="./images/services/work/slideshow2.mp4">
+              <video loop muted playsinline preload="none" data-autoplay>
+                <source src="./images/services/work/slideshow2.mp4" type="video/mp4">
               </video>
             </div>
           </div>
         </div>
 
+        <!-- Content -->
         <div class="service-section">
-          <!-- Left Content Panel -->
           <div class="content-panel">
             <div class="branding-header">
               <h3>Content</h3>
               <p class="branding-description">
-                Authenticity is no longer an option, it's a demand. We're your partners in creating content that not only stands out but leaves a lasting impression while representing your brand in it’s best light.
+                Authenticity is no longer an option, it's a demand. We're your partners in creating content that not only stands out but leaves a lasting impression while representing your brand in its best light.
               </p>
             </div>
-
             <div class="services-list">
-              <div class="service-item">
-                <span class="service-number">01</span>
-                <span class="service-name">Motion Design</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">02</span>
-                <span class="service-name">3D Assets</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">03</span>
-                <span class="service-name">Copywriting</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">04</span>
-                <span class="service-name">Icons & Illustrations</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">05</span>
-                <span class="service-name">Video Production</span>
-              </div>
-              <div class="service-item">
-                <span class="service-number">06</span>
-                <span class="service-name">Photography</span>
-              </div>
+              <div class="service-item"><span class="service-number">01</span><span class="service-name">Motion Design</span></div>
+              <div class="service-item"><span class="service-number">02</span><span class="service-name">3D Assets</span></div>
+              <div class="service-item"><span class="service-number">03</span><span class="service-name">Copywriting</span></div>
+              <div class="service-item"><span class="service-number">04</span><span class="service-name">Icons & Illustrations</span></div>
+              <div class="service-item"><span class="service-number">05</span><span class="service-name">Video Production</span></div>
+              <div class="service-item"><span class="service-number">06</span><span class="service-name">Photography</span></div>
             </div>
-
             <div class="collaborate-link-container">
               <a href="#" class="collaborate-link">
                 Let's Collaborate
                 <span class="link-logo-span">
                   <i class="fa-solid fa-arrow-up link-logo"></i>
                   <i class="fa-solid fa-arrow-up link-logo link-logo-2"></i>
-                </span>        
+                </span>
               </a>
             </div>
           </div>
-
-          <!-- Right Image Panel -->
           <div class="carousel-container">
-            <!-- Image Wrapper -->
             <div class="carousel-image-wrapper">
-              <video autoplay loop muted playsinline>
-                <source src="./images/services/work/slideshow2.mp4">
+              <video loop muted playsinline preload="none" data-autoplay>
+                <source src="./images/services/work/slideshow2.mp4" type="video/mp4">
               </video>
             </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </section>
 
 
-    <!-- =========== Process ============ -->
+    <!-- Process -->
     <section class="process-section black-display">
       <div class="process-container">
         <h2 class="process-heading">
           Empowering brands through strategy, collaborative design and innovative technology.
         </h2>
-
         <div class="process-steps">
           <div class="process-step" data-text="We dive deep into understanding your business, audience, and goals to create a solid foundation for success.">
             <div class="step-circle">
@@ -378,21 +264,18 @@
               <h3 class="step-title">Discovery</h3>
             </div>
           </div>
-
           <div class="process-step" data-text="Visual exploration and concept development to establish the aesthetic direction and brand personality.">
             <div class="step-circle">
               <span class="step-number">02</span>
               <h3 class="step-title">Moodboard</h3>
             </div>
           </div>
-
           <div class="process-step" data-text="Crafting beautiful, functional designs that align with your brand identity and resonate with your audience.">
             <div class="step-circle">
               <span class="step-number">03</span>
               <h3 class="step-title">Design</h3>
             </div>
           </div>
-
           <div class="process-step" data-text="Bringing designs to life with clean code, smooth interactions, and exceptional user experiences.">
             <div class="step-circle">
               <span class="step-number">04</span>
@@ -400,257 +283,196 @@
             </div>
           </div>
         </div>
-
-         <!-- Single description container at bottom right -->
         <div class="description-container">
-          <p class="step-description" data-description="1">
-            We dive deep into understanding your business, audience, and goals to create a solid foundation for success.
-          </p>
-          <p class="step-description" data-description="2">
-            Visual exploration and concept development to establish the aesthetic direction and brand personality.
-          </p>
-          <p class="step-description" data-description="3">
-            Crafting beautiful, functional designs that align with your brand identity and resonate with your audience.
-          </p>
-          <p class="step-description" data-description="4">
-            Bringing designs to life with clean code, smooth interactions, and exceptional user experiences.
-          </p>
+          <p class="step-description" data-description="1">We dive deep into understanding your business, audience, and goals to create a solid foundation for success.</p>
+          <p class="step-description" data-description="2">Visual exploration and concept development to establish the aesthetic direction and brand personality.</p>
+          <p class="step-description" data-description="3">Crafting beautiful, functional designs that align with your brand identity and resonate with your audience.</p>
+          <p class="step-description" data-description="4">Bringing designs to life with clean code, smooth interactions, and exceptional user experiences.</p>
         </div>
-
       </div>
     </section>
 
-    <!-- =========== Client ============= -->
+
+    <!-- Clients -->
     <section class="clients-container">
-    <div class="padding-inline">
-      <div class="heading-container">
-        <h2 class="title">
-          Trusted by the visionaries.
-        </h2>
-
-        <p class="description">
-          Over the last 15 years, we’ve had the opportunity to work with a dynamic range of clients, spanning from forward-thinking start-ups and scale-ups to Fortune 500 powerhouses.
-        </p>
-      </div>
-      <div class="clients-grid">
-        <div class="client-logo">
-          logo 1
+      <div class="padding-inline">
+        <div class="heading-container">
+          <h2 class="title">Trusted by the visionaries.</h2>
+          <p class="description">
+            Over the last 15 years, we've had the opportunity to work with a dynamic range of clients, spanning from forward-thinking start-ups and scale-ups to Fortune 500 powerhouses.
+          </p>
         </div>
-
-        <div class="client-logo">
-          logo 2
-        </div>
-
-        <div class="client-logo">
-          logo 3
-        </div>
-
-        <div class="client-logo">
-          logo 4
-        </div>
-
-        <div class="client-logo">
-          logo 5
-        </div>
-
-        <div class="client-logo">
-          logo 6
-        </div>
-
-        <div class="client-logo">
-          logo 7
-        </div>
-
-        <div class="client-logo">
-          logo 8
-        </div>
-
-        <div class="client-logo">
-          logo 9
+        <div class="clients-grid">
+          <div class="client-logo">logo 1</div>
+          <div class="client-logo">logo 2</div>
+          <div class="client-logo">logo 3</div>
+          <div class="client-logo">logo 4</div>
+          <div class="client-logo">logo 5</div>
+          <div class="client-logo">logo 6</div>
+          <div class="client-logo">logo 7</div>
+          <div class="client-logo">logo 8</div>
+          <div class="client-logo">logo 9</div>
         </div>
       </div>
+    </section>
 
-    </div>
-  </section>
 
-  <!-- Audit -->
+    <!-- Audit -->
     <div class="audit-section">
       <div class="padding-inline">
         <a class="audit-link" href="#">
           <div class="audit-content-container">
             <div class="audit-content">
               <div class="audit-heading-container">
-                <h1 class="audit-heading">
-                  Request a <span class="audit-free">FREE</span> website audit
-                </h1>
+                <h1 class="audit-heading">Request a <span class="audit-free">FREE</span> website audit</h1>
               </div>
               <div class="audit-context-container">
                 <p class="audit-context">Let us review your company website, and show you the best path forward for scaling its impact.</p>
               </div>
             </div>
-
             <div class="audit-button">
               <div class="left-items">
-                <div class="pulse-effect">
-                  <span></span>
-                </div>
-                <div class="spots-capacity">
-                  2 Spots available
-                </div>
+                <div class="pulse-effect"><span></span></div>
+                <div class="spots-capacity">2 Spots available</div>
               </div>
-
               <div class="arrow-button mobile-only">
                 <i class="fa-solid fa-arrow-up button-logo button-logo-1"></i>
               </div>
             </div>
           </div>
-          
-          <img class="circles-image" src="images/circle.svg">
+          <img class="circles-image" src="images/circle.svg" loading="lazy" decoding="async">
         </a>
       </div>
     </div>
 
 
-    <!-- Reviews Section -->
+    <!-- Reviews -->
     <section class="reviews-section">
-    <div class="padding-inline">
-      <div class="review-content-container">
-        <div class="review-top">
-          <div class="review-heading-container">
-            <h2 class="review-heading text-anim">
-              Trusted by visionary founders and fast-growing global brands
-            </h2>
-          </div>
-          <div class="slider-buttons desktop-only">
-            <button class="prev-button ">
-              <i class="fa-solid fa-arrow-left"></i>
-            </button>
-            <button class="next-button">
-              <i class="fa-solid fa-arrow-right"></i>
-            </button>
+      <div class="padding-inline">
+        <div class="review-content-container">
+          <div class="review-top">
+            <div class="review-heading-container">
+              <h2 class="review-heading text-anim">
+                Trusted by visionary founders and fast-growing global brands
+              </h2>
+            </div>
+            <div class="slider-buttons desktop-only">
+              <button class="prev-button"><i class="fa-solid fa-arrow-left"></i></button>
+              <button class="next-button"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="review-strip">
-      <div class="review-item" id="review-item-1">
-        <div class="review-content">
-          <img class="brand-logo" src="./images/brands/peerSpot.avif">
-          <div class="review">
-            <p>
-              This is review 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
+      <div class="review-strip">
+        <div class="review-item" id="review-item-1">
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/peerSpot.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+          </div>
+          <div class="user">
+            <img class="user-image" src="https://picsum.photos/50" loading="lazy">
+            <div class="about-user">
+              <p class="user-name">Russel</p>
+              <p class="user-designation">CEO at PeerSpot</p>
+            </div>
           </div>
         </div>
-        <div class="user">
-          <img class="user-image" src="https://picsum.photos/50">
-          <div class="about-user">
-            <p class="user-name">Russel</p>
-            <p class="user-designation">CEO at PeerSpot</p>
-          </div> 
-        </div>
-      </div>
-
-      <div class="review-item" id="review-item-2">
-        <div class="review-content">
-          <img class="brand-logo" src="./images/brands/colgate.avif">
-          <div class="review">
-            <p>
-              This is review 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
+        <div class="review-item" id="review-item-2">
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/colgate.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+          </div>
+          <div class="user">
+            <img class="user-image" src="https://picsum.photos/50" loading="lazy">
+            <div class="about-user">
+              <p class="user-name">Russel</p>
+              <p class="user-designation">CEO at colgate</p>
+            </div>
           </div>
         </div>
-        <div class="user">
-          <img class="user-image" src="https://picsum.photos/50">
-          <div class="about-user">
-            <p class="user-name">Russel</p>
-            <p class="user-designation">CEO at colgate</p>
-          </div> 
-        </div>
-      </div>
-
-      <div class="review-item" id="review-item-3">
-        <div class="review-content">
-          <img class="brand-logo" src="./images/brands/DemoReel.avif">
-          <div class="review">
-            <p>
-              This is review 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
+        <div class="review-item" id="review-item-3">
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/DemoReel.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+          </div>
+          <div class="user">
+            <img class="user-image" src="https://picsum.photos/50" loading="lazy">
+            <div class="about-user">
+              <p class="user-name">Russel</p>
+              <p class="user-designation">CEO at DemoReel</p>
+            </div>
           </div>
         </div>
-        <div class="user">
-          <img class="user-image" src="https://picsum.photos/50">
-          <div class="about-user">
-            <p class="user-name">Russel</p>
-            <p class="user-designation">CEO at DemoReel</p>
-          </div> 
-        </div>
-      </div>
-
-      <div class="review-item" id="review-item-4">
-        <div class="review-content">
-          <img class="brand-logo" src="./images/brands/dermalogica.avif">
-          <div class="review">
-            <p>
-              This is review 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
+        <div class="review-item" id="review-item-4">
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/dermalogica.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur..</p></div>
+          </div>
+          <div class="user">
+            <img class="user-image" src="https://picsum.photos/50" loading="lazy">
+            <div class="about-user">
+              <p class="user-name">Russel</p>
+              <p class="user-designation">CEO at Dermalogica</p>
+            </div>
           </div>
         </div>
-        <div class="user">
-          <img class="user-image" src="https://picsum.photos/50">
-          <div class="about-user">
-            <p class="user-name">Russel</p>
-            <p class="user-designation">CEO at Dermalogica</p>
-          </div> 
-        </div>
-      </div>
-
-      <div class="review-item" id="review-item-5">
-        <div class="review-content">
-          <img class="brand-logo" src="./images/brands/taggstar.avif">
-          <div class="review">
-            <p>
-              This is review 5. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
+        <div class="review-item" id="review-item-5">
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/taggstar.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 5. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+          </div>
+          <div class="user">
+            <img class="user-image" src="https://picsum.photos/50" loading="lazy">
+            <div class="about-user">
+              <p class="user-name">Russel</p>
+              <p class="user-designation">CEO at taggstar</p>
+            </div>
           </div>
         </div>
-        <div class="user">
-          <img class="user-image" src="https://picsum.photos/50">
-          <div class="about-user">
-            <p class="user-name">Russel</p>
-            <p class="user-designation">CEO at taggstar</p>
-          </div> 
-        </div>
-      </div>
-
         <div class="review-item" id="review-item-6">
-        <div class="review-content">
-          <img class="brand-logo" src="./images/brands/bigEnergyGroup.avif">
-          <div class="review">
-            <p>
-              This is review 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/bigEnergyGroup.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+          </div>
+          <div class="user">
+            <img class="user-image" src="https://picsum.photos/50" loading="lazy">
+            <div class="about-user">
+              <p class="user-name">Russel</p>
+              <p class="user-designation">CEO at Big energy group</p>
+            </div>
           </div>
         </div>
-        <div class="user">
-          <img class="user-image" src="https://picsum.photos/50">
-          <div class="about-user">
-            <p class="user-name">Russel</p>
-            <p class="user-designation">CEO at Big energy group</p>
-          </div> 
-        </div>
       </div>
-
-        </div>
     </section>
 
   </main>
 
-  
-
   <footer class="footer-container" id="footer-container"></footer>
 
   <script src="scripts/components.js"></script>
+
+  <!-- Inline script to play videos via IntersectionObserver instead of HTML autoplay.
+       This runs before the module so videos are managed from the start. -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const videos = document.querySelectorAll('video[data-autoplay]');
+      if (!videos.length) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            entry.isIntersecting
+              ? entry.target.play().catch(() => {})
+              : entry.target.pause();
+          });
+        },
+        { threshold: 0.2 }
+      );
+
+      videos.forEach(v => observer.observe(v));
+    });
+  </script>
+
   <script src="scripts/services.js" type="module" defer></script>
 </body>
 </html>
