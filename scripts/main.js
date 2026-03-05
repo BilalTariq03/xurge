@@ -1,10 +1,10 @@
-// ===== js/main.js =====
+// ===== scripts/main.js (OPTIMIZED) =====
 import { initSmoothScrolling } from './core/scroll.js';
 import { initCustomCursor } from './core/cursor.js';
 import { AddSpans, charReveal, prepareHeroText } from './utils/text-utils.js';
 import { initPageTransitions } from './core/pageTransition.js';
 
-class AnimationManager { 
+class AnimationManager {
   constructor() {
     this.animations = new Map();
     this.cursor = null;
@@ -14,150 +14,118 @@ class AnimationManager {
   }
 
   async init() {
-    // Initialize core functionality
     this.lenis = initSmoothScrolling();
     this.cursor = initCustomCursor();
-
-
     initPageTransitions();
-    // Register GSAP plugins
     gsap.registerPlugin(ScrollTrigger);
 
-    // Initialize animations based on page content
     await this.initializeAnimations();
 
-    // Handle responsive changes
     this.setupResponsiveHandling();
-
-    // Handle visibility changes for performance
     this.setupVisibilityHandling();
-
-    // Add hover effects to elements
     this.setupHoverEffects();
 
-    // Restore scroll position after animations are set up
-    setTimeout(() => {
-      this.restoreScrollPosition();
-    }, 100);
+    setTimeout(() => this.restoreScrollPosition(), 100);
   }
 
   async initializeAnimations() {
-     // Add text spans to various elements
-    AddSpans('.about', 'about-char');
-    AddSpans('.booking-heading', 'heading-char');
+    // ── Above-fold: runs before anything is shown ─────────────────────────
+    prepareHeroText();
 
+    // Clone logo columns for the infinite scroll strip
+    document.querySelectorAll('.logo-column').forEach(column => {
+      column.querySelectorAll('.logo').forEach(logo => column.append(logo.cloneNode(true)));
+    });
+
+    // Both AddSpans have no dependency on each other — run in parallel
+    await Promise.all([
+      AddSpans('.about', 'about-char'),
+      AddSpans('.booking-heading', 'heading-char'),
+    ]);
+
+    // charReveal uses deferred ScrollTrigger (registers only when element is near viewport)
     charReveal('about-char', 'about', false, 0);
+    charReveal('heading-char', 'booking-heading', false, 0);
 
-    const columns = document.querySelectorAll('.logo-column');
+    // One rAF yield so the browser applies span DOM changes before any measurement
+    await new Promise(resolve => requestAnimationFrame(resolve));
 
-    columns.forEach((column, index)=>{
-      const logos = column.querySelectorAll('.logo');
-
-      logos.forEach(logo => {
-        const clone = logo.cloneNode(true);
-        column.append(clone);
-      });
-    });
-
-    document.querySelectorAll('.work-book').forEach(el => {
-    el.addEventListener('mousemove', e => {
-      const rect = el.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      el.style.setProperty('--mx', `${x}px`);
-      el.style.setProperty('--my', `${y}px`);
-    });
-  });
-    
-    // Hero animation (if hero exists)
+    // ── Hero: above fold, load immediately ────────────────────────────────
     if (document.querySelector('.animation-section')) {
-      // console.log('here')
       const { HeroAnimation } = await import('./animations/HeroAnimation.js');
-      const heroAnim = new HeroAnimation();
-      heroAnim.init();
-      this.animations.set('hero', heroAnim);
+      const a = new HeroAnimation(); a.init();
+      this.animations.set('hero', a);
     }
 
-    // Stats animation (if stats exist)
-    if (document.querySelector('.stats-section')) {
-      // console.log('here')
-      const { StatsAnimation } = await import('./animations/Stats.js');
-      const statsAnim = new StatsAnimation();
-      statsAnim.init();
-      this.animations.set('stats', statsAnim);
-    }
+    // ── Everything below fold: all imports fire concurrently ──────────────
+    await Promise.all([
 
-    // Works animation (if works exist)
-    if (document.querySelector('.works-section')) {
-      const { WorksAnimation } = await import('./animations/Works.js');
-      const worksAnim = new WorksAnimation();
-      worksAnim.init();
-      this.animations.set('works', worksAnim);
-    }
+      // Stats counter animation
+      document.querySelector('.stats-section') && import('./animations/Stats.js').then(({ StatsAnimation }) => {
+        const a = new StatsAnimation(); a.init();
+        this.animations.set('stats', a);
+      }),
 
-    // Services animation (if services exist)
-    if (document.querySelector('.services-section')) {
-      const { ServicesAnimation } = await import('./animations/services.js');
-      const servicesAnim = new ServicesAnimation();
-      servicesAnim.init();
-      this.animations.set('services', servicesAnim);
-    }
+      // Works horizontal scroll
+      document.querySelector('.works-section') && import('./animations/Works.js').then(({ WorksAnimation }) => {
+        const a = new WorksAnimation(); a.init();
+        this.animations.set('works', a);
+      }),
 
-    // Booking animation (if booking exists)
-    if (document.querySelector('.booking-section')) {
-      const { BookingAnimation } = await import('./animations/booking.js');
-      const bookingAnim = new BookingAnimation();
-      bookingAnim.init();
-      this.animations.set('booking', bookingAnim);
-    }
+      // Services Three.js canvas — already defers Three.js init until scroll enters
+      document.querySelector('.services-section') && import('./animations/services.js').then(({ ServicesAnimation }) => {
+        const a = new ServicesAnimation(); a.init();
+        this.animations.set('services', a);
+      }),
 
-    // Audit animation (if audit exists)
-    if (document.querySelector('.audit-link')) {
-      const { AuditAnimation } = await import('./animations/Audits.js');
-      const auditAnim = new AuditAnimation(this.cursor);
-      auditAnim.init();
-      this.animations.set('audit', auditAnim);
-    }
+      // Booking — defer full init until the section is near viewport
+      document.querySelector('.booking-section') && import('./animations/booking.js').then(({ BookingAnimation }) => {
+        const section = document.querySelector('.booking-section');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const a = new BookingAnimation(); a.init();
+            this.animations.set('booking', a);
+            observer.unobserve(section);
+          });
+        }, { threshold: 0, rootMargin: '0px 0px -100px 0px' });
+        observer.observe(section);
+      }),
 
-    // Reviews animation (if reviews exist)
-    if (document.querySelector('.review-strip')) {
-      const { ReviewsAnimation } = await import('./animations/reviews.js');
-      const reviewsAnim = new ReviewsAnimation();
-      reviewsAnim.init();
-      this.animations.set('reviews', reviewsAnim);
-    }
+      // Audit
+      document.querySelector('.audit-link') && import('./animations/Audits.js').then(({ AuditAnimation }) => {
+        const a = new AuditAnimation(this.cursor); a.init();
+        this.animations.set('audit', a);
+      }),
 
-    // Footer animation (if footer exists)
-    if (document.querySelector('.scroll-track')) {
-      const { FooterAnimation } = await import('./animations/footer.js');
-      const footerAnim = new FooterAnimation(this.cursor);
-      footerAnim.init();
-      this.animations.set('footer', footerAnim);
-    }
+      // Reviews
+      document.querySelector('.review-strip') && import('./animations/reviews.js').then(({ ReviewsAnimation }) => {
+        const a = new ReviewsAnimation(); a.init();
+        this.animations.set('reviews', a);
+      }),
 
-   
+      // Footer
+      document.querySelector('.scroll-track') && import('./animations/footer.js').then(({ FooterAnimation }) => {
+        const a = new FooterAnimation(this.cursor); a.init();
+        this.animations.set('footer', a);
+      }),
+
+    ]);
   }
 
   setupResponsiveHandling() {
     this.lastBreakpoint = this.getCurrentBreakpoint();
 
     this.debouncedResize = this.debounce(() => {
-      // Handle Three.js resize if services animation exists
       if (this.animations.has('services')) {
-        const servicesAnim = this.animations.get('services');
-        if (typeof servicesAnim.handleThreeJSResize === 'function') {
-          servicesAnim.handleThreeJSResize();
-        }
+        const s = this.animations.get('services');
+        if (typeof s.handleThreeJSResize === 'function') s.handleThreeJSResize();
       }
-      
-      const currentBreakpoint = this.getCurrentBreakpoint();
-      
-      if (this.lastBreakpoint !== currentBreakpoint) {
-        this.handleBreakpointChange(this.lastBreakpoint, currentBreakpoint);
-        this.lastBreakpoint = currentBreakpoint;
+      const current = this.getCurrentBreakpoint();
+      if (this.lastBreakpoint !== current) {
+        this.handleBreakpointChange(this.lastBreakpoint, current);
+        this.lastBreakpoint = current;
       }
-      
       ScrollTrigger.refresh();
     }, 250);
 
@@ -165,96 +133,59 @@ class AnimationManager {
   }
 
   getCurrentBreakpoint() {
-    return window.innerWidth <= 600 ? 'mobile' : 
-           window.innerWidth <= 990 ? 'tablet' : 'desktop';
+    return window.innerWidth <= 600 ? 'mobile'
+         : window.innerWidth <= 990 ? 'tablet'
+         : 'desktop';
   }
 
-  handleBreakpointChange(oldBreakpoint, newBreakpoint) {
-    // Reinitialize responsive animations
-    this.animations.forEach((animation, key) => {
-      if (typeof animation.handleBreakpointChange === 'function') {
-        animation.handleBreakpointChange(oldBreakpoint, newBreakpoint);
-      } else {
-        // Fallback: cleanup and reinitialize
-        animation.cleanup();
-        animation.init();
-      }
+  handleBreakpointChange(oldBp, newBp) {
+    this.animations.forEach(anim => {
+      typeof anim.handleBreakpointChange === 'function'
+        ? anim.handleBreakpointChange(oldBp, newBp)
+        : (anim.cleanup(), anim.init());
     });
   }
 
   setupVisibilityHandling() {
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        gsap.globalTimeline.pause();
-      } else {
-        gsap.globalTimeline.resume();
-      }
+      document.hidden ? gsap.globalTimeline.pause() : gsap.globalTimeline.resume();
     });
   }
 
   setupHoverEffects() {
     if (!this.cursor) return;
-
-    // Add hover effects to work items
     const workItemList = document.querySelector('.work-item-list');
-    if (workItemList) {
-      this.cursor.addHoverEffect(workItemList, 'work-hover');
-    }
+    if (workItemList) this.cursor.addHoverEffect(workItemList, 'work-hover');
 
-    // Add hover effects to work books
+    // Set up work-book mousemove only here (removed duplicate in initializeAnimations)
     document.querySelectorAll('.work-book').forEach(el => {
       el.addEventListener('mousemove', e => {
         const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        el.style.setProperty('--mx', `${x}px`);
-        el.style.setProperty('--my', `${y}px`);
+        el.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+        el.style.setProperty('--my', `${e.clientY - rect.top}px`);
       });
     });
   }
 
-  saveScrollPosition() {
-    this.savedScrollPosition = window.pageYOffset;
-  }
-
+  saveScrollPosition()    { this.savedScrollPosition = window.pageYOffset; }
   restoreScrollPosition() {
-    if (this.savedScrollPosition) {
-      requestAnimationFrame(() => {
-        window.scrollTo(0, this.savedScrollPosition);
-      });
-    }
+    if (this.savedScrollPosition)
+      requestAnimationFrame(() => window.scrollTo(0, this.savedScrollPosition));
   }
 
   debounce(func, wait) {
     let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
+    return (...args) => { clearTimeout(timeout); timeout = setTimeout(() => func(...args), wait); };
   }
 
   destroy() {
-    this.animations.forEach(animation => animation.cleanup());
+    this.animations.forEach(a => a.cleanup?.());
     this.animations.clear();
-    
-    // Remove event listeners
-    if (this.debouncedResize) {
-      window.removeEventListener('resize', this.debouncedResize);
-    }
-    
-    document.removeEventListener('visibilitychange', this.visibilityHandler);
+    if (this.debouncedResize) window.removeEventListener('resize', this.debouncedResize);
   }
 }
 
-// Initialize when DOM is ready
 const animationManager = new AnimationManager();
-
-// Save scroll position before initialization
 animationManager.saveScrollPosition();
 
 window.addEventListener('load', () => {
@@ -262,10 +193,5 @@ window.addEventListener('load', () => {
   ScrollTrigger.refresh();
 });
 
-// Prevent scroll restoration
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
-
-// Export for global access if needed
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.AnimationManager = animationManager;

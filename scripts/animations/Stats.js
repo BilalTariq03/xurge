@@ -1,36 +1,49 @@
 import { AnimationBase } from "../core/base.js";
 
-export class StatsAnimation extends AnimationBase{
-  init(){
+export class StatsAnimation extends AnimationBase {
+  init() {
     const counters = document.querySelectorAll('.stats-heading');
     const statsSection = document.querySelector('.stats-section');
-
     if (!counters.length || !statsSection) return;
 
-    counters.forEach((counter)=>{
-      const target = +counter.dataset.target;
+    // Set initial display state
+    counters.forEach(counter => { counter.textContent = '0' + (counter.id === 'percent' ? '%' : '+'); });
 
-      const trigger = gsap.fromTo(counter,
-        { innerText: 0},
-        {
-          innerText: target,
-          duration: 3,
-          ease: "power1.out",
-          scrollTrigger: {
-            trigger: statsSection,
-            start: `top 90%`,
-            // markers: true,
-            toggleActions: "play none none none"
-          },
-          snap: { innerText: 1},
-          onUpdate: function (){
-            const value = Math.round(counter.innerText);
-            counter.textContent = value + (counter.id=='percent'?"%":"+")
-          }
-        }
-      );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          observer.unobserve(statsSection);
 
-      this.registerTrigger(trigger.scrollTrigger);
-    })
+          counters.forEach(counter => {
+            const target = +counter.dataset.target;
+            const isPercent = counter.id === 'percent';
+
+            gsap.fromTo(
+              counter,
+              { innerText: 0 },
+              {
+                innerText: target,
+                duration: 3,
+                ease: 'power1.out',
+                snap: { innerText: 1 },
+                onUpdate() {
+                  counter.textContent = Math.round(counter.innerText) + (isPercent ? '%' : '+');
+                },
+              }
+            );
+          });
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(statsSection);
+    this._observer = observer;
+  }
+
+  cleanup() {
+    this._observer?.disconnect();
+    super.cleanup();
   }
 }

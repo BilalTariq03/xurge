@@ -16,16 +16,14 @@
 
   <link rel="icon" type="image/x-icon" href="./images/SVG/Xurge Mark.svg">
 
+  <!-- Preload the hero animation image — it's above fold and visible immediately -->
+  <link rel="preload" as="image" href="./images/XurgeAnimation.png">
+
   <script src="https://kit.fontawesome.com/0a2264748d.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.25/bundled/lenis.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
-
-
-
-
-
 </head>
 
 <body>
@@ -35,18 +33,11 @@
     <div class="loading-spinner"></div>
   </div>
 
-  <div class="cursor-ball" id="cursor-container">
-  </div>
+  <div class="cursor-ball" id="cursor-container"></div>
 
   <div id="logo-overlay" class="logo-overlay" aria-hidden="true">
-    <svg  id="overlay-logo" class="overlay-logo" data-name="Layer 2" viewBox="0 0 1232.89 264.54">
-      <defs>
-        <style>
-          .cls-1 {
-            fill: #191919;
-          }
-        </style>
-      </defs>
+    <svg id="overlay-logo" class="overlay-logo" data-name="Layer 2" viewBox="0 0 1232.89 264.54">
+      <defs><style>.cls-1{fill:#191919;}</style></defs>
       <g class="X-label">
         <path class="cls-1" d="M356.71,97.55c-.15-.15-.29-.29-.43-.43h0c.14.14.28.28.42.43Z"/>
         <path class="cls-1" d="M356.71,97.55c-.15-.15-.29-.29-.43-.43h0c.14.14.28.28.42.43Z"/>
@@ -59,418 +50,231 @@
         <path class="cls-1" d="M761.67,141.52c0-27.37-19.32-45.07-47.52-45.07h-97.53v122.8h31.91v-32.81h51.43l20.04,32.81h37.59l-22.88-36.49c16.68-6.49,26.96-21.24,26.96-41.24ZM705.29,159.94h-56.75v-37.02h56.75c9.57,0,24.47,0,24.47,18.59s-14.9,18.43-24.47,18.43Z"/>
         <path class="cls-1" d="M868.52,173.98h46.28c-.71,9.3-13.12,22.63-43.98,22.63-41.32,0-47.17-23.16-47.17-38.07s5.67-37.37,47.17-37.37c33.69,0,42.2,13.86,43.98,23.16h32.45c-1.95-30.53-26.78-49.65-76.43-49.65s-79.09,22.46-79.09,63.16,28.02,63.16,73.77,63.16c26.42,0,45.04-8.42,56.74-21.05l1.42,19.3h23.58v-65.79h-78.73v20.53Z"/>
         <polygon class="cls-1" points="1110.87 121.52 1110.87 96.44 979.65 96.44 979.65 219.24 1110.87 219.24 1110.87 194.16 1011.57 194.16 1011.57 169.24 1110.87 169.24 1110.87 146.44 1011.57 146.44 1011.57 121.52 1110.87 121.52"/>
-        
-        <path class="cls-1" d="M356.37,93l-.42-.42c.13.13.28.28.42.42h0Z"/>
-        <path class="cls-1" d="M356.37,93l-.42-.42c.13.13.28.28.42.42h0Z"/>
         <path class="cls-1" d="M1156.17,124.33v-19.66h-12.27v-7.76h33.69v7.76h-12.22v19.66h-9.2Z"/>
         <path class="cls-1" d="M1190.91,124.33v-27.42h11.6l9.4,16.8,9.44-16.8h11.56v27.42h-9.16v-14.8l-8.74,14.8h-6.15l-8.74-14.8v14.8h-9.2Z"/>
       </g>
-  </svg>
+    </svg>
   </div>
+
   <div class="main-content">
-    <nav class="nav-bar" id="navbar-container">
-    </nav>
+    <nav class="nav-bar" id="navbar-container"></nav>
+    <div class="button-holder" id="button-container"></div>
 
-  <div class="button-holder" id="button-container">
-  </div>
-
-
+    <!-- Hero -->
     <section class="hero-container">
       <div class="padding-inline">
         <div class="hero-text-container">
           <h1 class="hero-text">
             <div class="line">
-              <span class="stone-color">
-              Websites
-              </span>
-              and
-              <span class="stone-color">
-                brand
-              </span>
+              <span class="stone-color">Websites</span> and <span class="stone-color">brand</span>
             </div>
-
-            <div class="line">
-              identities that enhance 
-            </div>
-            
-            <div class="line">
-              business
-              <span class="stone-color">
-              growth
-              </span>
-            </div>
+            <div class="line">identities that enhance</div>
+            <div class="line">business <span class="stone-color">growth</span></div>
           </h1>
         </div>
       </div>
-      
     </section>
-    
-<!-- Landing animation -->
+
+    <!-- Landing animation — preloaded above, no lazy needed -->
     <section class="animation-section">
       <div class="padding-inline">
         <div class="animation-container-wrapper">
           <div class="animation-container">
             <div class="image-container">
-              <img class="xurge-animation" src="./images/XurgeAnimation.png">
-            </div>       
+              <img class="xurge-animation" src="./images/XurgeAnimation.png" alt="Xurge animation" decoding="async">
+            </div>
           </div>
-        </div>     
-      </div> 
+        </div>
+      </div>
     </section>
-    
 
-    <!-- brands logo -->
+    <!-- Brands logo strip -->
     <section class="brands-container">
-    <div class="padding-inline">        
-      <div class="logo-strip-container">
-        <div class="logo-strip">
-          <div class="logo-row">
-            <div class="logo-column delay-1">
-              <div class="logo">Logo 1</div>
-              <div class="logo">Logo 2</div>
-              <div class="logo">Logo 3</div>
-            </div>
+      <div class="padding-inline">
+        <div class="logo-strip-container">
+          <div class="logo-strip">
+            <div class="logo-row"><div class="logo-column delay-1"><div class="logo">Logo 1</div><div class="logo">Logo 2</div><div class="logo">Logo 3</div></div></div>
+            <div class="logo-row"><div class="logo-column delay-2"><div class="logo">Logo 4</div><div class="logo">Logo 5</div><div class="logo">Logo 6</div></div></div>
+            <div class="logo-row"><div class="logo-column delay-3"><div class="logo">Logo 7</div><div class="logo">Logo 8</div><div class="logo">Logo 9</div></div></div>
           </div>
-          
-          <div class="logo-row">
-            <div class="logo-column delay-2">
-              <div class="logo">Logo 4</div>
-              <div class="logo">Logo 5</div>
-              <div class="logo">Logo 6</div>
-            </div>
-          </div>
-          
-          <div class="logo-row">
-            <div class="logo-column delay-3">
-              <div class="logo">Logo 7</div>
-              <div class="logo">Logo 8</div>
-              <div class="logo">Logo 9</div>
-            </div>
-          </div>
-          
         </div>
       </div>
-    </div>
-    
     </section>
-    
-<!-- About section -->
+
+    <!-- About -->
     <section class="About-section">
-    <div class="padding-inline">
-      <div class="about-component-container">
-        <div class="about-component">
-          <h2 class="about text-anim">
-            We are award-winning strategic design studio focusing on building bespoke websites and brand identities that instill trust, make an impact, and drive growth.
-          </h2>
-
-          <div class="collaborate-link-container">
-            <a href="#" class="collaborate-link">
-              Let's Collaborate
-              <span class="link-logo-span">
-                <i class="fa-solid fa-arrow-up link-logo"></i>
-                <i class="fa-solid fa-arrow-up link-logo link-logo-2"></i>
-              </span>        
-            </a>
+      <div class="padding-inline">
+        <div class="about-component-container">
+          <div class="about-component">
+            <h2 class="about text-anim">
+              We are award-winning strategic design studio focusing on building bespoke websites and brand identities that instill trust, make an impact, and drive growth.
+            </h2>
+            <div class="collaborate-link-container">
+              <a href="#" class="collaborate-link">
+                Let's Collaborate
+                <span class="link-logo-span">
+                  <i class="fa-solid fa-arrow-up link-logo"></i>
+                  <i class="fa-solid fa-arrow-up link-logo link-logo-2"></i>
+                </span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    
     </section>
-    
-<!-- Stats section -->
+
+    <!-- Stats -->
     <section class="stats-section">
-    <div class="padding-inline">
-      <div class="padding-bottom-80">
-        <div class="stats-container">
-          <div class="stats-item">
-            <h1 class="stats-heading" id="add" data-target="15">0+</h1>
-            <div class="stats-content">
-              <p>Years of experience in designing digital products</p>
-            </div>
+      <div class="padding-inline">
+        <div class="padding-bottom-80">
+          <div class="stats-container">
+            <div class="stats-item"><h1 class="stats-heading" id="add" data-target="15">0+</h1><div class="stats-content"><p>Years of experience in designing digital products</p></div></div>
+            <div class="stats-item"><h1 class="stats-heading" id="add" data-target="300">0+</h1><div class="stats-content"><p>Projects completed for global clients</p></div></div>
+            <div class="stats-item"><h1 class="stats-heading" id="percent" data-target="90">0%</h1><div class="stats-content"><p>Of our clients return for another project</p></div></div>
+            <div class="stats-item"><h1 class="stats-heading" id="add" data-target="40">0+</h1><div class="stats-content"><p>Awards from the most prestigious institutions</p></div></div>
           </div>
-
-          <div class="stats-item">
-            <h1 class="stats-heading" id="add" data-target="300">0+</h1>
-            <div class="stats-content">
-              <p>Projects completed for global clients</p>
-            </div>
-          </div>
-
-          <div class="stats-item">
-            <h1 class="stats-heading" id="percent" data-target="90">0%</h1>
-              <div class="stats-content">
-                <p>Of our clients return for another project</p>
-              </div>
-          </div>
-
-            <div class="stats-item">
-              <h1 class="stats-heading" id="add" data-target="40">0+</h1>
-              <div class="stats-content">
-                <p>Awards from the most prestigious insititutions</p>
-              </div>
-            </div>
         </div>
       </div>
-    </div>
     </section>
-    
 
-     <!-- Works section -->
+    <!-- Works -->
     <section class="works-section">
       <div class="padding-inline">
         <div class="scroll-wrapper">
-          <!-- Panel 1: Hero Text -->
           <div class="works-container">
             <h1 class="works-hero-text">
-              <div class="works-hero-line">
-                Empowering
-              </div>
-              <div class="works-hero-line">
-                <span class="stone-color">B2B companies</span> with
-              </div>
-              <div class="works-hero-line">
-                world-class <span class="stone-color">designs.</span>
-              </div>    
+              <div class="works-hero-line">Empowering</div>
+              <div class="works-hero-line"><span class="stone-color">B2B companies</span> with</div>
+              <div class="works-hero-line">world-class <span class="stone-color">designs.</span></div>
             </h1>
           </div>
-          
-          <!-- Panel 2: Work Items -->
           <div class="work-item-list">
             <div class="work-item">
               <a href="projects.html?slug=controlled-credit-corporation" class="work-item-link">
                 <div class="work-item-img-container">
-                  <img class="work-item-img" src="./images/work1.avif">
+                  <!-- Work images are horizontally off-screen — lazy load them -->
+                  <img class="work-item-img" src="./images/work1.avif" loading="lazy" decoding="async">
                 </div>
-                <div class="work-item-content">
-                  <h3 class="title">Item heading</h3>
-                </div>
-                <div class="work-item-category">
-                  <div>Branding</div>
-                  <div class="dot"></div>
-                  <div>Website Design</div>
-                </div>
+                <div class="work-item-content"><h3 class="title">Item heading</h3></div>
+                <div class="work-item-category"><div>Branding</div><div class="dot"></div><div>Website Design</div></div>
               </a>
             </div>
-
             <div class="panel work-item">
               <a href="projects.html?slug=Hogrene" class="work-item-link">
                 <div class="work-item-img-container">
-                  <img class="work-item-img" src="./images/work1.avif">
+                  <img class="work-item-img" src="./images/work1.avif" loading="lazy" decoding="async">
                 </div>
-                <div class="work-item-content">
-                  <h3 class="title">Item 2 heading</h3>
-                </div>
-                <div class="work-item-category">
-                  <div>Branding</div>
-                  <div class="dot"></div>
-                  <div>Website Design</div>
-                </div>
+                <div class="work-item-content"><h3 class="title">Item 2 heading</h3></div>
+                <div class="work-item-category"><div>Branding</div><div class="dot"></div><div>Website Design</div></div>
               </a>
             </div>
-
             <div class="panel work-item">
               <a href="projects.html?slug=big-energy-group" class="work-item-link">
                 <div class="work-item-img-container">
-                  <img class="work-item-img" src="./images/work1.avif">
+                  <img class="work-item-img" src="./images/work1.avif" loading="lazy" decoding="async">
                 </div>
-                <div class="work-item-content">
-                  <h3 class="title">Item 3 heading</h3>
-                </div>
-                <div class="work-item-category">
-                  <div>Branding</div>
-                  <div class="dot"></div>
-                  <div>Website Design</div>
-                </div>
+                <div class="work-item-content"><h3 class="title">Item 3 heading</h3></div>
+                <div class="work-item-category"><div>Branding</div><div class="dot"></div><div>Website Design</div></div>
               </a>
             </div>
-
             <div class="panel work-item">
               <a href="projects.html?slug=spike" class="work-item-link">
                 <div class="work-item-img-container">
-                  <img class="work-item-img" src="./images/work1.avif">
+                  <img class="work-item-img" src="./images/work1.avif" loading="lazy" decoding="async">
                 </div>
-                <div class="work-item-content">
-                  <h3 class="title">Item 4 heading</h3>
-                </div>
-                <div class="work-item-category">
-                  <div>Branding</div>
-                  <div class="dot"></div>
-                  <div>Website Design</div>
-                </div>
+                <div class="work-item-content"><h3 class="title">Item 4 heading</h3></div>
+                <div class="work-item-category"><div>Branding</div><div class="dot"></div><div>Website Design</div></div>
               </a>
             </div>
-
             <div class="panel work-item">
               <a href="projects.html?slug=wandergates" class="work-item-link">
                 <div class="work-item-img-container">
-                  <img class="work-item-img" src="./images/work1.avif">
+                  <img class="work-item-img" src="./images/work1.avif" loading="lazy" decoding="async">
                 </div>
-                <div class="work-item-content">
-                  <h3 class="title">Item 5 heading</h3>
-                </div>
-                <div class="work-item-category">
-                  <div>Branding</div>
-                  <div class="dot"></div>
-                  <div>Website Design</div>
-                </div>
+                <div class="work-item-content"><h3 class="title">Item 5 heading</h3></div>
+                <div class="work-item-category"><div>Branding</div><div class="dot"></div><div>Website Design</div></div>
               </a>
             </div>
-            
             <a class="work-book desktop-only" href="work.html">
-              <div class="work-book-content">
-                <h2 class="heading">Still curious?</h2>
-                <p>See more projects.</p>
-              </div>
+              <div class="work-book-content"><h2 class="heading">Still curious?</h2><p>See more projects.</p></div>
             </a>
-
             <div class="mobile-only">
-              <a class="secondary-button" href="work.html">
-                <p>View All Work</p>
-                <i class="fa-solid fa-arrow-up button-logo"></i>
-              </a>
+              <a class="secondary-button" href="work.html"><p>View All Work</p><i class="fa-solid fa-arrow-up button-logo"></i></a>
             </div>
           </div>
-        </div>  
+        </div>
       </div>
-      
     </section>
-    
 
-    <!-- Services -->
+    <!-- Services Three.js -->
     <section class="services-section">
       <div class="services-wrapper">
         <div class="canvas-wrapper" id="canvasWrapper">
-          <canvas id="bgCanvas" class="bg-canvas"></canvas> 
+          <canvas id="bgCanvas" class="bg-canvas"></canvas>
         </div>
-        
-
         <div class="text-container">
           <div class="text-line">
             <span class="front from-left" id="services">Services</span>
             <span class="behind from-right" id="to">to</span>
           </div>
-            
           <div class="text-line">
             <span class="front from-left" id="fuel">fuel</span>
             <span class="front from-right" id="your"> your</span>
             <span class="behind from-right" id="growth">growth</span>
-          </div>     
+          </div>
         </div>
-        
         <div class="service-container">
-          <div class="service-item">
-            <div class="item-number">01</div>
-            <div class="service-name">
-              <h1>
-                Branding
-              </h1>
-            </div>
-            <div class="service-about">
-              Branding is the heartbeat of your business, painting a vivid portrait of your company. We create memorable identities that capture attention and help you excel in a fast-evolving marketplace
-            </div>
-          </div>
-
-          <div class="service-item">
-            <div class="item-number">02</div>
-            <div class="service-name">
-              <h1>
-                Web Design
-              </h1>
-            </div>
-            <div class="service-about">
-              We focus on designing marketing websites that elevate your brand's value. Your new website will captivate your target audiences, keep them engaged, and persuade them to take action.
-            </div>
-          </div>
-
-          <div class="service-item">
-            <div class="item-number">03</div>
-            <div class="service-name">
-              <h1>
-                Digital Products
-              </h1>
-            </div>
-            <div class="service-about">
-              We combine user-centric research with cutting-edge design principles to create digital products and experiences that not only look exceptional but also seamlessly integrate into users' lives.
-            </div>
-          </div>
-
-          <div class="service-item">
-            <div class="item-number">04</div>
-            <div class="service-name">
-              <h1>
-                Content
-              </h1>
-            </div>
-            <div class="service-about">
-              Authenticity is no longer an option, it's a demand. We're your partners in creating content that not only stands out but leaves a lasting impression while representing your brand in it's best light.
-            </div>
-          </div>
+          <div class="service-item"><div class="item-number">01</div><div class="service-name"><h1>Branding</h1></div><div class="service-about">Branding is the heartbeat of your business, painting a vivid portrait of your company.</div></div>
+          <div class="service-item"><div class="item-number">02</div><div class="service-name"><h1>Web Design</h1></div><div class="service-about">We focus on designing marketing websites that elevate your brand's value.</div></div>
+          <div class="service-item"><div class="item-number">03</div><div class="service-name"><h1>Digital Products</h1></div><div class="service-about">We combine user-centric research with cutting-edge design principles.</div></div>
+          <div class="service-item"><div class="item-number">04</div><div class="service-name"><h1>Content</h1></div><div class="service-about">Authenticity is no longer an option, it's a demand.</div></div>
         </div>
       </div>
     </section>
-
 
     <!-- Booking -->
     <section class="booking-section">
       <div class="padding-inline">
         <div class="booking-inner">
           <div class="images-grid">
-            <div class="image-container">
-              <img class="book-image" src="images/tony.jpg">
-            </div>
-            <div class="image-container">
-              <img class="book-image" src="images/tony.jpg">
-            </div>
-            <div class="image-container">
-              <img class="book-image" src="images/tony.jpg">
-            </div>
-            <div class="image-container">
-              <img class="book-image" src="images/tony.jpg">
-            </div>
-            <div class="image-container">
-              <img class="book-image" src="images/tony.jpg">
-            </div>            
+            <!-- Booking images are below fold — all lazy -->
+            <div class="image-container"><img class="book-image" src="images/tony.jpg" loading="lazy" decoding="async"></div>
+            <div class="image-container"><img class="book-image" src="images/tony.jpg" loading="lazy" decoding="async"></div>
+            <div class="image-container"><img class="book-image" src="images/tony.jpg" loading="lazy" decoding="async"></div>
+            <div class="image-container"><img class="book-image" src="images/tony.jpg" loading="lazy" decoding="async"></div>
+            <div class="image-container"><img class="book-image" src="images/tony.jpg" loading="lazy" decoding="async"></div>
           </div>
-
           <div class="booking-content">
             <div class="heading-container">
               <h2 class="booking-heading text-anim">
                 Led by industry veterans, our team is diverse, experienced, and outcome-oriented.
               </h2>
             </div>
-
             <div class="booking-call-container">
-              <div class="book-call-heading">
-                <p>BOOK A CALL</p>
-              </div>
+              <div class="book-call-heading"><p>BOOK A CALL</p></div>
               <div class="booking-link-container">
                 <a class="booking-link" href="contact.html">
                   <div class="user">
-                    <img class="user-image" src="https://picsum.photos/50">
+                    <img class="user-image" src="https://picsum.photos/50" loading="lazy">
                     <div class="about-user">
                       <p class="user-name">Bashaar Khan</p>
                       <p class="user-designation">Founder</p>
-                    </div>  
+                    </div>
                   </div>
-
                   <div class="booking-button">
                     <span class="booking-link-span">
                       <i class="fa-solid fa-arrow-up booking-link-icon"></i>
                       <i class="fa-solid fa-arrow-up booking-link-icon booking-link-icon2"></i>
-                    </span> 
+                    </span>
                   </div>
                 </a>
               </div>
             </div>
-            
           </div>
         </div>
-        
       </div>
     </section>
 
-    
     <!-- Audit -->
     <div class="audit-section">
       <div class="padding-inline">
@@ -478,179 +282,93 @@
           <div class="audit-content-container">
             <div class="audit-content">
               <div class="audit-heading-container">
-                <h1 class="audit-heading">
-                  Request a <span class="audit-free">FREE</span> website audit
-                </h1>
+                <h1 class="audit-heading">Request a <span class="audit-free">FREE</span> website audit</h1>
               </div>
               <div class="audit-context-container">
                 <p class="audit-context">Let us review your company website, and show you the best path forward for scaling its impact.</p>
               </div>
             </div>
-
             <div class="audit-button">
               <div class="left-items">
-                <div class="pulse-effect">
-                  <span></span>
-                </div>
-                <div class="spots-capacity">
-                  2 Spots available
-                </div>
+                <div class="pulse-effect"><span></span></div>
+                <div class="spots-capacity">2 Spots available</div>
               </div>
-
               <div class="arrow-button mobile-only">
                 <i class="fa-solid fa-arrow-up button-logo button-logo-1"></i>
               </div>
             </div>
           </div>
-          
-          <img class="circles-image" src="images/circle.svg">
+          <img class="circles-image" src="images/circle.svg" loading="lazy" decoding="async">
         </a>
       </div>
     </div>
 
-
-    <!-- Reviews Section -->
+    <!-- Reviews -->
     <section class="reviews-section">
-    <div class="padding-inline">
-      <div class="review-content-container">
-        <div class="review-top">
-          <div class="review-heading-container">
-            <h2 class="review-heading text-anim">
-              Trusted by visionary founders and fast-growing global brands
-            </h2>
-          </div>
-          <div class="slider-buttons desktop-only">
-            <button class="prev-button ">
-              <i class="fa-solid fa-arrow-left"></i>
-            </button>
-            <button class="next-button">
-              <i class="fa-solid fa-arrow-right"></i>
-            </button>
+      <div class="padding-inline">
+        <div class="review-content-container">
+          <div class="review-top">
+            <div class="review-heading-container">
+              <h2 class="review-heading text-anim">Trusted by visionary founders and fast-growing global brands</h2>
+            </div>
+            <div class="slider-buttons desktop-only">
+              <button class="prev-button"><i class="fa-solid fa-arrow-left"></i></button>
+              <button class="next-button"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="review-strip">
-      <div class="review-item" id="review-item-1">
-        <div class="review-content">
-          <img class="brand-logo" src="./images/brands/peerSpot.avif">
-          <div class="review">
-            <p>
-              This is review 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
+      <div class="review-strip">
+        <div class="review-item" id="review-item-1">
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/peerSpot.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
           </div>
+          <div class="user"><img class="user-image" src="https://picsum.photos/50" loading="lazy"><div class="about-user"><p class="user-name">Russel</p><p class="user-designation">CEO at PeerSpot</p></div></div>
         </div>
-        <div class="user">
-          <img class="user-image" src="https://picsum.photos/50">
-          <div class="about-user">
-            <p class="user-name">Russel</p>
-            <p class="user-designation">CEO at PeerSpot</p>
-          </div> 
-        </div>
-      </div>
-
-      <div class="review-item" id="review-item-2">
-        <div class="review-content">
-          <img class="brand-logo" src="./images/brands/colgate.avif">
-          <div class="review">
-            <p>
-              This is review 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
+        <div class="review-item" id="review-item-2">
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/colgate.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
           </div>
+          <div class="user"><img class="user-image" src="https://picsum.photos/50" loading="lazy"><div class="about-user"><p class="user-name">Russel</p><p class="user-designation">CEO at colgate</p></div></div>
         </div>
-        <div class="user">
-          <img class="user-image" src="https://picsum.photos/50">
-          <div class="about-user">
-            <p class="user-name">Russel</p>
-            <p class="user-designation">CEO at colgate</p>
-          </div> 
-        </div>
-      </div>
-
-      <div class="review-item" id="review-item-3">
-        <div class="review-content">
-          <img class="brand-logo" src="./images/brands/DemoReel.avif">
-          <div class="review">
-            <p>
-              This is review 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
+        <div class="review-item" id="review-item-3">
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/DemoReel.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
           </div>
+          <div class="user"><img class="user-image" src="https://picsum.photos/50" loading="lazy"><div class="about-user"><p class="user-name">Russel</p><p class="user-designation">CEO at DemoReel</p></div></div>
         </div>
-        <div class="user">
-          <img class="user-image" src="https://picsum.photos/50">
-          <div class="about-user">
-            <p class="user-name">Russel</p>
-            <p class="user-designation">CEO at DemoReel</p>
-          </div> 
-        </div>
-      </div>
-
-      <div class="review-item" id="review-item-4">
-        <div class="review-content">
-          <img class="brand-logo" src="./images/brands/dermalogica.avif">
-          <div class="review">
-            <p>
-              This is review 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
+        <div class="review-item" id="review-item-4">
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/dermalogica.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
           </div>
+          <div class="user"><img class="user-image" src="https://picsum.photos/50" loading="lazy"><div class="about-user"><p class="user-name">Russel</p><p class="user-designation">CEO at Dermalogica</p></div></div>
         </div>
-        <div class="user">
-          <img class="user-image" src="https://picsum.photos/50">
-          <div class="about-user">
-            <p class="user-name">Russel</p>
-            <p class="user-designation">CEO at Dermalogica</p>
-          </div> 
-        </div>
-      </div>
-
-      <div class="review-item" id="review-item-5">
-        <div class="review-content">
-          <img class="brand-logo" src="./images/brands/taggstar.avif">
-          <div class="review">
-            <p>
-              This is review 5. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
+        <div class="review-item" id="review-item-5">
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/taggstar.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 5. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
           </div>
+          <div class="user"><img class="user-image" src="https://picsum.photos/50" loading="lazy"><div class="about-user"><p class="user-name">Russel</p><p class="user-designation">CEO at taggstar</p></div></div>
         </div>
-        <div class="user">
-          <img class="user-image" src="https://picsum.photos/50">
-          <div class="about-user">
-            <p class="user-name">Russel</p>
-            <p class="user-designation">CEO at taggstar</p>
-          </div> 
-        </div>
-      </div>
-
         <div class="review-item" id="review-item-6">
-        <div class="review-content">
-          <img class="brand-logo" src="./images/brands/bigEnergyGroup.avif">
-          <div class="review">
-            <p>
-              This is review 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            </p>
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/bigEnergyGroup.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
           </div>
-        </div>
-        <div class="user">
-          <img class="user-image" src="https://picsum.photos/50">
-          <div class="about-user">
-            <p class="user-name">Russel</p>
-            <p class="user-designation">CEO at Big energy group</p>
-          </div> 
+          <div class="user"><img class="user-image" src="https://picsum.photos/50" loading="lazy"><div class="about-user"><p class="user-name">Russel</p><p class="user-designation">CEO at Big energy group</p></div></div>
         </div>
       </div>
-
-        </div>
     </section>
 
-    <footer class="footer-container" id="footer-container">
-    
-    </footer>
+    <footer class="footer-container" id="footer-container"></footer>
   </div>
-  
 
   <script src="scripts/components.js"></script>
-  <script src="scripts/header.js" type="module" defer></script>  
+  <script src="scripts/header.js" type="module" defer></script>
   <script src="scripts/main.js" type="module" defer></script>
-   
 </body>
 </html>
