@@ -7,8 +7,6 @@
 
   <link rel="icon" type="image/x-icon" href="./images/SVG/Xurge Mark.svg">
 
-  
-
   <link rel="stylesheet" href="styles/general.css">
   <link rel="stylesheet" href="styles/header.css">
   <link rel="stylesheet" href="styles/work.css">
@@ -19,52 +17,39 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.25/bundled/lenis.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
-
 </head>
 <body>
   <div class="page-transition" id="page-transition"></div>
-  
-  <div class="cursor-ball" id="cursor-container">
-  </div>
+  <div class="cursor-ball" id="cursor-container"></div>
+  <nav class="nav-bar" id="navbar-container"></nav>
+  <div class="button-holder" id="button-container"></div>
 
-  <nav class="nav-bar" id="navbar-container">
-  </nav>
-  
-  <div class="button-holder" id="button-container">
-  </div>
-
+  <!-- Hero -->
   <div class="hero-container">
     <div class="padding-inline">
       <div class="hero-text-container">
         <h1 class="hero-text">
-          <div class="line">
-            <span class="stone-color">Our</span> 
-            projects 
-          </div>
-          <div class="line">
-            designed for
-            <span class="stone-color">impact</span>
-          </div>
+          <div class="line"><span class="stone-color">Our</span> projects</div>
+          <div class="line">designed for <span class="stone-color">impact</span></div>
         </h1>
       </div>
     </div>
   </div>
 
+  <!-- Works grid -->
   <div class="works-grid-container">
     <div class="padding-inline">
       <div class="works-grid">
+
+        <!-- First 2 items may be above fold on desktop — no lazy -->
         <div class="item-container">
           <a class="work-link" href="projects.html?slug=controlled-credit-corporation">
             <div class="image-container">
-            <img src="./images/work1.avif" alt="work image">
+              <img src="./images/work1.avif" alt="work image" decoding="async">
             </div>
             <div class="about-item-container">
               <h3 class="item-heading">Item heading</h3>
-              <div class="work-item-category">
-                <p>Branding</p>
-                <div class="dot"></div>
-                <p>Website design</p>
-              </div>      
+              <div class="work-item-category"><p>Branding</p><div class="dot"></div><p>Website design</p></div>
             </div>
           </a>
         </div>
@@ -72,31 +57,24 @@
         <div class="item-container">
           <a class="work-link" href="projects.html?slug=Hogrene">
             <div class="image-container">
-            <img src="./images/work1.avif" alt="work image">
+              <img src="./images/work1.avif" alt="work image" decoding="async">
             </div>
             <div class="about-item-container">
               <h3 class="item-heading">Item heading</h3>
-              <div class="work-item-category">
-                <p>Branding</p>
-                <div class="dot"></div>
-                <p>Website design</p>
-              </div>      
+              <div class="work-item-category"><p>Branding</p><div class="dot"></div><p>Website design</p></div>
             </div>
           </a>
         </div>
 
+        <!-- Remaining 6 items are below fold — all lazy -->
         <div class="item-container">
           <a class="work-link" href="projects.html?slug=big-energy-group">
             <div class="image-container">
-            <img src="./images/work1.avif" alt="work image">
+              <img src="./images/work1.avif" alt="work image" loading="lazy" decoding="async">
             </div>
             <div class="about-item-container">
               <h3 class="item-heading">Item heading</h3>
-              <div class="work-item-category">
-                <p>Branding</p>
-                <div class="dot"></div>
-                <p>Website design</p>
-              </div>      
+              <div class="work-item-category"><p>Branding</p><div class="dot"></div><p>Website design</p></div>
             </div>
           </a>
         </div>
@@ -104,15 +82,11 @@
         <div class="item-container">
           <a class="work-link" href="projects.html?slug=spike">
             <div class="image-container">
-            <img src="./images/work1.avif" alt="work image">
+              <img src="./images/work1.avif" alt="work image" loading="lazy" decoding="async">
             </div>
             <div class="about-item-container">
               <h3 class="item-heading">Item heading</h3>
-              <div class="work-item-category">
-                <p>Branding</p>
-                <div class="dot"></div>
-                <p>Website design</p>
-              </div>      
+              <div class="work-item-category"><p>Branding</p><div class="dot"></div><p>Website design</p></div>
             </div>
           </a>
         </div>
@@ -120,15 +94,11 @@
         <div class="item-container">
           <a class="work-link" href="projects.html?slug=wandergates">
             <div class="image-container">
-            <img src="./images/work1.avif" alt="work image">
+              <img src="./images/work1.avif" alt="work image" loading="lazy" decoding="async">
             </div>
             <div class="about-item-container">
               <h3 class="item-heading">Item heading</h3>
-              <div class="work-item-category">
-                <p>Branding</p>
-                <div class="dot"></div>
-                <p>Website design</p>
-              </div>      
+              <div class="work-item-category"><p>Branding</p><div class="dot"></div><p>Website design</p></div>
             </div>
           </a>
         </div>
@@ -136,15 +106,11 @@
         <div class="item-container">
           <a class="work-link" href="projects.html?slug=acs">
             <div class="image-container">
-            <img src="./images/work1.avif" alt="work image">
+              <img src="./images/work1.avif" alt="work image" loading="lazy" decoding="async">
             </div>
             <div class="about-item-container">
               <h3 class="item-heading">Item heading</h3>
-              <div class="work-item-category">
-                <p>Branding</p>
-                <div class="dot"></div>
-                <p>Website design</p>
-              </div>      
+              <div class="work-item-category"><p>Branding</p><div class="dot"></div><p>Website design</p></div>
             </div>
           </a>
         </div>
@@ -152,15 +118,11 @@
         <div class="item-container">
           <a class="work-link" href="projects.html?slug=nc-education">
             <div class="image-container">
-            <img src="./images/work1.avif" alt="work image">
+              <img src="./images/work1.avif" alt="work image" loading="lazy" decoding="async">
             </div>
             <div class="about-item-container">
               <h3 class="item-heading">Item heading</h3>
-              <div class="work-item-category">
-                <p>Branding</p>
-                <div class="dot"></div>
-                <p>Website design</p>
-              </div>      
+              <div class="work-item-category"><p>Branding</p><div class="dot"></div><p>Website design</p></div>
             </div>
           </a>
         </div>
@@ -168,178 +130,111 @@
         <div class="item-container">
           <a class="work-link" href="projects.html?slug=zahlmann">
             <div class="image-container">
-            <img src="./images/work1.avif" alt="work image">
+              <img src="./images/work1.avif" alt="work image" loading="lazy" decoding="async">
             </div>
             <div class="about-item-container">
               <h3 class="item-heading">Item heading</h3>
-              <div class="work-item-category">
-                <p>Branding</p>
-                <div class="dot"></div>
-                <p>Website design</p>
-              </div>      
+              <div class="work-item-category"><p>Branding</p><div class="dot"></div><p>Website design</p></div>
             </div>
           </a>
         </div>
+
       </div>
     </div>
   </div>
 
-
+  <!-- Clients -->
   <div class="clients-container">
     <div class="padding-inline">
       <div class="heading-container">
-        <h2 class="title">
-          Trusted by the visionaries.
-        </h2>
-
-        <p class="description">
-          Over the last 15 years, we’ve had the opportunity to work with a dynamic range of clients, spanning from forward-thinking start-ups and scale-ups to Fortune 500 powerhouses.
-        </p>
+        <h2 class="title">Trusted by the visionaries.</h2>
+        <p class="description">Over the last 15 years, we've had the opportunity to work with a dynamic range of clients, spanning from forward-thinking start-ups and scale-ups to Fortune 500 powerhouses.</p>
       </div>
       <div class="clients-grid">
-        <div class="client-logo">
-          logo 1
-        </div>
-
-        <div class="client-logo">
-          logo 2
-        </div>
-
-        <div class="client-logo">
-          logo 3
-        </div>
-
-        <div class="client-logo">
-          logo 4
-        </div>
-
-        <div class="client-logo">
-          logo 5
-        </div>
-
-        <div class="client-logo">
-          logo 6
-        </div>
-
-        <div class="client-logo">
-          logo 7
-        </div>
-
-        <div class="client-logo">
-          logo 8
-        </div>
-
-        <div class="client-logo">
-          logo 9
-        </div>
+        <div class="client-logo">logo 1</div>
+        <div class="client-logo">logo 2</div>
+        <div class="client-logo">logo 3</div>
+        <div class="client-logo">logo 4</div>
+        <div class="client-logo">logo 5</div>
+        <div class="client-logo">logo 6</div>
+        <div class="client-logo">logo 7</div>
+        <div class="client-logo">logo 8</div>
+        <div class="client-logo">logo 9</div>
       </div>
-
     </div>
   </div>
 
-  <div >
+  <!-- Awards -->
+  <div>
     <div class="padding-inline">
       <div class="awards-container">
         <div class="heading-container">
-          <h2 class="title">
-            Awards & Recoqnitions.
-          </h2>
-
-          <p class="description">
-            We're committed to delivering exceptional results that bring value our clients. While winning awards is not our primary objective, it's undeniably rewarding when our efforts are acknowledged.
-          </p>
+          <h2 class="title">Awards & Recognitions.</h2>
+          <p class="description">We're committed to delivering exceptional results that bring value to our clients. While winning awards is not our primary objective, it's undeniably rewarding when our efforts are acknowledged.</p>
         </div>
 
         <div class="awards-grid">
           <div class="top-layer">
-            <h3 class="heading"> INSTITUTION
-            </h3>
-            <h3 class="heading"> TYPE 
-            </h3>
-            <h3 class="heading"> YEAR 
-            </h3>
+            <h3 class="heading">INSTITUTION</h3>
+            <h3 class="heading">TYPE</h3>
+            <h3 class="heading">YEAR</h3>
           </div>
           <div class="list">
+
             <div class="list-item">
-              
               <div class="inst-item">
                 <i class="fa-solid fa-arrow-up link-arrow"></i>
-                <h3>Awwards</h3>
+                <h3>Awwwards</h3>
               </div>
               <div class="type-year-row">
-                <div class="type-item">
-                  <h3>Honorable Mention</h3>
-                </div>
-                <div class="year-item">
-                  <h3>2024</h3>
-                </div>
+                <div class="type-item"><h3>Honorable Mention</h3></div>
+                <div class="year-item"><h3>2024</h3></div>
               </div>
-              
+              <!-- Award hover images are decorative/interactive, lazy is fine -->
               <div class="award-image">
-                <img src="./images/tony.jpg">
+                <img src="./images/tony.jpg" loading="lazy" decoding="async">
               </div>
-
               <button class="award-toggle" aria-label="Toggle award details">+</button>
-
               <div class="award-expanded">
-                <img src="./images/tony.jpg" alt="Awwwards certificate">
+                <img src="./images/tony.jpg" alt="Awwwards certificate" loading="lazy" decoding="async">
                 <a href="#" class="view-details">View Details ↗</a>
               </div>
             </div>
 
             <div class="list-item">
-              
               <div class="inst-item">
                 <i class="fa-solid fa-arrow-up link-arrow"></i>
                 <h3>CSS Design Awards</h3>
               </div>
-
               <div class="type-year-row">
-                <div class="type-item">
-                  <h3>Best Innovation, UI/UX Design, Special Kudos</h3>
-                </div>
-                <div class="year-item">
-                  <h3>2024</h3>
-                </div>
+                <div class="type-item"><h3>Best Innovation, UI/UX Design, Special Kudos</h3></div>
+                <div class="year-item"><h3>2024</h3></div>
               </div>
-
               <div class="award-image">
-                <img src="./images/tony.jpg">
+                <img src="./images/tony.jpg" loading="lazy" decoding="async">
               </div>
-
               <button class="award-toggle" aria-label="Toggle award details">+</button>
-
               <div class="award-expanded">
-                <img src="./images/tony.jpg" alt="Awwwards certificate">
+                <img src="./images/tony.jpg" alt="CSS Design Awards certificate" loading="lazy" decoding="async">
                 <a href="#" class="view-details">View Details ↗</a>
               </div>
             </div>
 
             <div class="list-item">
-              
               <div class="inst-item">
                 <i class="fa-solid fa-arrow-up link-arrow"></i>
                 <h3>CSS Light</h3>
               </div>
-
               <div class="type-year-row">
-                <div class="type-item">
-                  <h3>Featured of the Day</h3>
-                </div>
-                <div class="year-item">
-                  <h3>2024</h3>
-                </div>
+                <div class="type-item"><h3>Featured of the Day</h3></div>
+                <div class="year-item"><h3>2024</h3></div>
               </div>
-
               <div class="award-image">
-                  <img src="./images/tony.jpg">
+                <img src="./images/tony.jpg" loading="lazy" decoding="async">
               </div>
-              
-
               <button class="award-toggle" aria-label="Toggle award details">+</button>
-
               <div class="award-expanded">
-                <img src="./images/tony.jpg" alt="Awwwards certificate">
+                <img src="./images/tony.jpg" alt="CSS Light certificate" loading="lazy" decoding="async">
                 <a href="#" class="view-details">View Details ↗</a>
               </div>
             </div>
@@ -352,14 +247,7 @@
 
   <footer class="footer-container" id="footer-container"></footer>
 
-
   <script src="scripts/components.js"></script>
   <script src="scripts/works_main.js" type="module" defer></script>
-
-  <!-- <script type="module">
-    import { animateHeroText } from "./scripts/animations/heroText.js";
-    animateHeroText();
-  </script> -->
-  
 </body>
 </html>

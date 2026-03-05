@@ -1,137 +1,103 @@
 import { initSmoothScrolling } from "./core/scroll.js";
 import { initCustomCursor } from "./core/cursor.js";
-import { AddSpans, charReveal, prepareHeroText } from "./utils/text-utils.js";
+import { prepareHeroText } from "./utils/text-utils.js";
 import { animateHeroText } from "./animations/heroText.js";
 import { initPageTransitions } from "./core/pageTransition.js";
 
-
-class AnimationManager{
-  constructor(){
+class AnimationManager {
+  constructor() {
     this.animations = new Map();
     this.cursor = null;
     this.lenis = null;
   }
 
-  async init(){
+  async init() {
     this.lenis = initSmoothScrolling();
     this.cursor = initCustomCursor();
-
     gsap.registerPlugin(ScrollTrigger);
+    initPageTransitions();
 
     await this.initializeAnimations();
 
-    initPageTransitions();
-
     this.setupHoverEffects();
-
-    setTimeout(() => {
-      this.restoreScrollPosition();
-    }, 100);
+    setTimeout(() => this.restoreScrollPosition(), 100);
   }
 
-  async initializeAnimations(){
+  async initializeAnimations() {
     prepareHeroText();
-
     await new Promise(resolve => requestAnimationFrame(resolve));
 
-    // if(document.querySelector('.hero-span'))
-    // {
-    //   animateHeroText();
-    // }
-
-    if(document.querySelector('.works-grid')){
-      const {WorksAnimation} = await import('./animations/Works.js');
-      const worksAnim = new WorksAnimation();
-      worksAnim.init();
-      this.animations.set('works', worksAnim);
+    // ── Step 1: Works animation first (it sets up the pin + ScrollTrigger) ──
+    if (document.querySelector('.works-grid') || document.querySelector('.works-section')) {
+      const { WorksAnimation } = await import('./animations/Works.js');
+      const a = new WorksAnimation();
+      a.init();
+      this.animations.set('works', a);
     }
 
-    if(document.querySelector('.clients-container')){
-      const {clientAnimation} = await import('./animations/clientAnimation.js');
-      const clientAnim = new clientAnimation();
-      clientAnim.init();
-      this.animations.set('clients', clientAnim);
-    }
+    // ── Step 2: Wait for Works' internal ScrollTrigger.refresh() to finish ──
+    // Works.js calls setTimeout(ScrollTrigger.refresh, 500) internally.
+    // We wait for that + one more frame so the pin spacer is fully inserted
+    // and all element positions are settled before anything else inits.
+    await new Promise(resolve => setTimeout(resolve, 600));
+    await new Promise(resolve => requestAnimationFrame(resolve));
 
-    if(document.querySelector('.list-item')){
-      const {awardsAnimation} = await import ('./animations/awardsAnimation.js')
-      const awardsAnim = new awardsAnimation();
-      awardsAnim.init();
-      this.animations.set('awards', awardsAnim)
-    }
+    // ── Step 3: Everything else can now init safely in parallel ──────────
+    await Promise.all([
 
-    if (document.querySelector('.scroll-track')) {
-      const { FooterAnimation } = await import('./animations/footer.js');
-      const footerAnim = new FooterAnimation(this.cursor);
-      footerAnim.init();
-      this.animations.set('footer', footerAnim);
-    }
+      document.querySelector('.clients-container') && import('./animations/clientAnimation.js').then(({ clientAnimation }) => {
+        const a = new clientAnimation();
+        a.init();
+        this.animations.set('clients', a);
+      }),
+
+      // Awards is NOT deferred behind an IntersectionObserver anymore.
+      // The click handlers and hover effects must be registered after the
+      // pin spacer exists — which is guaranteed by the 600ms wait above.
+      document.querySelector('.list-item') && import('./animations/awardsAnimation.js').then(({ awardsAnimation }) => {
+        const a = new awardsAnimation();
+        a.init();
+        this.animations.set('awards', a);
+      }),
+
+      document.querySelector('.scroll-track') && import('./animations/footer.js').then(({ FooterAnimation }) => {
+        const a = new FooterAnimation(this.cursor);
+        a.init();
+        this.animations.set('footer', a);
+      }),
+
+    ]);
 
     this.showPage();
   }
 
   showPage() {
     document.body.classList.add('loaded');
-    
     setTimeout(() => {
-      if(document.querySelector('.hero-span')) {
-        animateHeroText();
-      }
+      if (document.querySelector('.hero-span')) animateHeroText();
     }, 500);
   }
 
-
   setupHoverEffects() {
     if (!this.cursor) return;
-
-    // Add hover effects to work items
-    const workItems = document.querySelectorAll('.item-container');
-    if (workItems.length>0) {
-      workItems.forEach((item) =>{
-        this.cursor.addHoverEffect(item, 'work-hover');
-      })   
-    }
+    document.querySelectorAll('.item-container').forEach(item => {
+      this.cursor.addHoverEffect(item, 'work-hover');
+    });
   }
 
-  saveScrollPosition() {
-    this.savedScrollPosition = window.pageYOffset;
-  }
-
+  saveScrollPosition()    { this.savedScrollPosition = window.pageYOffset; }
   restoreScrollPosition() {
-    if (this.savedScrollPosition) {
-      requestAnimationFrame(() => {
-        window.scrollTo(0, this.savedScrollPosition);
-      });
-    }
-  }
-
-  debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
+    if (this.savedScrollPosition)
+      requestAnimationFrame(() => window.scrollTo(0, this.savedScrollPosition));
   }
 
   destroy() {
-    this.animations.forEach(animation => animation.cleanup());
+    this.animations.forEach(a => a.cleanup?.());
     this.animations.clear();
-    
-    // Remove event listeners
-    if (this.debouncedResize) {
-      window.removeEventListener('resize', this.debouncedResize);
-    }
-    
-    document.removeEventListener('visibilitychange', this.visibilityHandler);
   }
 }
 
 const animationManager = new AnimationManager();
-
 animationManager.saveScrollPosition();
 
 window.addEventListener('load', () => {
@@ -139,10 +105,5 @@ window.addEventListener('load', () => {
   ScrollTrigger.refresh();
 });
 
-// Prevent scroll restoration
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
-
-// Export for global access if needed
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.AnimationManager = animationManager;
