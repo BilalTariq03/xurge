@@ -113,33 +113,74 @@ export function prepareHeroText() {
 
 export function charReveal(className, triggerSelector, markers = false, pinOffset = 0) {
   const triggerElement = document.querySelector(`.${triggerSelector}`);
-  
+
   if (!triggerElement) {
     console.warn(`Trigger element not found: .${triggerSelector}`);
     return null;
   }
 
   const chars = triggerElement.querySelectorAll(`.${className}`);
-  
+
   if (chars.length === 0) {
     console.warn(`No characters found: .${className} in .${triggerSelector}`);
     return null;
   }
 
-  return gsap.to(chars, {
-    opacity: 1,
-    stagger: {
-      each: 0.03,
-      from: 'start',
-      ease: 'power1.inOut'
+  // Ensure chars start hidden
+  gsap.set(chars, { opacity: 0.1 });
+
+  let scrollTriggerInstance = null;
+
+  // Use IntersectionObserver to DEFER ScrollTrigger registration until the
+  // element is near the viewport. This way ScrollTrigger measures the real
+  // position after images/content have shifted the layout — not the wrong
+  // position calculated at page init time.
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+
+        // Stop watching — we only need to register once
+        observer.unobserve(triggerElement);
+
+        // Now that layout is settled and the element is near view,
+        // register the ScrollTrigger with accurate position data
+        scrollTriggerInstance = gsap.to(chars, {
+          opacity: 1,
+          stagger: {
+            each: 0.03,
+            from: 'start',
+            ease: 'power1.inOut',
+          },
+          scrollTrigger: {
+            trigger: triggerElement,
+            start: `top+=${pinOffset} 80%`,
+            end: `bottom+=${pinOffset} 65%`,
+            scrub: true,
+            markers,
+            invalidateOnRefresh: true,
+          },
+        });
+      });
     },
-    scrollTrigger: {
-      trigger: triggerElement,
-      start: `top+=${pinOffset} 80%`,
-      end: `bottom+=${pinOffset} 65%`,
-      scrub: true,
-      markers,
-      invalidateOnRefresh: true
+    {
+      // Fire when the element is 300px away from entering the viewport —
+      // gives ScrollTrigger enough runway to set up before user reaches it
+      rootMargin: '0px 0px -50px 0px',
+      threshold: 0,
     }
-  });
+  );
+
+  observer.observe(triggerElement);
+
+  // Return an object that mimics the GSAP tween interface so callers
+  // expecting .scrollTrigger don't break (it'll be set after observer fires)
+  return {
+    get scrollTrigger() { return scrollTriggerInstance?.scrollTrigger ?? null; },
+    kill() {
+      observer.disconnect();
+      scrollTriggerInstance?.scrollTrigger?.kill();
+      scrollTriggerInstance?.kill();
+    },
+  };
 }

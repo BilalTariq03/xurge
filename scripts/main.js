@@ -46,11 +46,7 @@ class AnimationManager {
     AddSpans('.about', 'about-char');
     AddSpans('.booking-heading', 'heading-char');
 
-    if(window.innerWidth > 990) {
-      charReveal('about-char', 'about', false, 2000);
-    } else {
-      charReveal('about-char', 'about', false, 1000)
-    }
+    charReveal('about-char', 'about', false, 0);
 
     const columns = document.querySelectorAll('.logo-column');
 

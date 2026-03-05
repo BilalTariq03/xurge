@@ -4,95 +4,63 @@ export class VideoAnimation extends AnimationBase {
   constructor() {
     super();
     this.videos = [];
-    this.observers = [];
+    this._observers = [];
   }
 
   init() {
     this.setupVideoAnimations();
-    this.setupVideoPlayback();
   }
 
   setupVideoAnimations() {
-    const videos = gsap.utils.toArray('.project-video');
-    
-    videos.forEach((video, index) => {
-      // Expand animation from left to right
-      const trigger = gsap.fromTo(video,
-        {
-          scaleX: 0,
-          opacity: 0,
-          transformOrigin: 'left center'
-        },
-        {
-          scaleX: 1,
-          opacity: 1,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: video,
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-            markers: false,
-            invalidateOnRefresh: true,
-            onEnter: () => {
-              // Add playing class when animation starts
-              video.classList.add('playing');
-            }
-          }
-        }
-      );
-      
-      this.registerTrigger(trigger.scrollTrigger);
-    });
-  }
-
-  setupVideoPlayback() {
     const videos = document.querySelectorAll('.project-video');
-    
+    if (!videos.length) return;
+
+    // Hide all videos immediately
+    gsap.set(videos, { opacity: 0, scaleX: 0, transformOrigin: 'left center' });
+
     videos.forEach(video => {
-      // Create Intersection Observer for each video
+      this.videos.push(video);
+
+      // Single observer handles both the enter animation AND play/pause
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              // Video is in viewport - play it
-              video.play().catch(err => {
-                console.log('Autoplay prevented:', err);
-              });
+              // Animate in (only once)
+              if (!video._animated) {
+                video._animated = true;
+                gsap.to(video, {
+                  scaleX: 1,
+                  opacity: 1,
+                  duration: 1,
+                  ease: 'power3.out',
+                });
+              }
+
+              // Play
+              video.play().catch(() => {});
             } else {
-              // Video is out of viewport - pause it
+              // Pause when out of view
               video.pause();
             }
           });
         },
         {
-          threshold: 0.1, // Play when 50% of video is visible
-          rootMargin: '0px'
+          threshold: 0.1,
+          rootMargin: '0px 0px -10% 0px',
         }
       );
 
       observer.observe(video);
-      this.observers.push(observer);
-      this.videos.push(video);
+      this._observers.push(observer);
     });
   }
 
   cleanup() {
-    // Pause all videos
-    this.videos.forEach(video => {
-      video.pause();
-    });
-
-    // Disconnect all observers
-    this.observers.forEach(observer => {
-      observer.disconnect();
-    });
-
-    // Clear arrays
+    this.videos.forEach(v => v.pause());
+    this._observers.forEach(o => o.disconnect());
     this.videos = [];
-    this.observers = [];
-
-    // Call parent cleanup
+    this._observers = [];
     super.cleanup();
   }
 }
