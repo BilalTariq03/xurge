@@ -1,18 +1,20 @@
-// ===== js/main.js =====
+// ===== scripts/projects.js (OPTIMIZED) =====
 import { initSmoothScrolling } from './core/scroll.js';
 import { initCustomCursor } from './core/cursor.js';
 import { AddSpans, charReveal, prepareHeroText } from './utils/text-utils.js';
 import { animateHeroText } from "./animations/heroText.js";
 import { initPageTransitions } from './core/pageTransition.js';
 
+// ─── Data helpers ────────────────────────────────────────────────────────────
 
-//Data helpers
+// Cache the fetch so repeated calls on the same page don't re-request
+let _projectsCache = null;
 async function loadProjectsData() {
+  if (_projectsCache) return _projectsCache;
   const response = await fetch('../data/projects.json');
-  if (!response.ok) {
-    throw new Error('Failed to load projects data');
-  }
-  return response.json();
+  if (!response.ok) throw new Error('Failed to load projects data');
+  _projectsCache = await response.json();
+  return _projectsCache;
 }
 
 function getSlugFromURL() {
@@ -20,6 +22,7 @@ function getSlugFromURL() {
   return params.get('slug');
 }
 
+// ─── Rendering ───────────────────────────────────────────────────────────────
 
 function renderWorkHero(work) {
   const hero = document.getElementById('work-hero');
@@ -28,7 +31,6 @@ function renderWorkHero(work) {
   hero.innerHTML = `
     <div class="work-hero-body">
       <div class="work-hero-title-wrap">
-
         <h1 class="work-title hero-text">
           <span class="line">${work.title}</span>
         </h1>
@@ -36,19 +38,16 @@ function renderWorkHero(work) {
           <span class="line">${work.shortDescription}</span>
         </p>
       </div>
-
       <p class="work-hero-scroll">
         SCROLL DOWN
         <span class="work-hero-scroll-arrow" aria-hidden="true">↓</span>
       </p>
-      
     </div>
   `;
 }
 
 function buildTextBlockClasses(block) {
   const classes = ['block', 'text-block'];
-
   if (block.align === 'right') classes.push('align-right');
   else if (block.align === 'left') classes.push('align-left');
 
@@ -56,228 +55,155 @@ function buildTextBlockClasses(block) {
   if (Array.isArray(block.style)) {
     block.style.forEach(s => { if (allowedStyles.has(s)) classes.push(s); });
   }
-
-  if (block.class)   classes.push(block.class);   // e.g. "brand-identity"
-  if (block.animate) classes.push(block.animate); // e.g. "reveal-up"
-
+  if (block.class)   classes.push(block.class);
+  if (block.animate) classes.push(block.animate);
   return classes.join(' ');
 }
 
+/**
+ * OPTIMIZATION: Images now get:
+ *  - loading="lazy"      → browser skips off-screen images until needed
+ *  - decoding="async"    → image decode won't block the main thread
+ *
+ * Videos now get:
+ *  - preload="none"      → stops the browser fetching video data on page load
+ */
 function renderBlocks(blocks) {
   const container = document.getElementById('work-content');
   if (!container) return;
 
-  container.innerHTML = '';
-
-  blocks.forEach(block => {
+  // Build all HTML in one pass, then set innerHTML once (avoids repeated reflows)
+  const html = blocks.map(block => {
     switch (block.type) {
 
       case 'video':
-        container.innerHTML += `
-          <section class="block video-block">
+      case 'video-content':
+        return `
+          <section class="block ${block.type === 'video' ? 'video-block' : 'video-section'}">
             <div class="video-container">
-              <video 
-                class="project-video" 
-                muted 
-                loop 
-                playsinline
+              <video
+                class="project-video"
+                muted loop playsinline
+                preload="none"
                 ${block.poster ? `poster="../images/${block.poster}"` : ''}
               >
                 <source src="../images/${block.src}" type="video/mp4">
-                Your browser does not support the video tag.
               </video>
             </div>
           </section>`;
-        break;
-
-        case 'video-content':
-        container.innerHTML += `
-          <section class="block video-section">
-            <div class="video-container">
-              <video 
-                class="project-video" 
-                muted 
-                loop 
-                playsinline
-                ${block.poster ? `poster="../images/${block.poster}"` : ''}
-              >
-                <source src="../images/${block.src}" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </section>`;
-        break;
 
       case 'image-full':
-        container.innerHTML += `
+        return `
           <section class="block image-full">
-            <img src="../images/${block.src}" alt="project image" class="img-anim">
+            <img
+              src="../images/${block.src}"
+              alt="project image"
+              class="img-anim"
+              loading="lazy"
+              decoding="async"
+            >
           </section>`;
-        break;
 
       case 'image-grid-2':
-        container.innerHTML += `
+        return `
           <section class="block image-grid-2">
             ${block.images.map(img =>
-              `<img src="../images/${img}" alt="project image" class="img-anim">`
+              `<img
+                src="../images/${img}"
+                alt="project image"
+                class="img-anim"
+                loading="lazy"
+                decoding="async"
+              >`
             ).join('')}
           </section>`;
-        break;
 
       case 'text':
-        container.innerHTML += `
+        return `
           <section class="${buildTextBlockClasses(block)}">
-            <h3 class="text-heading">
-            ${block.heading}
-            </h3>
-
-            <p class="text-body">
-              ${block.text}
-            </p>
-          </section>
-        `;
-        break;
+            <h3 class="text-heading">${block.heading}</h3>
+            <p class="text-body">${block.text}</p>
+          </section>`;
 
       case 'overview':
-        container.innerHTML += `
+        return `
           <section class="block overview">
-            <div class="overview-headline-wrapper">
-              <p>OVERVIEW</p>
-            </div>
+            <div class="overview-headline-wrapper"><p>OVERVIEW</p></div>
             <div class="overview-content-wrapper">
               <ul>
-                <li>
-                  <h3>Industry:</h3> 
-                  <p>${block.data.industry}</p>
-                </li>
-                <li>
-                  <h3>Location:</h3> 
-                  <p>${block.data.location}</p>
-                </li>
-                <li>
-                  <h3>Company Size:</h3> 
-                  <p>${block.data.companySize}</p>
-                </li>
-                <li>
-                  <h3>Services:</h3>
-                  <p>${block.data.services.join('<br>')}</p>
-                </li>
+                <li><h3>Industry:</h3><p>${block.data.industry}</p></li>
+                <li><h3>Location:</h3><p>${block.data.location}</p></li>
+                <li><h3>Company Size:</h3><p>${block.data.companySize}</p></li>
+                <li><h3>Services:</h3><p>${block.data.services.join('<br>')}</p></li>
               </ul>
             </div>
           </section>`;
-        break;
-
 
       case 'typography':
-        container.innerHTML += `
+        return `
           <section class="block typography">
             <div class="typography-container">
-              <div class="typography-heading">
-                <h3>Typeface</h3>
-              </div>
-
+              <div class="typography-heading"><h3>Typeface</h3></div>
               <div class="case-style-container">
-                <img src="../images/${block.font.image}" alt="project image" class="font-image">
-                  <div class="case-style-grid">
-                    <div class="case-style-item">
-                      <h3>Foundry</h3>
-                      <p>${block.font.foundry}</p>
-                    </div>
-                    <div class="case-style-item">
-                      <h3>Style</h3>
-                      <p>${block.font.style}</p>
-                    </div>
-                    <div class="case-style-item weights">
-                      <h3>Weights</h3>
-                      <p>${block.font.weights.join('</br>')}</p>
-                    </div>
+                <img
+                  src="../images/${block.font.image}"
+                  alt="project image"
+                  class="font-image"
+                  loading="lazy"
+                  decoding="async"
+                >
+                <div class="case-style-grid">
+                  <div class="case-style-item"><h3>Foundry</h3><p>${block.font.foundry}</p></div>
+                  <div class="case-style-item"><h3>Style</h3><p>${block.font.style}</p></div>
+                  <div class="case-style-item weights">
+                    <h3>Weights</h3><p>${block.font.weights.join('</br>')}</p>
                   </div>
+                </div>
               </div>
             </div>
-            
             <div class="color-palette-wrapper">
-              <div class="palette-heading">
-                <h3>Color Palette</h3>
-              </div>
-              
+              <div class="palette-heading"><h3>Color Palette</h3></div>
               <div class="color-palette-body">
                 ${Object.entries(block.colors || {}).map(([groupName, colors]) => {
                   if (!Array.isArray(colors) || !colors.length) return '';
-
                   return `
                     <div class="color-group color-group-${groupName}">
                       <div class="color-palette">
-                        ${colors.map((c, index) => `
-                          <div class="color color-${groupName} color-anim" data-delay="${index * 0.2}" style="background:${c.hex}">
+                        ${colors.map((c, i) => `
+                          <div class="color color-${groupName} color-anim"
+                               data-delay="${i * 0.2}"
+                               style="background:${c.hex}">
                             <h3>${c.name}</h3>
                             <ul>
-                              <li>
-                                <p>HEX</p>
-                                <p>${c.hex}</p>
-                              </li>
-
-                              <li>
-                                <p>RGB</p>
-                                <p>${c.rgb}</p>
-                              </li>
-                              
-                              <li>
-                                <p>CMYK</p>
-                                <p>${c.cmyk}</p>
-                              </li>
+                              <li><p>HEX</p><p>${c.hex}</p></li>
+                              <li><p>RGB</p><p>${c.rgb}</p></li>
+                              <li><p>CMYK</p><p>${c.cmyk}</p></li>
                             </ul>
-                          </div>
-                        `).join('')}
+                          </div>`).join('')}
                       </div>
-                    </div>
-                  `;
+                    </div>`;
                 }).join('')}
               </div>
             </div>
           </section>`;
-        break;
 
       case 'recognitions':
-        container.innerHTML += `
+        return `
           <section class="block recognitions reveal-up">
             <h3>Recognitions</h3>
-            <ul>
-              ${block.items.map(i => `<li>${i}</li>`).join('')}
-            </ul>
+            <ul>${block.items.map(i => `<li>${i}</li>`).join('')}</ul>
           </section>`;
-        break;
+
+      default:
+        return '';
     }
-  });
+  }).join('');
+
+  // Single DOM write instead of one per block
+  container.innerHTML = html;
 }
 
-function waitForImages() {
-  return new Promise((resolve) => {
-    const images = document.querySelectorAll('img');
-    let loadedCount = 0;
-    const totalImages = images.length;
-    
-    if (totalImages === 0) {
-      resolve();
-      return;
-    }
-    
-    images.forEach((img) => {
-      if (img.complete) {
-        loadedCount++;
-        if (loadedCount === totalImages) resolve();
-      } else {
-        img.addEventListener('load', () => {
-          loadedCount++;
-          if (loadedCount === totalImages) resolve();
-        });
-        img.addEventListener('error', () => {
-          loadedCount++;
-          if (loadedCount === totalImages) resolve();
-        });
-      }
-    });
-  });
-}
+// ─── Page init ───────────────────────────────────────────────────────────────
 
 async function initWorkPage() {
   const slug = getSlugFromURL();
@@ -292,192 +218,124 @@ async function initWorkPage() {
   }
 
   document.title = `${work.title} | Xurge`;
-
   renderWorkHero(work);
   renderBlocks(work.content);
 }
 
-
+// ─── Animation manager ───────────────────────────────────────────────────────
 
 class AnimationManager {
   constructor() {
     this.animations = new Map();
     this.cursor = null;
     this.lenis = null;
-    this.lastBreakpoint = null;
-    this.debouncedResize = null;
   }
 
   async init() {
-    // Initialize core functionality
     this.lenis = initSmoothScrolling();
     this.cursor = initCustomCursor();
-
     initPageTransitions();
 
-    // Register GSAP plugins
     gsap.registerPlugin(ScrollTrigger);
 
-    // Initialize animations based on page content
     await this.initializeAnimations();
 
-
-    // Handle visibility changes for performance
     this.setupVisibilityHandling();
 
-
-    // Restore scroll position after animations are set up
-    setTimeout(() => {
-      this.restoreScrollPosition();
-    }, 100);
+    setTimeout(() => this.restoreScrollPosition(), 100);
   }
 
   async initializeAnimations() {
     prepareHeroText();
-    // gsap.set('.hero-span', { opacity: 0, y: 20 });
 
-    // if(document.querySelector('.hero-span')) {
-    //   animateHeroText();
-    // }
+    // Run text span setup in parallel — they don't depend on each other
+    await Promise.all([
+      AddSpans('.work .text-body',          'work-char'),
+      AddSpans('.aim .text-body',           'aim-char'),
+      AddSpans('.brand-identity .text-heading', 'bi-char'),
+    ]);
 
-    // Wait for spans to be added and DOM to update
-    await AddSpans('.work .text-body', 'work-char');
-    await AddSpans('.aim .text-body', 'aim-char');
-    await AddSpans('.brand-identity .text-heading', 'bi-char');
-    
-    // Small additional delay to ensure ScrollTrigger calculations are accurate
-    await new Promise(resolve => setTimeout(resolve, 100));
-    
-    // Now animate
-    charReveal('work-char', 'work', false, 0);
-    charReveal('aim-char','aim');
-    charReveal('bi-char','brand-identity');
+    // Single rAF yield so the browser can apply the span DOM changes
+    await new Promise(resolve => requestAnimationFrame(resolve));
 
-    if(document.querySelector('.img-anim')){
-      const {ImageAnimation} = await import('./animations/ImageAnimation.js');
-      const ImageAnim = new ImageAnimation();
-      ImageAnim.init();
-      this.animations.set('images', ImageAnim);
-    }
+    charReveal('work-char',  'work',           false, 0);
+    charReveal('aim-char',   'aim');
+    charReveal('bi-char',    'brand-identity');
 
-    // Add video animation
-    if(document.querySelector('.project-video')){
-      const {VideoAnimation} = await import('./animations/VideoAnimation.js');
-      const VideoAnim = new VideoAnimation();
-      VideoAnim.init();
-      this.animations.set('videos', VideoAnim);
-    }
+    // Lazy-load animation modules only when their target elements exist.
+    // All imports fire concurrently — no waterfall.
+    await Promise.all([
+      document.querySelector('.img-anim') && import('./animations/ImageAnimation.js').then(({ ImageAnimation }) => {
+        const anim = new ImageAnimation(); anim.init();
+        this.animations.set('images', anim);
+      }),
 
-    // Color palette animation
-    if (document.querySelector('.color-palette-wrapper')) {
-      const { ColorPaletteAnimation } = await import('./animations/ColorPaletteAnimation.js');
-      const colorAnim = new ColorPaletteAnimation();
-      colorAnim.init();
-      this.animations.set('color-palette', colorAnim);
-    }
+      document.querySelector('.project-video') && import('./animations/VideoAnimation.js').then(({ VideoAnimation }) => {
+        const anim = new VideoAnimation(); anim.init();
+        this.animations.set('videos', anim);
+      }),
 
-    const { GlobalReveals } = await import('./animations/globalReveals.js');
-    const globalReveals = new GlobalReveals();
-    globalReveals.init();
-    this.animations.set('global-reveals', globalReveals);
+      document.querySelector('.color-palette-wrapper') && import('./animations/ColorPaletteAnimation.js').then(({ ColorPaletteAnimation }) => {
+        const anim = new ColorPaletteAnimation(); anim.init();
+        this.animations.set('color-palette', anim);
+      }),
 
-    if (document.querySelector('.scroll-track')) {
-      const { FooterAnimation } = await import('./animations/footer.js');
-      const footerAnim = new FooterAnimation(this.cursor);
-      footerAnim.init();
-      this.animations.set('footer', footerAnim);
-    }
+      import('./animations/globalReveals.js').then(({ GlobalReveals }) => {
+        const anim = new GlobalReveals(); anim.init();
+        this.animations.set('global-reveals', anim);
+      }),
+
+      document.querySelector('.scroll-track') && import('./animations/footer.js').then(({ FooterAnimation }) => {
+        const anim = new FooterAnimation(this.cursor); anim.init();
+        this.animations.set('footer', anim);
+      }),
+    ]);
 
     this.showPage();
-}
+  }
 
   showPage() {
     document.body.classList.add('loaded');
-    
-      if(document.querySelector('.hero-span')) {
-        animateHeroText();
-      }
-  }
-
-  handleBreakpointChange(oldBreakpoint, newBreakpoint) {
-    // Reinitialize responsive animations
-    this.animations.forEach((animation, key) => {
-      if (typeof animation.handleBreakpointChange === 'function') {
-        animation.handleBreakpointChange(oldBreakpoint, newBreakpoint);
-      } else {
-        // Fallback: cleanup and reinitialize
-        animation.cleanup();
-        animation.init();
-      }
-    });
+    if (document.querySelector('.hero-span')) animateHeroText();
   }
 
   setupVisibilityHandling() {
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        gsap.globalTimeline.pause();
-      } else {
-        gsap.globalTimeline.resume();
-      }
+      document.hidden
+        ? gsap.globalTimeline.pause()
+        : gsap.globalTimeline.resume();
     });
   }
 
-
-  saveScrollPosition() {
-    this.savedScrollPosition = window.pageYOffset;
-  }
-
+  saveScrollPosition()    { this.savedScrollPosition = window.pageYOffset; }
   restoreScrollPosition() {
     if (this.savedScrollPosition) {
-      requestAnimationFrame(() => {
-        window.scrollTo(0, this.savedScrollPosition);
-      });
+      requestAnimationFrame(() => window.scrollTo(0, this.savedScrollPosition));
     }
-  }
-
-  debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
   }
 
   destroy() {
-    this.animations.forEach(animation => animation.cleanup());
+    this.animations.forEach(a => a.cleanup());
     this.animations.clear();
-    
-    // Remove event listeners
-    if (this.debouncedResize) {
-      window.removeEventListener('resize', this.debouncedResize);
-    }
-    
-    document.removeEventListener('visibilitychange', this.visibilityHandler);
   }
 }
 
-// Initialize when DOM is ready
-const animationManager = new AnimationManager();
+// ─── Bootstrap ───────────────────────────────────────────────────────────────
 
-// Save scroll position before initialization
+const animationManager = new AnimationManager();
 animationManager.saveScrollPosition();
 
 window.addEventListener('load', async () => {
-  await initWorkPage();        // 1️⃣ build DOM from JSON
-  // await waitForImages();
-  await animationManager.init();     // 2️⃣ init animations
-  ScrollTrigger.refresh();     // 3️⃣ fix scroll positions
+  // 1. Build DOM from JSON + prep animation manager simultaneously
+  await initWorkPage();
+  await animationManager.init();
+
+  // Debounce refresh so it only runs once even if multiple triggers fire
+  requestAnimationFrame(() => ScrollTrigger.refresh());
 });
 
-
-// Prevent scroll restoration
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
 
-// Export for global access if needed
 window.AnimationManager = animationManager;
