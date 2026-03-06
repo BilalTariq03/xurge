@@ -7,7 +7,15 @@ export class StatsAnimation extends AnimationBase {
     if (!counters.length || !statsSection) return;
 
     // Set initial display state
-    counters.forEach(counter => { counter.textContent = '0' + (counter.id === 'percent' ? '%' : '+'); });
+    counters.forEach(counter => {
+      if (counter.id === 'percent') {
+        counter.textContent = '0%';
+      } else if (counter.id === 'currency') {
+        counter.textContent = '$0';
+      } else {
+        counter.textContent = '0+';
+      }
+    });
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -27,8 +35,15 @@ export class StatsAnimation extends AnimationBase {
                 duration: 3,
                 ease: 'power1.out',
                 snap: { innerText: 1 },
-                onUpdate() {
-                  counter.textContent = Math.round(counter.innerText) + (isPercent ? '%' : '+');
+                onUpdate: function () {
+                  const value = Math.round(counter.innerText);
+                  if (counter.id === 'percent') {
+                    counter.textContent = value + "%";
+                  } else if (counter.id === 'currency') {
+                    counter.textContent = "$" + value;
+                  } else {
+                    counter.textContent = value + "+";
+                  }
                 },
               }
             );

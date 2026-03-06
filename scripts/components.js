@@ -67,7 +67,7 @@ class ComponentLoader{
               
             </a></li>
 
-            <li><a href="#" class="item"> 
+            <li><a href="/about" class="item"> 
               <span class="text-wrap">
                 <span class="top text">Studio</span>
                 <span class="bottom text">Studio</span>  
@@ -184,7 +184,7 @@ class ComponentLoader{
               <a class="footer-link" href="/services">
                 <div>Services</div>
               </a>
-              <a class="footer-link" href="#">
+              <a class="footer-link" href="/about">
                 <div>Studio</div>
               </a>
               <a class="footer-link" href="#">
@@ -234,7 +234,7 @@ class ComponentLoader{
                 <h2 class="title">Book a Call</h2>
                 <p>A 30-min discovery call to see how we can help</p>
               </div>
-              <a href="#" target="_blank" class="book-call-button">
+              <a href="/contact" target="_blank" class="book-call-button">
                 <div class="button-wrap">
                   <div class="user-container">
                     <img src="https://picsum.photos/50">

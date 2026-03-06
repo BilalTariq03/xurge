@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xurge</title>
+
+  <link rel="stylesheet" href="styles/general.css">
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/about.css">
+  <link rel="stylesheet" href="styles/footer.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Roboto+Mono:ital,wght@0,581;1,581&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/x-icon" href="./images/SVG/Xurge Mark.svg">
+
+  <!-- Preload the hero animation image — it's above fold and visible immediately -->
+  <link rel="preload" as="image" href="./images/XurgeAnimation.png">
+
+  <script src="https://kit.fontawesome.com/0a2264748d.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.25/bundled/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+</head>
+
+<body>
+  <div class="page-transition" id="page-transition"></div>
+
+  <div class="cursor-ball" id="cursor-container"></div>
+
+
+
+  <div class="main-content">
+    <nav class="nav-bar" id="navbar-container"></nav>
+    <div class="button-holder" id="button-container"></div>
+
+    <!-- Hero -->
+    <section class="hero-container">
+      <div class="padding-inline">
+        <div class="hero-text-container">
+          <h1 class="hero-text">
+            <div class="subtitle line">
+              It's simple:
+            </div>
+            <div class="headline line">We work with <span class="stone-color">businesses</span> to position them as market leaders.</div>
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- images grid -->
+    <section class="pw-images-section">
+      <div class="padding-inline">
+        <div class="images-grid">
+          <div class="image-item">
+            <img src="./images/people/img1.jpg" class="img-anim" alt="person 1" loading="lazy" decoding="async" />
+          </div>
+          <div class="image-item">
+            <img src="./images/people/img3.jpg" class="img-anim" alt="person 2" loading="lazy" decoding="async"/>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="About-section">
+      <div class="padding-inline">
+        <div class="about-component-container">
+          <div class="about-component">
+            <h2 class="about about-1 text-anim paragraph">
+              Founded by industry veterans with extensive experience across diverse industries and project types, we are flexible, remote-first, and focused on delivering results. We are proud of our work for global companies from over 30 countries worldwide.
+            </h2>
+
+            <h2 class="about about-2 text-anim paragraph">
+              We're passionate about the impact we make and only take on a handful of projects at a time to ensure the end results are something we are truly proud of.
+            </h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Stats -->
+    <section class="stats-section">
+      <div class="padding-inline">
+        <div class="stats-container">
+          <div class="stats-item"><h1 class="stats-heading" id="currency" data-target="20">$0</h1><div class="stats-content"><p>Funds raised by our global clients. <br/>We are proud to have contributed to their success.</p></div></div>
+          <div class="stats-item"><h1 class="stats-heading" id="add" data-target="1">0+</h1><div class="stats-content"><p>Team members and approved collaborators.</p></div></div>
+          <div class="stats-item"><h1 class="stats-heading" id="percent" data-target="2">0%</h1><div class="stats-content"><p>Average boost in conversion rates after our redesigns.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services black-display">
+      <div class="padding-inline">
+        <div class="services-title-container">
+          <h1 class="services-title">
+            <div class="line">
+              Why <span class="stone-color">Choose</span> to
+            </div>
+            <div class="line">
+              work with <span class="stone-color">us.</span>
+            </div>
+          </h1>
+        </div>
+      </div>
+
+      <div class="services-wrapper">
+
+        <!-- responsive -->
+        <div class="service-section">
+          <div class="content-panel">
+            <div class="branding-header">
+              <h3>Responsive & Reliable</h3>
+              <p class="branding-description">
+                By choosing to stay small, we ensure agility and efficiency, allowing us to deliver exceptional value and personalized service to your business.
+              </p>
+            </div>
+          </div>
+          <div class="carousel-container">
+            <div class="carousel-image-wrapper">
+              <img src="./images/services/work/img1.jpg" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+
+        <!-- Business perspective -->
+        <div class="service-section">
+          <div class="content-panel">
+            <div class="branding-header">
+              <h3>Business Perspective</h3>
+              <p class="branding-description">
+                We approach every project with a strategic mindset, aiming to build long-term relationships between your company and its customers.
+              </p>
+            </div>
+          </div>
+          <div class="carousel-container">
+            <div class="carousel-image-wrapper">
+              <img src="./images/services/work/img2.jpg" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+
+        <!-- Innovative Solutions -->
+        <div class="service-section">
+          <div class="content-panel">
+            <div class="branding-header">
+              <h3>Innovative Solutions</h3>
+              <p class="branding-description">
+                We embrace creativity and innovation, consistently delivering cutting-edge designs and strategies that set your business apart from the competition.
+              </p>
+            </div>
+          </div>
+          <div class="carousel-container">
+            <div class="carousel-image-wrapper">
+              <img src="./images/services/work/img3.jpg" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+
+        <!-- Excellence -->
+        <div class="service-section">
+          <div class="content-panel">
+            <div class="branding-header">
+              <h3>Strive for Excellence</h3>
+              <p class="branding-description">
+                We always aim to exceed expectations by pursuing excellence in every detail, from your first inquiry until the final deliverables.
+              </p>
+            </div>
+          </div>
+          <div class="carousel-container">
+            <div class="carousel-image-wrapper">
+              <img src="./images/services/work/img4.jpg" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews-section">
+      <div class="padding-inline">
+        <div class="review-content-container">
+          <div class="review-top">
+            <div class="review-heading-container">
+              <h2 class="review-heading text-anim">Trusted by visionary founders and fast-growing global brands</h2>
+            </div>
+            <div class="slider-buttons desktop-only">
+              <button class="prev-button"><i class="fa-solid fa-arrow-left"></i></button>
+              <button class="next-button"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="review-strip">
+        <div class="review-item" id="review-item-1">
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/peerSpot.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+          </div>
+          <div class="user"><img class="user-image" src="https://picsum.photos/50" loading="lazy"><div class="about-user"><p class="user-name">Russel</p><p class="user-designation">CEO at PeerSpot</p></div></div>
+        </div>
+        <div class="review-item" id="review-item-2">
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/colgate.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+          </div>
+          <div class="user"><img class="user-image" src="https://picsum.photos/50" loading="lazy"><div class="about-user"><p class="user-name">Russel</p><p class="user-designation">CEO at colgate</p></div></div>
+        </div>
+        <div class="review-item" id="review-item-3">
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/DemoReel.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+          </div>
+          <div class="user"><img class="user-image" src="https://picsum.photos/50" loading="lazy"><div class="about-user"><p class="user-name">Russel</p><p class="user-designation">CEO at DemoReel</p></div></div>
+        </div>
+        <div class="review-item" id="review-item-4">
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/dermalogica.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+          </div>
+          <div class="user"><img class="user-image" src="https://picsum.photos/50" loading="lazy"><div class="about-user"><p class="user-name">Russel</p><p class="user-designation">CEO at Dermalogica</p></div></div>
+        </div>
+        <div class="review-item" id="review-item-5">
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/taggstar.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 5. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+          </div>
+          <div class="user"><img class="user-image" src="https://picsum.photos/50" loading="lazy"><div class="about-user"><p class="user-name">Russel</p><p class="user-designation">CEO at taggstar</p></div></div>
+        </div>
+        <div class="review-item" id="review-item-6">
+          <div class="review-content">
+            <img class="brand-logo" src="./images/brands/bigEnergyGroup.avif" loading="lazy" decoding="async">
+            <div class="review"><p>This is review 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></div>
+          </div>
+          <div class="user"><img class="user-image" src="https://picsum.photos/50" loading="lazy"><div class="about-user"><p class="user-name">Russel</p><p class="user-designation">CEO at Big energy group</p></div></div>
+        </div>
+      </div>
+    </section>
+
+     <!-- Awards -->
+    <div>
+      <div class="padding-inline">
+        <div class="awards-container">
+          <div class="heading-container">
+            <h2 class="title">Awards & Recognitions.</h2>
+            <p class="description">We're committed to delivering exceptional results that bring value to our clients. While winning awards is not our primary objective, it's undeniably rewarding when our efforts are acknowledged.</p>
+          </div>
+
+          <div class="awards-grid">
+            <div class="top-layer">
+              <h3 class="heading">INSTITUTION</h3>
+              <h3 class="heading">TYPE</h3>
+              <h3 class="heading">YEAR</h3>
+            </div>
+            <div class="list">
+
+              <div class="list-item">
+                <div class="inst-item">
+                  <i class="fa-solid fa-arrow-up link-arrow"></i>
+                  <h3>Awwwards</h3>
+                </div>
+                <div class="type-year-row">
+                  <div class="type-item"><h3>Honorable Mention</h3></div>
+                  <div class="year-item"><h3>2024</h3></div>
+                </div>
+                <!-- Award hover images are decorative/interactive, lazy is fine -->
+                <div class="award-image">
+                  <img src="./images/tony.jpg" loading="lazy" decoding="async">
+                </div>
+                <button class="award-toggle" aria-label="Toggle award details">+</button>
+                <div class="award-expanded">
+                  <img src="./images/tony.jpg" alt="Awwwards certificate" loading="lazy" decoding="async">
+                  <a href="#" class="view-details">View Details ↗</a>
+                </div>
+              </div>
+
+              <div class="list-item">
+                <div class="inst-item">
+                  <i class="fa-solid fa-arrow-up link-arrow"></i>
+                  <h3>CSS Design Awards</h3>
+                </div>
+                <div class="type-year-row">
+                  <div class="type-item"><h3>Best Innovation, UI/UX Design, Special Kudos</h3></div>
+                  <div class="year-item"><h3>2024</h3></div>
+                </div>
+                <div class="award-image">
+                  <img src="./images/tony.jpg" loading="lazy" decoding="async">
+                </div>
+                <button class="award-toggle" aria-label="Toggle award details">+</button>
+                <div class="award-expanded">
+                  <img src="./images/tony.jpg" alt="CSS Design Awards certificate" loading="lazy" decoding="async">
+                  <a href="#" class="view-details">View Details ↗</a>
+                </div>
+              </div>
+
+              <div class="list-item">
+                <div class="inst-item">
+                  <i class="fa-solid fa-arrow-up link-arrow"></i>
+                  <h3>CSS Light</h3>
+                </div>
+                <div class="type-year-row">
+                  <div class="type-item"><h3>Featured of the Day</h3></div>
+                  <div class="year-item"><h3>2024</h3></div>
+                </div>
+                <div class="award-image">
+                  <img src="./images/tony.jpg" loading="lazy" decoding="async">
+                </div>
+                <button class="award-toggle" aria-label="Toggle award details">+</button>
+                <div class="award-expanded">
+                  <img src="./images/tony.jpg" alt="CSS Light certificate" loading="lazy" decoding="async">
+                  <a href="#" class="view-details">View Details ↗</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer-container" id="footer-container"></footer>
+  </div>
+
+  <script src="scripts/components.js"></script>
+  <script src="scripts/header.js" type="module" defer></script>
+  <script src="scripts/about.js" type="module" defer></script>
+</body>
+</html>
