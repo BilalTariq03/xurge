@@ -51,7 +51,7 @@ class ComponentLoader{
               
             </a></li>
 
-            <li><a href="work" class="item">
+            <li><a href="/work" class="item">
               <span class="text-wrap">
                 <span class="top text">Work</span>
                 <span class="bottom text">Work</span>
@@ -59,7 +59,7 @@ class ComponentLoader{
               
             </a></li>
 
-            <li><a href="services" class="item">
+            <li><a href="/services" class="item">
               <span class="text-wrap">
                 <span class="top text">Services</span>
                 <span class="bottom text">Services</span>
@@ -95,7 +95,7 @@ class ComponentLoader{
       <div class="right-items">
         <i class="fa-solid fa-bars menu-button mobile-only"></i>
         <div class="button-holder">
-          <a href="contact" class="talk-button btn-main">
+          <a href="/contact" class="talk-button btn-main">
             <div class="button-content">
               <div class="button-text">
                 Lets Talk
@@ -122,7 +122,7 @@ class ComponentLoader{
 
   getFloatingButtonHTML(){
     return `
-      <a href="contact" class="talk-button-float talk-button">
+      <a href="/contact" class="talk-button-float talk-button">
         <div class="button-content">
           <div class="button-text">
             Lets Talk
@@ -140,7 +140,7 @@ class ComponentLoader{
   getFooterHTML(){
     return `
         <div class="footer-title-container">
-        <a class="footer-title-wrapper" href="contact">
+        <a class="footer-title-wrapper" href="/contact">
           <div class="scroll-track">
             <span>Let's work together on what matters to you.</span>
             <span class="second" aria-hidden="true">Let's work together on what matters to you.</span>
@@ -148,7 +148,7 @@ class ComponentLoader{
         </a>
       </div>
       <div class="mobile-only">
-        <a href="contact" target="_blank" class="footer-button">
+        <a href="/contact" target="_blank" class="footer-button">
           <div class="button-content">
             Get in touch
             <i class="fa-solid fa-arrow-up button-logo"></i>
@@ -162,7 +162,7 @@ class ComponentLoader{
               <div class="footer-headline-wrap"></div>
               <a aria-label="Go to home page" class="logo-link" href="/">
                 <div class="logo">
-                  <img src="./images/SVG/Xurge Primary.svg">
+                  <img src="/images/SVG/XurgePrimary.svg">
                 </div>
               </a>
             </div>
@@ -178,10 +178,10 @@ class ComponentLoader{
               <a class="footer-link" href="/">
                 <div>Home</div>
               </a>
-              <a class="footer-link" href="work">
+              <a class="footer-link" href="/work">
                 <div>Work</div>
               </a>
-              <a class="footer-link" href="services">
+              <a class="footer-link" href="/services">
                 <div>Services</div>
               </a>
               <a class="footer-link" href="#">
@@ -193,7 +193,7 @@ class ComponentLoader{
               <a class="footer-link" href="#">
                 <div>FAQs</div>
               </a>
-              <a class="footer-link" href="contact">
+              <a class="footer-link" href="/contact">
                 <div>Contact</div>
               </a>
             </div>
