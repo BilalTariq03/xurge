@@ -1,0 +1,25 @@
+# Tell Netlify to serve pages without .html extension automatically.
+# This handles /work → work.html, /services → services.html etc.
+[build]
+  publish = "."        # change this to your build output folder if you use one (e.g. "dist")
+
+[[redirects]]
+  from = "/projects/:slug"
+  to   = "/projects.html?slug=:slug"
+  status = 200
+
+# Cache static assets aggressively
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

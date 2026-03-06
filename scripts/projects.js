@@ -18,6 +18,13 @@ async function loadProjectsData() {
 }
 
 function getSlugFromURL() {
+  // Try clean URL first: /projects/my-slug
+  const parts = window.location.pathname.split('/').filter(Boolean);
+  if (parts.length >= 2 && parts[0] === 'projects') {
+    return parts[1];
+  }
+
+  // Fall back to query param for local dev: ?slug=my-slug
   const params = new URLSearchParams(window.location.search);
   return params.get('slug');
 }

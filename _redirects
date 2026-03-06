@@ -1,0 +1,12 @@
+# Clean URLs — strip .html extension
+# Netlify serves /work.html when user visits /work
+/work              /work.html              200
+/services          /services.html          200
+/projects          /projects.html          200
+/contact           /contact.html           200
+
+# Clean project slugs — /projects/:slug → /projects.html?slug=:slug
+/projects/:slug    /projects.html?slug=:slug   200
+
+# Catch-all: any other .html-less path gets a 404 page
+/*                 /404.html               404
