@@ -11,7 +11,7 @@ class ComponentLoader{
   getNavbarHTML(){
     return `
       <div class="left-items">
-        <a href="index.html" class="logo-container">
+        <a href="/" class="logo-container">
           <svg class="logo" id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1232.89 264.54">
             <defs>
               <style>
@@ -43,7 +43,7 @@ class ComponentLoader{
           <ul class="menu-items" id="nav-menu">
 
             <li class="mobile-only">
-              <a href="index.html" class="item active">
+              <a href="/" class="item active">
                 <span class="text-wrap">
                   <span class="top text">Home</span>
                   <span class="bottom text">Home</span>
@@ -51,7 +51,7 @@ class ComponentLoader{
               
             </a></li>
 
-            <li><a href="work.html" class="item">
+            <li><a href="work" class="item">
               <span class="text-wrap">
                 <span class="top text">Work</span>
                 <span class="bottom text">Work</span>
@@ -59,7 +59,7 @@ class ComponentLoader{
               
             </a></li>
 
-            <li><a href="services.html" class="item">
+            <li><a href="services" class="item">
               <span class="text-wrap">
                 <span class="top text">Services</span>
                 <span class="bottom text">Services</span>
@@ -95,7 +95,7 @@ class ComponentLoader{
       <div class="right-items">
         <i class="fa-solid fa-bars menu-button mobile-only"></i>
         <div class="button-holder">
-          <a href="contact.html" class="talk-button btn-main">
+          <a href="contact" class="talk-button btn-main">
             <div class="button-content">
               <div class="button-text">
                 Lets Talk
@@ -122,7 +122,7 @@ class ComponentLoader{
 
   getFloatingButtonHTML(){
     return `
-      <a href="contact.html" class="talk-button-float talk-button">
+      <a href="contact" class="talk-button-float talk-button">
         <div class="button-content">
           <div class="button-text">
             Lets Talk
@@ -140,7 +140,7 @@ class ComponentLoader{
   getFooterHTML(){
     return `
         <div class="footer-title-container">
-        <a class="footer-title-wrapper" href="contact.html">
+        <a class="footer-title-wrapper" href="contact">
           <div class="scroll-track">
             <span>Let's work together on what matters to you.</span>
             <span class="second" aria-hidden="true">Let's work together on what matters to you.</span>
@@ -148,7 +148,7 @@ class ComponentLoader{
         </a>
       </div>
       <div class="mobile-only">
-        <a href="contact.html" target="_blank" class="footer-button">
+        <a href="contact" target="_blank" class="footer-button">
           <div class="button-content">
             Get in touch
             <i class="fa-solid fa-arrow-up button-logo"></i>
@@ -178,10 +178,10 @@ class ComponentLoader{
               <a class="footer-link" href="/">
                 <div>Home</div>
               </a>
-              <a class="footer-link" href="work.html">
+              <a class="footer-link" href="work">
                 <div>Work</div>
               </a>
-              <a class="footer-link" href="services.html">
+              <a class="footer-link" href="services">
                 <div>Services</div>
               </a>
               <a class="footer-link" href="#">
@@ -193,7 +193,7 @@ class ComponentLoader{
               <a class="footer-link" href="#">
                 <div>FAQs</div>
               </a>
-              <a class="footer-link" href="contact.html">
+              <a class="footer-link" href="contact">
                 <div>Contact</div>
               </a>
             </div>
