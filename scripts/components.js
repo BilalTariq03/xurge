@@ -234,7 +234,7 @@ class ComponentLoader{
                 <h2 class="title">Book a Call</h2>
                 <p>A 30-min discovery call to see how we can help</p>
               </div>
-              <a href="/contact" target="_blank" class="book-call-button">
+              <a href="/contact" class="book-call-button">
                 <div class="button-wrap">
                   <div class="user-container">
                     <img src="https://picsum.photos/50">
