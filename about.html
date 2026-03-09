@@ -18,6 +18,9 @@
 
   <!-- Preload the hero animation image — it's above fold and visible immediately -->
   <link rel="preload" as="image" href="./images/XurgeAnimation.png">
+  <!-- Preload the grid images — they're just below fold and visible immediately on scroll -->
+  <link rel="preload" as="image" href="./images/people/img1.webp">
+  <link rel="preload" as="image" href="./images/people/img3.webp">
 
   <script src="https://kit.fontawesome.com/0a2264748d.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -56,10 +59,16 @@
       <div class="padding-inline">
         <div class="images-grid">
           <div class="image-item">
-            <img src="./images/people/img1.jpg" class="img-anim" alt="person 1" loading="lazy" decoding="async" />
+            <picture>
+              <source srcset="./images/people/img1.webp" type="image/webp">
+              <img src="./images/people/img1.jpg" class="img-anim" alt="person 1" loading="eager" decoding="async" />
+            </picture>
           </div>
           <div class="image-item">
-            <img src="./images/people/img3.jpg" class="img-anim" alt="person 2" loading="lazy" decoding="async"/>
+            <picture>
+              <source srcset="./images/people/img3.webp" type="image/webp">
+              <img src="./images/people/img3.jpg" class="img-anim" alt="person 2" loading="eager" decoding="async" />
+            </picture>
           </div>
         </div>
       </div>
@@ -122,7 +131,7 @@
           </div>
           <div class="carousel-container">
             <div class="carousel-image-wrapper">
-              <img src="./images/services/work/img1.jpg" loading="lazy" decoding="async">
+              <img src="./images/services/work/img1.webp" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -139,7 +148,7 @@
           </div>
           <div class="carousel-container">
             <div class="carousel-image-wrapper">
-              <img src="./images/services/work/img2.jpg" loading="lazy" decoding="async">
+              <img src="./images/services/work/img2.webp" loading="lazy" decoding="async">
             </div>
           </div>
         </div>
@@ -156,7 +165,7 @@
           </div>
           <div class="carousel-container">
             <div class="carousel-image-wrapper">
-              <img src="./images/services/work/img3.jpg" loading="lazy" decoding="async">
+              <img src="./images/services/work/img3.webp" loading="lazy" decoding="async">
             </div>
           </div>
         </div>
@@ -173,7 +182,7 @@
           </div>
           <div class="carousel-container">
             <div class="carousel-image-wrapper">
-              <img src="./images/services/work/img4.jpg" loading="lazy" decoding="async">
+              <img src="./images/services/work/img4.webp" loading="lazy" decoding="async">
             </div>
           </div>
         </div>
