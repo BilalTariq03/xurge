@@ -699,10 +699,21 @@
 
 
 /* Reviews section */
+.user{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .user-image{
   width: 3.125rem;
   height: 3.125rem;
   border-radius: 50%;
+}
+
+.about-user{
+  padding-top: 0.5rem;
+  font-size: clamp(1rem, 1.05vw, 3rem);
 }
 
 .reviews-section{

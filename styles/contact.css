@@ -598,6 +598,7 @@
     @media (max-width: 600px) {
       nav {
         padding: 14px 20px;
+        grid-template-columns: 2fr 1fr;
       }
 
       .btn-back { font-size: 0.72rem; padding: 8px 12px; }
