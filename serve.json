@@ -6,6 +6,7 @@
     { "source": "/contact",        "destination": "/contact.html" },
     { "source": "/projects/:slug", "destination": "/projects.html" },
     { "source": "/about",          "destination": "/about.html" },
+    { "source": "/insight",        "destination": "/insight.html" },
     { "source": "/faq",            "destination": "/faq.html" },
     { "source": "/privacy-policy", "destination": "/privacy.html" },
     { "source": "/terms-of-use",   "destination": "/terms.html" },

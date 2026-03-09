@@ -75,7 +75,7 @@ class ComponentLoader{
               
             </a></li>
 
-            <li><a href="#" class="item"> 
+            <li><a href="/insight" class="item"> 
               <span class="text-wrap">
                 <span class="top text">Insights</span>
                 <span class="bottom text">Insights</span> 
@@ -187,7 +187,7 @@ class ComponentLoader{
               <a class="footer-link" href="/about">
                 <div>Studio</div>
               </a>
-              <a class="footer-link" href="#">
+              <a class="footer-link" href="/insight">
                 <div>Insights</div>
               </a>
               <a class="footer-link" href="/faq">
