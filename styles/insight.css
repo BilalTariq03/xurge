@@ -1,0 +1,320 @@
+/* ==========================================================================
+   styles/insight.css
+   Your original styles, adapted for the .main-content + .insight-main wrapper.
+   Only two things changed from your original:
+   1. body → .insight-main  (body is now owned by general.css)
+   2. Added .main-content visibility override
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Mont-Light';
+  src: url('../fonts/mont/Mont-ExtraLightDEMO.otf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Monument-Regular';
+  src: url('../fonts/Monument Extended/MonumentExtended-Regular.otf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ── Make main-content visible (general.css hides it by default for intro) ── */
+.main-content {
+  background-color: var(--brand-shade);
+  opacity: 1;
+  visibility: visible;
+  padding-top: 6.3rem;
+}
+
+
+.nav-bar{
+  background-color: var(--brand-shade);
+}
+
+.left-items .logo{
+  color: var(--neutral-black);
+}
+
+.menu-items .item{
+  color: var(--neutral-black);
+}
+
+.talk-button{
+  display: block;
+  position: relative;
+  height: 3.1rem;
+  overflow: hidden;
+  position: relative;
+  
+  color: var(--neutral-white);
+  text-decoration: none;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: linear-gradient(to bottom,
+    var(--neutral-white) 50%,
+    var(--neutral-black) 50%
+  );
+  background-size: 100% 200%;
+  background-position: 0 -100%;
+  transition: background-position 0.6s ease, color 0.6s ease;
+}
+
+.talk-button-float{
+  background: linear-gradient(to bottom,
+    var(--neutral-white) 50%,
+    var(--neutral-black) 50%
+  );
+  background-size: 100% 200%;
+  background-position: 0 -100%;
+  color: var(--neutral-white);
+  border: 1px solid var(--neutral-black);
+  position: fixed;
+  top: -75px;
+  right: 67px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 100;
+  transition: top 1s ease-in, background-position 0.6s ease, color 0.6s ease, border 0.6s ease;
+}
+
+
+/* ── .insight-main replaces your original body styles ── */
+.insight-main {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--brand-shade);
+  font-family: 'Monument-Regular', Verdana, Geneva, Tahoma, sans-serif;
+  position: relative;
+}
+
+/* ── Everything below is your original CSS, untouched ── */
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(1px, 0.6vw, 60px);
+  z-index: 10;
+}
+
+.xurge-scroll-wrapper {
+  font-size: clamp(300px, 30vw, 450px);
+  position: absolute;
+  margin-top: -8vw;
+  overflow: hidden;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.05);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+
+.xurge-scroll-track {
+  display: inline-block;
+  animation: scrollLeft 15s linear infinite;
+}
+
+.xurge-scroll-track.reverse {
+  animation: scrollRight 15s linear infinite;
+}
+
+.top-scroll {
+  top: 2vw;
+}
+
+.bottom-scroll {
+  bottom: -9vw;
+}
+
+@keyframes scrollLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-51.5%); }
+}
+
+@keyframes scrollRight {
+  from { transform: translateX(-52%); }
+  to   { transform: translateX(0); }
+}
+
+.center-text {
+  position: relative;
+  text-align: center;
+  font-size: clamp(38px, 5.5vw, 90px);
+  letter-spacing: 1.3vw;
+}
+
+.center-text.upper {
+  margin-left: 10px;
+}
+
+.center-text.lower {
+  font-size: clamp(62px, 9.7vw, 180px);
+  letter-spacing: normal;
+  margin-top: 30px;
+}
+
+.scroll-strip-wrapper {
+  background-color: var(--neutral-charcol);
+  color: var(--brand-shade);
+  width: 100%;
+  position: absolute;
+  top: 41%;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: clamp(8px, 1.2vw, 20px) 0;
+  z-index: 20;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+footer{
+  margin-top: 10px;
+}
+
+.scroll-strip {
+  width: max-content;
+  list-style: none;
+  display: flex;
+  gap: 1.5vw;
+  font-family: 'Mont-Light';
+  font-weight: bold;
+  font-size: clamp(12px, 1.5vw, 24px);
+  animation: scroll 20s linear infinite;
+}
+
+.scroll-strip img {
+  width: 2vw;
+  height: auto;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-50% - 0.75rem)); }
+}
+
+@media (min-height: 1400px) {
+  .scroll-strip-wrapper { top: 47.5%; }
+}
+
+@media (max-width: 1300px) and (min-height: 700px) {
+  .scroll-strip-wrapper { top: 43%; }
+}
+
+@media (max-width: 1200px) and (max-height: 800px) {
+  .scroll-strip-wrapper { top: 44.5%; }
+}
+
+@media (max-width: 1200px) and (max-height: 620px) {
+  .scroll-strip-wrapper { top: 42.5%; }
+}
+
+@media (max-width: 1200px) and (min-height: 1000px) {
+  .scroll-strip-wrapper { top: 47%; }
+}
+
+@media (max-width: 850px) and (min-height: 900px) {
+  .scroll-strip-wrapper { top: 46.5%; }
+}
+
+@media (max-width: 800px) and (max-height: 800px) {
+  .scroll-strip-wrapper { top: 45.5%; }
+}
+
+@media (max-width: 480px) and (max-height: 1000px) {
+  .scroll-strip-wrapper { top: 46.5%; }
+}
+
+/* ── Dark mode ── */
+@media (prefers-color-scheme: dark) {
+  .main-content{
+    background-color: rgba(47, 47, 47, 255);
+  }
+
+  .nav-bar{
+    background-color: rgba(47, 47, 47, 255);
+  }
+
+  .left-items .logo{
+    color: var(--neutral-white);
+  }
+
+  .menu-items .item{
+    color: var(--neutral-white);
+  }
+
+/*===== Button =====*/
+  .talk-button{
+    display: block;
+    position: relative;
+    height: 3.1rem;
+    overflow: hidden;
+    position: relative;
+    
+    color: var(--neutral-black);
+    text-decoration: none;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background: linear-gradient(to bottom,
+      var(--brand-shade) 50%,
+      var(--neutral-white) 50%
+    );
+    background-size: 100% 200%;
+    background-position: 0 -100%;
+    transition: background-position 0.6s ease, color 0.6s ease;
+  }
+
+  .talk-button-float{
+    background: linear-gradient(to bottom,
+      var(--brand-shade) 50%,
+      var(--neutral-white) 50%
+    );
+    background-size: 100% 200%;
+    background-position: 0 -100%;
+    color: var(--neutral-black);
+    border: 1px solid var(--neutral-black);
+    position: fixed;
+    top: -75px;
+    right: 67px;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 100;
+    transition: top 1s ease-in, background-position 0.6s ease, color 0.6s ease, border 0.6s ease;
+  }
+
+  .insight-main {
+    background-color: rgba(47, 47, 47, 255);
+  }
+
+  .scroll-wrapper {
+    color: rgba(40, 40, 40, 255);
+  }
+
+  .content-container {
+    color: white;
+  }
+
+  .scroll-strip-wrapper {
+    background-color: rgba(199, 250, 158, 255);
+    color: black;
+    z-index: 0;
+    padding: 1vw;
+  }
+
+  .scroll-strip img {
+    filter: brightness(0) saturate(100%);
+  }
+}
