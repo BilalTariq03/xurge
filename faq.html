@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ | Xurge Studio</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome (icons used by navbar / footer components) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="icon" type="image/x-icon" href="./images/SVG/Xurge Mark.svg">
+
+  <!-- Shared site stylesheet -->
+  <link rel="stylesheet" href="./styles/general.css" />
+  <link rel="stylesheet" href="./styles/header.css"/>
+  <link rel="stylesheet" href="./styles/faq.css" />
+  <link rel="stylesheet" href="./styles/footer.css"/>
+
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.25/bundled/lenis.min.js"></script>
+  
+</head>
+
+<body>
+
+  <!-- Page transition overlay — controlled by pageTransition.js -->
+  <div id="page-transition"></div>
+
+  <!-- Custom cursor — inner HTML injected by ComponentLoader -->
+  <div class="cursor-ball" id="cursor-container"></div>
+
+  <!-- Floating CTA — injected by ComponentLoader -->
+  <div id="button-container"></div>
+
+  <!-- Navbar — injected by ComponentLoader -->
+  <nav class="nav-bar" id="navbar-container"></nav>
+
+  <!-- ════════════════════════ FAQ CONTENT ════════════════════════════ -->
+  <main class="faq-page" role="main">
+    <div class="faq-container">
+
+      <header class="faq-header">
+        <p class="faq-label">Studio / Questions</p>
+        <h1 class="faq-title">Frequently<br><em>Asked</em> Questions</h1>
+        <p class="faq-subtitle">Everything you need to know before we start building together. Can't find your answer? Reach out directly.</p>
+      </header>
+
+      <div class="faq-divider" role="separator" aria-hidden="true"></div>
+
+      <ul class="faq-list" id="faq-list" role="list">
+
+        <li class="faq-item" role="listitem">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1" id="faq-btn-1">
+            <span class="faq-number" aria-hidden="true">01</span>
+            <span class="faq-question-text">How long does a website project take?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-btn-1">
+            <div class="faq-answer-inner"><div class="faq-answer-content">
+              <p>Every project is unique, but as a general guide, a <strong>focused landing page</strong> typically takes 2–3 weeks, while a full multi-page website ranges from 6 to 12 weeks depending on scope, content, and revisions.</p>
+              <p>We begin with a thorough discovery phase, then move through strategy, design, development, and quality assurance. We'll give you a precise timeline during our initial consultation.</p>
+            </div></div>
+          </div>
+        </li>
+
+        <li class="faq-item" role="listitem">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2" id="faq-btn-2">
+            <span class="faq-number" aria-hidden="true">02</span>
+            <span class="faq-question-text">What industries do you work with?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-btn-2">
+            <div class="faq-answer-inner"><div class="faq-answer-content">
+              <p>We partner with clients across a wide range of industries — from <strong>luxury fashion and hospitality</strong> to technology startups, architecture firms, and cultural institutions.</p>
+              <p>Our strength lies in translating a brand's essence into compelling digital experiences. If your work demands precision, aesthetic care, and strategic thinking, we're a great fit.</p>
+            </div></div>
+          </div>
+        </li>
+
+        <li class="faq-item" role="listitem">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3" id="faq-btn-3">
+            <span class="faq-number" aria-hidden="true">03</span>
+            <span class="faq-question-text">Do you provide website maintenance?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-btn-3">
+            <div class="faq-answer-inner"><div class="faq-answer-content">
+              <p>Yes. We offer ongoing <strong>maintenance and support retainers</strong> covering content updates, dependency management, security monitoring, and priority technical support.</p>
+              <p>We see maintenance as an extension of the original build — your site stays as polished on day 500 as it was on launch day.</p>
+            </div></div>
+          </div>
+        </li>
+
+        <li class="faq-item" role="listitem">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4" id="faq-btn-4">
+            <span class="faq-number" aria-hidden="true">04</span>
+            <span class="faq-question-text">How much does a website cost?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-answer-4" role="region" aria-labelledby="faq-btn-4">
+            <div class="faq-answer-inner"><div class="faq-answer-content">
+              <p>Investment varies based on scope and complexity. A <strong>focused brochure site</strong> typically starts around $8,000, while larger custom-built platforms range from $20,000 to $80,000+.</p>
+              <p>We're transparent about pricing from the first conversation. After our discovery call, you'll receive a detailed proposal — no vague estimates or hidden fees.</p>
+            </div></div>
+          </div>
+        </li>
+
+        <li class="faq-item" role="listitem">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5" id="faq-btn-5">
+            <span class="faq-number" aria-hidden="true">05</span>
+            <span class="faq-question-text">Can you redesign my existing website?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-answer-5" role="region" aria-labelledby="faq-btn-5">
+            <div class="faq-answer-inner"><div class="faq-answer-content">
+              <p>Absolutely. We begin with a <strong>full audit</strong> of your current site — assessing design, UX, performance, and conversion — so the new version isn't just more beautiful, it performs meaningfully better.</p>
+              <p>We handle migration carefully, preserving SEO equity and ensuring zero disruption to your existing traffic.</p>
+            </div></div>
+          </div>
+        </li>
+
+        <li class="faq-item" role="listitem">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6" id="faq-btn-6">
+            <span class="faq-number" aria-hidden="true">06</span>
+            <span class="faq-question-text">How do we start a project together?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-answer-6" role="region" aria-labelledby="faq-btn-6">
+            <div class="faq-answer-inner"><div class="faq-answer-content">
+              <p>It starts with a simple introduction. Fill out our contact form and we'll schedule a <strong>30-minute discovery call</strong> — no pressure, just a conversation to understand your goals.</p>
+              <p>If it feels like a good match, we'll send a tailored proposal within 48 hours. A signed agreement and deposit officially kick things off.</p>
+            </div></div>
+          </div>
+        </li>
+
+        <li class="faq-item" role="listitem">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-7" id="faq-btn-7">
+            <span class="faq-number" aria-hidden="true">07</span>
+            <span class="faq-question-text">Will my website be optimised for search engines?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-answer-7" role="region" aria-labelledby="faq-btn-7">
+            <div class="faq-answer-inner"><div class="faq-answer-content">
+              <p>Every site we build includes <strong>technical SEO foundations</strong> as standard: clean semantic markup, fast load times, structured data, accessible alt text, and a logical URL architecture.</p>
+              <p>For clients who want deeper SEO strategy — keyword research, content architecture, ongoing optimisation — we offer that as a dedicated service alongside the build.</p>
+            </div></div>
+          </div>
+        </li>
+
+      </ul>
+
+      <div class="faq-footer">
+        <p class="faq-footer-text">Still have a question? We'd love to hear from you.</p>
+        <a href="/contact" class="faq-cta" aria-label="Get in touch with our studio">
+          Get in touch
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- Footer — injected by ComponentLoader -->
+  <footer id="footer-container"></footer>
+
+  <!-- ════════════════════════ SCRIPTS ═════════════════════════════════
+    1. component.js   — plain script, auto-runs on DOMContentLoaded,
+                        injects navbar / footer / cursor / floating button
+    2. faq.js         — ES module, imports cursor + pageTransitions,
+                        then runs the accordion logic
+  ════════════════════════════════════════════════════════════════════ -->
+  <script src="./scripts/components.js"></script>
+  <script type="module" src="./scripts/faq.js"></script>
+
+</body>
+</html>

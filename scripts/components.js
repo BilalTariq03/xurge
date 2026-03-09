@@ -190,7 +190,7 @@ class ComponentLoader{
               <a class="footer-link" href="#">
                 <div>Insights</div>
               </a>
-              <a class="footer-link" href="#">
+              <a class="footer-link" href="/faq">
                 <div>FAQs</div>
               </a>
               <a class="footer-link" href="/contact">
@@ -271,9 +271,9 @@ class ComponentLoader{
           </div>
 
           <div class="right-section">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Sitemap</a>
+            <a href="/privacy-policy">Privacy</a>
+            <a href="/terms-of-use">Terms</a>
+            <a href="/sitemap">Sitemap</a>
           </div>
         </div>
       </div>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sitemap | Xurge</title>
+
+  <link rel="stylesheet" href="styles/general.css">
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/footer.css">
+  <link rel="stylesheet" href="styles/sitemap.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/x-icon" href="./images/SVG/Xurge Mark.svg">
+
+  <script src="https://kit.fontawesome.com/0a2264748d.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.25/bundled/lenis.min.js"></script>
+</head>
+
+<body>
+  <div class="page-transition" id="page-transition"></div>
+
+  <div class="cursor-ball" id="cursor-container"></div>
+
+  <div class="main-content">
+    <nav class="nav-bar" id="navbar-container"></nav>
+    <div class="button-holder" id="button-container"></div>
+
+    <!-- Hero -->
+    <section class="sitemap-hero padding-inline">
+      <div class="sitemap-hero-inner">
+        <div class="sitemap-hero-left">
+          <span class="page-label">Navigation</span>
+          <h1 class="sitemap-title">Site map</h1>
+        </div>
+        <p class="sitemap-hero-desc">A complete overview of every page on the Xurge Studio website. Find what you're looking for, or explore what we do.</p>
+      </div>
+      <div class="sitemap-hero-meta">
+        <span><strong id="link-count">0</strong> pages across <strong>5</strong> sections</span>
+        <span>Last Updated: <strong>January 1, 2026</strong></span>
+      </div>
+    </section>
+
+    <!-- Sitemap Grid -->
+    <div class="sitemap-body padding-inline">
+
+      <!-- Main Pages -->
+      <div class="sitemap-section" data-index="01">
+        <div class="sitemap-section-header">
+          <span class="sitemap-section-label">Main</span>
+          <h2 class="sitemap-section-title">Main Pages</h2>
+        </div>
+        <ul class="sitemap-links">
+          <li>
+            <a href="/" class="sitemap-link">
+              <span class="sitemap-link-name">Home</span>
+              <span class="sitemap-link-desc">Our homepage — what we do and why it matters</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/work" class="sitemap-link">
+              <span class="sitemap-link-name">Work</span>
+              <span class="sitemap-link-desc">Selected projects and case studies</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/services" class="sitemap-link">
+              <span class="sitemap-link-name">Services</span>
+              <span class="sitemap-link-desc">Branding, web design, digital products, and content</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/about" class="sitemap-link">
+              <span class="sitemap-link-name">Studio</span>
+              <span class="sitemap-link-desc">Who we are, how we work, and what drives us</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sitemap-link">
+              <span class="sitemap-link-name">Insights</span>
+              <span class="sitemap-link-desc">Articles, opinions, and ideas from our team</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="sitemap-section" data-index="02">
+        <div class="sitemap-section-header">
+          <span class="sitemap-section-label">Connect</span>
+          <h2 class="sitemap-section-title">Get in Touch</h2>
+        </div>
+        <ul class="sitemap-links">
+          <li>
+            <a href="/contact" class="sitemap-link">
+              <span class="sitemap-link-name">Contact</span>
+              <span class="sitemap-link-desc">Start a project or send us an enquiry</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/contact" class="sitemap-link">
+              <span class="sitemap-link-name">Book a Call</span>
+              <span class="sitemap-link-desc">Schedule a 30-minute discovery call with our founder</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/faq" class="sitemap-link">
+              <span class="sitemap-link-name">FAQs</span>
+              <span class="sitemap-link-desc">Answers to the questions we hear most often</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Work / Projects -->
+      <div class="sitemap-section" data-index="03">
+        <div class="sitemap-section-header">
+          <span class="sitemap-section-label">Portfolio</span>
+          <h2 class="sitemap-section-title">Projects</h2>
+        </div>
+        <ul class="sitemap-links">
+          <li>
+            <a href="/projects/controlled-credit-corporation" class="sitemap-link">
+              <span class="sitemap-link-name">Controlled Credit Corporation</span>
+              <span class="sitemap-link-desc">Branding & Website Design</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/works/Hogrene" class="sitemap-link">
+              <span class="sitemap-link-name">Hogrene</span>
+              <span class="sitemap-link-desc">Branding & Website Design</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/projects/big-energy-group" class="sitemap-link">
+              <span class="sitemap-link-name">Big Energy Group</span>
+              <span class="sitemap-link-desc">Branding & Website Design</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/projects/spike" class="sitemap-link">
+              <span class="sitemap-link-name">Spike</span>
+              <span class="sitemap-link-desc">Branding & Website Design</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/projects/wandergates" class="sitemap-link">
+              <span class="sitemap-link-name">Wandergates</span>
+              <span class="sitemap-link-desc">Branding & Website Design</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Socials -->
+      <div class="sitemap-section" data-index="04">
+        <div class="sitemap-section-header">
+          <span class="sitemap-section-label">Social</span>
+          <h2 class="sitemap-section-title">Find Us Online</h2>
+        </div>
+        <ul class="sitemap-links">
+          <li>
+            <a href="#" class="sitemap-link" target="_blank" rel="noopener">
+              <span class="sitemap-link-name">LinkedIn</span>
+              <span class="sitemap-link-desc">Connect with us professionally</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sitemap-link" target="_blank" rel="noopener">
+              <span class="sitemap-link-name">Instagram</span>
+              <span class="sitemap-link-desc">Behind the scenes and project highlights</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="sitemap-section" data-index="05">
+        <div class="sitemap-section-header">
+          <span class="sitemap-section-label">Legal</span>
+          <h2 class="sitemap-section-title">Legal Pages</h2>
+        </div>
+        <ul class="sitemap-links">
+          <li>
+            <a href="/privacy-policy" class="sitemap-link">
+              <span class="sitemap-link-name">Privacy Policy</span>
+              <span class="sitemap-link-desc">How we collect, use, and protect your data</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/terms-of-use" class="sitemap-link">
+              <span class="sitemap-link-name">Terms of Use</span>
+              <span class="sitemap-link-desc">Rules and guidelines for using our website</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+          <li>
+            <a href="/sitemap" class="sitemap-link">
+              <span class="sitemap-link-name">Sitemap</span>
+              <span class="sitemap-link-desc">You are here</span>
+              <i class="fa-solid fa-arrow-up sitemap-arrow"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <footer class="footer-container" id="footer-container"></footer>
+  </div>
+
+  <script src="scripts/components.js"></script>
+  <script src="scripts/sitemap.js" type="module" defer></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+/* ==========================================================================
+   styles/terms.css — Terms of Use overrides only
+   All layout, sidebar, sections, typography etc. are inherited from privacy.css
+   Only add here what genuinely differs for the terms page.
+   ========================================================================== */
+
+/* ── Contact CTA (shared with privacy but included here for standalone use) ── */
+.policy-contact {
+  background: var(--neutral-charcol);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.contact-text h3 {
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 400;
+  color: var(--neutral-white);
+  margin-bottom: 0.5rem;
+}
+
+.contact-text p {
+  font-size: var(--body-size);
+  color: var(--neutral-stone);
+  line-height: 1.6;
+}
+
+.contact-email-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--brand-shade);
+  color: var(--neutral-black);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.9rem 1.6rem;
+  border-radius: 25px;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+
+.contact-email-btn:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+  .policy-contact {
+    padding: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

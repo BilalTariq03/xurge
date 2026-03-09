@@ -5,6 +5,10 @@
 /projects          /projects.html          200
 /contact           /contact.html           200
 /about             /about.html             200
+/faq               /faq.html               200
+/privacy-policy    /privacy.html           200
+/terms-of-use      /terms.html             200
+/sitemap           /sitemap.html           200
 
 # Clean project slugs — /projects/:slug → /projects.html?slug=:slug
 /projects/:slug    /projects.html?slug=:slug   200

@@ -1,0 +1,247 @@
+/* ==========================================================================
+   styles/privacy.css — page-specific styles only
+   General layout, nav, footer, padding-inline etc. come from existing sheets
+   ========================================================================== */
+
+/* ── Page visibility (matches .main-content pattern from general.css) ── */
+.main-content {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ── Hero ── */
+.privacy-hero {
+  padding-top: calc(var(--padding-top) + 60px);
+  padding-bottom: 5rem;
+  border-bottom: 1px solid var(--border-strong, #1a181433);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.privacy-title {
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+  font-size: var(--title-size);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--ink, #1A1814);
+  letter-spacing: -0.02em;
+}
+.privacy-title em {
+  font-style: italic;
+  color: var(--neutral-stone);
+}
+
+.privacy-meta {
+  font-size: var(--body-size);
+  color: var(--neutral-stone);
+  border-top: 1px solid var(--border-strong, #1a181433);
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* ── Two-column layout ── */
+.privacy-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 0;
+  padding-block: 6rem;
+  /* overflow must NEVER be hidden/auto here — it breaks position:sticky */
+  overflow: visible;
+}
+
+/* ── Sidebar ── */
+.privacy-sidebar {
+  position: sticky;
+  top: 0px;
+  align-self: start;
+  /* Lenis replaces native scroll, so sticky needs to anchor to the
+     nearest scrolling ancestor. Make sure nothing above clips this. */
+  height: fit-content;
+}
+.sidebar-label {
+  font-size: var(--label-size);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--neutral-stone);
+  margin-bottom: 1.5rem;
+}
+.sidebar-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.sidebar-nav a {
+  text-decoration: none;
+  font-size: 1rem;
+  color: var(--neutral-silver);
+  display: flex;
+  align-items: center;
+  padding: 0.45rem 0 0.45rem 1rem;
+  border-left: 2px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  color: var(--neutral-black, #1A1814);
+  border-left-color: var(--brand-shade);
+}
+
+/* ── Content column ── */
+.privacy-content {
+  padding-left: 5rem;
+  border-left: 1px solid var(--border-strong, #1a181433);
+}
+
+.policy-section {
+  padding-bottom: 4.5rem;
+  margin-bottom: 4.5rem;
+  border-bottom: 1px solid var(--border-strong, #1a181433);
+  /* initial state for GSAP reveal — hidden until scrolled into view */
+  opacity: 0;
+}
+.policy-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.section-number {
+  font-size: var(--label-size);
+  font-weight: 500;
+  color: var(--neutral-stone);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.section-number::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--brand-shade);
+}
+
+.section-title {
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+  font-size: var(--h2-size);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--ink, #1A1814);
+  margin-bottom: 2rem;
+  letter-spacing: -0.01em;
+}
+
+.policy-p {
+  font-size: var(--body-size);
+  color: var(--ink-soft, #3D3A35);
+  line-height: 1.85;
+  margin-bottom: 1.2rem;
+}
+.policy-p:last-child { margin-bottom: 0; }
+
+.policy-list {
+  list-style: none;
+  margin: 1.2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.policy-list li {
+  font-size: var(--body-size);
+  color: var(--ink-soft, #3D3A35);
+  line-height: 1.7;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.policy-list li::before {
+  content: '';
+  display: block;
+  min-width: 6px;
+  min-height: 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-shade);
+  margin-top: 0.55rem;
+}
+
+.policy-highlight {
+  background: var(--neutral-ivory, #f3f4ee);
+  border-left: 3px solid var(--brand-shade);
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.policy-highlight p {
+  font-size: var(--body-size);
+  color: var(--ink-soft, #3D3A35);
+  line-height: 1.7;
+}
+
+/* ── Contact CTA ── */
+.policy-contact {
+  background: var(--neutral-charcol);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.contact-text h3 {
+  font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 400;
+  color: var(--neutral-white);
+  margin-bottom: 0.5rem;
+}
+.contact-text p {
+  font-size: var(--body-size);
+  color: var(--neutral-stone);
+  line-height: 1.6;
+}
+.contact-email-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--brand-shade);
+  color: var(--neutral-black);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.9rem 1.6rem;
+  border-radius: 25px;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+.contact-email-btn:hover { opacity: 0.85; }
+
+/* ── Responsive ── */
+@media (max-width: 990px) {
+  .privacy-layout {
+    grid-template-columns: 1fr;
+    padding-block: 4rem;
+  }
+  .privacy-sidebar { display: none; }
+  .privacy-content {
+    padding-left: 0;
+    border-left: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .policy-contact {
+    padding: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

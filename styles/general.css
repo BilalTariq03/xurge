@@ -61,8 +61,8 @@ body{
   --ink-muted: #8A857C;
   --accent: #C4A882;
   --accent-deep: #9E7E56;
-  --border: rgba(26,24,20,0.10);
-  --border-strong: rgba(26,24,20,0.20);
+  --border: #1a18141a;
+  --border-strong: #1a181433;
   --success-bg: #EEF5EE;
   --success-text: #2D5A2D;
   --error-bg: #FAF0EE;
@@ -81,6 +81,12 @@ body{
 
   --padding-x:      clamp(1.25rem, 5vw, 5rem);
   --padding-top:    clamp(6rem, 12vh, 10rem);
+
+  /* Extended palette */
+  --page-bg: var(--neutral-ivory);
+  --faq-bg: var(--neutral-white);
+  --faq-open-bg: #fafaf7;
+  --faq-hover-bg: #f8f8f4;
 }
 
 /* general.css */
