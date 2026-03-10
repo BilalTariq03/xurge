@@ -27,16 +27,24 @@ export class WorksAnimation extends AnimationBase {
   }
 
   setupHorizontalScroll() {
-    // Horizontal scroll uses scrub so ScrollTrigger is correct here —
-    // it measures the wrapper width, not page height, so layout shifts don't affect it.
-    if (!this.mm) this.mm = gsap.matchMedia();
+  if (!this.mm) this.mm = gsap.matchMedia();
 
-    this.mm.add("(min-width: 990px)", () => {
-      const hero = document.querySelector('.works-container');
-      const wrapper = document.querySelector('.scroll-wrapper');
-      const workList = document.querySelector('.work-item-list');
-      if (!hero || !wrapper || !workList) return;
+  this.mm.add("(min-width: 990px)", () => {
+    const hero = document.querySelector('.works-container');
+    const wrapper = document.querySelector('.scroll-wrapper');
+    const workList = document.querySelector('.work-item-list');
+    if (!hero || !wrapper || !workList) return;
 
+    // ── Wait for all images inside workList to load before measuring ──
+    const images = [...workList.querySelectorAll('img')];
+    const imagePromises = images.map(img =>
+      img.complete ? Promise.resolve() : new Promise(res => {
+        img.addEventListener('load', res, { once: true });
+        img.addEventListener('error', res, { once: true }); // don't hang on broken images
+      })
+    );
+
+    Promise.all(imagePromises).then(() => {
       const totalScroll = wrapper.scrollWidth - window.innerWidth;
 
       const tl = gsap.timeline({
@@ -54,12 +62,12 @@ export class WorksAnimation extends AnimationBase {
         .to(workList, { x: () => `-${totalScroll}px`, ease: 'none' }, 0);
 
       this.registerTrigger(tl.scrollTrigger);
-
-      setTimeout(() => ScrollTrigger.refresh(), 500);
+      ScrollTrigger.refresh();
 
       return () => { tl.scrollTrigger?.kill(); tl.kill(); };
     });
-  }
+  });
+}
 
   smoothItemScroll() {
     const workItems = document.querySelectorAll('.item-container');
