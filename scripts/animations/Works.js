@@ -35,37 +35,31 @@ export class WorksAnimation extends AnimationBase {
     const workList = document.querySelector('.work-item-list');
     if (!hero || !wrapper || !workList) return;
 
-    // ── Wait for all images inside workList to load before measuring ──
-    const images = [...workList.querySelectorAll('img')];
-    const imagePromises = images.map(img =>
-      img.complete ? Promise.resolve() : new Promise(res => {
-        img.addEventListener('load', res, { once: true });
-        img.addEventListener('error', res, { once: true }); // don't hang on broken images
-      })
-    );
-
-    Promise.all(imagePromises).then(() => {
-      const totalScroll = wrapper.scrollWidth - window.innerWidth;
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '.works-section',
-          start: 'top top',
-          end: () => `+=${totalScroll}`,
-          scrub: true,
-          pin: true,
-          anticipatePin: true,
-          invalidateOnRefresh: true,
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.works-section',
+        start: 'top top',
+        end: () => `+=${(wrapper.scrollWidth - window.innerWidth) * 2.0}`, // ← lazy, recalculates on refresh
+        scrub: true,
+        pin: true,
+        anticipatePin: true,
+        invalidateOnRefresh: true,
+        onRefresh: (self) => {
+          // recalculate x target when ScrollTrigger refreshes
+          gsap.set(workList, { x: 0 });
+          self.refresh();
         }
-      })
-        .to(hero, { filter: 'blur(8px)', duration: 0.2 }, 0.05)
-        .to(workList, { x: () => `-${totalScroll}px`, ease: 'none' }, 0);
+      }
+    })
+      .to(hero, { filter: 'blur(8px)', duration: 0.2 }, 0.05)
+      .to(workList, { x: () => `-${wrapper.scrollWidth - window.innerWidth}px`, ease: 'none' }, 0);
 
-      this.registerTrigger(tl.scrollTrigger);
-      ScrollTrigger.refresh();
+    this.registerTrigger(tl.scrollTrigger);
 
-      return () => { tl.scrollTrigger?.kill(); tl.kill(); };
-    });
+    // Refresh after fonts/layout settle
+    ScrollTrigger.refresh();
+
+    return () => { tl.scrollTrigger?.kill(); tl.kill(); };
   });
 }
 

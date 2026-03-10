@@ -189,8 +189,12 @@ const animationManager = new AnimationManager();
 animationManager.saveScrollPosition();
 
 window.addEventListener('load', () => {
-  animationManager.init();
-  ScrollTrigger.refresh();
+  animationManager.init().then(() => {
+    // double refresh after full load — catches any late layout shifts
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+    });
+  });
 });
 
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
