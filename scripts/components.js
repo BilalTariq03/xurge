@@ -84,9 +84,9 @@ class ComponentLoader{
             </a></li>
 
             <li>
-              <button class="mobile-only mobile-button">
+              <a href="/contact" class="mobile-only mobile-button">
                 Lets Talk <i class="fa-solid fa-arrow-up button-logo"></i>
-              </button>
+              </a>
             </li>
           </ul>
         </div>

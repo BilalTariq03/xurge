@@ -39,6 +39,11 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .nav-logo img{
+      display: block;
+      height: 30px;
+    }
+
     /* ── GO BACK BUTTON ── */
     .btn-back {
       grid-column: 1;
@@ -572,7 +577,10 @@
 
     /* ── TABLET ── */
     @media (max-width: 900px) {
-      nav { padding: 16px 32px; }
+      nav { padding: 16px 32px; 
+          grid-template-columns: 3fr 1fr;
+
+      }
 
       main {
         grid-template-columns: 1fr;
@@ -592,13 +600,13 @@
       .panel-right { padding: 48px 40px 100px; }
 
       .footer-strip { padding: 14px 32px; }
+
     }
 
     /* ── MOBILE ── */
     @media (max-width: 600px) {
       nav {
         padding: 14px 20px;
-        grid-template-columns: 2fr 1fr;
       }
 
       .btn-back { font-size: 0.72rem; padding: 8px 12px; }
@@ -624,4 +632,9 @@
 
       .footer-strip { padding: 14px 24px; }
       .footer-social { gap: 14px; }
+
+
+      .nav-logo img{
+        height: 25px;
+      }
     }

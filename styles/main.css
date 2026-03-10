@@ -977,10 +977,6 @@
     width: 38vw; 
   }
 
-  .booking-button{
-    background-color: var(--brand-shade);
-  }
-
   .audit-button{
     display: flex;
     width: 90%;

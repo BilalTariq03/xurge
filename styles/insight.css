@@ -204,36 +204,59 @@ footer{
   to   { transform: translateX(calc(-50% - 0.75rem)); }
 }
 
-@media (min-height: 1400px) {
-  .scroll-strip-wrapper { top: 47.5%; }
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+/* ── Large tablet / small desktop ── */
+@media (max-width: 1300px) {
+  .scroll-strip-wrapper {
+    top: 44%;
+  }
+
+  .talk-button-float {
+    right: 20px;
+  }
 }
 
-@media (max-width: 1300px) and (min-height: 700px) {
-  .scroll-strip-wrapper { top: 43%; }
+/* ── Tablet ── */
+@media (max-width: 990px) {
+  .scroll-strip-wrapper {
+    top: 46%;
+  }
 }
 
-@media (max-width: 1200px) and (max-height: 800px) {
-  .scroll-strip-wrapper { top: 44.5%; }
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .scroll-strip-wrapper {
+    top: 46.5%;
+  }
+
+  .talk-button-float {
+    right: 20px;
+  }
+
+  /* Remove hover effects on touch screens */
+  .talk-button-float:hover {
+    background-position: 0 -100%;
+    color: var(--neutral-white);
+    border-color: var(--neutral-black);
+  }
+
+  .talk-button-float:hover .button-logo-1 {
+    transform: rotate(45deg);
+  }
+
+  .talk-button-float:hover .button-logo-2 {
+    transform: rotate(45deg) translate(100%, 300%);
+  }
 }
 
-@media (max-width: 1200px) and (max-height: 620px) {
-  .scroll-strip-wrapper { top: 42.5%; }
-}
-
-@media (max-width: 1200px) and (min-height: 1000px) {
-  .scroll-strip-wrapper { top: 47%; }
-}
-
-@media (max-width: 850px) and (min-height: 900px) {
-  .scroll-strip-wrapper { top: 46.5%; }
-}
-
-@media (max-width: 800px) and (max-height: 800px) {
-  .scroll-strip-wrapper { top: 45.5%; }
-}
-
-@media (max-width: 480px) and (max-height: 1000px) {
-  .scroll-strip-wrapper { top: 46.5%; }
+/* ── Small mobile ── */
+@media (max-width: 480px) {
+  .scroll-strip-wrapper {
+    top: 47%;
+  }
 }
 
 /* ── Dark mode ── */
@@ -255,44 +278,25 @@ footer{
   }
 
 /*===== Button =====*/
-  .talk-button{
-    display: block;
-    position: relative;
-    height: 3.1rem;
-    overflow: hidden;
-    position: relative;
-    
+  .talk-button {
     color: var(--neutral-black);
-    text-decoration: none;
-    border-radius: 25px;
-    border: none;
-    outline: none;
-    box-shadow: none;
     background: linear-gradient(to bottom,
       var(--brand-shade) 50%,
       var(--neutral-white) 50%
     );
     background-size: 100% 200%;
     background-position: 0 -100%;
-    transition: background-position 0.6s ease, color 0.6s ease;
   }
 
-  .talk-button-float{
+  .talk-button-float {
+    color: var(--neutral-black);
+    border-color: var(--neutral-black);
     background: linear-gradient(to bottom,
       var(--brand-shade) 50%,
       var(--neutral-white) 50%
     );
     background-size: 100% 200%;
     background-position: 0 -100%;
-    color: var(--neutral-black);
-    border: 1px solid var(--neutral-black);
-    position: fixed;
-    top: -75px;
-    right: 67px;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 100;
-    transition: top 1s ease-in, background-position 0.6s ease, color 0.6s ease, border 0.6s ease;
   }
 
   .insight-main {
@@ -316,5 +320,13 @@ footer{
 
   .scroll-strip img {
     filter: brightness(0) saturate(100%);
+  }
+}
+
+@media (prefers-color-scheme: dark) and (max-width: 768px) {
+  .talk-button-float:hover {
+    background-position: 0 -100%;
+    color: var(--neutral-black);
+    border-color: var(--neutral-black);
   }
 }

@@ -275,6 +275,8 @@ body.intro-running .nav-bar{
   background-color: var(--brand-shade);
   color: var(--neutral-black);
   display: none;
+  text-decoration: none;
+  text-align: center;
 }
 
 
@@ -391,8 +393,24 @@ body.intro-running .nav-bar{
   }
 
   .talk-button-float{
+    display: block;
     right: 20px;
   }
+
+  .talk-button-float:hover {
+    background-position: 0 -100%; /* keeps original position, no slide */
+    color: var(--neutral-black);  /* keeps original color */
+    border-color: var(--neutral-black); /* keeps original border */
+  }
+
+  .talk-button-float:hover .button-logo-2 {
+    transform: rotate(45deg) translate(100%, 300%); /* reset to original */
+  }
+
+  .talk-button-float:hover .button-logo-1 {
+    transform: rotate(45deg); /* reset to original */
+  }
+  
 }
 
 @media(max-width: 450px){
