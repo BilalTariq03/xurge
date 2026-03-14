@@ -27,7 +27,8 @@ export class WorksAnimation extends AnimationBase {
   }
 
   setupHorizontalScroll() {
-  if (!this.mm) this.mm = gsap.matchMedia();
+  if (this.mm) this.mm.revert();
+  this.mm = gsap.matchMedia();
 
   this.mm.add("(min-width: 990px)", () => {
     const hero = document.querySelector('.works-container');
@@ -39,16 +40,12 @@ export class WorksAnimation extends AnimationBase {
       scrollTrigger: {
         trigger: '.works-section',
         start: 'top top',
-        end: () => `+=${(wrapper.scrollWidth - window.innerWidth) * 2.0}`, // ← lazy, recalculates on refresh
+        end: () => `+=${(wrapper.scrollWidth - window.innerWidth) * 3.0}`, // ← lazy, recalculates on refresh
         scrub: true,
         pin: true,
         anticipatePin: true,
         invalidateOnRefresh: true,
-        onRefresh: (self) => {
-          // recalculate x target when ScrollTrigger refreshes
-          gsap.set(workList, { x: 0 });
-          self.refresh();
-        }
+        onRefresh: () => gsap.set(workList, { x: 0 }),
       }
     })
       .to(hero, { filter: 'blur(8px)', duration: 0.2 }, 0.05)
@@ -56,8 +53,11 @@ export class WorksAnimation extends AnimationBase {
 
     this.registerTrigger(tl.scrollTrigger);
 
-    // Refresh after fonts/layout settle
-    ScrollTrigger.refresh();
+    if (document.readyState === 'complete') {
+      ScrollTrigger.refresh();
+    } else {
+      window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+    }
 
     return () => { tl.scrollTrigger?.kill(); tl.kill(); };
   });
@@ -90,6 +90,8 @@ export class WorksAnimation extends AnimationBase {
   }
 
   cleanup() {
+    this.mm?.revert();
+    this.mm = null;
     (this._observers || []).forEach(o => o.disconnect());
     this._observers = [];
     super.cleanup();

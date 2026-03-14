@@ -69,6 +69,8 @@ export class ServicesAnimation extends AnimationBase {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     this.renderer.setClearColor(0x000000, 1);
+    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    this.renderer.toneMappingExposure = 2.5;
     
     // Create rings
     for(let i = 0; i < 4; i++) {
@@ -82,7 +84,9 @@ export class ServicesAnimation extends AnimationBase {
         ior: 1.5,
         transparent: true,
         opacity: 0.5,
-        specularIntensity: 1
+        specularIntensity: 10,
+        // emissive: new THREE.Color(0xffffff),
+        // emissiveIntensity: 0.15
       });
       
       const torus = new THREE.Mesh(geometry, mat);
@@ -152,7 +156,7 @@ export class ServicesAnimation extends AnimationBase {
         y: direction * rotations * Math.PI * 2,
         duration: 7,
         ease: "none"
-      }, 9);
+      }, 8);
     });
   }
 

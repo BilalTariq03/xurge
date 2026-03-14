@@ -143,7 +143,10 @@ footer{
   align-items: center;
 }
 
-.user-container img{
+
+.user-image{
+  width: 3.125rem;
+  height: 3.125rem;
   border-radius: 50%;
 }
 

@@ -16,8 +16,8 @@
 
   <link rel="icon" type="image/x-icon" href="./images/SVG/Xurge Mark.svg">
 
-  <!-- Preload the hero animation image — it's above fold and visible immediately -->
-  <link rel="preload" as="image" href="./images/XurgeAnimation.png">
+  <!-- Preload hero video — above fold, visible immediately -->
+  <link rel="preload" as="video" href="./images/landing/main_opt.mp4">
 
   <script src="https://kit.fontawesome.com/0a2264748d.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -75,15 +75,13 @@
       </div>
     </section>
 
-    <!-- Landing animation — preloaded above, no lazy needed -->
+    <!-- Landing animation -->
     <section class="animation-section">
-      <div class="padding-inline">
-        <div class="animation-container-wrapper">
-          <div class="animation-container">
-            <div class="image-container">
-              <img class="xurge-animation" src="./images/XurgeAnimation.png" alt="Xurge animation" decoding="async">
-            </div>
-          </div>
+      <div class="animation-container-wrapper">
+        <div class="animation-container">
+          <video class="xurge-video" autoplay muted loop playsinline>
+            <source src="./images/landing/main_opt.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </section>
@@ -93,9 +91,46 @@
       <div class="padding-inline">
         <div class="logo-strip-container">
           <div class="logo-strip">
-            <div class="logo-row"><div class="logo-column delay-1"><div class="logo">Logo 1</div><div class="logo">Logo 2</div><div class="logo">Logo 3</div></div></div>
-            <div class="logo-row"><div class="logo-column delay-2"><div class="logo">Logo 4</div><div class="logo">Logo 5</div><div class="logo">Logo 6</div></div></div>
-            <div class="logo-row"><div class="logo-column delay-3"><div class="logo">Logo 7</div><div class="logo">Logo 8</div><div class="logo">Logo 9</div></div></div>
+            <div class="logo-row">
+              <div class="logo-column delay-1">
+                <div class="logo"><img src="./images/brands/8.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+                <div class="logo"><img src="./images/brands/9.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+                <div class="logo"><img src="./images/brands/8.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+                <div class="logo"><img src="./images/brands/9.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+              </div>
+            </div>
+            <div class="logo-row">
+              <div class="logo-column delay-2">
+                <div class="logo"><img src="./images/brands/10.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+                <div class="logo"><img src="./images/brands/11.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+                <div class="logo"><img src="./images/brands/10.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+                <div class="logo"><img src="./images/brands/11.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+              </div>
+            </div>
+            <div class="logo-row">
+              <div class="logo-column delay-3">
+                <div class="logo"><img src="./images/brands/12.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+                <div class="logo"><img src="./images/brands/13.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+                <div class="logo"><img src="./images/brands/12.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+                <div class="logo"><img src="./images/brands/13.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+              </div>
+            </div>
+            <div class="logo-row">
+              <div class="logo-column delay-4">
+                <div class="logo"><img src="./images/brands/14.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+                <div class="logo"><img src="./images/brands/15.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+                <div class="logo"><img src="./images/brands/14.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+                <div class="logo"><img src="./images/brands/15.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+              </div>
+            </div>
+            <div class="logo-row">
+              <div class="logo-column delay-5">
+                <div class="logo"><img src="./images/brands/16.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+                <div class="logo"><img src="./images/brands/17.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+                <div class="logo"><img src="./images/brands/16.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+                <div class="logo"><img src="./images/brands/17.png" alt="Brand logo" loading="lazy" decoding="async"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -280,11 +315,11 @@
         <div class="booking-inner">
           <div class="images-grid">
             <!-- Booking images are below fold — all lazy -->
-            <div class="image-container"><img class="book-image" src="images/tony.jpg" loading="lazy" decoding="async"></div>
-            <div class="image-container"><img class="book-image" src="images/tony.jpg" loading="lazy" decoding="async"></div>
-            <div class="image-container"><img class="book-image" src="images/tony.jpg" loading="lazy" decoding="async"></div>
-            <div class="image-container"><img class="book-image" src="images/tony.jpg" loading="lazy" decoding="async"></div>
-            <div class="image-container"><img class="book-image" src="images/tony.jpg" loading="lazy" decoding="async"></div>
+            <div class="image-container"><img class="book-image" src="images/team/19.png" loading="lazy" decoding="async"></div>
+            <div class="image-container"><img class="book-image" src="images/team/20.png" loading="lazy" decoding="async"></div>
+            <div class="image-container"><img class="book-image" src="images/team/21.png" loading="lazy" decoding="async"></div>
+            <div class="image-container"><img class="book-image" src="images/team/22.png" loading="lazy" decoding="async"></div>
+            <div class="image-container"><img class="book-image" src="images/team/23.png" loading="lazy" decoding="async"></div>
           </div>
           <div class="booking-content">
             <div class="heading-container">
@@ -297,7 +332,7 @@
               <div class="booking-link-container">
                 <a class="booking-link" href="contact">
                   <div class="user">
-                    <img class="user-image" src="https://picsum.photos/50" loading="lazy">
+                    <img class="user-image" src="images/team/Bashaar.png" loading="lazy">
                     <div class="about-user">
                       <p class="user-name">Bashaar Khan</p>
                       <p class="user-designation">Founder</p>

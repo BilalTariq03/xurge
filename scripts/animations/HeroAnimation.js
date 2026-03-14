@@ -2,42 +2,24 @@ import { AnimationBase } from '../core/base.js';
 
 export class HeroAnimation extends AnimationBase {
   init() {
-    this.setupAnimationContainer();
-    this.setupXurgeAnimation();
+    this.setupVideoAnimation();
   }
 
-  setupAnimationContainer() {
-    const trigger = gsap.to('.animation-container', {
-      scale: 1.12,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: ".animation-container",
-        start: "top center",
-        end: "top top",
-        scrub: true,
-        invalidateOnRefresh: true
-      }
-    });
-
-    this.registerTrigger(trigger.scrollTrigger);
-  }
-
-  setupXurgeAnimation() {
+  setupVideoAnimation() {
     if (!this.mm) this.mm = gsap.matchMedia();
 
     this.mm.add("(min-width: 990px)", () => {
-      const trigger = gsap.fromTo('.xurge-animation', 
-        { y: '100vh', scale: '1' },
+      const trigger = gsap.fromTo('.animation-container',
+        { clipPath: 'inset(0 5% round 0.5rem)' },
         {
-          y: '0vh',
-          scale: '4',
-          ease: "power1.out",
+          clipPath: 'inset(0 0% round 0rem)',
+          ease: "power2.out",
           scrollTrigger: {
             trigger: '.animation-container-wrapper',
-            start: "top top",
-            end: "+=2000",
-            pin: true,
-            anticipatePin: true,
+            start: "top center",
+            end: "+=500",
+            pin: false,
+            anticipatePin: false,
             scrub: true,
             invalidateOnRefresh: true
           }
@@ -47,16 +29,15 @@ export class HeroAnimation extends AnimationBase {
     });
 
     this.mm.add("(max-width: 990px)", () => {
-      const trigger = gsap.fromTo('.xurge-animation', 
-        { y: '70vh', scale: '1' },
+      const trigger = gsap.fromTo('.animation-container',
+        { clipPath: 'inset(0 8% round 0.5rem)' },
         {
-          y: '15vh',
-          scale: '4',
-          ease: "power1.out",
+          clipPath: 'inset(0 0% round 0rem)',
+          ease: "power2.out",
           scrollTrigger: {
             trigger: '.animation-container-wrapper',
             start: "top top",
-            end: "+=1000",
+            end: "+=500",
             pin: true,
             anticipatePin: true,
             scrub: true,

@@ -237,7 +237,7 @@ class ComponentLoader{
               <a href="/contact" class="book-call-button">
                 <div class="button-wrap">
                   <div class="user-container">
-                    <img src="https://picsum.photos/50">
+                    <img class="user-image" src="images/team/Bashaar.png">
                     <div class="user-info">
                       <div class="name-wrapper">
                         <span>Bashaar Khan</span>
