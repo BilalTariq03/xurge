@@ -40,7 +40,7 @@ export class WorksAnimation extends AnimationBase {
       scrollTrigger: {
         trigger: '.works-section',
         start: 'top top',
-        end: () => `+=${(wrapper.scrollWidth - window.innerWidth) * 3.0}`, // ← lazy, recalculates on refresh
+        end: () => `+=${(wrapper.scrollWidth - window.innerWidth) * 1.5}`, // ← lazy, recalculates on refresh
         scrub: true,
         pin: true,
         anticipatePin: true,

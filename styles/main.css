@@ -52,6 +52,11 @@
 /* Brand logos */
 
 .logo-strip-container{
+  --logo-h: clamp(3rem, 4vw, 10rem);
+  --logo-gap: 3rem;
+  --logo-step: calc(var(--logo-h) + var(--logo-gap));
+  --logo-cycle: calc(var(--logo-step) * 2);
+
   margin-top: 12.5rem;
   padding-top: 5rem;
   padding-bottom: 5rem;
@@ -61,7 +66,7 @@
 }
 .logo-strip{
   display: flex;
-  height: 5rem;
+  height: var(--logo-h);
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
@@ -70,7 +75,7 @@
 
 .logo-row{
   flex: 1;
-  height: 5rem;
+  height: var(--logo-h);
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -79,12 +84,12 @@
 .logo-column{
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: var(--logo-gap);
   animation: scroll-up 5s linear infinite;
 }
 
 .logo{
-  height: 5rem;
+  height: var(--logo-h);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,11 +104,11 @@
 }
 
 @keyframes scroll-up {
-  0%   { transform: translateY(0rem); }
-  35%  { transform: translateY(0rem);   animation-timing-function: ease-in-out; }
-  50%  { transform: translateY(-8rem); }
-  85%  { transform: translateY(-8rem);  animation-timing-function: ease-in-out; }
-  100% { transform: translateY(-16rem); }
+  0%   { transform: translateY(0); }
+  35%  { transform: translateY(0);                                    animation-timing-function: ease-in-out; }
+  50%  { transform: translateY(calc(-1 * var(--logo-step))); }
+  85%  { transform: translateY(calc(-1 * var(--logo-step)));          animation-timing-function: ease-in-out; }
+  100% { transform: translateY(calc(-1 * var(--logo-cycle))); }
 }
 
 .delay-1{
