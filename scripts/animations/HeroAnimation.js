@@ -36,10 +36,10 @@ export class HeroAnimation extends AnimationBase {
           ease: "power2.out",
           scrollTrigger: {
             trigger: '.animation-container-wrapper',
-            start: "top top",
-            end: "+=500",
-            pin: true,
-            anticipatePin: true,
+            start: "top center",
+            end: "+=300",
+            pin: false,
+            anticipatePin: false,
             scrub: true,
             invalidateOnRefresh: true
           }

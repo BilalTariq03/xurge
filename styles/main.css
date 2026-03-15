@@ -29,7 +29,7 @@
 
 .animation-container{
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
   clip-path: inset(0 5% round 0.5rem);
@@ -38,7 +38,7 @@
 
 .animation-container-wrapper{
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 }
 
@@ -897,17 +897,10 @@
 
 
 
-@media (max-width: 990px) {
-  .animation-container.image-container{
-    position: relative;
-  }
+@media (max-width: 990px) { 
 
-  .xurge-animation{
-    position: absolute;
-    left: 25%;
-  }
+  
 
-    
   .logo-strip {
       gap: 1rem;
   }
@@ -930,6 +923,9 @@
   .works-container{
     margin-bottom: -5rem;
     padding-bottom: 0;
+    height: auto;
+    min-width: unset;
+    width: 100%;
   }
 
   .work-item{
@@ -1013,6 +1009,10 @@
 
 
 @media (max-width: 750px){
+  .animation-container-wrapper{
+    height: 70vh;
+  }
+
   .hero-text{
     font-size: clamp(3rem, 7vw, 10rem);
   }
@@ -1034,16 +1034,13 @@
     justify-self: center;
   }  
 
-  .logo{
-    font-size: 25px;
-  }
-
+ 
   .about-component-container{
     padding: 8rem 0;
   }
 
   .logo-strip-container{
-    margin-top: 8rem;
+    margin-top: 12rem;
   }
 
   .work-item{
@@ -1052,12 +1049,12 @@
 
   .stats-container{
     padding: 0;
-    margin-bottom: -15rem;
+    /* margin-bottom: -15rem; */
   }
 
   .works-container{
     padding: 0;
-    margin-bottom: -13rem;
+    margin-bottom: 3rem;
   }
 
   .works-hero-text{
@@ -1127,8 +1124,17 @@
   }
 
   .logo{
-    font-size: 20px;
+    height: 3rem;
   }
+
+   @keyframes scroll-up {
+    0%   { transform: translateY(0rem); }
+    35%  { transform: translateY(0rem);   animation-timing-function: ease-in-out; }
+    50%  { transform: translateY(-5rem); }
+    85%  { transform: translateY(-5rem);  animation-timing-function: ease-in-out; }
+    100% { transform: translateY(-12rem); }
+  }
+
 
   .stats-container{
     grid-template-columns: 1fr;
@@ -1215,16 +1221,13 @@
 }
 
 @media(max-width: 400px){
-  .works-container{
-    margin-bottom: -10rem;
-  }
 
   .works-hero-text{
     max-width: 10ch;
   }
 
   .work-item{
-    height: 23vh;
+    height: 25vh;
   }
 
   .text-line span{
