@@ -34,22 +34,26 @@ export class WorksAnimation extends AnimationBase {
     const hero = document.querySelector('.works-container');
     const wrapper = document.querySelector('.scroll-wrapper');
     const workList = document.querySelector('.work-item-list');
-    if (!hero || !wrapper || !workList) return;
+    const section = document.querySelector('.works-section');
+    if (!hero || !wrapper || !workList || !section) return;
+
+    const getScrollDist = () => wrapper.scrollWidth - section.offsetWidth;
 
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: '.works-section',
         start: 'top top',
-        end: () => `+=${(wrapper.scrollWidth - window.innerWidth) * 1.5}`, // ← lazy, recalculates on refresh
+        end: () => `+=${getScrollDist()}`,
         scrub: true,
         pin: true,
+        // markers: true,
         anticipatePin: true,
         invalidateOnRefresh: true,
         onRefresh: () => gsap.set(workList, { x: 0 }),
       }
     })
       .to(hero, { filter: 'blur(8px)', duration: 0.2 }, 0.05)
-      .to(workList, { x: () => `-${wrapper.scrollWidth - window.innerWidth}px`, ease: 'none' }, 0);
+      .to(workList, { x: () => `-${getScrollDist()}px`, ease: 'none' }, 0);
 
     this.registerTrigger(tl.scrollTrigger);
 

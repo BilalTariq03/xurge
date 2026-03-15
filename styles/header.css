@@ -95,7 +95,7 @@ body.intro-running .nav-bar{
 
 .left-items{
   display: flex;
-  align-items: center;
+  align-items: end;
   gap: clamp(40px, 5vw, 120px);
 }
 .left-items .logo-container{
@@ -103,7 +103,7 @@ body.intro-running .nav-bar{
 }
 
 .left-items .logo{
-  height: clamp(24px, 2vw, 45px);
+  height: clamp(24px, 2.5vw, 45px);
   cursor: pointer;
   color: black;
 }
@@ -129,7 +129,7 @@ body.intro-running .nav-bar{
   overflow: hidden;
   text-decoration: none;
   color: var(--neutral-black);
-  font-size: clamp(1rem, 1.1vw, 1.6rem);
+  font-size: clamp(1rem, 1.2vw, 1.6rem);
   font-weight: 500;
   padding: 2px 0;
   cursor: pointer;
@@ -446,14 +446,10 @@ body.intro-running .nav-bar{
 
 @media(max-width: 450px){
   .nav-bar{
-    padding: 0 1rem
+    padding: 0 2rem
   }
   .left-items{
     gap: 0;
-  }
-
-  .left-items .logo{
-    height: 16px;
   }
 
   .menu-button{

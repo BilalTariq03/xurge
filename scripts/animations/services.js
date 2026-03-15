@@ -67,26 +67,28 @@ export class ServicesAnimation extends AnimationBase {
     });
     
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.setClearColor(0x000000, 1);
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 2.5;
+    this.renderer.toneMappingExposure = 3.5;
     
     // Create rings
     for(let i = 0; i < 4; i++) {
-      const geometry = new THREE.TorusGeometry(6 - i * 0.75, 0.25, 32, 64);
+      const geometry = new THREE.TorusGeometry(6 - i * 0.75, 0.25, 64, 128);
       const mat = new THREE.MeshPhysicalMaterial({
         color: 0xffffff,
         transmission: 1,
         thickness: 0.5,
         roughness: 0,
         metalness: 0,
-        ior: 1.5,
+        ior: 1,
         transparent: true,
         opacity: 0.5,
-        specularIntensity: 10,
-        // emissive: new THREE.Color(0xffffff),
-        // emissiveIntensity: 0.15
+        specularIntensity: 5,
+        iridescence: 0,
+        // iridescenceIOR: 1.6,
+        // iridescenceThicknessRange: [80, 500],
+        side: THREE.DoubleSide,
       });
       
       const torus = new THREE.Mesh(geometry, mat);
@@ -96,23 +98,23 @@ export class ServicesAnimation extends AnimationBase {
     }
 
     // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     this.scene.add(ambientLight);
-    
-    const dl = new THREE.DirectionalLight(0xffffff, 1000);
+
+    const dl = new THREE.DirectionalLight(0xffffff, 800);
     dl.position.set(-9, 7, 0);
     this.scene.add(dl);
 
-    const dl2 = new THREE.DirectionalLight(0xffffff, 100);
-    dl2.position.set(9, -4, 0);
+    const dl2 = new THREE.DirectionalLight(0x88ccff, 400); // blue
+    dl2.position.set(9, -4, 3);
     this.scene.add(dl2);
 
-    const dl3 = new THREE.DirectionalLight(0xffffff, 100);
-    dl3.position.set(8, 5, 0);
+    const dl3 = new THREE.DirectionalLight(0xaaffee, 300); // teal
+    dl3.position.set(8, 5, -3);
     this.scene.add(dl3);
 
-    const dl4 = new THREE.DirectionalLight(0xffffff, 100);
-    dl4.position.set(-9, -4, 0);
+    const dl4 = new THREE.DirectionalLight(0xffeebb, 300); // warm
+    dl4.position.set(-9, -4, 2);
     this.scene.add(dl4);
   }
 

@@ -148,15 +148,15 @@ export function charReveal(className, triggerSelector, markers = false, pinOffse
         scrollTriggerInstance = gsap.to(chars, {
           opacity: 1,
           stagger: {
-            each: 0.03,
+            each: 1,
             from: 'start',
-            ease: 'power1.inOut',
+            ease: 'none',
           },
           scrollTrigger: {
             trigger: triggerElement,
-            start: `top+=${pinOffset} 80%`,
-            end: `bottom+=${pinOffset} 65%`,
-            scrub: true,
+            start: `top+=${pinOffset} 75%`,
+            end: `top+=${pinOffset} 35%`,
+            scrub: 1.5,
             markers,
             invalidateOnRefresh: true,
           },
