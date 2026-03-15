@@ -898,9 +898,6 @@
 
 
 @media (max-width: 990px) { 
-
-  
-
   .logo-strip {
       gap: 1rem;
   }
@@ -921,7 +918,6 @@
   }
 
   .works-container{
-    margin-bottom: -5rem;
     padding-bottom: 0;
     height: auto;
     min-width: unset;
@@ -955,7 +951,7 @@
 
 
  .booking-section{
-    /* margin-top: 13rem; */
+    margin-top: 13rem;
     margin-bottom: 150rem;
   }
 
@@ -1013,6 +1009,14 @@
     height: 70vh;
   }
 
+  .animation-container{
+    height: 70vh;
+  }
+
+  .xurge-video{
+    height: 70vh;
+  }
+
   .hero-text{
     font-size: clamp(3rem, 7vw, 10rem);
   }
@@ -1040,7 +1044,7 @@
   }
 
   .logo-strip-container{
-    margin-top: 12rem;
+    margin-top: 2rem;
   }
 
   .work-item{
@@ -1119,6 +1123,18 @@
 }
 
 @media(max-width: 600px){
+  .animation-container-wrapper{
+    height: 50vh;
+  }
+
+  .animation-container{
+    height: 50vh;
+  }
+
+  .xurge-video{
+    height: 50vh;
+  }
+
   .hero-text{
     font-size: 2.7rem;
   }
@@ -1158,6 +1174,11 @@
     font-size: clamp(2.5rem, 3.2vw, 3.5rem);
   }
 
+  .booking-section{
+    margin-top: 0rem;
+    margin-bottom: 130rem;
+  }
+
   .booking-heading{
     font-size: 1.75rem;
     max-width: 18ch;
@@ -1166,6 +1187,10 @@
   .audit-content{
     padding: 0 1rem;
     font-size: 13px;
+  }
+
+  .reviews-section{
+    margin-top: 5rem;
   }
 
   .review-item{
