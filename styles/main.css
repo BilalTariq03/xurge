@@ -323,14 +323,14 @@
 }
 
 .work-item-content .title{
-  font-size: clamp(1.3rem, 1.6vw, 4rem);
+  font-size: clamp(1rem, 1.6vw, 4rem);
   padding-top: 10px;
 }
 
 .work-item-category{
   display: flex;
   align-items: center;
-  font-size: clamp(1.1rem, 1.3vw, 3rem);
+  font-size: clamp(0.9rem, 1.3vw, 3rem);
   font-weight: normal;
   padding-top: 5px;
   gap: 10px;
@@ -939,6 +939,7 @@
     flex-direction: column;
     height: max-content;
     width: 100%;
+    padding: 2rem clamp(1rem, 3.125vw, 5rem);
   }
 
   .work-item-img{
@@ -955,11 +956,17 @@
     display: block;
   }
 
+  .service-name{
+    font-size: 0.8rem;
+    width: 100rem;
+  }
 
+  .service-about{
+    font-size: 0.7rem
+  }
 
  .booking-section{
     margin-top: 13rem;
-    margin-bottom: 150rem;
   }
 
   .images-grid{
@@ -1064,10 +1071,7 @@
     /* margin-bottom: -15rem; */
   }
 
-  .works-container{
-    padding: 0;
-    margin-bottom: 3rem;
-  }
+  
 
   /* .works-hero-text{
     font-size: 3.5rem;
@@ -1091,6 +1095,10 @@
     height: 40vh;
     width: 28vw; 
   } */
+
+  audit-section{
+    margin-top: 20vh;
+  }
 
   .review-item{
     width: clamp(35rem, 41.88vw, 40rem);
@@ -1174,18 +1182,32 @@
     font-size: 2.5rem;
   } */
 
+  .work-item{
+    height: 60vh;
+  }
   .text-line span{
     font-size: clamp(2.5rem, 3.2vw, 3.5rem);
   }
 
+  .service-name{
+    font-size: 0.7rem;
+  }
+
+  .service-about{
+    font-size: 0.6rem
+  }
+
   .booking-section{
     margin-top: 0rem;
-    margin-bottom: 130rem;
   }
 
   .booking-heading{
     font-size: 1.75rem;
     max-width: 18ch;
+  }
+
+  .audit-section{
+    margin-top: 10vh;
   }
 
   .audit-content{
