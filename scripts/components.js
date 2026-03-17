@@ -225,8 +225,8 @@ class ComponentLoader{
               <a class="footer-link" href="mailto:info@xurgestudio.co">
                 <div>info@xurgestudio.co</div>
               </a>
-              <a class="footer-link" href="tel:+923055150456 ">
-                <div>+92 305 5150456</div>
+              <a class="footer-link" href="tel:+923090012288 ">
+                <div>+92 309 0012288</div>
               </a>
             </div>
             <div class="footer-call">

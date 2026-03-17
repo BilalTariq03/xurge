@@ -39,6 +39,9 @@ export class WorksAnimation extends AnimationBase {
 
     const getScrollDist = () => wrapper.scrollWidth - section.offsetWidth;
 
+
+    console.log(getScrollDist());
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: '.works-section',
@@ -46,14 +49,14 @@ export class WorksAnimation extends AnimationBase {
         end: () => `+=${getScrollDist()}`,
         scrub: true,
         pin: true,
-        // markers: true,
+        markers: true,
         anticipatePin: true,
         invalidateOnRefresh: true,
-        onRefresh: () => gsap.set(workList, { x: 0 }),
+        onRefresh: () => gsap.set(wrapper, { x: 0 }),
       }
     })
       .to(hero, { filter: 'blur(8px)', duration: 0.2 }, 0.05)
-      .to(workList, { x: () => `-${getScrollDist()}px`, ease: 'none' }, 0);
+      .to(wrapper, { x: () => `-${getScrollDist()}px`, ease: 'none' }, 0);
 
     this.registerTrigger(tl.scrollTrigger);
 
