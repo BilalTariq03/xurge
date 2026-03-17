@@ -49,7 +49,7 @@ export class WorksAnimation extends AnimationBase {
         end: () => `+=${getScrollDist()}`,
         scrub: true,
         pin: true,
-        markers: true,
+        // markers: true,
         anticipatePin: true,
         invalidateOnRefresh: true,
         onRefresh: () => gsap.set(wrapper, { x: 0 }),
