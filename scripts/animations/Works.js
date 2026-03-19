@@ -56,7 +56,7 @@ export class WorksAnimation extends AnimationBase {
       }
     })
       .to(hero, { filter: 'blur(8px)', duration: 0.2 }, 0.05)
-      .to(wrapper, { x: () => `-${getScrollDist()}px`, ease: 'none' }, 0);
+      .to(workList, { x: () => `-${getScrollDist()}px`, ease: 'none' }, 0);
 
     this.registerTrigger(tl.scrollTrigger);
 
