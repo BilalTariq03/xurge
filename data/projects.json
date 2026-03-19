@@ -8,7 +8,7 @@
       "content": [
         {
           "type": "image-full",
-          "src": "projects/project1/hero.avif"
+          "src": "projects/LoadAid/1.avif"
         },
         {
           "type": "text",
@@ -28,8 +28,8 @@
           }
         },
         {
-          "type": "video",
-          "src": "projects/project1/vid1.mp4"
+          "type": "image-full",
+          "src": "projects/LoadAid/2.avif"
         },
         {
           "type": "text",
@@ -49,15 +49,15 @@
         },
         {
           "type": "image-grid-2",
-          "images": ["projects/project1/img2.avif", "projects/project1/img2.avif"]
+          "images": ["projects/LoadAid/8.avif", "projects/LoadAid/9.avif"]
         },
         {
           "type": "image-full",
-          "src": "projects/project1/img3.avif"
+          "src": "projects/LoadAid/3.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["projects/project1/img4.avif", "projects/project1/img5.avif"]
+          "images": ["projects/LoadAid/10.avif", "projects/LoadAid/11.avif"]
         },
         {
           "type": "typography",
@@ -70,31 +70,19 @@
           "colors": {
             "primary":[
               {
-                "name": "Emerald",
-                "hex": "#0F766E",
-                "rgb": "15 /,118 /,110",
-                "cmyk": "87% /0% 7% /54%"
+                "name": "Dark Grey",
+                "hex": "#3f3d3e",
+                "rgb": "63 / 61 / 62",
+                "cmyk": "0% / 3.17% / 1.59% / 75.29%"
               },
               {
-                "name": "Charcoal",
-                "hex": "#1F2933",
-                "rgb": "31 / 41 /51",
-                "cmyk": "39% 20% 0% 80%"
+                "name": "Orange",
+                "hex": "#ec6823",
+                "rgb": "236 / 104 / 35",
+                "cmyk": "0% / 55.93% / 85.17% / 7.45%"
               }
             ],
             "secondary":[
-              {
-                "name": "Teal",
-                "hex": "#00E6A0",
-                "rgb": "0 / 230 / 160",
-                "cmyk": "100% / 0% / 30% / 10%"
-              },
-              {
-                "name": "Cyan",
-                "hex": "#D6FFF3",
-                "rgb": "214 / 255 / 243",
-                "cmyk": "16% / 0% / 5% / 0%"
-              },
               {
                 "name": "White",
                 "hex": "#FFFFFF",
@@ -102,10 +90,10 @@
                 "cmyk": "0% / 0% / 0% / 0%"
               },
               {
-                "name": "Silver",
-                "hex": "#DEDEDE",
-                "rgb": "222 / 222 / 222",
-                "cmyk": "0% / 0% / 0% / 13%"
+                "name": "Light Yellow",
+                "hex": "#efeeea",
+                "rgb": "239 / 238 / 234",
+                "cmyk": "0% / 0.42% / 2.09% / 6.27%"
               }
             ]
           }
@@ -120,23 +108,11 @@
         },
         {
           "type": "image-full",
-          "src": "projects/project1/img6.avif"
+          "src": "projects/LoadAid/4.avif"
         },
         {
           "type": "image-full",
-          "src": "projects/project1/img7.avif"
-        },
-        {
-          "type": "image-full",
-          "src": "projects/project1/img8.avif"
-        },
-        {
-          "type": "image-full",
-          "src": "projects/project1/img9.avif"
-        },
-        {
-          "type": "image-full",
-          "src": "projects/project1/img10.avif"
+          "src": "projects/LoadAid/5.avif"
         },
         {
           "type": "text",
@@ -148,39 +124,15 @@
         },
         {
           "type": "image-full",
-          "src": "projects/project1/img11.avif"
+          "src": "projects/LoadAid/6.avif"
         },
         {
           "type": "image-full",
-          "src": "projects/project1/img12.avif"
+          "src": "projects/LoadAid/7.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["projects/project1/img13.avif", "projects/project1/img14.avif"]
-        },
-        {
-          "type": "image-full",
-          "src": "projects/project1/img15.avif"
-        },
-        {
-          "type": "image-full",
-          "src": "projects/project1/img15.avif"
-        },
-        {
-          "type": "image-full",
-          "src": "projects/project1/img16.avif"
-        },
-        {
-          "type": "image-grid-2",
-          "images": ["projects/project1/img17.avif", "projects/project1/img18.avif"]
-        },
-        {
-          "type": "image-full",
-          "src": "projects/project1/img19.avif"
-        },
-        {
-          "type": "image-full",
-          "src": "projects/project1/img20.avif"
+          "images": ["projects/LoadAid/12.avif", "projects/LoadAid/13.avif"]
         },
         {
           "type": "recognitions",
