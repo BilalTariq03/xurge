@@ -62,10 +62,10 @@
         {
           "type": "typography",
           "font": {
-            "image": "projects/project1/font.svg",
-            "foundry": "Piotr Lapa",
+            "image": "projects/LoadAid/font.svg",
+            "foundry": "Limitype",
             "style": "Sans Serif",
-            "weights": ["Regular", "Medium", "Bold"]
+            "weights": ["Regular", "Bold"]
           },
           "colors": {
             "primary":[

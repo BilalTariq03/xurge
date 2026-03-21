@@ -1,0 +1,204 @@
+<!-- insight.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posters & Cards | Xurge</title>
+  <link rel="stylesheet" href="../styles/general.css">
+  <link rel="stylesheet" href="../styles/header.css">
+  <link rel="stylesheet" href="../styles/footer.css">
+  <link rel="stylesheet" href="./styles/print-v1.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="icon" href="/images/SVG/Xurge Mark.svg" type="image/x-icon">
+  <script src="https://kit.fontawesome.com/0a2264748d.js" crossorigin="anonymous" async></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.25/bundled/lenis.min.js"></script>
+</head>
+<body>
+  <div class="page-transition" id="page-transition"></div>
+  <div class="cursor-ball" id="cursor-container"></div>
+
+  <div class="main-content">
+    <nav class="nav-bar" id="navbar-container"></nav>
+    <div class="button-holder" id="button-container"></div>
+
+    <main class="posters-main">
+
+      <!-- ── PAGE HEADER ── -->
+      <header class="posters-header padding-inline">
+        <div class="posters-header__label">Studio / Design Work</div>
+        <h1 class="posters-header__title">
+          <span class="line">Poster &amp;</span>
+          <span class="line"><em>Card</em> Designs</span>
+        </h1>
+        <p class="posters-header__sub">
+          A curated collection of print-ready posters, event flyers, business cards,
+          and branded collateral crafted for our clients.
+        </p>
+      </header>
+
+      <!-- ── FILTER BAR ── -->
+      <div class="posters-filter padding-inline">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="poster">Posters</button>
+        <button class="filter-btn" data-filter="card">Cards</button>
+        <button class="filter-btn" data-filter="flyer">Flyers</button>
+        <button class="filter-btn" data-filter="brand">Brand</button>
+      </div>
+
+      <!-- ── GRID ── -->
+      <section class="posters-grid padding-inline">
+
+        <!-- Row 1 -->
+        <article class="poster-card img-anim" data-category="poster">
+          <div class="poster-card__media">
+            <img src="https://picsum.photos/seed/xp1/600/800" alt="Event Poster — Neon Nights" loading="lazy" decoding="async">
+            <div class="poster-card__overlay">
+              <span class="poster-card__type">Poster</span>
+              <h2 class="poster-card__name">Neon Nights</h2>
+              <p class="poster-card__desc">Event promotion for underground music night</p>
+              <div class="poster-card__arrow">
+                <i class="fa-solid fa-arrow-up-right"></i>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="poster-card img-anim" data-category="card">
+          <div class="poster-card__media">
+            <img src="https://picsum.photos/seed/xp2/600/800" alt="Business Card — Arche Studio" loading="lazy" decoding="async">
+            <div class="poster-card__overlay">
+              <span class="poster-card__type">Card</span>
+              <h2 class="poster-card__name">Arche Studio</h2>
+              <p class="poster-card__desc">Premium business card set with embossed foil</p>
+              <div class="poster-card__arrow">
+                <i class="fa-solid fa-arrow-up-right"></i>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="poster-card img-anim" data-category="flyer">
+          <div class="poster-card__media">
+            <img src="https://picsum.photos/seed/xp3/600/800" alt="Flyer — Summer Market" loading="lazy" decoding="async">
+            <div class="poster-card__overlay">
+              <span class="poster-card__type">Flyer</span>
+              <h2 class="poster-card__name">Summer Market</h2>
+              <p class="poster-card__desc">A5 DL flyer for seasonal pop-up market</p>
+              <div class="poster-card__arrow">
+                <i class="fa-solid fa-arrow-up-right"></i>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Row 2 -->
+        <article class="poster-card img-anim" data-category="brand">
+          <div class="poster-card__media">
+            <img src="https://picsum.photos/seed/xp4/600/900" alt="Brand Collateral — Volta" loading="lazy" decoding="async">
+            <div class="poster-card__overlay">
+              <span class="poster-card__type">Brand</span>
+              <h2 class="poster-card__name">Volta Identity</h2>
+              <p class="poster-card__desc">Full brand stationery suite for tech startup</p>
+              <div class="poster-card__arrow">
+                <i class="fa-solid fa-arrow-up-right"></i>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="poster-card img-anim" data-category="poster">
+          <div class="poster-card__media">
+            <img src="https://picsum.photos/seed/xp5/600/800" alt="Film Poster — Liminal" loading="lazy" decoding="async">
+            <div class="poster-card__overlay">
+              <span class="poster-card__type">Poster</span>
+              <h2 class="poster-card__name">Liminal</h2>
+              <p class="poster-card__desc">Conceptual film poster for indie short</p>
+              <div class="poster-card__arrow">
+                <i class="fa-solid fa-arrow-up-right"></i>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="poster-card img-anim" data-category="card">
+          <div class="poster-card__media">
+            <img src="https://picsum.photos/seed/xp6/600/900" alt="Card Set — Botanica" loading="lazy" decoding="async">
+            <div class="poster-card__overlay">
+              <span class="poster-card__type">Card</span>
+              <h2 class="poster-card__name">Botanica Set</h2>
+              <p class="poster-card__desc">Greeting card series with botanical illustrations</p>
+              <div class="poster-card__arrow">
+                <i class="fa-solid fa-arrow-up-right"></i>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Row 3 -->
+        <article class="poster-card img-anim" data-category="flyer">
+          <div class="poster-card__media">
+            <img src="https://picsum.photos/seed/xp7/600/800" alt="Flyer — Nightfall" loading="lazy" decoding="async">
+            <div class="poster-card__overlay">
+              <span class="poster-card__type">Flyer</span>
+              <h2 class="poster-card__name">Nightfall</h2>
+              <p class="poster-card__desc">Rave event flyer — dark editorial aesthetic</p>
+              <div class="poster-card__arrow">
+                <i class="fa-solid fa-arrow-up-right"></i>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="poster-card img-anim" data-category="poster">
+          <div class="poster-card__media">
+            <img src="https://picsum.photos/seed/xp8/600/800" alt="Art Poster — Meridian" loading="lazy" decoding="async">
+            <div class="poster-card__overlay">
+              <span class="poster-card__type">Poster</span>
+              <h2 class="poster-card__name">Meridian</h2>
+              <p class="poster-card__desc">Limited-edition art print for gallery exhibition</p>
+              <div class="poster-card__arrow">
+                <i class="fa-solid fa-arrow-up-right"></i>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="poster-card img-anim" data-category="brand">
+          <div class="poster-card__media">
+            <img src="https://picsum.photos/seed/xp9/600/800" alt="Brand Collateral — Circe" loading="lazy" decoding="async">
+            <div class="poster-card__overlay">
+              <span class="poster-card__type">Brand</span>
+              <h2 class="poster-card__name">Circe Co.</h2>
+              <p class="poster-card__desc">Luxury brand collateral — packaging + cards</p>
+              <div class="poster-card__arrow">
+                <i class="fa-solid fa-arrow-up-right"></i>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- ── CTA STRIP ── -->
+      <div class="posters-cta padding-inline">
+        <p>Have a project in mind?</p>
+        <a href="/contact" class="posters-cta__link">
+          Let's make something <em>together</em>
+          <i class="fa-solid fa-arrow-up-right"></i>
+        </a>
+      </div>
+
+    </main>
+
+    <footer class="footer-container" id="footer-container"></footer>
+  </div>
+
+  <script src="../scripts/components.js"></script>
+  <script src="./scripts/print-v1.js" type="module" defer></script>
+</body>
+</html>

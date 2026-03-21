@@ -1,0 +1,476 @@
+/* ==========================================================================
+   styles/print-v5.css  —  Poster Showcase / Card Scale Hover
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Mont-Light';
+  src: url('../../fonts/mont/Mont-ExtraLightDEMO.otf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Monument-Regular';
+  src: url('../../fonts/Monument Extended/MonumentExtended-Regular.otf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Page wrapper ── */
+.main-content {
+  opacity: 1;
+  visibility: visible;
+  background-color: var(--neutral-white);
+  padding-top: 6.3rem;
+}
+
+/* ── Navbar — white bg page ── */
+.nav-bar {
+  background-color: var(--neutral-white);
+}
+
+.left-items .logo {
+  color: var(--neutral-black);
+}
+
+.menu-items .item {
+  color: var(--neutral-black);
+}
+
+/* ── Main wrapper ── */
+.posters-main {
+  padding-bottom: clamp(4rem, 8vw, 8rem);
+  min-height: 100vh;
+  color: var(--neutral-black);
+  font-family: 'Monument-Regular', Verdana, sans-serif;
+}
+
+/* ==========================================================================
+   PAGE HEADER
+   ========================================================================== */
+.posters-header {
+  padding-top: clamp(2rem, 4vw, 5rem);
+  padding-bottom: clamp(2.5rem, 4vw, 4rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: clamp(2rem, 4vw, 4rem);
+}
+
+.posters-header__label {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: 'Mont-Light', sans-serif;
+  font-size: clamp(11px, 0.9vw, 14px);
+  letter-spacing: 0.18em;
+  color: rgba(0, 0, 0, 0.4);
+  text-transform: uppercase;
+  margin-bottom: clamp(0.8rem, 1.5vw, 1.5rem);
+}
+
+.posters-header__title {
+  grid-column: 1;
+  grid-row: 2;
+  font-size: clamp(2.8rem, 6.5vw, 7.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  margin: 0;
+  color: var(--neutral-black);
+}
+
+.posters-header__title .line {
+  display: block;
+}
+
+.posters-header__title em {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--neutral-black);
+}
+
+.posters-header__sub {
+  grid-column: 2;
+  grid-row: 2;
+  font-family: 'Mont-Light', sans-serif;
+  font-size: clamp(13px, 1vw, 16px);
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.45);
+  max-width: 42ch;
+  align-self: end;
+  padding-bottom: 0.4rem;
+}
+
+/* ==========================================================================
+   FILTER BAR
+   ========================================================================== */
+.posters-filter {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: clamp(2rem, 4vw, 4rem);
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  font-family: 'Mont-Light', sans-serif;
+  font-size: clamp(11px, 0.8vw, 13px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.45);
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 2rem;
+  padding: 0.4em 1.1em;
+  cursor: pointer;
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.filter-btn:hover {
+  color: var(--neutral-black);
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+.filter-btn.active {
+  color: var(--neutral-white);
+  background-color: var(--neutral-black);
+  border-color: var(--neutral-black);
+}
+
+/* ==========================================================================
+   POSTER GRID
+   ========================================================================== */
+
+/*
+  overflow: visible is critical — without it, scaled cards get clipped
+  by the grid container edges.
+*/
+.posters-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  overflow: visible;
+}
+
+/* ── Card ── */
+.poster-card {
+  display: block;
+  position: relative;
+  border-radius: 6px;
+  overflow: visible;
+  z-index: 0;
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              z-index 0s 0.45s;
+}
+
+/* ── Media wrapper — clips the image corners ── */
+.poster-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.poster-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ── Overlay ── */
+.poster-card__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(0.9rem, 1.8vw, 1.5rem);
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.35) 40%,
+    rgba(0, 0, 0, 0)    100%
+  );
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.poster-card__type {
+  font-family: 'Mont-Light', sans-serif;
+  font-size: clamp(10px, 0.65vw, 11px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 0.4em;
+}
+
+.poster-card__name {
+  font-family: 'Monument-Regular', sans-serif;
+  font-size: clamp(0.9rem, 1.2vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--neutral-white);
+  margin: 0 0 0.35em;
+}
+
+.poster-card__desc {
+  font-family: 'Mont-Light', sans-serif;
+  font-size: clamp(10px, 0.7vw, 12px);
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==========================================================================
+   HOVER — card lifts and scales up, siblings dim
+   ========================================================================== */
+@media (hover: hover) {
+
+  /* Hovered card: scale up, lift with shadow, come to front */
+  .poster-card:hover {
+    transform: scale(1.05);
+    z-index: 10;
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                z-index 0s 0s;
+  }
+
+  /* Drop shadow lives on the media wrapper so it respects border-radius */
+  .poster-card:hover .poster-card__media {
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28),
+                0 8px  16px rgba(0, 0, 0, 0.16);
+  }
+
+  /* Reveal overlay */
+  .poster-card:hover .poster-card__overlay {
+    opacity: 1;
+  }
+
+  /* Siblings: scale down slightly and dim */
+  .posters-grid:has(.poster-card:hover) .poster-card:not(:hover) {
+    transform: scale(0.96);
+    opacity: 0.55;
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                opacity 0.35s ease;
+  }
+}
+
+/* ==========================================================================
+   LIGHTBOX
+   ========================================================================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5vw;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Backdrop */
+.lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Image container */
+.lightbox__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+  width: 100%;
+  max-height: 90vh;
+  border-radius: 8px;
+  overflow: hidden;
+  transform: scale(0.88);
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox.is-open .lightbox__inner {
+  transform: scale(1);
+}
+
+.lightbox__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Info bar below image */
+.lightbox__info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.lightbox__name {
+  font-family: 'Monument-Regular', sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  font-weight: 400;
+  color: var(--neutral-white);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.lightbox__type {
+  font-family: 'Mont-Light', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Close button */
+.lightbox__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--neutral-white);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.lightbox__close:hover {
+  background: rgba(255, 255, 255, 0.28);
+  transform: rotate(90deg);
+}
+
+/* ==========================================================================
+   CTA STRIP
+   ========================================================================== */
+.posters-cta {
+  margin-top: clamp(4rem, 8vw, 8rem);
+  padding-top: clamp(2rem, 4vw, 4rem);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.posters-cta p {
+  font-family: 'Mont-Light', sans-serif;
+  font-size: clamp(12px, 0.9vw, 15px);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.35);
+  margin: 0;
+}
+
+.posters-cta__link {
+  font-family: 'Monument-Regular', sans-serif;
+  font-size: clamp(1.4rem, 3.5vw, 3.5rem);
+  font-weight: 400;
+  color: var(--neutral-black);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transition: color 0.3s ease;
+}
+
+.posters-cta__link em {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.posters-cta__link i {
+  font-size: 0.6em;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.posters-cta__link:hover i {
+  transform: translate(4px, -4px);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .posters-header {
+    grid-template-columns: 1fr;
+  }
+
+  .posters-header__sub {
+    grid-column: 1;
+    grid-row: 3;
+    max-width: 60ch;
+    margin-top: 1rem;
+  }
+
+  .posters-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .posters-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .posters-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+
+  /* Always show overlay on touch */
+  .poster-card__overlay {
+    opacity: 1;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.7) 0%,
+      transparent 55%
+    );
+  }
+
+  .posters-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

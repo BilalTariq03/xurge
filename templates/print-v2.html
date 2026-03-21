@@ -1,0 +1,201 @@
+<!-- templates/prints-v2.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prints v2 | Xurge Studio</title>
+  <link rel="stylesheet" href="../styles/general.css">
+  <link rel="stylesheet" href="../styles/header.css">
+  <link rel="stylesheet" href="../styles/footer.css">
+  <link rel="stylesheet" href="./styles/print-v2.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="icon" href="/images/SVG/Xurge Mark.svg" type="image/x-icon">
+  <script src="https://kit.fontawesome.com/0a2264748d.js" crossorigin="anonymous" async></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.25/bundled/lenis.min.js"></script>
+</head>
+<body>
+  <div class="page-transition" id="page-transition"></div>
+  <div class="cursor-ball" id="cursor-container"></div>
+
+  <div class="main-content">
+    <nav class="nav-bar" id="navbar-container"></nav>
+    <div class="button-holder" id="button-container"></div>
+
+    <main class="posters-main">
+
+      <!-- HEADER -->
+      <header class="posters-header padding-inline">
+        <div class="posters-header__meta">
+          <span class="posters-header__label">Studio / Prints</span>
+          <span class="posters-header__count">09 Works &mdash; 2024&ndash;2025</span>
+        </div>
+        <h1 class="posters-header__title">
+          <span class="line">Poster</span>
+          <span class="line"><em><span class="accent-line">Designs</span></em></span>
+        </h1>
+      </header>
+
+      <!-- GRID -->
+      <section class="posters-grid padding-inline">
+
+        <!-- Row 1: two half-width portraits -->
+        <article class="poster-card img-anim">
+          <div class="poster-card__frame">
+            <img src="https://picsum.photos/seed/xp1/600/800" alt="Neon Nights" loading="lazy" decoding="async">
+          </div>
+          <div class="poster-card__caption">
+            <span class="poster-card__num">01</span>
+            <div class="poster-card__info">
+              <h2 class="poster-card__name">Neon Nights</h2>
+              <p class="poster-card__desc">Event promotion for underground music night</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="poster-card img-anim">
+          <div class="poster-card__frame">
+            <img src="https://picsum.photos/seed/xp2/600/800" alt="Liminal" loading="lazy" decoding="async">
+          </div>
+          <div class="poster-card__caption">
+            <span class="poster-card__num">02</span>
+            <div class="poster-card__info">
+              <h2 class="poster-card__name">Liminal</h2>
+              <p class="poster-card__desc">Conceptual film poster for indie short</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Row 2: one full-width landscape -->
+        <article class="poster-card poster-card--full img-anim">
+          <div class="poster-card__frame">
+            <img src="https://picsum.photos/seed/xp3/1200/600" alt="Solstice" loading="lazy" decoding="async">
+          </div>
+          <div class="poster-card__caption">
+            <span class="poster-card__num">03</span>
+            <div class="poster-card__info">
+              <h2 class="poster-card__name">Solstice</h2>
+              <p class="poster-card__desc">Limited-edition art print for gallery exhibition</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Row 3: two half-width portraits -->
+        <article class="poster-card img-anim">
+          <div class="poster-card__frame">
+            <img src="https://picsum.photos/seed/xp4/600/800" alt="Summer Market" loading="lazy" decoding="async">
+          </div>
+          <div class="poster-card__caption">
+            <span class="poster-card__num">04</span>
+            <div class="poster-card__info">
+              <h2 class="poster-card__name">Summer Market</h2>
+              <p class="poster-card__desc">A5 DL poster for seasonal pop-up market</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="poster-card img-anim">
+          <div class="poster-card__frame">
+            <img src="https://picsum.photos/seed/xp5/600/800" alt="Frequency" loading="lazy" decoding="async">
+          </div>
+          <div class="poster-card__caption">
+            <span class="poster-card__num">05</span>
+            <div class="poster-card__info">
+              <h2 class="poster-card__name">Frequency</h2>
+              <p class="poster-card__desc">Rave event poster — dark editorial aesthetic</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Row 4: one full-width landscape -->
+        <article class="poster-card img-anim">
+          <div class="poster-card__frame">
+            <img src="https://picsum.photos/seed/xp6/1200/600" alt="Verdant" loading="lazy" decoding="async">
+          </div>
+          <div class="poster-card__caption">
+            <span class="poster-card__num">06</span>
+            <div class="poster-card__info">
+              <h2 class="poster-card__name">Verdant</h2>
+              <p class="poster-card__desc">Environmental campaign visual series</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Row 5: two half-width portraits -->
+        <article class="poster-card img-anim">
+          <div class="poster-card__frame">
+            <img src="https://picsum.photos/seed/xp7/600/800" alt="Meridian" loading="lazy" decoding="async">
+          </div>
+          <div class="poster-card__caption">
+            <span class="poster-card__num">07</span>
+            <div class="poster-card__info">
+              <h2 class="poster-card__name">Meridian</h2>
+              <p class="poster-card__desc">Brand launch poster for luxury lifestyle client</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="poster-card img-anim">
+          <div class="poster-card__frame">
+            <img src="https://picsum.photos/seed/xp8/600/800" alt="Dusk" loading="lazy" decoding="async">
+          </div>
+          <div class="poster-card__caption">
+            <span class="poster-card__num">08</span>
+            <div class="poster-card__info">
+              <h2 class="poster-card__name">Dusk</h2>
+              <p class="poster-card__desc">Concert visual for acoustic evening set</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Row 6: one full-width landscape -->
+        <article class="poster-card img-anim">
+          <div class="poster-card__frame">
+            <img src="https://picsum.photos/seed/xp9/1200/600" alt="Onyx" loading="lazy" decoding="async">
+          </div>
+          <div class="poster-card__caption">
+            <span class="poster-card__num">09</span>
+            <div class="poster-card__info">
+              <h2 class="poster-card__name">Onyx</h2>
+              <p class="poster-card__desc">Fashion week promo — monochrome series</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="poster-card poster-card--full img-anim">
+          <div class="poster-card__frame">
+            <img src="https://picsum.photos/seed/xp10/1200/600" alt="Onyx" loading="lazy" decoding="async">
+          </div>
+          <div class="poster-card__caption">
+            <span class="poster-card__num">10</span>
+            <div class="poster-card__info">
+              <h2 class="poster-card__name">Onyx</h2>
+              <p class="poster-card__desc">Fashion week promo — monochrome series</p>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- CTA -->
+      <div class="posters-cta padding-inline">
+        <span class="posters-cta__label">Commission a piece</span>
+        <a href="/contact" class="posters-cta__link">
+          Let's make something <em>together</em>
+          <i class="fa-solid fa-arrow-up-right"></i>
+        </a>
+      </div>
+
+    </main>
+
+    <footer class="footer-container" id="footer-container"></footer>
+  </div>
+
+  <script src="../scripts/components.js"></script>
+  <script src="./scripts/print-v1.js" type="module" defer></script>
+</body>
+</html>

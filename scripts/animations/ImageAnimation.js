@@ -25,6 +25,7 @@ export class ImageAnimation extends AnimationBase {
             y: 0,
             duration: 1,
             ease: 'power2.out',
+            clearProps: 'transform',
           });
 
           // Stop watching once animated
