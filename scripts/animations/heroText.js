@@ -5,6 +5,6 @@ export function animateHeroText() {
         y: 0,
         duration: 0.5,
         ease: "power3.out",
-        stagger: 0.005
+        stagger: 0.01
     });
-}
+}   

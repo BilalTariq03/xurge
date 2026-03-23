@@ -1,7 +1,7 @@
 // ===== scripts/projects.js (OPTIMIZED) =====
 import { initSmoothScrolling } from './core/scroll.js';
 import { initCustomCursor } from './core/cursor.js';
-import { AddSpans, charReveal, prepareHeroText } from './utils/text-utils.js';
+import { AddSpans, charReveal, prepareHeroText, prepareSubText, animateSubText } from './utils/text-utils.js';
 import { animateHeroText } from "./animations/heroText.js";
 import { initPageTransitions } from './core/pageTransition.js';
 
@@ -29,6 +29,19 @@ function getSlugFromURL() {
   return params.get('slug');
 }
 
+// ─── Color helpers ───────────────────────────────────────────────────────────
+
+/** Returns true if the hex color is perceptually dark (luminance < 0.35). */
+function isDarkColor(hex) {
+  const h = hex.replace('#', '');
+  const r = parseInt(h.slice(0, 2), 16) / 255;
+  const g = parseInt(h.slice(2, 4), 16) / 255;
+  const b = parseInt(h.slice(4, 6), 16) / 255;
+  // sRGB luminance
+  const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  return lum < 0.35;
+}
+
 // ─── Rendering ───────────────────────────────────────────────────────────────
 
 function renderWorkHero(work) {
@@ -42,7 +55,7 @@ function renderWorkHero(work) {
           <span class="line">${work.title}</span>
         </h1>
         <p class="work-description hero-text">
-          <span class="line">${work.shortDescription}</span>
+          <span class="sub-hero-text">${work.shortDescription}</span>
         </p>
       </div>
       <p class="work-hero-scroll">
@@ -179,7 +192,7 @@ function renderBlocks(blocks) {
                         ${colors.map((c, i) => `
                           <div class="color color-${groupName} color-anim"
                                data-delay="${i * 0.2}"
-                               style="background:${c.hex}">
+                               style="background:${c.hex};color:${isDarkColor(c.hex) ? '#fff' : '#000'}">
                             <h3>${c.name}</h3>
                             <ul>
                               <li><p>HEX</p><p>${c.hex}</p></li>
@@ -254,6 +267,7 @@ class AnimationManager {
 
   async initializeAnimations() {
     prepareHeroText();
+    prepareSubText('.sub-hero-text');
 
     // Run text span setup in parallel — they don't depend on each other
     await Promise.all([
@@ -304,6 +318,7 @@ class AnimationManager {
   showPage() {
     document.body.classList.add('loaded');
     if (document.querySelector('.hero-span')) animateHeroText();
+    if (document.querySelector('.sub-hero-text')) animateSubText();
   }
 
   setupVisibilityHandling() {

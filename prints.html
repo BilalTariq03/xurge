@@ -1,0 +1,135 @@
+<!-- templates/print-v5.html — Card Scale on Hover -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prints | Xurge Studio</title>
+  <link rel="stylesheet" href="./styles/general.css">
+  <link rel="stylesheet" href="./styles/header.css">
+  <link rel="stylesheet" href="./styles/footer.css">
+  <link rel="stylesheet" href="./styles/prints.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="icon" href="/images/SVG/Xurge Mark.svg" type="image/x-icon">
+  <script src="https://kit.fontawesome.com/0a2264748d.js" crossorigin="anonymous" async></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.25/bundled/lenis.min.js"></script>
+</head>
+<body>
+  <div class="page-transition" id="page-transition"></div>
+  <div class="cursor-ball" id="cursor-container"></div>
+
+  <div class="main-content">
+    <nav class="nav-bar" id="navbar-container"></nav>
+    <div class="button-holder" id="button-container"></div>
+
+    <main class="posters-main">
+
+      <!-- ── PAGE HEADER ── -->
+      <header class="posters-header padding-inline">
+        <h1 class="posters-header__title hero-text">
+          <span class="line">Poster &amp;</span>
+          <span class="line"><span class="stone-color">Card</span> Designs</span>
+        </h1>
+        <p class="posters-header__sub">
+          A curated collection of print-ready posters, event flyers, business cards,
+          and branded collateral crafted for our clients.
+        </p>
+      </header>
+
+      <!-- ── FILTER BAR ── -->
+      <div class="posters-filter padding-inline">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="poster">Posters</button>
+        <button class="filter-btn" data-filter="card">Cards</button>
+        <button class="filter-btn" data-filter="flyer">Flyers</button>
+        <button class="filter-btn" data-filter="brand">Brand</button>
+      </div>
+
+      <!-- ── GRID ── -->
+      <section class="posters-grid padding-inline" id="posters-grid"></section>
+
+      <!-- ── LIGHTBOX ── -->
+      <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+        <div class="lightbox__backdrop" id="lightbox-backdrop"></div>
+        <div class="lightbox__inner">
+          <button class="lightbox__close" id="lightbox-close" aria-label="Close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <img class="lightbox__img" id="lightbox-img" src="" alt="">
+          <div class="lightbox__info">
+            <h2 class="lightbox__name" id="lightbox-name"></h2>
+            <span class="lightbox__type" id="lightbox-type"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CTA STRIP ── -->
+        <section class="cta-section" id="cta-section">
+          <div class="cta-inner">
+      
+            <!-- Headline -->
+            <div class="cta-headline">
+              <div class="cta-headline__line">
+                <span class="cta-headline__inner">
+                  <span class="cta-headline__text">
+                    <span class="cta-headline__accent">Let's</span> build something
+                  </span>
+                </span>
+              </div>
+              <div class="cta-headline__line">
+                <span class="cta-headline__inner">
+                  <span class="cta-headline__text">that people</span>
+                </span>
+              </div>
+              <div class="cta-headline__line">
+                <span class="cta-headline__inner">
+                  <span class="cta-headline__text"><em>remember.</em></span>
+                </span>
+              </div>
+            </div>
+      
+            <!-- Divider -->
+            <div class="cta-divider">
+              <div class="cta-divider__line"></div>
+              <span class="cta-divider__text">Start a conversation</span>
+              <div class="cta-divider__line"></div>
+            </div>
+      
+            <!-- Bottom row -->
+            <div class="cta-bottom">
+              <a href="/contact" class="cta-btn">
+                <span class="cta-btn__label">Start a project</span>
+                <span class="cta-btn__icon">
+                  <span class="cta-btn__arrow-out">&#8599;</span>
+                  <span class="cta-btn__arrow-in">&#8599;</span>
+                </span>
+              </a>
+            </div>
+          </div><!-- /.cta-inner -->
+        </section>
+
+    </main>
+
+    <footer class="footer-container" id="footer-container"></footer>
+  </div>
+
+  <script src="./scripts/components.js"></script>
+  <script src="./scripts/prints.js" type="module" defer></script>
+  <script>
+    const section = document.getElementById('cta-section');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          section.classList.add('in-view');
+          io.unobserve(section);
+        }
+      });
+    }, { threshold: 0.15 });
+    io.observe(section);
+  </script>
+</body>
+</html>

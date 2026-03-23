@@ -442,6 +442,10 @@ body.intro-running .nav-bar{
     height: 22px;
     width: 22px;
   }
+
+  .button-logo{
+    font-size: 16px;
+  }
 }
 
 @media(max-width: 450px){
@@ -463,5 +467,9 @@ body.intro-running .nav-bar{
   .talk-button-float .button-content {
     padding: 6px 12px;
     font-size: 14px;
+  }
+
+  .button-logo{
+    font-size: 12px;
   }
 }

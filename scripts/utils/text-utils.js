@@ -111,6 +111,43 @@ export function prepareHeroText() {
 }
 
 
+export function prepareSubText(selector) {
+  const el = document.querySelector(selector);
+  if (!el) return;
+
+  const text = el.textContent;
+  el.innerHTML = '';
+
+  const parts = text.match(/\S+|\s+/g) || [];
+  parts.forEach(part => {
+    if (/\s+/.test(part)) {
+      el.appendChild(document.createTextNode(part));
+    } else {
+      const wordEl = document.createElement('span');
+      wordEl.className = 'sub-word';
+      [...part].forEach(char => {
+        const span = document.createElement('span');
+        span.className = 'sub-span';
+        span.textContent = char;
+        wordEl.appendChild(span);
+      });
+      el.appendChild(wordEl);
+    }
+  });
+
+  gsap.set('.sub-span', { opacity: 0, y: 20 });
+}
+
+export function animateSubText() {
+  gsap.to('.sub-span', {
+    opacity: 1,
+    y: 0,
+    duration: 0.5,
+    ease: 'power3.out',
+    stagger: 0.005,
+  });
+}
+
 export function charReveal(className, triggerSelector, markers = false, pinOffset = 0) {
   const triggerElement = document.querySelector(`.${triggerSelector}`);
 

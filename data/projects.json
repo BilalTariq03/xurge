@@ -2,7 +2,7 @@
   "works": [
     {
       "slug": "controlled-credit-corporation",
-      "title": "Controlled Credit Corporation",
+      "title": "LoadAid",
       "shortDescription": "A financial corporation providing grounded collection services to healthcare industry professionals for over 50 years.",
 
       "content": [
@@ -320,13 +320,13 @@
 
     {
       "slug": "big-energy-group",
-      "title": "Big Energy Group",
+      "title": "Syncortic",
       "shortDescription": "A financial corporation providing grounded collection services to healthcare industry professionals for over 50 years.",
 
       "content": [
         {
           "type": "image-full",
-          "src": "projects/project1/hero.avif"
+          "src": "projects/Syncortic/1.avif"
         },
         {
           "type": "text",
@@ -346,8 +346,8 @@
           }
         },
         {
-          "type": "video",
-          "src": "projects/project1/vid1.mp4"
+          "type": "image-full",
+          "src": "projects/Syncortic/2.avif"
         },
         {
           "type": "text",
@@ -367,15 +367,15 @@
         },
         {
           "type": "image-grid-2",
-          "images": ["projects/project1/img2.avif", "projects/project1/img2.avif"]
+          "images": ["projects/Syncortic/12.avif", "projects/Syncortic/13.avif"]
         },
         {
           "type": "image-full",
-          "src": "projects/project1/img3.avif"
+          "src": "projects/Syncortic/3.avif"
         },
         {
           "type": "image-grid-2",
-          "images": ["projects/project1/img4.avif", "projects/project1/img5.avif"]
+          "images": ["projects/Syncortic/15.avif", "projects/Syncortic/16.avif"]
         },
         {
           "type": "typography",
@@ -388,30 +388,24 @@
           "colors": {
             "primary":[
               {
-                "name": "Emerald",
-                "hex": "#0F766E",
-                "rgb": "15 /,118 /,110",
-                "cmyk": "87% /0% 7% /54%"
+                "name": "Dark Blue",
+                "hex": "#221e5b",
+                "rgb": "34 / 30 / 91",
+                "cmyk": "63% / 67% / 0% /64%"
               },
               {
-                "name": "Charcoal",
-                "hex": "#1F2933",
-                "rgb": "31 / 41 /51",
-                "cmyk": "39% 20% 0% 80%"
+                "name": "Dark Geay",
+                "hex": "#525252",
+                "rgb": "82 / 82 / 82",
+                "cmyk": "0% / 0% / 0% / 68%"
               }
             ],
             "secondary":[
               {
-                "name": "Teal",
-                "hex": "#00E6A0",
-                "rgb": "0 / 230 / 160",
-                "cmyk": "100% / 0% / 30% / 10%"
-              },
-              {
-                "name": "Cyan",
-                "hex": "#D6FFF3",
-                "rgb": "214 / 255 / 243",
-                "cmyk": "16% / 0% / 5% / 0%"
+                "name": "Light Gray",
+                "hex": "#d9d9d9",
+                "rgb": "217 / 217 / 217",
+                "cmyk": "0% / 0% / 0% / 14%"
               },
               {
                 "name": "White",
@@ -420,10 +414,10 @@
                 "cmyk": "0% / 0% / 0% / 0%"
               },
               {
-                "name": "Silver",
-                "hex": "#DEDEDE",
-                "rgb": "222 / 222 / 222",
-                "cmyk": "0% / 0% / 0% / 13%"
+                "name": "Black",
+                "hex": "#000000",
+                "rgb": "0 / 0 / 0",
+                "cmyk": "0% / 0% / 0% / 100%"
               }
             ]
           }
@@ -438,23 +432,23 @@
         },
         {
           "type": "image-full",
-          "src": "projects/project1/img6.avif"
+          "src": "projects/Syncortic/4.avif"
         },
         {
           "type": "image-full",
-          "src": "projects/project1/img7.avif"
+          "src": "projects/Syncortic/5.avif"
         },
         {
           "type": "image-full",
-          "src": "projects/project1/img8.avif"
+          "src": "projects/Syncortic/6.avif"
         },
         {
           "type": "image-full",
-          "src": "projects/project1/img9.avif"
+          "src": "projects/Syncortic/7.avif"
         },
         {
           "type": "image-full",
-          "src": "projects/project1/img10.avif"
+          "src": "projects/Syncortic/8.avif"
         },
         {
           "type": "text",
@@ -465,39 +459,15 @@
         },
         {
           "type": "image-full",
-          "src": "projects/project1/img11.avif"
+          "src": "projects/Syncortic/9.avif"
         },
         {
           "type": "image-full",
-          "src": "projects/project1/img12.avif"
-        },
-        {
-          "type": "image-grid-2",
-          "images": ["projects/project1/img13.avif", "projects/project1/img14.avif"]
+          "src": "projects/Syncortic/10.avif"
         },
         {
           "type": "image-full",
-          "src": "projects/project1/img15.avif"
-        },
-        {
-          "type": "image-full",
-          "src": "projects/project1/img15.avif"
-        },
-        {
-          "type": "image-full",
-          "src": "projects/project1/img16.avif"
-        },
-        {
-          "type": "image-grid-2",
-          "images": ["projects/project1/img17.avif", "projects/project1/img18.avif"]
-        },
-        {
-          "type": "image-full",
-          "src": "projects/project1/img19.avif"
-        },
-        {
-          "type": "image-full",
-          "src": "projects/project1/img20.avif"
+          "src": "projects/Syncortic/11.avif"
         },
         {
           "type": "recognitions",
