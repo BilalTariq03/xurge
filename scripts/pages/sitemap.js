@@ -1,8 +1,8 @@
 // ===== scripts/sitemap.js =====
-import { initSmoothScrolling } from './core/scroll.js';
-import { initCustomCursor } from './core/cursor.js';
-import { initPageTransitions } from './core/pageTransition.js';
-import { FooterAnimation } from './animations/footer.js';
+import { initSmoothScrolling } from '../core/scroll.js';
+import { initCustomCursor } from '../core/cursor.js';
+import { initPageTransitions } from '../core/pageTransition.js';
+import { FooterAnimation } from '../animations/footer.js';
 
 window.addEventListener('load', () => {
   // ── Core ──────────────────────────────────────────────────────────────

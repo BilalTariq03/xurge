@@ -1,8 +1,8 @@
-// ===== scripts/privacy.js =====
-import { initSmoothScrolling } from './core/scroll.js';
-import { initCustomCursor } from './core/cursor.js';
-import { initPageTransitions } from './core/pageTransition.js';
-import { FooterAnimation } from './animations/footer.js';
+// ===== scripts/terms.js =====
+import { initSmoothScrolling } from '../core/scroll.js';
+import { initCustomCursor } from '../core/cursor.js';
+import { initPageTransitions } from '../core/pageTransition.js';
+import { FooterAnimation } from '../animations/footer.js';
 
 window.addEventListener('load', () => {
   // ── Core ──────────────────────────────────────────────────────────────
@@ -12,8 +12,6 @@ window.addEventListener('load', () => {
   gsap.registerPlugin(ScrollTrigger);
 
   // ── Wire Lenis into ScrollTrigger so sticky/pin works correctly ───────
-  // Without this, ScrollTrigger uses native scroll position, but Lenis
-  // intercepts scroll — causing sticky elements and pins to desync.
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
@@ -30,27 +28,24 @@ window.addEventListener('load', () => {
 
   if (sidebar && content) {
     ScrollTrigger.create({
-      trigger: content,          // pin lasts as long as the content column
-      start: 'top 120px',        // when content top hits navbar bottom
-      end: 'bottom bottom',      // until content bottom hits viewport bottom
+      trigger: content,
+      start: 'top 120px',
+      end: 'bottom bottom',
       pin: sidebar,
-      pinSpacing: false,         // don't push content down
+      pinSpacing: false,
     });
   }
 
   // ── Sidebar smooth scroll (intercept anchor clicks → Lenis) ──────────
-  // Without this, clicking #section-id causes an instant native jump
-  // because the browser handles it before Lenis can. We prevent that
-  // and hand the target off to lenis.scrollTo() instead.
   document.querySelectorAll('.sidebar-nav a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
       const target = document.querySelector(link.getAttribute('href'));
       if (!target) return;
       lenis.scrollTo(target, {
-        offset: -120,   // clear the fixed navbar (100px) + a little breathing room
+        offset: -120,
         duration: 1.4,
-        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // expo ease-out
+        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       });
     });
   });

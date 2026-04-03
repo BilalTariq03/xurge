@@ -1,6 +1,6 @@
 
-import { initCustomCursor } from './core/cursor.js';
-import { initPageTransitions } from './core/pageTransition.js';
+import { initCustomCursor } from '../core/cursor.js';
+import { initPageTransitions } from '../core/pageTransition.js';
 
 class FAQPageManager {
   constructor() {
@@ -29,7 +29,7 @@ class FAQPageManager {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
 
-        import('./animations/footer.js').then(({ FooterAnimation }) => {
+        import('../animations/footer.js').then(({ FooterAnimation }) => {
           const footerAnim = new FooterAnimation(this.cursor);
           footerAnim.init();
         });

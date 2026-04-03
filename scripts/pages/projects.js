@@ -1,9 +1,9 @@
 // ===== scripts/projects.js (OPTIMIZED) =====
-import { initSmoothScrolling } from './core/scroll.js';
-import { initCustomCursor } from './core/cursor.js';
-import { AddSpans, charReveal, prepareHeroText, prepareSubText, animateSubText } from './utils/text-utils.js';
-import { animateHeroText } from "./animations/heroText.js";
-import { initPageTransitions } from './core/pageTransition.js';
+import { initSmoothScrolling } from '../core/scroll.js';
+import { initCustomCursor } from '../core/cursor.js';
+import { AddSpans, charReveal, prepareHeroText, prepareSubText, animateSubText } from '../utils/text-utils.js';
+import { animateHeroText } from "../animations/heroText.js";
+import { initPageTransitions } from '../core/pageTransition.js';
 
 // ─── Data helpers ────────────────────────────────────────────────────────────
 
@@ -286,27 +286,27 @@ class AnimationManager {
     // Lazy-load animation modules only when their target elements exist.
     // All imports fire concurrently — no waterfall.
     await Promise.all([
-      document.querySelector('.img-anim') && import('./animations/ImageAnimation.js').then(({ ImageAnimation }) => {
+      document.querySelector('.img-anim') && import('../animations/ImageAnimation.js').then(({ ImageAnimation }) => {
         const anim = new ImageAnimation(); anim.init();
         this.animations.set('images', anim);
       }),
 
-      document.querySelector('.project-video') && import('./animations/VideoAnimation.js').then(({ VideoAnimation }) => {
+      document.querySelector('.project-video') && import('../animations/VideoAnimation.js').then(({ VideoAnimation }) => {
         const anim = new VideoAnimation(); anim.init();
         this.animations.set('videos', anim);
       }),
 
-      document.querySelector('.color-palette-wrapper') && import('./animations/ColorPaletteAnimation.js').then(({ ColorPaletteAnimation }) => {
+      document.querySelector('.color-palette-wrapper') && import('../animations/ColorPaletteAnimation.js').then(({ ColorPaletteAnimation }) => {
         const anim = new ColorPaletteAnimation(); anim.init();
         this.animations.set('color-palette', anim);
       }),
 
-      import('./animations/globalReveals.js').then(({ GlobalReveals }) => {
+      import('../animations/globalReveals.js').then(({ GlobalReveals }) => {
         const anim = new GlobalReveals(); anim.init();
         this.animations.set('global-reveals', anim);
       }),
 
-      document.querySelector('.scroll-track') && import('./animations/footer.js').then(({ FooterAnimation }) => {
+      document.querySelector('.scroll-track') && import('../animations/footer.js').then(({ FooterAnimation }) => {
         const anim = new FooterAnimation(this.cursor); anim.init();
         this.animations.set('footer', anim);
       }),

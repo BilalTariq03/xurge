@@ -1,8 +1,8 @@
 // ===== scripts/main.js (OPTIMIZED) =====
-import { initSmoothScrolling } from './core/scroll.js';
-import { initCustomCursor } from './core/cursor.js';
-import { AddSpans, charReveal, prepareHeroText } from './utils/text-utils.js';
-import { initPageTransitions } from './core/pageTransition.js';
+import { initSmoothScrolling } from '../core/scroll.js';
+import { initCustomCursor } from '../core/cursor.js';
+import { AddSpans, charReveal, prepareHeroText } from '../utils/text-utils.js';
+import { initPageTransitions } from '../core/pageTransition.js';
 
 class AnimationManager {
   constructor() {
@@ -52,7 +52,7 @@ class AnimationManager {
 
     // ── Hero: above fold, load immediately ────────────────────────────────
     if (document.querySelector('.animation-section')) {
-      const { HeroAnimation } = await import('./animations/HeroAnimation.js');
+      const { HeroAnimation } = await import('../animations/HeroAnimation.js');
       const a = new HeroAnimation(); a.init();
       this.animations.set('hero', a);
     }
@@ -61,25 +61,25 @@ class AnimationManager {
     await Promise.all([
 
       // Stats counter animation
-      document.querySelector('.stats-section') && import('./animations/Stats.js').then(({ StatsAnimation }) => {
+      document.querySelector('.stats-section') && import('../animations/Stats.js').then(({ StatsAnimation }) => {
         const a = new StatsAnimation(); a.init();
         this.animations.set('stats', a);
       }),
 
       // Works horizontal scroll
-      document.querySelector('.works-section') && import('./animations/Works.js').then(({ WorksAnimation }) => {
+      document.querySelector('.works-section') && import('../animations/Works.js').then(({ WorksAnimation }) => {
         const a = new WorksAnimation(); a.init();
         this.animations.set('works', a);
       }),
 
       // Services Three.js canvas — already defers Three.js init until scroll enters
-      document.querySelector('.services-section') && import('./animations/services.js').then(({ ServicesAnimation }) => {
+      document.querySelector('.services-section') && import('../animations/services.js').then(({ ServicesAnimation }) => {
         const a = new ServicesAnimation(); a.init();
         this.animations.set('services', a);
       }),
 
       // Booking — defer full init until the section is near viewport
-      document.querySelector('.booking-section') && import('./animations/booking.js').then(({ BookingAnimation }) => {
+      document.querySelector('.booking-section') && import('../animations/booking.js').then(({ BookingAnimation }) => {
         const section = document.querySelector('.booking-section');
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
@@ -93,19 +93,19 @@ class AnimationManager {
       }),
 
       // Audit
-      document.querySelector('.audit-link') && import('./animations/Audits.js').then(({ AuditAnimation }) => {
+      document.querySelector('.audit-link') && import('../animations/Audits.js').then(({ AuditAnimation }) => {
         const a = new AuditAnimation(this.cursor); a.init();
         this.animations.set('audit', a);
       }),
 
       // Reviews
-      document.querySelector('.review-strip') && import('./animations/reviews.js').then(({ ReviewsAnimation }) => {
+      document.querySelector('.review-strip') && import('../animations/reviews.js').then(({ ReviewsAnimation }) => {
         const a = new ReviewsAnimation(); a.init();
         this.animations.set('reviews', a);
       }),
 
       // Footer
-      document.querySelector('.scroll-track') && import('./animations/footer.js').then(({ FooterAnimation }) => {
+      document.querySelector('.scroll-track') && import('../animations/footer.js').then(({ FooterAnimation }) => {
         const a = new FooterAnimation(this.cursor); a.init();
         this.animations.set('footer', a);
       }),

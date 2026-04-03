@@ -1,8 +1,8 @@
-import { initSmoothScrolling } from "./core/scroll.js";
-import { initCustomCursor } from "./core/cursor.js";
-import { prepareHeroText } from "./utils/text-utils.js";
-import { animateHeroText } from "./animations/heroText.js";
-import { initPageTransitions } from "./core/pageTransition.js";
+import { initSmoothScrolling } from "../core/scroll.js";
+import { initCustomCursor } from "../core/cursor.js";
+import { prepareHeroText } from "../utils/text-utils.js";
+import { animateHeroText } from "../animations/heroText.js";
+import { initPageTransitions } from "../core/pageTransition.js";
 
 class AnimationManager {
   constructor() {
@@ -29,7 +29,7 @@ class AnimationManager {
 
     // ── Step 1: Works animation first (it sets up the pin + ScrollTrigger) ──
     if (document.querySelector('.works-grid') || document.querySelector('.works-section')) {
-      const { WorksAnimation } = await import('./animations/Works.js');
+      const { WorksAnimation } = await import('../animations/Works.js');
       const a = new WorksAnimation();
       a.init();
       this.animations.set('works', a);
@@ -45,7 +45,7 @@ class AnimationManager {
     // ── Step 3: Everything else can now init safely in parallel ──────────
     await Promise.all([
 
-      document.querySelector('.clients-container') && import('./animations/clientAnimation.js').then(({ clientAnimation }) => {
+      document.querySelector('.clients-container') && import('../animations/clientAnimation.js').then(({ clientAnimation }) => {
         const a = new clientAnimation();
         a.init();
         this.animations.set('clients', a);
@@ -54,13 +54,13 @@ class AnimationManager {
       // Awards is NOT deferred behind an IntersectionObserver anymore.
       // The click handlers and hover effects must be registered after the
       // pin spacer exists — which is guaranteed by the 600ms wait above.
-      document.querySelector('.list-item') && import('./animations/awardsAnimation.js').then(({ awardsAnimation }) => {
+      document.querySelector('.list-item') && import('../animations/awardsAnimation.js').then(({ awardsAnimation }) => {
         const a = new awardsAnimation();
         a.init();
         this.animations.set('awards', a);
       }),
 
-      document.querySelector('.scroll-track') && import('./animations/footer.js').then(({ FooterAnimation }) => {
+      document.querySelector('.scroll-track') && import('../animations/footer.js').then(({ FooterAnimation }) => {
         const a = new FooterAnimation(this.cursor);
         a.init();
         this.animations.set('footer', a);

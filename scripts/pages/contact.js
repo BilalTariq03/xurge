@@ -1,6 +1,6 @@
 // ===== js/main.js =====
-import { initCustomCursor } from './core/cursor.js';
-import { initPageTransitions } from "./core/pageTransition.js";
+import { initCustomCursor } from '../core/cursor.js';
+import { initPageTransitions } from "../core/pageTransition.js";
 class AnimationManager {
   constructor() {
     this.cursor = null;

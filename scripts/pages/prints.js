@@ -55,13 +55,13 @@ function renderPosters() {
 }
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { initSmoothScrolling }           from './core/scroll.js';
-import { initCustomCursor }              from './core/cursor.js';
-import { initPageTransitions }           from './core/pageTransition.js';
-import { FooterAnimation }               from './animations/footer.js';
-import { ImageAnimation }                from './animations/ImageAnimation.js';
-import { animateHeroText } from './animations/heroText.js';
-import { prepareHeroText, prepareSubText, animateSubText } from './utils/text-utils.js'
+import { initSmoothScrolling }           from '../core/scroll.js';
+import { initCustomCursor }              from '../core/cursor.js';
+import { initPageTransitions }           from '../core/pageTransition.js';
+import { FooterAnimation }               from '../animations/footer.js';
+import { ImageAnimation }                from '../animations/ImageAnimation.js';
+import { animateHeroText } from '../animations/heroText.js';
+import { prepareHeroText, prepareSubText, animateSubText } from '../utils/text-utils.js'
 
 window.addEventListener('load', () => {
   initSmoothScrolling();

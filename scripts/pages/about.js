@@ -1,8 +1,8 @@
-import { initSmoothScrolling } from './core/scroll.js';
-import { initCustomCursor } from './core/cursor.js';
-import { AddSpans, charReveal, prepareHeroText } from './utils/text-utils.js';
-import { animateHeroText } from './animations/heroText.js';
-import { initPageTransitions } from './core/pageTransition.js';
+import { initSmoothScrolling } from '../core/scroll.js';
+import { initCustomCursor } from '../core/cursor.js';
+import { AddSpans, charReveal, prepareHeroText } from '../utils/text-utils.js';
+import { animateHeroText } from '../animations/heroText.js';
+import { initPageTransitions } from '../core/pageTransition.js';
 
 class AnimationManager {
   constructor() {
@@ -37,7 +37,7 @@ class AnimationManager {
 
     // ── Step 1: serviceStack first (it sets up a pin) ─────────────────────
     if (document.querySelector('.service-section')) {
-      const { ServiceStackAnimation } = await import('./animations/serviceStack.js');
+      const { ServiceStackAnimation } = await import('../animations/serviceStack.js');
       const a = new ServiceStackAnimation(); a.init();
       this.animations.set('serviceStack', a);
     }
@@ -49,27 +49,27 @@ class AnimationManager {
     // ── Step 3: everything else in parallel, after pin spacer is settled ──
     await Promise.all([
 
-      document.querySelector('.img-anim') && import('./animations/ImageAnimation.js').then(({ ImageAnimation }) => {
+      document.querySelector('.img-anim') && import('../animations/ImageAnimation.js').then(({ ImageAnimation }) => {
         const a = new ImageAnimation(); a.init();
         this.animations.set('images', a);
       }),
 
-      document.querySelector('.stats-section') && import('./animations/Stats.js').then(({ StatsAnimation }) => {
+      document.querySelector('.stats-section') && import('../animations/Stats.js').then(({ StatsAnimation }) => {
         const a = new StatsAnimation(); a.init();
         this.animations.set('stats', a);
       }),
 
-      document.querySelector('.review-strip') && import('./animations/reviews.js').then(({ ReviewsAnimation }) => {
+      document.querySelector('.review-strip') && import('../animations/reviews.js').then(({ ReviewsAnimation }) => {
         const a = new ReviewsAnimation(); a.init();
         this.animations.set('reviews', a);
       }),
 
-      document.querySelector('.list-item') && import('./animations/awardsAnimation.js').then(({ awardsAnimation }) => {
+      document.querySelector('.list-item') && import('../animations/awardsAnimation.js').then(({ awardsAnimation }) => {
         const a = new awardsAnimation(); a.init();
         this.animations.set('awards', a);
       }),
 
-      document.querySelector('.scroll-track') && import('./animations/footer.js').then(({ FooterAnimation }) => {
+      document.querySelector('.scroll-track') && import('../animations/footer.js').then(({ FooterAnimation }) => {
         const a = new FooterAnimation(this.cursor); a.init();
         this.animations.set('footer', a);
       }),
