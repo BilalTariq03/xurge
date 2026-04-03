@@ -202,8 +202,9 @@ body.intro-running .nav-bar{
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
   gap: 0.25rem;
-  padding: 12px 20px;
+  padding: 0 20px;
   border: none;
   outline: none;
   box-shadow: none;
@@ -402,7 +403,7 @@ body.intro-running .nav-bar{
   }
 
   .talk-button-float .button-content {
-    padding: 8px 14px;
+    padding: 0 14px;
     font-size: 16px;
   }
 
@@ -465,7 +466,7 @@ body.intro-running .nav-bar{
   }
 
   .talk-button-float .button-content {
-    padding: 6px 12px;
+    padding: 0 12px;
     font-size: 14px;
   }
 
