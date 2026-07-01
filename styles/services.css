@@ -344,6 +344,12 @@
   object-fit: cover;
 }
 
+.carousel-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Responsive */
 /* @media (max-width: 1024px) {
   .service-section {

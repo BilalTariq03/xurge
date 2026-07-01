@@ -137,7 +137,7 @@ export class ServicesAnimation extends AnimationBase {
         scrollTrigger: {
           trigger: ".services-section",
           start: "top center",
-          end: "bottom+=6500",
+          end: "bottom+=8500",
           scrub: 0,
           invalidateOnRefresh: true,
           // markers: true
@@ -167,7 +167,7 @@ export class ServicesAnimation extends AnimationBase {
       scrollTrigger: {
         trigger: ".services-section",
         start: "top center",
-        end: "bottom+=4000",
+        end: "bottom+=5200",
         scrub: 1,
         markers: false,
         invalidateOnRefresh: true
@@ -191,12 +191,21 @@ export class ServicesAnimation extends AnimationBase {
   setupServiceItems() {
     if (!this.mm) this.mm = gsap.matchMedia();
 
+    const getListScroll = (container) => {
+      const topPx = container.offsetTop;
+      const availableHeight = window.innerHeight - topPx;
+      const overflow = container.offsetHeight - availableHeight;
+      return overflow > 0 ? -overflow : 0;
+    };
+
     this.mm.add("(min-width: 600px)", () => {
+      const container = document.querySelector(".service-container");
+
       const serviceTL = gsap.timeline({
         scrollTrigger: {
           trigger: ".services-section",
           start: "top top",
-          end: "+=6000",
+          end: "+=9000",
           pin: true,
           pinSpacing: true,
           anticipatePin: true,
@@ -212,7 +221,12 @@ export class ServicesAnimation extends AnimationBase {
         stagger: 0.2,
         duration: 1,
         ease: "power2.out"
-      }, 1);
+      }, 1)
+      .to(".service-container", {
+        y: () => getListScroll(container),
+        duration: 1.2,
+        ease: "power2.inOut"
+      }, 2.4);
 
       return () => {
         serviceTL.scrollTrigger && serviceTL.scrollTrigger.kill();
@@ -225,7 +239,7 @@ export class ServicesAnimation extends AnimationBase {
         scrollTrigger: {
           trigger: ".services-section",
           start: "top top",
-          end: "+=6000",
+          end: "+=9000",
           pin: true,
           pinSpacing: true,
           anticipatePin: true,
@@ -235,10 +249,10 @@ export class ServicesAnimation extends AnimationBase {
         }
       });
 
-      const moveUp = -window.innerHeight;
+      const container = document.querySelector(".service-container");
 
       serviceTL.to(".service-item", {
-        y: moveUp,
+        y: () => getListScroll(container),
         opacity: 1,
         stagger: 0.2,
         duration: 1,
@@ -256,7 +270,7 @@ export class ServicesAnimation extends AnimationBase {
     const renderControlTrigger = ScrollTrigger.create({
       trigger: ".services-section",
       start: "top center",
-      end: "bottom+=6000",
+      end: "bottom+=9000",
       onEnter: () => { 
         this.isServicesActive = true; 
         this.startRendering(); 

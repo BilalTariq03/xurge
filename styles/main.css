@@ -546,7 +546,9 @@
   top: 1%;
   display: flex;
   flex-direction: column;
-  gap: clamp(1.5rem, 1.3vw, 4rem);
+  --service-gap: clamp(1.5rem, 1.3vw, 4rem);
+  gap: var(--service-gap);
+  padding-bottom: 4rem;
   overflow: hidden;
 }
 
